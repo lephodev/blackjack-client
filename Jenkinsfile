@@ -9,7 +9,7 @@ pwd
 rm -rf build/
 rm -rf blackjackbuild.tar.gz
 npm install --force
-CI= npm run build
+npm run build
 tar cvf blackjackbuild.tar.gz build
 ls'''
       }
