@@ -1,0 +1,170 @@
+.chat-wrapper {
+  max-width: 350px;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  left: 10px;
+  z-index: 99;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.chat-header {
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: transparent;
+  background: transparent;
+  position: relative;
+}
+span.close-icon img {
+  width: 15px;
+}
+.chat-header .close-icon i {
+  font-size: 20px;
+}
+.chat-header .close-icon {
+  transition: all 0.5s;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 9;
+}
+
+i.fa.fa-sign-out {
+  font-family: "FontAwesome";
+}
+
+.chat-content-box {
+  height: 0;
+}
+
+form.form-inline {
+  display: flex;
+}
+.chat-wrapper.expand .chat-content-box {
+  height: 176px;
+}
+
+.chat-content {
+  transition: all 0.5s;
+  background: #2a2a2a;
+  padding: 20px;
+  border: 1px solid #010101;
+  border-radius: 5px;
+  position: relative;
+}
+
+.chat-content:before {
+  content: "";
+  /* background: url(../../assets/black.png); */
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto;
+  position: relative;
+}
+
+.chat-users::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.3);
+  background-color: #191b25;
+}
+
+.chat-users::-webkit-scrollbar {
+  width: 5px;
+  background-color: #222530;
+}
+
+.chat-users::-webkit-scrollbar-thumb {
+  background-color: #222530;
+}
+
+.chat-search.chat-input .form-inline .form-control {
+  border: 1px solid #31374c;
+  width: calc(100% - 38px);
+  font-family: sans-serif;
+  background: transparent;
+  margin-left: -2px;
+  color: #fff;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 38px;
+}
+.chat-search.chat-input .form-inline .form-control::placeholder {
+  color: #848897;
+}
+
+.chat-search.chat-input .form-inline .form-control:focus {
+  box-shadow: none;
+}
+
+.chat-search.chat-input .form-inline button,
+.chat-search.chat-input .form-inline button:hover,
+.chat-search.chat-input .form-inline button:focus {
+  background: #f9ff00;
+  color: #010101;
+  font-size: 16px;
+  width: 38px;
+  height: 38px;
+  border-color: #f9ff00;
+  box-shadow: none;
+  border: 1px solid #f9ff00;
+  border-radius: 0.25rem;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.chat-logo img {
+  max-width: 85px;
+  margin: 0px auto;
+  display: block;
+}
+.chat-search.chat-input {
+  border-bottom: none;
+  padding: 15px 0px;
+}
+
+.chat-back {
+  width: 25px;
+  height: 25px;
+  background: #2b2929;
+  text-align: center;
+  line-height: 25px;
+  border-radius: 100%;
+  transition: all 0.5s;
+  position: absolute;
+  right: 50px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.chat-back:hover {
+  background: #b9a11e;
+}
+
+.triangle-isosceles.left {
+  word-break: break-all;
+}
+
+.start-game-btn p {
+  text-align: center;
+}
+
+span.msg-limit {
+  font-size: 10px;
+  color: #848897;
+  position: absolute;
+  right: 24px;
+  bottom: 15px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
