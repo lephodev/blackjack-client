@@ -45,6 +45,7 @@ import WinPopup from './winPopup';
 import axios from 'axios';
 import { getCookie } from '../../utils/cookieUtil';
 import userUtils from '../../utils/userUtils';
+import CONSTANTS from '../../config/contants';
 
 let userId;
 
@@ -164,14 +165,14 @@ const Game = () => {
     const isLoggedIn = async () => {
       let urlParams = new URLSearchParams(window.location.search);
       // let user;
-      if (!localStorage.getItem('token') && getCookie('token')) {
-        return (window.location.href = `${window.location.origin}/login`);
+      if (!localStorage.getItem('token') && !getCookie('token')) {
+        return (window.location.href = `${CONSTANTS.landingClient}`);
       }
 
       const checkAuth = await userUtils.getAuthUserData();
 
       if (!checkAuth.success) {
-        return (window.location.href = `${window.location.origin}/login`);
+        return (window.location.href = `${CONSTANTS.landingClient}`);
       }
 
       let table = urlParams.get('tableid');
@@ -326,7 +327,7 @@ const Game = () => {
     socket.on('notAuthorized', () => {
       setLoader(false);
       toast.error(`Not authorized please login`, { id: 'logout' });
-      return (window.location.href = `${window.location.origin}/login`);
+      return (window.location.href = `${CONSTANTS.landingClient}`);
     });
 
     socket.on('gameStarted', () => {
@@ -355,14 +356,14 @@ const Game = () => {
     socket.on('gameFinished', () => {
       localStorage.removeItem('isGuide');
       toast.error(`Game is finished`, { id: 'finished' });
-      return (window.location.href = `${window.location.origin}/profile`);
+      return (window.location.href = `${CONSTANTS.landingClient}`);
     });
 
     socket.on('noTable', () => {
       setLoader(false);
       localStorage.removeItem('isGuide');
       toast.error(`Game is already finished`, { id: 'finished' });
-      return (window.location.href = `${window.location.origin}/profile`);
+      return (window.location.href = `${CONSTANTS.landingClient}`);
     });
 
     socket.on('noAdmin', (data) => {
@@ -373,7 +374,7 @@ const Game = () => {
 
     socket.on('exitSuccess', () => {
       localStorage.removeItem('isGuide');
-      return (window.location.href = `${window.location.origin}/profile`);
+      return (window.location.href = `${CONSTANTS.landingClient}`);
     });
 
     socket.on('actionError', (data) => {
