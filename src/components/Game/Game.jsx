@@ -670,21 +670,22 @@ const Game = () => {
             )}
           </div>
 
-          {!roomData?.gamestart && !roomData?.preTimer && (
-            <BetPanel
-              data-tut='bet-panel'
-              handleBetConfirm={handleBetConfirm}
-              player={players.find((el) => el.id === userId)}
-              tableId={tableId}
-              volume={volume}
-              roomData={roomData}
-              setShowBuyInPopup={setShowBuyInPopup}
-              players={players}
-              userId={userId}
-              actionopen={actionopen}
-              handleActionOpen={handleActionOpen}
-            />
-          )}
+          {!roomData?.gamestart &&
+            !players.find((el) => el.id === userId)?.isPlaying && (
+              <BetPanel
+                data-tut='bet-panel'
+                handleBetConfirm={handleBetConfirm}
+                player={players.find((el) => el.id === userId)}
+                tableId={tableId}
+                volume={volume}
+                roomData={roomData}
+                setShowBuyInPopup={setShowBuyInPopup}
+                players={players}
+                userId={userId}
+                actionopen={actionopen}
+                handleActionOpen={handleActionOpen}
+              />
+            )}
 
           {(roomData?.gamestart || !roomData?.preTimer) && (
             <>
