@@ -75,6 +75,7 @@ const Game = () => {
   const [showInvite, setShowInvite] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState({});
   const [isTourOpen, setIsTourOPen] = useState(false);
+
   const handleClose = () => setIsTourOPen(false);
 
   const [exchangeRate, setExchangeRate] = useState({
@@ -556,6 +557,9 @@ const Game = () => {
       userId,
     });
   };
+
+  console.log({ roomData });
+
   return (
     <div className={`blackjack-game ${loader ? 'loaderactive' : ''}`}>
       {loader && (
@@ -610,6 +614,7 @@ const Game = () => {
               ''
             )}
             {isWatcher ? <div className='watcher'>Watcher</div> : ''}
+
             {roomData?.preTimer && preTimer ? (
               <div className='wait-txt'>
                 <p>Game starts in</p>
@@ -665,36 +670,44 @@ const Game = () => {
             )}
           </div>
 
-          <BetPanel
-            data-tut='bet-panel'
-            handleBetConfirm={handleBetConfirm}
-            player={players.find((el) => el.id === userId)}
-            tableId={tableId}
-            volume={volume}
-            roomData={roomData}
-            setShowBuyInPopup={setShowBuyInPopup}
-            players={players}
-            userId={userId}
-            actionopen={actionopen}
-            handleActionOpen={handleActionOpen}
-          />
+          {!roomData?.gamestart && !roomData?.preTimer && (
+            <BetPanel
+              data-tut='bet-panel'
+              handleBetConfirm={handleBetConfirm}
+              player={players.find((el) => el.id === userId)}
+              tableId={tableId}
+              volume={volume}
+              roomData={roomData}
+              setShowBuyInPopup={setShowBuyInPopup}
+              players={players}
+              userId={userId}
+              actionopen={actionopen}
+              handleActionOpen={handleActionOpen}
+            />
+          )}
 
-          {players.find((el) => el.id === userId) &&
-          players.find((el) => el.id === userId)?.turn &&
-          players.find((el) => el.id === userId)?.action === '' ? (
-            <ActionPanel
-              actionopen={actionopen}
-              handleActionOpen={handleActionOpen}
-              tableId={tableId}
-              player={players.find((el) => el.id === userId)}
-            />
-          ) : (
-            <ActionPanel
-              actionopen={actionopen}
-              handleActionOpen={handleActionOpen}
-              tableId={tableId}
-              player={players.find((el) => el.id === userId)}
-            />
+          {(roomData?.gamestart || !roomData?.preTimer) && (
+            <>
+              {players.find((el) => el.id === userId) &&
+              players.find((el) => el.id === userId)?.turn &&
+              players.find((el) => el.id === userId)?.action === '' ? (
+                <ActionPanel
+                  actionopen={actionopen}
+                  handleActionOpen={handleActionOpen}
+                  tableId={tableId}
+                  player={players.find((el) => el.id === userId)}
+                />
+              ) : (
+                <>
+                  {/* <ActionPanel
+                    actionopen={actionopen}
+                    handleActionOpen={handleActionOpen}
+                    tableId={tableId}
+                    player={players.find((el) => el.id === userId)}
+                  /> */}
+                </>
+              )}
+            </>
           )}
         </div>
       </div>
