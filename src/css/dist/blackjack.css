@@ -102,6 +102,7 @@ button {
   /* height: 90vh; */
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 /* .bets-wrapper.hide-panel {
@@ -1470,10 +1471,13 @@ button .spinner-border {
     font-size: 12px;
   }
   .blackjack-table {
-    max-width: 742px;
+    max-width: 810px;
     height: 425px;
   }
 
+  .bets-wrapper {
+    left: 20px;
+  }
   .bets-container span button {
     position: relative;
     width: 40px;
@@ -1526,7 +1530,7 @@ button .spinner-border {
 
 @media screen and (max-width: 1366px) {
   .blackjack-table {
-    max-width: 649px;
+    max-width: 710px;
     height: 372px;
   }
   .blackjack-players-container .player2 {
@@ -1682,10 +1686,18 @@ button .spinner-border {
   }
   .wait-txt {
     font-size: 12px;
+
+
     width: 100%;
-    text-align: center;
-    max-width: 200px;
-    top: 35%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    color: yellow;
+    font-weight: 800;
+    border-radius: 2px;
+    /* background: #e4df0338; */
+    backdrop-filter: blur(4px);
+
   }
 
   .wait-txt h3 {
