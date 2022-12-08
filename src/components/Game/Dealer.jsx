@@ -1,5 +1,5 @@
 import dealerPic from "../../imgs/blackjack/dealer-lady1.png";
-import back from "../../imgs/blackjack/cards/BACK.svg";
+import back from "../../imgs/blackjack/cards/Black-Card.png";
 
 const Dealer = ({ dealer, players }) => {
   return (

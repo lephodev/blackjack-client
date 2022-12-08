@@ -535,7 +535,7 @@ button {
 }
 
 #users-online-box {
-  position: absolute;
+  position: fixed;
   width: 220px;
   left: -166px;
   top: 80px;
@@ -546,11 +546,7 @@ button {
   border-radius: 0px 6px 6px 0px;
   z-index: 9;
   -webkit-user-select: none;
-  /* Safari */
-  -ms-user-select: none;
-  /* IE 10+ and Edge */
   user-select: none;
-  /* Standard syntax */
 }
 #users-online-box #users-online-label {
   text-shadow: 1px 1px black;
@@ -1498,46 +1494,67 @@ i {
   background: url("../../imgs/chips/chip1.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
 }
 .bets-container #chip50 {
   background: url("../../imgs/chips/chip2.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
 }
 .bets-container #chip100 {
   background: url("../../imgs/chips/chip3.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
 }
 .bets-container #chip500 {
   background: url("../../imgs/chips/chip4.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
 }
 .bets-container #chip1k {
   background: url("../../imgs/chips/chip5.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
 }
 .bets-container #chip5k {
   background: url("../../imgs/chips/chip6.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
 }
 .bets-container #chip10k {
   background: url("../../imgs/chips/chip7.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
 }
 .bets-container #chip50k {
   background: url("../../imgs/chips/chip8.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
 }
 .bets-container #chip100k {
   background: url("../../imgs/chips/chip9.svg") no-repeat;
   background-size: cover;
   background-position: center;
+  transition: all 0.3s;
+}
+
+.bets-container #chip10:hover,
+.bets-container #chip50:hover,
+.bets-container #chip100:hover,
+.bets-container #chip500:hover,
+.bets-container #chip1k:hover,
+.bets-container #chip5k:hover,
+.bets-container #chip10k:hover,
+.bets-container #chip50k:hover,
+.bets-container #chip100k:hover {
+  transform: scale(0.95);
 }
 
 .user-action-container .user-action-text {
@@ -1579,16 +1596,27 @@ i {
 
 .user-action-container #stand {
   color: #db2a05;
+  transition: all 0.3s;
 }
 .user-action-container #surrender {
   color: #bfc8dd;
+  transition: all 0.3s;
 }
 .user-action-container #hit {
   color: #0b8561;
+  transition: all 0.3s;
 }
 .user-action-container #doubleDown {
   position: relative;
   color: #b9a11e;
+  transition: all 0.3s;
+}
+
+.user-action-container button#stand:hover,
+.user-action-container button#surrender:hover,
+.user-action-container button#hit:hover,
+.user-action-container button#doubleDown:hover {
+  transform: scale(0.95);
 }
 
 .user-action-container button#stand:hover svg path,
@@ -1799,10 +1827,10 @@ i {
     height: 80px;
   }
 
-  .bets-container span button {
+  /* .bets-container span button {
     width: 50px;
     height: 50px;
-  }
+  } */
 
   #invite-link-box {
     width: 132px;
@@ -1823,6 +1851,18 @@ i {
 
   #leave-table {
     bottom: 20px;
+  }
+
+
+
+  .bets-container,
+  .bet-btn-box {
+    gap: 10px;
+  }
+
+  .user-action-container {
+    padding: 10px 15px;
+    gap: 10px;
   }
 }
 @media all and (max-width: 768px) {
@@ -1858,8 +1898,12 @@ i {
   }
 
   .bets-container span button {
-    width: 50px;
-    height: 50px;
+    width: 54px;
+    height: 54px;
+}
+
+  #users-online-box{
+    display: none;
   }
 }
 @media all and (max-width: 576px) {
@@ -1904,10 +1948,12 @@ i {
     height: 32px;
   }
 
+
+
   .bets-container span button {
-    width: 30px;
-    height: 30px;
-  }
+    width: 54px;
+    height: 54px;
+}
 }
 @media all and (max-width: 386px) {
   #about-box {
