@@ -196,7 +196,7 @@ const Player = ({
         player.action === '' ? (
           <TimerSeparator time={roomData?.timer} remainingTime={letTime} />
         ) : (
-          ''
+          ""
         )}
 
         {roomData.media === 'video' && videoPlayer && webcamOn ? (
