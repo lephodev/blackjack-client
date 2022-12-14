@@ -1,9 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import toast from 'react-hot-toast';
-import Select from 'react-select';
-import { socket } from '../../config/socket';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import toast from "react-hot-toast";
+import Select from "react-select";
+import { socket } from "../../config/socket";
+
 const InviteFriend = ({
   userId,
   tableId,
@@ -17,12 +18,12 @@ const InviteFriend = ({
   const [friendList, setFriendList] = useState([]);
 
   useEffect(() => {
-    socket.on('invitationSend', (data) => {
+    socket.on("invitationSend", (data) => {
       setRoomData(data.room);
-      toast.success('Invitation Send Successfully', { id: 'A' });
+      toast.success("Invitation Send Successfully", { id: "A" });
     });
-    socket.on('noInvitationSend', () => {
-      toast.success('Unable to send Invitation', { id: 'A' });
+    socket.on("noInvitationSend", () => {
+      toast.success("Unable to send Invitation", { id: "A" });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -31,16 +32,16 @@ const InviteFriend = ({
     const fetchFriendList = async () => {
       try {
         const res = await axios.get(
-          'https://base-api-t3e66zpola-uk.a.run.app',
+          "https://base-api-t3e66zpola-uk.a.run.app",
           {
             params: {
               usid: userId,
-              service: 'getFr-BlockTables',
+              service: "getFr-BlockTables",
               params: `usid=${userId},mode=lobby`,
             },
           }
         );
-        if (res.data.error === 'no error') {
+        if (res.data.error === "no error") {
           let list = [];
           res.data.friendList.forEach((friend) => {
             if (
@@ -57,7 +58,7 @@ const InviteFriend = ({
           setFriendList(list);
         }
       } catch (err) {
-        console.log('Error in fetch friend list =>', err.message);
+        console.log("Error in fetch friend list =>", err.message);
       }
     };
     if (userId && roomData) {
@@ -66,38 +67,77 @@ const InviteFriend = ({
   }, [userId, roomData]);
 
   const handleInvitationSend = () => {
-    socket.emit('invPlayers', {
+    socket.emit("invPlayers", {
       invPlayers: invPlayers,
       tableId,
       gameType: gameCollection,
       userId: userId,
     });
   };
+
   const customStyles = {
     option: (provided) => ({
       ...provided,
-      borderBottom: '1px solid #2d2d32',
-      color: '#ddd',
-      backgroundColor: '#191b25',
-    }),
-    control: () => ({
-      border: '1px solid #51525f',
-      borderRadius: '.25rem',
-      display: 'flex',
-      padding: '2px 10px',
-      backgroundColor: 'transparent',
-      color: '#fff',
-    }),
-
-    multiValueRemove: (styles, { data }) => ({
-      ...styles,
-      color: data.color,
-      ':hover': {
-        backgroundColor: '#b9a11e',
-        color: '#fff',
+      background: "#333333",
+      color: "#fff",
+      fontWeight: "400",
+      fontSize: "16px",
+      padding: "12px",
+      lineHeight: "16px",
+      cursor: "pointer",
+      border: "1px solid #686868",
+      ":hover": {
+        background: "#2a2a2a",
       },
     }),
+    menu: (provided) => ({
+      ...provided,
+      background: "#333333",
+      padding: "0px",
+      border: "2px solid transparent",
+    }),
+    control: () => ({
+      background: "#333333",
+      border: "1px solid #686868",
+      borderRadius: "4px",
+      color: "#fff",
+      display: "flex",
+      alignItem: "center",
+      height: "38px",
+      margin: "10px 0",
+      ":hover": {
+        background: "#333333",
+        // border: "2px solid #306CFE",
+      },
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#fff",
+      fontWeight: "400",
+      fontSize: "14px",
+      lineHeight: "16px",
+    }),
+    indicatorSeparator: (provided) => ({
+      ...provided,
+      // display: "none",
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      fontWeight: "400",
+      fontSize: "14px",
+      lineHeight: "19px",
+      color: "#fff",
+    }),
+    input: (provided) => ({
+      ...provided,
+      height: "34px",
+      color: "#fff",
+      width: "100%",
+      margin:"0px",
+      padding:"0px",
+    }),
   };
+  
 
   return (
     <Modal
@@ -106,25 +146,27 @@ const InviteFriend = ({
         setShowInvite(false);
       }}
       centered
-      className='friends-popup leave-confirm invite-friend'>
+      className="friends-popup leave-confirm invite-friend"
+    >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
-        <div className='block-view'>
-          <h4>Select friend to invite</h4>
-          <div className='invite-popup-box'>
+        <div className="block-view">
+            <h4>Select friend to invite</h4>
+          <div className="invite-popup-box">
             <Select
               isMulti
-              name='friendList'
+              name="friendList"
               options={friendList}
-              className='basic-multi-select'
-              classNamePrefix='select'
+              className="basic-multi-select"
+              classNamePrefix="select"
               styles={customStyles}
               onChange={(value) => setInvPlayers(value)}
             />
             <Button
               onClick={() => {
                 handleInvitationSend();
-              }}>
+              }}
+            >
               Invite Friend
             </Button>
           </div>

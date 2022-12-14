@@ -46,6 +46,7 @@ import axios from "axios";
 import { getCookie } from "../../utils/cookieUtil";
 import userUtils from "../../utils/userUtils";
 import CONSTANTS from "../../config/contants";
+import { useMediaQuery } from "react-responsive";
 
 let userId;
 
@@ -75,6 +76,17 @@ const Game = () => {
   const [showInvite, setShowInvite] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState({});
   const [isTourOpen, setIsTourOPen] = useState(false);
+
+  const isTablet = useMediaQuery({
+    query: "(max-width: 1024px) and (min-width: 766px)",
+  });
+  const isBigMobile = useMediaQuery({
+    query: "(max-width: 767px) and (min-width: 580px)",
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width: 579px) and (min-width: 451px)",
+  });
+  const isMiniMobile = useMediaQuery({ query: "(max-width: 450px)" });
 
   const handleClose = () => setIsTourOPen(false);
 
@@ -462,17 +474,17 @@ const Game = () => {
       let players = [];
       let whole = [];
       const index = roomData?.players?.findIndex((ele) => ele.id === userId);
-      console.log("ddd", index);
+      // console.log("ddd", index);
       if (typeof index !== "undefined" && index !== -1) {
         const split1 = roomData?.players?.slice(0, index);
         const split2 = roomData?.players?.slice(
           index,
           roomData?.players?.length
         );
-        console.log("spl =>", split1, split2);
+        // console.log("spl =>", split1, split2);
         whole = whole.concat(split2).concat(split1);
       }
-      console.log("whole =>", whole, roomData.players);
+      // console.log("whole =>", whole, roomData.players);
       whole?.forEach((item, i) => {
         players.push({ ...item, position: availablePosition[i] });
       });
@@ -558,8 +570,6 @@ const Game = () => {
     });
   };
 
-  console.log({ roomData });
-
   // Dynamic screen scaling
 
   const initialScale = window.innerWidth / 19.2;
@@ -623,9 +633,28 @@ const Game = () => {
           <div
             className="player-wrapper-content"
             style={{
-              transform: `translate(-50%, -${topValue}%) scale(${
-                scaleValue / 100
-              })`,
+              position: "absolute",
+              top: "25%",
+              left: "50%",
+              width: "1927px",
+              height: "100%",
+              transform: isTablet
+                ? `translate(-50%, -${topValue * 0.99}%) scale(${
+                    (scaleValue * 1.1) / 100
+                  })`
+                : isBigMobile
+                ? `translate(-50%, -${topValue * 0.85}%) scale(${
+                    (scaleValue * 1.4) / 100
+                  })`
+                : isMobile
+                ? `translate(-50%, -${topValue * 0.78}%) scale(${
+                    (scaleValue * 1.7) / 100
+                  })`
+                : isMiniMobile
+                ? `translate(-50%, -${topValue * 0.65}%) scale(${
+                    (scaleValue * 2) / 100
+                  })`
+                : `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
             }}
           >
             <div className="blackjack-table">
@@ -651,13 +680,17 @@ const Game = () => {
               {isWatcher ? <div className="watcher">Watcher</div> : ""}
 
               {roomData?.preTimer && preTimer ? (
-                <div className="wait-txt">
-                  <p>Game starts in</p>
-                  <PreTimer timer={preTimer} />
+                <div className="waitTxtBoxContainer">
+                  <div className="wait-txt">
+                    <p>Game starts in</p>
+                    <PreTimer timer={preTimer} />
+                  </div>
                 </div>
               ) : roomData?.winnerPlayer?.length ? (
-                <div className="wait-txt">
-                  <p>New round start in 5 sec</p>
+                <div className="waitTxtBoxContainer">
+                  <div className="wait-txt">
+                    <p>New round start in 5 sec</p>
+                  </div>
                 </div>
               ) : (
                 ""
@@ -706,7 +739,6 @@ const Game = () => {
               )}
             </div>
           </div>
-
           {!roomData?.gamestart &&
             !players.find((el) => el.id === userId)?.isPlaying && (
               <BetPanel
@@ -723,7 +755,6 @@ const Game = () => {
                 handleActionOpen={handleActionOpen}
               />
             )}
-
           {(roomData?.gamestart || !roomData?.preTimer) && (
             <>
               {players.find((el) => el.id === userId) &&
