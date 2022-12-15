@@ -430,7 +430,7 @@ button {
   padding: 12px 18px;
   border-radius: 30px 0px 0px 30px;
   cursor: pointer;
-
+  width: 134px;
   z-index: 300;
 }
 
@@ -1853,8 +1853,6 @@ i {
     bottom: 20px;
   }
 
-
-
   .bets-container,
   .bet-btn-box {
     gap: 10px;
@@ -1900,9 +1898,9 @@ i {
   .bets-container span button {
     width: 54px;
     height: 54px;
-}
+  }
 
-  #users-online-box{
+  #users-online-box {
     display: none;
   }
 }
@@ -1948,12 +1946,10 @@ i {
     height: 32px;
   }
 
-
-
   .bets-container span button {
     width: 54px;
     height: 54px;
-}
+  }
 }
 @media all and (max-width: 386px) {
   #about-box {

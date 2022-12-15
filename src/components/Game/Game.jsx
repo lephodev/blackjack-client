@@ -644,15 +644,15 @@ const Game = () => {
                   })`
                 : isBigMobile
                 ? `translate(-50%, -${topValue * 0.85}%) scale(${
-                    (scaleValue * 1.4) / 100
+                    (scaleValue * 1.2) / 100
                   })`
                 : isMobile
                 ? `translate(-50%, -${topValue * 0.78}%) scale(${
-                    (scaleValue * 1.7) / 100
+                    (scaleValue * 1.5) / 100
                   })`
                 : isMiniMobile
                 ? `translate(-50%, -${topValue * 0.65}%) scale(${
-                    (scaleValue * 2) / 100
+                    (scaleValue * 1.8) / 100
                   })`
                 : `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
             }}
