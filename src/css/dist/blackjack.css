@@ -528,7 +528,11 @@ input[type="number"] {
   left: -20px;
   bottom: 2px;
 }
-
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #f9ff00;
+  border-color: #f9ff00;
+}
 /******************** User Action *******************/
 
 .user-action-container {
