@@ -500,10 +500,12 @@ const Game = () => {
     const userWallet = players.find((el) => el.id === userId)?.wallet;
     const userBet = players.find((el) => el.id === userId)?.betAmount;
     if (!userBet && !userWallet) {
-      toast.error("You don't have enough balance in your wallet.");
+      toast.error("You don't have enough balance in your wallet.", {
+        id: 'confirm-bet',
+      });
       return;
     } else if (!userBet) {
-      toast.error('Please enter bet amount');
+      toast.error('Please enter bet amount', { id: 'confirm-bet' });
       return;
     }
     // else if (!userWallet) {
