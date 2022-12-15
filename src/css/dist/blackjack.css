@@ -1424,6 +1424,10 @@ button .spinner-border {
   background-color: initial;
 }
 
+.css-dmellk-placeholder {
+  text-align: left !important;
+}
+
 /* .player-wrapper-content {
   position: absolute;
   top: 19%;
