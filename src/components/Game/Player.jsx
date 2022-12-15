@@ -196,13 +196,19 @@ const Player = ({
         player.action === '' ? (
           <TimerSeparator time={roomData?.timer} remainingTime={letTime} />
         ) : (
-          ""
+          ''
         )}
 
         {roomData.media === 'video' && videoPlayer && webcamOn ? (
           <video ref={webcamRef} autoPlay muted playsInline webkitPlaysInline />
         ) : (
-          <img src={ProfilePic} alt='off-camera' />
+          <img
+            src={
+              player.avatar ||
+              'https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png'
+            }
+            alt='off-camera'
+          />
           // <video ref={webcamRef} autoPlay />
         )}
       </div>
