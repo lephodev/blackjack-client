@@ -8,8 +8,6 @@ import BubbleMessage from './BubbleMessage';
 import { socket } from '../../config/socket';
 import numFormatter from '../../config/utils';
 
-import ProfilePic from '../../imgs/blackjack/profile_user.jpg';
-
 const Player = ({
   player,
   gameFinish,
