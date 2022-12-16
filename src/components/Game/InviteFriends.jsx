@@ -105,6 +105,7 @@ const InviteFriend = ({
       alignItem: "center",
       height: "38px",
       margin: "10px 0",
+      textAlign: "left",
       ":hover": {
         background: "#333333",
         // border: "2px solid #306CFE",
@@ -116,6 +117,7 @@ const InviteFriend = ({
       fontWeight: "400",
       fontSize: "14px",
       lineHeight: "16px",
+      textAlign: "left",
     }),
     indicatorSeparator: (provided) => ({
       ...provided,
@@ -127,6 +129,7 @@ const InviteFriend = ({
       fontSize: "14px",
       lineHeight: "19px",
       color: "#fff",
+      textAlign: "left",
     }),
     input: (provided) => ({
       ...provided,
@@ -135,6 +138,7 @@ const InviteFriend = ({
       width: "100%",
       margin:"0px",
       padding:"0px",
+      textAlign: "left",
     }),
   };
   
