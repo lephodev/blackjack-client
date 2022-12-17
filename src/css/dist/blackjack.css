@@ -1456,12 +1456,12 @@ button .spinner-border {
     gap: 6px;
   }
   .floating-menu-icon {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
   }
   .floating-menu-icon svg {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
   }
   .wallet-box {
     padding: 0;
@@ -1514,7 +1514,7 @@ button .spinner-border {
   .user-action-container .user-action-text {
     font-size: 12px;
   }
-  .user-action-container .user-action-box{
+  .user-action-container .user-action-box {
     width: 80px;
   }
 }
@@ -1577,6 +1577,7 @@ button .spinner-border {
     gap: 5px;
   }
 }
+
 @media screen and (max-width: 991px) and (orientation: landscape) {
   .user-action-container {
     padding: 10px;
@@ -1589,12 +1590,12 @@ button .spinner-border {
     gap: 6px;
   }
   .floating-menu-icon {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
   }
   .floating-menu-icon svg {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
   }
   .user-action-container .user-action {
     width: 40px;
@@ -1607,7 +1608,7 @@ button .spinner-border {
   .user-action-container .user-action-text {
     font-size: 12px;
   }
-  .user-action-container .user-action-box{
+  .user-action-container .user-action-box {
     width: 80px;
   }
   .wallet-balance {
@@ -1688,6 +1689,20 @@ button .spinner-border {
   .bets-container,
   .bet-btn-box {
     gap: 5px;
+  }
+}
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 991px) and (orientation: landscape) {
+}
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 767px) and (orientation: portrait) {
+  .count-1 .blackjack-players {
+    max-width: 150px;
+  }
+
+  .blackjack-player-avatar img {
+    width: 150px;
+    height: 150px;
   }
 }
 
