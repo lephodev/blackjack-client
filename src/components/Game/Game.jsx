@@ -49,7 +49,7 @@ import CONSTANTS from '../../config/contants';
 import { useMediaQuery } from 'react-responsive';
 
 let userId;
-
+let handleBetIntervel;
 const Game = () => {
   const [tableId, setTableId] = useState('');
   const [winUser, setWinUser] = useState(false);
@@ -497,26 +497,32 @@ const Game = () => {
   };
 
   const handleBetConfirm = (e) => {
-    const userWallet = players.find((el) => el.id === userId)?.wallet;
-    const userBet = players.find((el) => el.id === userId)?.betAmount;
-    if (!userBet && !userWallet) {
-      toast.error("You don't have enough balance in your wallet.", {
-        id: 'confirm-bet',
-      });
-      return;
-    } else if (!userBet) {
-      toast.error('Please enter bet amount', { id: 'confirm-bet' });
-      return;
+    if (handleBetIntervel) {
+      clearInterval(handleBetIntervel);
     }
-    // else if (!userWallet) {
-    //   toast.error("You don't have enough balance in your wallet.");
-    //   return;
-    // }
-    socket.emit('confirmBet', {
-      tableId,
-      userId,
-    });
+    handleBetIntervel = setTimeout(() => {
+      const userWallet = players.find((el) => el.id === userId)?.wallet;
+      const userBet = players.find((el) => el.id === userId)?.betAmount;
+      console.log('handleBetConfirm-----', { userWallet, userBet });
+      if (!userBet && !userWallet) {
+        toast.error("You don't have enough balance in your wallet.", {
+          id: 'confirm-bet',
+        });
+        return;
+      } else if (!userBet) {
+        toast.error('Please enter bet amount', { id: 'confirm-bet' });
+        return;
+      } else if (!userWallet) {
+        toast.error("You don't have enough balance in your wallet.");
+        return;
+      }
+      socket.emit('confirmBet', {
+        tableId,
+        userId,
+      });
+    }, 1000);
   };
+
   const playSound = (value) => {
     let aud = document.getElementsByClassName(`audio-${value}`)[0];
     if (aud) {
