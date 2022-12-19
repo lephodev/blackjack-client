@@ -399,6 +399,7 @@ input[type="number"] {
 
 .blackjack-player-avatar {
   display: flex;
+  justify-content: center;
 }
 
 .blackjack-players.active-player .blackjack-player-avatar img {
@@ -538,7 +539,7 @@ input[type="number"] {
 /******************** User Action *******************/
 
 .user-action-container {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1598,12 +1599,12 @@ button .spinner-border {
     height: 20px;
   }
   .user-action-container .user-action {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
   .user-action-container .user-action svg {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
   }
   .user-action-container .user-action-text {
     font-size: 12px;
@@ -1693,16 +1694,77 @@ button .spinner-border {
 }
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 991px) and (orientation: landscape) {
+  .blackjack-players {
+    scale: 1.6;
+  }
+  .dealer {
+    left: 56%;
+    scale: 1.6;
+    top: -30%;
+  }
+  .dealer-avatar img {
+    width: 70%;
+  }
+  .dealer-card img {
+    width: 90%;
+    height: 90%;
+  }
+  .player-card img {
+    width: 90%;
+  }
+  .blackjack-player-avatar img {
+    width: 90% !important;
+    height: 90% !important;
+  }
+  .blackjack-players-container .player4 {
+    text-align: center;
+    left: 53% !important;
+    bottom: -75px;
+  }
+  .wait-txt,
+  .wait-txt h3 {
+    color: #f9ff00;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .wait-txt .progress {
+    max-width: 210px;
+    margin: 0px auto;
+    height: 8px;
+  }
 }
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 767px) and (orientation: portrait) {
-  .count-1 .blackjack-players {
-    max-width: 150px;
+  .blackjack-players {
+    scale: 1.7;
+    left: 54% !important;
   }
-
-  .blackjack-player-avatar img {
-    width: 150px;
-    height: 150px;
+  .blackjack-player-name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .blackjack-players-container .player4 {
+    text-align: center;
+    left: 54% !important;
+  }
+  .dealer {
+    left: 56%;
+    scale: 1.7;
+    top: -224px;
+  }
+  .leave-confirm .modal-content .modal-body {
+    padding: 25px 15px;
+  }
+  .wait-txt,
+  .wait-txt h3 {
+    color: #f9ff00;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  .wait-txt .progress {
+    max-width: 210px;
+    margin: 0px auto;
+    height: 8px;
   }
 }
 
