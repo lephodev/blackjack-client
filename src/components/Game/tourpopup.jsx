@@ -1,9 +1,7 @@
 import React from "react";
 import {Modal} from "react-bootstrap"
-import tourimg from "../../imgs/blackjack/tour-img.jpg"
+import tourimg from "../../imgs/blackjack/tour-img.png"
 const TourPopup = ({isTourOpen,handleClose}) => {
-
-  
 
   return (
     <Modal show={isTourOpen} onHide={handleClose} centered className="tour-popup">
@@ -17,12 +15,9 @@ const TourPopup = ({isTourOpen,handleClose}) => {
                     <img src={tourimg} alt="" />
                 </div>
 
-
                 <div className="tour-info">
-                    <p>Please click on the chips to place your bet and click confirm button.</p>
+                    <p>Please click on the chips to place your bet and click Bet Now button.</p>
                 </div>
-
-
             </div>
         </Modal.Body>
     </Modal>

@@ -1643,8 +1643,8 @@ button .spinner-border {
     font-size: 10px;
   }
   .bets-container span button {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     font-size: 10px;
   }
   .bets-wrapper {
@@ -1667,13 +1667,15 @@ button .spinner-border {
   }
 }
 
-
 /* landscape  */
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 991px) and (orientation: landscape) {
   .bets-container,
   .bet-btn-box {
     gap: 5px;
+  }
+  #users-online-box {
+    top: 55px;
   }
   .bets-wrapper {
     position: fixed;
@@ -1735,6 +1737,7 @@ button .spinner-border {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     margin-bottom: 12px;
+    margin-left: 2%;
   }
   /* count 1  */
 
@@ -1878,6 +1881,20 @@ button .spinner-border {
     bottom: 210px;
     right: -60px;
   }
+  .chat-content {
+    padding: 20px 10px;
+}
+.chat-logo img {
+  max-width: 48px;
+}
+.chat-search.chat-input {
+  padding: 12px 0px;
+}
+.chat-wrapper.expand .chat-content-box {
+  height: 158px;
+}
+.triangle-isosceles.left {
+  font-size: 20px;}
 }
 
 /* portrait */
@@ -2063,6 +2080,49 @@ button .spinner-border {
     bottom: 210px;
     right: -60px;
   }
+  .chat-content {
+    padding: 15px 10px;
+  }
+  .chat-logo img {
+    max-width: 50px;
+  }
+  span.msg-limit {
+    bottom: 10px;
+  }
+  .tour-info p {
+    color: #fff;
+    font-size: 14px;
+    margin: 0;
+    font-weight: 400;
+  }
+  .leave-confirm .modal-content .modal-body {
+    padding: 15px 10px;
+  }
+  .invite-popup-box button,
+  .invite-popup-box button:hover,
+  .invite-popup-box button:focus {
+    width: 90px;
+    padding: 0px !important;
+  }
+  .css-b62m3t-container {
+    width: calc(100% - 90px);
+  }
+  .block-view h4 {
+    margin: 0;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+  .leave-confirm .modal-content .block p {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .btn {
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .triangle-isosceles.left {
+    font-size: 18px;
+}
 }
 
 /* @media screen and (min-width: 1366px) {
