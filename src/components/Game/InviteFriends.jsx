@@ -135,8 +135,6 @@ const InviteFriend = ({
     }),
   };
 
-  console.log({ invPlayers });
-
   return (
     <Modal
       show={showInvite}

@@ -14,7 +14,8 @@ import ActionPanel from './ActionPanel';
 import MeetingView from './MeetingView';
 import Chat from '../chat/chat';
 import NewBuyInPopup from '../stripe/newBuyinPopup';
-import BuyInPopup from '../stripe/buyInPopup';
+// Uncomment it when uncomment buy in popup
+// import BuyInPopup from '../stripe/buyInPopup';
 import betAccepted from '../../sounds/bet-accepted.aac';
 import betClosed from '../../sounds/bet-closed-female.aac';
 import blackjackVoiceFemale from '../../sounds/blackjack-female.aac';
@@ -67,10 +68,12 @@ const Game = () => {
   const [allowType, setAllowType] = useState('');
   const [isWatcher, setIsWatcher] = useState(false);
   const [videoPlayers, setVideoPlayers] = useState([]);
-  const [showBuyInPopup, setShowBuyInPopup] = useState(false);
+  // Uncomment it when uncomment buy in popup
+  const [, /*showBuyInPopup */ setShowBuyInPopup] = useState(false);
   const [newBuyInPopUp, setNewBuyInPopUp] = useState(false);
   const [open, setOpen] = useState(false);
-  const [newJoinlowBalance, setNewJoinLowBalance] = useState(false);
+  // Uncomment it when uncomment buy in popup
+  const [, /* newJoinlowBalance */ setNewJoinLowBalance] = useState(false);
   const [isYourturnPlay, setItsYourTurnPlay] = useState(false);
   const [confirmExit, setConfirmExit] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
@@ -90,7 +93,8 @@ const Game = () => {
 
   const handleClose = () => setIsTourOPen(false);
 
-  const [exchangeRate, setExchangeRate] = useState({
+  // Uncomment it when uncomment buy in popup
+  const [, /* exchangeRate */ setExchangeRate] = useState({
     rate: 1,
     currency: 'USD',
   });
@@ -512,10 +516,11 @@ const Game = () => {
       } else if (!userBet) {
         toast.error('Please enter bet amount', { id: 'confirm-bet' });
         return;
-      } else if (!userWallet) {
-        toast.error("You don't have enough balance in your wallet.");
-        return;
       }
+      // else if (!userWallet) {
+      //   toast.error("You don't have enough balance in your wallet.");
+      //   return;
+      // }
       socket.emit('confirmBet', {
         tableId,
         userId,
@@ -811,7 +816,8 @@ const Game = () => {
         setNewBuyInPopUp={setNewBuyInPopUp}
         leaveTable={handleExitRoom}
       />
-      <BuyInPopup
+      {/* // Uncomment it when uncomment buy in popup */}
+      {/* <BuyInPopup
         setModalShow={setShowBuyInPopup}
         modalShow={showBuyInPopup}
         userId={userId}
@@ -821,7 +827,7 @@ const Game = () => {
         newJoinlowBalance={newJoinlowBalance}
         setNewBuyInPopUp={setNewBuyInPopUp}
         exchangeRate={exchangeRate}
-      />
+      /> */}
       <InviteFriend
         setShowInvite={setShowInvite}
         gameCollection={gameCollection}
