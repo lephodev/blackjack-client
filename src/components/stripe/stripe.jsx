@@ -289,7 +289,7 @@ const CheckoutForm = (props) => {
               <b style={{ color: '#ffc107' }}>
                 {props.values.numCoins.toLocaleString()}
               </b>{' '}
-              LV Coins
+              Scrooge Coins
             </h5>
           </div>
 
