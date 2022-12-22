@@ -80,9 +80,6 @@ button {
 *::-webkit-scrollbar-thumb {
   background-color: #3d3d3d;
 }
-.css-g1d714-ValueContainer {
-  overflow-y: scroll !important;
-}
 
 :root {
   --info-rules-width: -492px;
