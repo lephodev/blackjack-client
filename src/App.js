@@ -6,6 +6,7 @@ import GameContext from "./Context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/dist/style.css";
 import "./css/dist/blackjack.css";
+import Home from "./components/Home/home";
 
 const App = () => {
   const [roomData, setRoomData] = useState({});
@@ -14,7 +15,11 @@ const App = () => {
   return (
     <GameContext.Provider value={{ roomData, setRoomData, userId, setUserId }}>
       <HashRouter>
-        <Route exact path="/" component={Game} />
+      <Route exact path="/game" component={Game} />
+    
+        <Route exact path="/">
+          <Home />
+        </Route>
       </HashRouter>
       <div className="abc">
         <Toaster

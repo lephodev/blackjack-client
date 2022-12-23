@@ -1,10 +1,12 @@
+import {FaAngleRight} from "react-icons/fa"
+
 const UserOnline = ({ userOnlinePanel, players }) => {
   return (
     <div id='users-online-box' onClick={userOnlinePanel}>
       <div>
         <div id='users-online-label'>Users in Room</div>
         <div id='users-online-button'>
-          <i className='fas fa-chevron-right'></i>
+          <FaAngleRight/>
         </div>
       </div>
       <ul id='users-online-container'>
