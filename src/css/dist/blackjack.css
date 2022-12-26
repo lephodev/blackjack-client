@@ -1448,6 +1448,7 @@ button .spinner-border {
     gap: 5px;
     width: 100%;
   }
+  
 }
 
 @media (max-width: 767px) {
@@ -1516,6 +1517,9 @@ button .spinner-border {
   }
   .user-action-container .user-action-box {
     width: 80px;
+  }
+  .bets-wrapper{
+    padding: unset;
   }
 }
 @media (max-width: 632px) {
@@ -1732,11 +1736,38 @@ button .spinner-border {
   .player-card img {
     width: 90px;
   }
-  .bets-wrapper .bets-container {
+  /* .bets-wrapper .bets-container {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     margin-bottom: 12px;
     margin-left: 2%;
+  } */
+
+  .bets-btn-slider button.slick-arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .bets-btn-slider {
+    max-width: 160px;
+  }
+
+  .bets-btn-slider .slick-prev {
+    left: -30px;
+    transform: rotate(180deg) translateY(15px);
+  }
+
+  .bets-btn-slider .slick-next {
+    right: -30px;
+  }
+
+  .bets-btn-slider .slick-next:before,
+  .bets-btn-slider .slick-prev:before {
+    font-size: 30px;
+  }
+
+  .bets-wrapper{
+    padding: 0px 10px 0 40px;
   }
   /* count 1  */
 
