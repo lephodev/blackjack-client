@@ -79,6 +79,7 @@ const Game = () => {
   const [showInvite, setShowInvite] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState({});
   const [isTourOpen, setIsTourOPen] = useState(false);
+  const [lastBet, setLastBet] = useState(0);
 
   const isTablet = useMediaQuery({
     query: '(max-width: 1024px) and (min-width: 766px)',
@@ -507,6 +508,7 @@ const Game = () => {
     handleBetIntervel = setTimeout(() => {
       const userWallet = players.find((el) => el.id === userId)?.wallet;
       const userBet = players.find((el) => el.id === userId)?.betAmount;
+      setLastBet(userBet)
       console.log('handleBetConfirm-----', { userWallet, userBet });
       if (!userBet && !userWallet) {
         toast.error("You don't have enough balance in your wallet.", {
@@ -603,6 +605,7 @@ const Game = () => {
 
   const [scaleValue, setScaleValue] = useState(initialScale);
   const [topValue, setTopValue] = useState(initialTop);
+  
 
   useEffect(() => {
     setScaleValue(initialScale);
@@ -622,6 +625,10 @@ const Game = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  // const LastBetAmt = () =>{
+  //   setLastBet(players.find((el) => el.id === userId)?.betAmount);
+  // }
 
   return (
     <div className={`blackjack-game ${loader ? 'loaderactive' : ''}`}>
@@ -654,6 +661,8 @@ const Game = () => {
           wallet={players.find((el) => el.id === userId)?.wallet}
           betAmount={players.find((el) => el.id === userId)?.betAmount}
         />
+
+        {console.log("betAmount", lastBet)}
 
         <div className='players-wrapper'>
           <div
@@ -777,6 +786,7 @@ const Game = () => {
                 userId={userId}
                 actionopen={actionopen}
                 handleActionOpen={handleActionOpen}
+                lastBet={lastBet}
               />
             )}
           {(roomData?.gamestart || !roomData?.preTimer) && (
