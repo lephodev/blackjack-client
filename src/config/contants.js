@@ -1,7 +1,7 @@
 const env = {
   dev: {
     landingServerUrl: 'https://api.scrooge.casino/v1',
-    serverUrl: 'https://blackjack-api.scrooge.casino',
+    serverUrl: 'http://localhost:3001',
     landingClient: 'http://localhost:3000',
   },
   production: {
