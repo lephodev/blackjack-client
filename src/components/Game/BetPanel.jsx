@@ -2,6 +2,7 @@
 import toast from "react-hot-toast";
 import { socket } from "../../config/socket";
 import Slider from "react-slick";
+import numFormatter from "../../config/utils";
 // import chipHoverFix from "../../sounds/chip_hover_fix.mp3";
 // import ActionPanel from "./ActionPanel";
 
@@ -14,6 +15,7 @@ const BetPanel = ({
   roomData,
   setShowBuyInPopup,
   lastBet,
+  setLastBet,
 }) => {
   const handleBet = (amount) => {
     if (handleBetTimeout) {
@@ -39,12 +41,13 @@ const BetPanel = ({
       userId: player.id,
       roomId: tableId,
     });
+    setLastBet(0);
   };
 
-  const handleReBet = () => {
-    handleBet(lastBet);
-    handleBetConfirm(true);
-  };
+  // const handleReBet = () => {
+  //   handleBet(lastBet);
+  //   handleBetConfirm(true);
+  // };
 
   const playSound = () => {
     let c = document.getElementById("chip");
@@ -210,8 +213,11 @@ const BetPanel = ({
             Bet Now
           </button>
         ) : (
-          <button className="confirm-bet-btn" onClick={handleReBet}>
-            ReBet: {lastBet}
+          <button
+            className="confirm-bet-btn"
+            onClick={() => handleBet(lastBet)}
+          >
+            ReBet: {numFormatter(lastBet)}
           </button>
         )}
 
