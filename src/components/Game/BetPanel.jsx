@@ -41,10 +41,10 @@ const BetPanel = ({
     });
   };
 
-  const handleReBet = () =>{
+  const handleReBet = () => {
     handleBet(lastBet);
-    handleBetConfirm(true)
-  }
+    handleBetConfirm(true);
+  };
 
   const playSound = () => {
     let c = document.getElementById("chip");
@@ -196,6 +196,13 @@ const BetPanel = ({
           Max
         </button>
         {player?.betAmount ? (
+          <button
+            className="confirm-bet-btn"
+            onClick={() => handleBetConfirm(true)}
+          >
+            Bet Now
+          </button>
+        ) : lastBet === 0 ? (
           <button
             className="confirm-bet-btn"
             onClick={() => handleBetConfirm(true)}
