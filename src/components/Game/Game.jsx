@@ -787,6 +787,7 @@ const Game = () => {
                 actionopen={actionopen}
                 handleActionOpen={handleActionOpen}
                 lastBet={lastBet}
+                setLastBet={setLastBet}
               />
             )}
           {(roomData?.gamestart || !roomData?.preTimer) && (
