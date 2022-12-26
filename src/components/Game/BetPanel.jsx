@@ -1,6 +1,7 @@
 // import { useState } from "react";
-import toast from 'react-hot-toast';
-import { socket } from '../../config/socket';
+import toast from "react-hot-toast";
+import { socket } from "../../config/socket";
+import Slider from "react-slick";
 // import chipHoverFix from "../../sounds/chip_hover_fix.mp3";
 // import ActionPanel from "./ActionPanel";
 
@@ -12,6 +13,7 @@ const BetPanel = ({
   volume,
   roomData,
   setShowBuyInPopup,
+  lastBet,
 }) => {
   const handleBet = (amount) => {
     if (handleBetTimeout) {
@@ -19,83 +21,108 @@ const BetPanel = ({
     }
 
     handleBetTimeout = setTimeout(() => {
-      if (player?.wallet >= amount && amount)
-        socket.emit('bet', {
+      if (player?.wallet >= amount && amount) {
+        socket.emit("bet", {
           userId: player.id,
           roomId: tableId,
           betAmount: amount,
         });
-      else {
-        toast.error('Not Enough Balance', { id: 'lowBalance' });
+      } else {
+        toast.error("Not Enough Balance", { id: "lowBalance" });
         setShowBuyInPopup(true);
       }
     }, 500);
   };
 
   const handleClearBet = () => {
-    socket.emit('clearbet', {
+    socket.emit("clearbet", {
       userId: player.id,
       roomId: tableId,
     });
   };
 
+  const handleReBet = () =>{
+    handleBet(lastBet);
+    handleBetConfirm(true)
+  }
+
   const playSound = () => {
-    let c = document.getElementById('chip');
+    let c = document.getElementById("chip");
     if (c) {
       c.play();
     }
+  };
+  const settings = {
+    dots: false,
+    autoplay: false,
+    draggable: true,
+    centerMode: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
   };
   return (
     <div
       className={`bets-wrapper ${
         !player?.isPlaying ? `` : `hide-panel show-popup`
-      }`}>
-      <div className='bets-container'>
-        <span className='chip-10' onClick={playSound}>
-          <button
-            className='betButtons update-balance-bet'
-            id='chip10'
-            value='10'
-            onClick={() => handleBet(10)}>
-            10
-          </button>
-        </span>
-        <span className='chip-50' onClick={playSound}>
-          <button
-            className='betButtons update-balance-bet'
-            id='chip50'
-            value='50'
-            onClick={() => handleBet(50)}>
-            50
-          </button>
-        </span>
-        <span className='chip-100' onClick={playSound}>
-          <button
-            className='betButtons update-balance-bet'
-            id='chip100'
-            value='100'
-            onClick={() => handleBet(100)}>
-            100
-          </button>
-        </span>
-        <span className='chip-500' onClick={playSound}>
-          <button
-            className='betButtons update-balance-bet'
-            id='chip500'
-            value='500'
-            onClick={() => handleBet(500)}>
-            500
-          </button>
-        </span>
-        <span className='chip-1k' onClick={playSound}>
-          <button
-            className='betButtons update-balance-bet'
-            id='chip1k'
-            value='1000'
-            onClick={() => handleBet(1000)}>
-            1K
-          </button>
-        </span>
+      }`}
+    >
+      <div className="bets-container">
+        <div className="bets-btn-slider">
+          <Slider {...settings}>
+            <span className="chip-10" onClick={playSound}>
+              <button
+                className="betButtons update-balance-bet"
+                id="chip10"
+                value="10"
+                onClick={() => handleBet(10)}
+              >
+                10
+              </button>
+            </span>
+            <span className="chip-50" onClick={playSound}>
+              <button
+                className="betButtons update-balance-bet"
+                id="chip50"
+                value="50"
+                onClick={() => handleBet(50)}
+              >
+                50
+              </button>
+            </span>
+            <span className="chip-100" onClick={playSound}>
+              <button
+                className="betButtons update-balance-bet"
+                id="chip100"
+                value="100"
+                onClick={() => handleBet(100)}
+              >
+                100
+              </button>
+            </span>
+            <span className="chip-500" onClick={playSound}>
+              <button
+                className="betButtons update-balance-bet"
+                id="chip500"
+                value="500"
+                onClick={() => handleBet(500)}
+              >
+                500
+              </button>
+            </span>
+            <span className="chip-1k" onClick={playSound}>
+              <button
+                className="betButtons update-balance-bet"
+                id="chip1k"
+                value="1000"
+                onClick={() => handleBet(1000)}
+              >
+                1K
+              </button>
+            </span>
+          </Slider>
+        </div>
         {/* <span onClick={playSound}>
           <button
             className="betButtons update-balance-bet"
@@ -161,32 +188,32 @@ const BetPanel = ({
           </audio>
         </span> */}
       </div>
-      <div className='bet-btn-box'>
+      <div className="bet-btn-box">
         <button
-          className='max-bet-btn'
-          onClick={() => handleBet(player?.wallet)}>
+          className="max-bet-btn"
+          onClick={() => handleBet(player?.wallet)}
+        >
           Max
         </button>
         {player?.betAmount ? (
           <button
-            className='confirm-bet-btn'
-            onClick={() => handleBetConfirm(true)}>
+            className="confirm-bet-btn"
+            onClick={() => handleBetConfirm(true)}
+          >
             Bet Now
           </button>
         ) : (
-          <button
-            className='confirm-bet-btn'
-            onClick={() => handleBetConfirm(true)}>
-            Bet Now
+          <button className="confirm-bet-btn" onClick={handleReBet}>
+            ReBet: {lastBet}
           </button>
         )}
 
         {player?.betAmount !== 0 ? (
-          <button className='clear-bet-btn' onClick={handleClearBet}>
+          <button className="clear-bet-btn" onClick={handleClearBet}>
             Clear
           </button>
         ) : (
-          <button className='clear-bet-btn' onClick={handleClearBet}>
+          <button className="clear-bet-btn" onClick={handleClearBet}>
             Clear
           </button>
         )}
