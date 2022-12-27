@@ -662,7 +662,6 @@ const Game = () => {
           betAmount={players.find((el) => el.id === userId)?.betAmount}
         />
 
-        {console.log("betAmount", lastBet)}
 
         <div className='players-wrapper'>
           <div

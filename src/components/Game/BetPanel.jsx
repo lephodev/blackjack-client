@@ -3,6 +3,9 @@ import toast from "react-hot-toast";
 import { socket } from "../../config/socket";
 import Slider from "react-slick";
 import numFormatter from "../../config/utils";
+// import Form from "react-bootstrap/Form";
+import InputRange from "react-input-range";
+import { useState } from "react";
 // import chipHoverFix from "../../sounds/chip_hover_fix.mp3";
 // import ActionPanel from "./ActionPanel";
 
@@ -17,6 +20,8 @@ const BetPanel = ({
   lastBet,
   setLastBet,
 }) => {
+  const [rangeBetValue, setRangeBetValue] = useState(10);
+
   const handleBet = (amount) => {
     if (handleBetTimeout) {
       clearTimeout(handleBetTimeout);
@@ -42,6 +47,7 @@ const BetPanel = ({
       roomId: tableId,
     });
     setLastBet(0);
+    setRangeBetValue(10);
   };
 
   // const handleReBet = () => {
@@ -65,6 +71,7 @@ const BetPanel = ({
     slidesToShow: 3,
     slidesToScroll: 1,
   };
+
   return (
     <div
       className={`bets-wrapper ${
@@ -191,45 +198,60 @@ const BetPanel = ({
           </audio>
         </span> */}
       </div>
-      <div className="bet-btn-box">
-        <button
-          className="max-bet-btn"
-          onClick={() => handleBet(player?.wallet)}
-        >
-          Max
-        </button>
-        {player?.betAmount ? (
+      <div className="bet-btn-wrapper">
+        <div className="bet-amt-range">
+          <div className="bet-range-label">
+            <span>{10}</span>
+            <span>{numFormatter(9990000)}</span>
+          </div>
+          <InputRange
+            maxValue={90000000}
+            minValue={10}
+            value={rangeBetValue}
+            onChange={(e) => setRangeBetValue(e)}
+            // onChangeComplete={(betAmt) => handleBet(betAmt)}
+          />
+        </div>
+        <div className="bet-btn-box">
           <button
-            className="confirm-bet-btn"
-            onClick={() => handleBetConfirm(true)}
+            className="max-bet-btn"
+            onClick={() => handleBet(player?.wallet)}
           >
-            Bet Now
+            Max
           </button>
-        ) : lastBet === 0 ? (
-          <button
-            className="confirm-bet-btn"
-            onClick={() => handleBetConfirm(true)}
-          >
-            Bet Now
-          </button>
-        ) : (
-          <button
-            className="confirm-bet-btn"
-            onClick={() => handleBet(lastBet)}
-          >
-            ReBet: {numFormatter(lastBet)}
-          </button>
-        )}
+          {player?.betAmount ? (
+            <button
+              className="confirm-bet-btn"
+              onClick={() => handleBetConfirm(true)}
+            >
+              Bet: {numFormatter(player?.betAmount)}
+            </button>
+          ) : lastBet === 0 ? (
+            <button
+              className="confirm-bet-btn"
+              onClick={() => handleBetConfirm(true)}
+            >
+              Bet Now
+            </button>
+          ) : (
+            <button
+              className="confirm-bet-btn"
+              onClick={() => handleBet(lastBet)}
+            >
+              ReBet: {numFormatter(lastBet)}
+            </button>
+          )}
 
-        {player?.betAmount !== 0 ? (
-          <button className="clear-bet-btn" onClick={handleClearBet}>
-            Clear
-          </button>
-        ) : (
-          <button className="clear-bet-btn" onClick={handleClearBet}>
-            Clear
-          </button>
-        )}
+          {player?.betAmount !== 0 ? (
+            <button className="clear-bet-btn" onClick={handleClearBet}>
+              Clear
+            </button>
+          ) : (
+            <button className="clear-bet-btn" onClick={handleClearBet}>
+              Clear
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
