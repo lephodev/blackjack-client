@@ -1458,12 +1458,13 @@ i {
 }
 
 .bets-container {
-  display: grid;
-  color: black;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  text-align: center;
-  gap: 15px;
   position: relative;
+  /* padding-bottom: 10px; */
+}
+
+.bets-btn-slider {
+  max-width: 260px;
+  width: 100%;
 }
 
 /* .bets-container span {
@@ -1568,6 +1569,46 @@ i {
 .bets-container #chip50k:hover,
 .bets-container #chip100k:hover {
   transform: scale(0.95);
+}
+
+.bets-btn-slider span.chip-10,
+.bets-btn-slider span.chip-50,
+.bets-btn-slider span.chip-100,
+.bets-btn-slider span.chip-500,
+.bets-btn-slider span.chip-1k {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.bets-btn-slider button.slick-arrow {
+  width: 40px;
+  height: 40px;
+  transition: all 0.5s;
+}
+
+.bets-btn-slider button.slick-arrow:hover,
+.bets-btn-slider button.slick-arrow:active {
+  scale: 0.95;
+}
+
+.bets-btn-slider .slick-next:before,
+.bets-btn-slider .slick-prev:before {
+  background: url(../../imgs//blackjack/circleNextBtn.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: transparent;
+  font-size: 40px;
+}
+
+.bets-btn-slider .slick-prev {
+  left: -40px;
+  transform: rotate(180deg) translateY(20px);
+}
+
+.bets-btn-slider .slick-next {
+  right: -40px;
 }
 
 .user-action-container .user-action-text {
@@ -1774,6 +1815,40 @@ i {
   border-radius: 2px;
   color: hsl(0deg 0% 100%) !important;
 }
+
+/* ****************** Bet range slider **************** */
+
+.bet-amt-range {
+  margin-bottom: 20px;
+}
+
+.bet-amt-range span.input-range__label.input-range__label--min,
+.bet-amt-range span.input-range__label.input-range__label--max {
+  display: none;
+}
+
+.bet-amt-range .input-range__track--active{
+  background: gold;
+}
+
+.bet-amt-range .input-range__slider{
+  background: #f9ff00;
+  border-color: #f9ff00;
+}
+
+.bet-range-label{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bet-range-label span{
+  font-size: 12px;
+  line-height: 16px;
+  color: #e9e9e9;
+  font-weight: 500;
+}
+
 @media all and (max-width: 1200px) {
   .players {
     width: 90px;
