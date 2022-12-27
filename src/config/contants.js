@@ -7,7 +7,8 @@ const env = {
   production: {
     landingServerUrl: 'https://api.scrooge.casino/v1',
     serverUrl: 'https://blackjack-api.scrooge.casino',
-    landingClient: 'http://localhost:3000',  },
+    landingClient: 'http://localhost:3000',
+  },
 };
 
-export default env.production;
+export default env.dev;

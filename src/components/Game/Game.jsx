@@ -51,7 +51,24 @@ import { useMediaQuery } from 'react-responsive';
 
 let userId;
 let handleBetIntervel;
-const getQueryParams = () =>  Object.fromEntries(window.location.hash.substring(7,window.location.hash.length).split('&').map(el => el.split('=')))
+// const getQueryParams = () =>
+//   Object.fromEntries(
+//     window.location.hash
+//       .substring(7, window.location.hash.length)
+//       .split('&')
+//       .map((el) => el.split('='))
+//   );
+
+const getQueryParams = () => {
+  const url = new URLSearchParams(window.location.search);
+  return {
+    tableid: url.get('tableid') || '',
+    gameCollection: url.get('gameCollection') || '',
+    // setTableId(urlParams['tableid'] || urlParams['tableId']);
+    // setGameCollection(
+    //   urlParams['gamecollection'] || urlParams['gameCollection']
+  };
+};
 
 const Game = () => {
   const [tableId, setTableId] = useState('');
@@ -125,7 +142,6 @@ const Game = () => {
   };
 
   useEffect(() => {
-    
     let urlParams = getQueryParams;
     setTableId(urlParams['tableid'] || urlParams['tableId']);
     setGameCollection(
@@ -164,11 +180,11 @@ const Game = () => {
             tryReconnect();
           } else {
             // re join
-            let urlParams =getQueryParams();
+            let urlParams = getQueryParams();
             let table = urlParams['tableid'] || urlParams['tableId'];
             let type =
-              urlParams['gameCollection'] ||
-              urlParams['gamecollection'];
+              urlParams['gameCollection'] || urlParams['gamecollection'];
+            console.log({ table, userId });
             socket.emit('checkTable', {
               userId,
               tableId: table,
@@ -184,7 +200,7 @@ const Game = () => {
 
   useEffect(() => {
     const isLoggedIn = async () => {
-      let urlParams =  getQueryParams();
+      let urlParams = getQueryParams();
       // let user;
       if (!localStorage.getItem('token') && !getCookie('token')) {
         return (window.location.href = `${CONSTANTS.landingClient}`);
@@ -198,8 +214,7 @@ const Game = () => {
 
       // console.log({urlParams:window.location.search})
       let table = urlParams['tableid'];
-      let type =
-        urlParams['gameCollection'] || urlParams['gamecollection'];
+      let type = urlParams['gameCollection'] || urlParams['gamecollection'];
 
       localStorage.setItem('userId', checkAuth?.data.user?.id);
       userId = checkAuth?.data.user?.id;
@@ -209,6 +224,7 @@ const Game = () => {
         userId: userId,
         gameType: type,
       });
+
       setLoader(true);
 
       // firebase.auth().onAuthStateChanged(async(response) => {
@@ -243,7 +259,7 @@ const Game = () => {
       setExchangeRate(users.exchangeRate);
     });
     socket.on('gameCreated', (data) => {
-      return (window.location.href = `${window.location.origin}/#/game?tableid=${data.tableId}&gameCollection=Blackjack_Tables`);
+      return (window.location.href = `${window.location.origin}/game?tableid=${data.tableId}&gameCollection=Blackjack_Tables`);
       // setRoomData(data.game);
       // updatePlayers(data.game);
       // setLoader(false);
