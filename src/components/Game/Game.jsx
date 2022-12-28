@@ -51,6 +51,25 @@ import { useMediaQuery } from 'react-responsive';
 
 let userId;
 let handleBetIntervel;
+// const getQueryParams = () =>
+//   Object.fromEntries(
+//     window.location.hash
+//       .substring(7, window.location.hash.length)
+//       .split('&')
+//       .map((el) => el.split('='))
+//   );
+
+const getQueryParams = () => {
+  const url = new URLSearchParams(window.location.search);
+  return {
+    tableid: url.get('tableid') || '',
+    gameCollection: url.get('gameCollection') || url.get('gamecollection'),
+    // setTableId(urlParams['tableid'] || urlParams['tableId']);
+    // setGameCollection(
+    //   urlParams['gamecollection'] || urlParams['gameCollection']
+  };
+};
+
 const Game = () => {
   const [tableId, setTableId] = useState('');
   const [winUser, setWinUser] = useState(false);
@@ -122,11 +141,13 @@ const Game = () => {
   const handleClick = () => {
     setOpen(!open);
   };
+
   useEffect(() => {
-    let urlParams = new URLSearchParams(window.location.search);
-    setTableId(urlParams.get('tableid') || urlParams.get('tableId'));
+    let urlParams = getQueryParams();
+    console.log({ urlParams, tId: urlParams['tableid'] });
+    setTableId(urlParams['tableid'] || urlParams['tableId']);
     setGameCollection(
-      urlParams.get('gamecollection') || urlParams.get('gameCollection')
+      urlParams['gamecollection'] || urlParams['gameCollection']
     );
     setTimeout(() => {
       if (!localStorage.getItem('isGuide')) {
@@ -135,6 +156,8 @@ const Game = () => {
       }
     }, 3000);
   }, []);
+
+  console.log({ tableId });
 
   const useOutsideAlerter = (ref) => {
     useEffect(() => {
@@ -161,11 +184,12 @@ const Game = () => {
             tryReconnect();
           } else {
             // re join
-            let urlParams = new URLSearchParams(window.location.search);
-            let table = urlParams.get('tableid') || urlParams.get('tableId');
+            let urlParams = getQueryParams();
+            console.log({ urlParams });
+            let table = urlParams['tableid'] || urlParams['tableId'];
             let type =
-              urlParams.get('gameCollection') ||
-              urlParams.get('gamecollection');
+              urlParams['gameCollection'] || urlParams['gamecollection'];
+            console.log({ table, userId });
             socket.emit('checkTable', {
               userId,
               tableId: table,
@@ -181,7 +205,8 @@ const Game = () => {
 
   useEffect(() => {
     const isLoggedIn = async () => {
-      let urlParams = new URLSearchParams(window.location.search);
+      let urlParams = getQueryParams();
+      console.log({ urlParams });
       // let user;
       if (!localStorage.getItem('token') && !getCookie('token')) {
         return (window.location.href = `${CONSTANTS.landingClient}`);
@@ -193,9 +218,9 @@ const Game = () => {
         return (window.location.href = `${CONSTANTS.landingClient}`);
       }
 
-      let table = urlParams.get('tableid');
-      let type =
-        urlParams.get('gameCollection') || urlParams.get('gamecollection');
+      // console.log({urlParams:window.location.search})
+      let table = urlParams['tableid'];
+      let type = urlParams['gameCollection'] || urlParams['gamecollection'];
 
       localStorage.setItem('userId', checkAuth?.data.user?.id);
       userId = checkAuth?.data.user?.id;
@@ -205,6 +230,7 @@ const Game = () => {
         userId: userId,
         gameType: type,
       });
+
       setLoader(true);
 
       // firebase.auth().onAuthStateChanged(async(response) => {
@@ -239,7 +265,7 @@ const Game = () => {
       setExchangeRate(users.exchangeRate);
     });
     socket.on('gameCreated', (data) => {
-      return (window.location.href = `${window.location.origin}/?tableid=${data.tableId}&gameCollection=Blackjack_Tables`);
+      return (window.location.href = `${window.location.origin}/game?tableid=${data.tableId}&gameCollection=Blackjack_Tables`);
       // setRoomData(data.game);
       // updatePlayers(data.game);
       // setLoader(false);
@@ -408,6 +434,7 @@ const Game = () => {
         id: 'already Started',
       });
     });
+
     socket.on('welcome', () => {
       playSound('welcome');
       setAllowType(false);
@@ -508,7 +535,7 @@ const Game = () => {
     handleBetIntervel = setTimeout(() => {
       const userWallet = players.find((el) => el.id === userId)?.wallet;
       const userBet = players.find((el) => el.id === userId)?.betAmount;
-      setLastBet(userBet)
+      setLastBet(userBet);
       console.log('handleBetConfirm-----', { userWallet, userBet });
       if (!userBet && !userWallet) {
         toast.error("You don't have enough balance in your wallet.", {
@@ -605,7 +632,6 @@ const Game = () => {
 
   const [scaleValue, setScaleValue] = useState(initialScale);
   const [topValue, setTopValue] = useState(initialTop);
-  
 
   useEffect(() => {
     setScaleValue(initialScale);
@@ -661,7 +687,6 @@ const Game = () => {
           wallet={players.find((el) => el.id === userId)?.wallet}
           betAmount={players.find((el) => el.id === userId)?.betAmount}
         />
-
 
         <div className='players-wrapper'>
           <div

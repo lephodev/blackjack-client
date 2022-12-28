@@ -1,0 +1,320 @@
+.poker-home {
+  position: relative;
+  height: 100vh;
+}
+
+.avatar img {
+  border-radius: 50%;
+  position: relative;
+  left: -5px;
+  margin-left: -15px;
+  z-index: 1;
+}
+.casino-popup input .form-check-input {
+  background-color: #1b1b1b !important;
+}
+.avatars {
+  direction: rtl; /* This is to get the stack with left on top */
+  text-align: left; /* Now need to explitly align left */
+  padding-left: 15px; /* Same value as the negative margin */
+}
+
+.poker-loader {
+  position: absolute;
+  background: #000000f5;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.poker-loader img {
+  width: 100px;
+}
+
+.home-poker-card-grid {
+  display: grid;
+  grid-gap: 30px;
+  gap: 30px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-poker-content {
+  position: relative;
+  background: #141414;
+  border: 1px solid #111;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.home-poker-cover img {
+  width: 100%;
+}
+
+.home-poker-info {
+  padding: 20px;
+}
+
+.home-poker-info h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+
+.home-poker-info button {
+  width: 100%;
+  padding: 10px 20px;
+  background: #f9ff00;
+  border-radius: 8px;
+  font-weight: 500;
+  border: 1px solid #f9ff00;
+}
+
+.home-poker-card {
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.home-poker-card h3 {
+  margin: 0;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  font-weight: 600;
+}
+
+.poker-avatar-box p {
+  color: #ddd;
+  margin: 0;
+}
+
+.poker-avatar-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.user-header {
+  margin-bottom: 80px;
+  padding: 5px 0px 5px;
+  background: #141414;
+  border-bottom: 1px solid #f9ff00;
+}
+
+.user-header-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-info-box p {
+  margin: 0;
+  font-weight: 100;
+  color: #f9ff00;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.create-game-box button {
+  padding: 8px 20px;
+  background: #f9ff00;
+  border-radius: 8px;
+  font-weight: 500;
+  border: 1px solid #f9ff00;
+}
+.backtoHome {
+  position: absolute;
+  top: -45px;
+}
+.backtoHome a {
+  font-size: 18px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.backtoHome a img {
+  width: 22px;
+  height: 22px;
+  padding-bottom: 2px;
+}
+
+.casino-logo img {
+  width: 130px;
+}
+
+.create-game-box {
+  display: flex;
+}
+
+.user-info-box {
+  padding-right: 20px;
+}
+
+.user-info-box h5 {
+  text-transform: capitalize;
+  font-size: 18px;
+  margin: 0;
+  padding-bottom: 3px;
+  color: #fff;
+}
+.user-info-box p i {
+  color: #f9ff00;
+}
+
+.casino-popup .modal-content {
+  background: #2a2a2a;
+  border-color: #2a2a2a;
+}
+
+.casino-popup .modal-header {
+  border-bottom: 1px solid #363636;
+  align-items: center;
+}
+
+.casino-popup .modal-footer {
+  border-top: 1px solid #363636;
+  align-items: center;
+}
+.casino-popup .modal-header .modal-title.h4 {
+  color: #fff !important;
+}
+
+.casino-popup .modal-header button.close {
+  color: #fff;
+  font-weight: 100;
+  text-shadow: none;
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+}
+
+.casino-popup .form-control,
+.casino-popup .form-control:focus {
+  background: #333;
+  border: 1px solid #3d3d3d;
+  color: #ddd;
+  box-shadow: none !important;
+}
+
+.casino-popup .form-control::placeholder {
+  color: #ddd;
+}
+.casino-popup .form-group {
+  margin-bottom: 25px;
+}
+
+.modal-footer .btn,
+.modal-footer .btn:focus,
+.modal-footer .btn:active {
+  padding: 8px 20px;
+  background: #f9ff00 !important;
+  border-color: #f9ff00 !important;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #000 !important;
+  box-shadow: none !important;
+}
+
+.modal-footer .btn.btn-secondary {
+  background-color: #545b62 !important;
+  border-color: #4e555b !important;
+  color: #fff !important;
+}
+.blindpopupField {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.css-1rhbuit-multiValue {
+  background-color: hsl(0deg 0% 16%) !important;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2px;
+  min-width: 0;
+  color: #fff;
+  box-sizing: border-box;
+}
+.css-12jo7m5 {
+  color: #fff !important;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.createGameCheckHand {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.no-room-available {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #141414;
+  border-radius: 12px;
+  padding: 50px;
+  width: 100%;
+}
+.casino-popup .form-label {
+  margin-bottom: 0.5rem;
+  color: #e9e9e9 !important;
+}
+.casino-popup label {
+  display: inline-block;
+  color: #fff !important;
+}
+.no-room-available h4 {
+  margin: 0;
+  padding-bottom: 20px;
+  font-size: 30px;
+  color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .home-poker-card-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .user-header-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .create-game-box {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 0px;
+  }
+}
+
+.css-12jo7m5 {
+  font-size: 14px !important;
+}
+@media screen and (max-width: 480px) {
+  .no-room-available h4 {
+    font-size: 20px;
+  }
+  .create-game-box button {
+    font-size: 14px;
+  }
+}

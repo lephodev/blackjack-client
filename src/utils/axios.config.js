@@ -17,8 +17,8 @@ export const authInstance = () =>
     headers: { Authorization: getAuthorizationHeader() },
   });
 
-export const pokerInstance = () =>
+export const blackjackInstance = () =>
   axios.create({
-    baseURL: `${CONSTANTS.serverUrl}/poker`,
+    baseURL: `${CONSTANTS.serverUrl}`,
     headers: { Authorization: getAuthorizationHeader() },
   });
