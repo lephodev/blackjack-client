@@ -1500,6 +1500,37 @@ button .spinner-border {
   height: 100%;
 } */
 
+.exit-btn.btn {
+  color: #010101;
+  background: #e50000;
+  border-color: #e50000;
+  transition: all 0.5s;
+}
+
+.exit-btn.btn:hover,
+.exit-btn.btn:focus,
+.exit-btn.btn:active {
+  background: rgb(175, 48, 46);
+  border-color: rgb(175, 48, 46);
+  box-shadow: none;
+}
+
+.grey-btn.btn {
+  color: #fff;
+  background: #414141;
+  border-color: #414141;
+  transition: all 0.5s;
+}
+
+.grey-btn.btn:hover,
+.grey-btn.btn:focus,
+.grey-btn.btn:active {
+  color: #fff;
+  background: #3e3e3e;
+  border-color: #3e3e3e;
+  box-shadow: none;
+}
+
 /************************************************************ Media Query ***********************************************************/
 /************************************************************ Media Query ***********************************************************/
 
