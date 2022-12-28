@@ -225,26 +225,57 @@ const Game = () => {
 
       localStorage.setItem('userId', checkAuth?.data.user?.id);
       userId = checkAuth?.data.user?.id;
-
       try {
+        // Join user if he is already or new user in game
         if (table) {
           const playerInTable = await blackjackInstance().get(
             `/getTablePlayers/${table}`
           );
-          console.log({ playerInTable });
+          // Let user join in game
+          if (playerInTable.data.players.find((el) => el.id === userId)) {
+            socket.emit('checkTable', {
+              tableId: table,
+              userId: userId,
+              gameType: type,
+              sitInAmount: 0,
+            });
+            // Ask user to type wallet amount
+          } else {
+            const sitInAmount = prompt('Enter sit in amount');
+            if (parseFloat(sitInAmount) > checkAuth?.data?.user.wallet) {
+              toast.error("You don't have enough balance.", {
+                id: 'notEnoughSitIn',
+              });
+              setTimeout(() => {
+                window.location.href = window.location.origin;
+              }, 1000);
+              return;
+            } else {
+              socket.emit('checkTable', {
+                tableId: table,
+                userId: userId,
+                gameType: type,
+                sitInAmount: parseFloat(sitInAmount),
+              });
+            }
+          }
+          // Create new table if not found table id
         } else {
           socket.emit('checkTable', {
             tableId: table,
             userId: userId,
             gameType: type,
+            sitInAmount: 0,
           });
         }
       } catch (error) {
         console.log(error);
+        // Call the api still if there is any miss happening
         socket.emit('checkTable', {
           tableId: table,
           userId: userId,
           gameType: type,
+          sitInAmount: 0,
         });
       }
 
@@ -444,6 +475,14 @@ const Game = () => {
         playSound('noBalance');
       }
       toast.error(data.msg, { id: 'error' });
+    });
+
+    socket.on('notEnoughBalanceSitIn', (data) => {
+      setLoader(false);
+      toast.error(data.msg, { id: 'error' });
+      setTimeout(() => {
+        window.location.href = window.location.origin;
+      }, 1000);
     });
 
     socket.on('gameAlreadyStarted', () => {
