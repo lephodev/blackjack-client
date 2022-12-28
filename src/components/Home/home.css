@@ -323,6 +323,18 @@ input[type="number"] {
   color: #fff;
 }
 
+.createGameCheckHand .form-check-input:checked {
+  background-color: #f9ff00;
+  border-color: #f9ff00;
+}
+
+.createGameCheckHand .form-check-input:checked[type="checkbox"] {
+  background-image: url(../../imgs/blackjack/tick.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 @media screen and (max-width: 991px) {
   .home-poker-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
