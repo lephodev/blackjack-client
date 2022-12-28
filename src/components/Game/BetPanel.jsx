@@ -247,7 +247,7 @@ const BetPanel = ({
               className="confirm-bet-btn"
               onClick={() => handleBetConfirm(true)}
             >
-              Bet: {numFormatter(player?.betAmount)}
+              Bet Now
             </button>
           ) : lastBet === 0 ? (
             <button
