@@ -607,7 +607,7 @@ button {
   position: relative;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 56px;
   border-top: 1px solid #2d3038;
@@ -615,6 +615,7 @@ button {
 #users-online-box ul .users-list-box .users-list-info {
   margin-right: 80px;
   text-align: left;
+  margin-left: 10px;
 }
 #users-online-box ul .users-list-box .users-list-info span {
   color: #f9ff00;
