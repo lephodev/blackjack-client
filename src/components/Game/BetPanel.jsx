@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 // import ActionPanel from "./ActionPanel";
 
 let handleBetTimeout;
+const maxBetAmount = 10000;
+
 const BetPanel = ({
   handleBetConfirm,
   tableId,
@@ -28,9 +30,26 @@ const BetPanel = ({
       clearTimeout(handleBetTimeout);
     }
 
-    const totalWalletBalance = player?.wallet + player?.betAmount;
-
     handleBetTimeout = setTimeout(() => {
+      const totalWalletBalance = player?.wallet + player?.betAmount;
+      // If bet is made by the slider so total bet amount will be the slider amount
+      const toatBetAmount = isSliderBet ? amount : player?.betAmount + amount;
+
+      // If user already make max bet and trying to increase bet
+      if (player?.betAmount === maxBetAmount && toatBetAmount > maxBetAmount) {
+        toast.error(`Max bet amount is ${maxBetAmount}`, {
+          id: 'maxBetAmount',
+        });
+        setRangeBetValue(maxBetAmount);
+        return;
+      } else if (
+        player?.betAmount < maxBetAmount &&
+        toatBetAmount > maxBetAmount
+      ) {
+        const maxBetUserCanMake = maxBetAmount - player?.betAmount;
+        amount = maxBetUserCanMake > amount ? amount : maxBetUserCanMake;
+      }
+
       if (player?.wallet >= amount && amount && !isSliderBet) {
         socket.emit('bet', {
           userId: player.id,
@@ -212,7 +231,11 @@ const BetPanel = ({
         <div className='bet-amt-range'>
           <div className='bet-range-label'>
             <span>{0}</span>
-            <span>{numFormatter(player?.wallet + player?.betAmount)}</span>
+            <span>
+              {maxBetAmount > player?.wallet + player?.betAmount
+                ? numFormatter(player?.wallet + player?.betAmount)
+                : numFormatter(maxBetAmount)}
+            </span>
           </div>
           <InputRange
             maxValue={player?.wallet + player?.betAmount}
