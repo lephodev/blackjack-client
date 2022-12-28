@@ -6,6 +6,7 @@ import numFormatter from '../../config/utils';
 // import Form from "react-bootstrap/Form";
 import InputRange from 'react-input-range';
 import { useState } from 'react';
+import { useEffect } from 'react';
 // import chipHoverFix from "../../sounds/chip_hover_fix.mp3";
 // import ActionPanel from "./ActionPanel";
 
@@ -20,7 +21,7 @@ const BetPanel = ({
   lastBet,
   setLastBet,
 }) => {
-  const [rangeBetValue, setRangeBetValue] = useState(10);
+  const [rangeBetValue, setRangeBetValue] = useState(0);
 
   const handleBet = (amount, isSliderBet = false) => {
     if (handleBetTimeout) {
@@ -50,13 +51,19 @@ const BetPanel = ({
     }, 500);
   };
 
+  useEffect(() => {
+    if (player?.betAmount) {
+      setRangeBetValue(player?.betAmount);
+    }
+  }, [player?.betAmount]);
+
   const handleClearBet = () => {
     socket.emit('clearbet', {
       userId: player.id,
       roomId: tableId,
     });
     setLastBet(0);
-    setRangeBetValue(10);
+    setRangeBetValue(0);
   };
 
   // const handleReBet = () => {
