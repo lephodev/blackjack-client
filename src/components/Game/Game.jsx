@@ -824,6 +824,7 @@ const Game = () => {
                   handleActionOpen={handleActionOpen}
                   tableId={tableId}
                   player={players.find((el) => el.id === userId)}
+                  handleBetIntervel={handleBetIntervel}
                 />
               ) : (
                 <>
