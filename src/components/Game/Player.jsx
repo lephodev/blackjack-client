@@ -1,12 +1,12 @@
-import { useParticipant } from '@videosdk.live/react-sdk';
-import { useEffect, useRef, useState } from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-import { Dropdown } from 'react-bootstrap';
+import { useParticipant } from "@videosdk.live/react-sdk";
+import { useEffect, useRef, useState } from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { Dropdown } from "react-bootstrap";
 // import PlayerTimer from "./PlayerTimer";
-import BubbleMessage from './BubbleMessage';
-import { socket } from '../../config/socket';
-import numFormatter from '../../config/utils';
+import BubbleMessage from "./BubbleMessage";
+import { socket } from "../../config/socket";
+import numFormatter from "../../config/utils";
 
 const Player = ({
   player,
@@ -20,7 +20,7 @@ const Player = ({
   toggleWebcam,
   currentPlayer,
 }) => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [messageBy, setMessageBy] = useState();
   const webcamRef = useRef(null);
   const micRef = useRef(null);
@@ -43,7 +43,7 @@ const Player = ({
         webcamRef.current
           .play()
           .catch((error) =>
-            console.error('videoElem.current.play() failed', error)
+            console.error("videoElem.current.play() failed", error)
           );
       } else {
         webcamRef.current.srcObject = null;
@@ -61,7 +61,7 @@ const Player = ({
         micRef.current
           .play()
           .catch((error) =>
-            console.error('audioElem.current.play() failed', error)
+            console.error("audioElem.current.play() failed", error)
           );
       } else {
         micRef.current.srcObject = null;
@@ -70,12 +70,12 @@ const Player = ({
   }, [micStream, micOn]);
 
   useEffect(() => {
-    socket.on('newMessage', (data) => {
+    socket.on("newMessage", (data) => {
       setMessage(data.message);
       setMessageBy(data.userId);
       setTimeout(() => {
-        setMessage('');
-        setMessageBy('');
+        setMessage("");
+        setMessageBy("");
       }, 10000);
     });
   }, []);
@@ -83,91 +83,95 @@ const Player = ({
     <div
       className={`blackjack-players player${
         videoPlayer ? videoPlayer?.position : player?.position
-      } ${player?.turn ? 'active-player' : ''}`}
-      key={player?.id}>
+      } ${player?.turn ? "active-player" : ""}`}
+      key={player?.id}
+    >
       {player?.isSplitted ? (
-        <div className='split-result'>
+        <div className="split-result">
           {player?.cards.map((splitHand, i) => (
             <div
               className={`player-cards-box split ${
-                player.splitIndex === i ? 'activeCard' : ''
+                player.splitIndex === i ? "activeCard" : ""
               }`}
-              key={`item-${i}`}>
+              key={`item-${i}`}
+            >
               {splitHand?.map((card, l) => (
                 <div
-                  className='player-card split-card'
-                  key={card.value.card + card.suit + l}>
+                  className="player-card split-card"
+                  key={card.value.card + card.suit + l}
+                >
                   <img
                     src={
                       require(`../../imgs/blackjack/cards/${
                         card.value.card + card.suit
                       }.svg`).default
                     }
-                    alt=''
+                    alt=""
                   />
                 </div>
               ))}
-              <div className='player-sum'>
-                <span key={`item-${i}`} className='split-sum'>
-                  {typeof player.splitSum[i] === 'number'
+              <div className="player-sum">
+                <span key={`item-${i}`} className="split-sum">
+                  {typeof player.splitSum[i] === "number"
                     ? `(${player.splitSum[i]}),`
-                    : `(${player.splitSum[i].join(', ')}),`}
+                    : `(${player.splitSum[i].join(", ")}),`}
                 </span>
               </div>
-              <div className='split-game-result'>
+              <div className="split-game-result">
                 {player.isPlaying && gameFinish ? (
                   <div
                     className={`player-result split-result ${
                       player.splitSum[i] > 21
-                        ? 'busted'
+                        ? "busted"
                         : player.hands[
                             player.hands.length - player.splitSum.length + i
-                          ]?.action === 'blackjack-win'
-                        ? 'blackjack'
+                          ]?.action === "blackjack-win"
+                        ? "blackjack"
                         : player.hands[
                             player.hands.length - player.splitSum.length + i
-                          ]?.action === 'game-draw'
-                        ? 'draw'
+                          ]?.action === "game-draw"
+                        ? "draw"
                         : player.hands[
                             player.hands.length - player.splitSum.length + i
-                          ]?.action === 'game-win'
-                        ? 'win'
-                        : 'lose'
-                    }`}>
+                          ]?.action === "game-win"
+                        ? "win"
+                        : "lose"
+                    }`}
+                  >
                     {player.splitSum[i] > 21
-                      ? 'Bust'
+                      ? "Bust"
                       : player.hands[
                           player.hands.length - player.splitSum.length + i
-                        ]?.action === 'blackjack-win'
-                      ? 'Blackjack'
+                        ]?.action === "blackjack-win"
+                      ? "Blackjack"
                       : player.hands[
                           player.hands.length - player.splitSum.length + i
-                        ]?.action === 'game-draw'
-                      ? 'Draw'
+                        ]?.action === "game-draw"
+                      ? "Draw"
                       : player.hands[
                           player.hands.length - player.splitSum.length + i
-                        ]?.action === 'game-win'
-                      ? 'Win'
-                      : 'Lose'}
+                        ]?.action === "game-win"
+                      ? "Win"
+                      : "Lose"}
                   </div>
                 ) : (
-                  ''
+                  ""
                 )}
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className='player-cards-box'>
+        <div className="player-cards-box">
           {player?.cards?.map((card, l) => (
-            <div className='player-card' key={card.value.card + card.suit + l}>
+            <div className="player-card" key={card.value.card + card.suit + l}>
               <img
                 src={
                   require(`../../imgs/blackjack/cards/${
                     card.value.card + card.suit
                   }.svg`).default
                 }
-                alt=''
+                alt=""
               />
             </div>
           ))}
@@ -176,86 +180,88 @@ const Player = ({
       {videoPlayer ? (
         <audio ref={micRef} muted={userId === videoPlayer.id} autoPlay />
       ) : (
-        ''
+        ""
       )}
       {/* player bet amount */}
       {player?.isPlaying ? (
-        <div className='user-bet-amount'>
+        <div className="user-bet-amount">
           <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
         </div>
       ) : (
-        ''
+        ""
       )}
       {/* player bet amount */}
-      <div className='blackjack-player-avatar'>
+      <div className="blackjack-player-avatar">
         {currentPlayer?.id === player?.id &&
         letTime &&
         player?.turn &&
-        player.action === '' ? (
+        player.action === "" ? (
           <TimerSeparator time={roomData?.timer} remainingTime={letTime} />
         ) : (
-          ''
+          ""
         )}
 
-        {roomData.media === 'video' && videoPlayer && webcamOn ? (
+        {roomData.media === "video" && videoPlayer && webcamOn ? (
           <video ref={webcamRef} autoPlay muted playsInline webkitPlaysInline />
         ) : (
           <img
             src={
               player.avatar ||
-              'https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png'
+              "https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png"
             }
-            alt='off-camera'
+            alt="off-camera"
           />
           // <video ref={webcamRef} autoPlay />
         )}
       </div>
-      <div className='player-with-icons'>
+      <div className="player-with-icons">
         {videoPlayer?.id === userId ? (
-          <div className='cam-tool'>
+          <div className="cam-tool">
             <Dropdown>
-              <Dropdown.Toggle variant='success' id='dropdown-basic'>
-                <i class='fa fa-ellipsis-v' aria-hidden='true'></i>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <span className='dropdown-item'>
+                <span className="dropdown-item">
                   <i
                     onClick={() => {
                       toggleMic();
                     }}
                     className={`cursor ${
                       micOn
-                        ? 'fas fa-microphone-alt'
-                        : 'fas fa-microphone-alt-slash'
-                    }`}></i>
-                  {roomData?.media === 'video' ? (
+                        ? "fas fa-microphone-alt"
+                        : "fas fa-microphone-alt-slash"
+                    }`}
+                  ></i>
+                  {roomData?.media === "video" ? (
                     <i
                       onClick={() => toggleWebcam()}
                       className={`cursor ${
-                        webcamOn ? 'fas fa-video' : 'fas fa-video-slash'
-                      }`}></i>
+                        webcamOn ? "fas fa-video" : "fas fa-video-slash"
+                      }`}
+                    ></i>
                   ) : (
-                    ''
+                    ""
                   )}
                 </span>
               </Dropdown.Menu>
             </Dropdown>
           </div>
         ) : (
-          ''
+          ""
         )}
 
-        <div className='blackjack-player-name'>{player?.name}</div>
-        {player?.id === messageBy ? <BubbleMessage message={message} /> : ''}
+        <div className="blackjack-player-name">{player?.name}</div>
+        {player?.id === messageBy ? <BubbleMessage message={message} /> : ""}
         {!player?.isSplitted && player?.sum !== 0 ? (
-          <div className='player-sum'>
-            {typeof player?.sum === 'number'
+          <div className="player-sum">
+            {typeof player?.sum === "number"
               ? player?.sum
-              : player?.sum.join(', ')}
+              : player?.sum.join(", ")}
           </div>
         ) : (
-          ''
+          ""
         )}
       </div>
       {player?.isPlaying &&
@@ -264,29 +270,30 @@ const Player = ({
         <div
           className={`player-result ${
             player?.isBusted
-              ? 'busted'
+              ? "busted"
               : player?.hands[player.hands.length - 1]?.action ===
-                  'blackjack-win' || player.blackjack
-              ? 'blackjack'
-              : player?.hands[player.hands.length - 1]?.action === 'game-draw'
-              ? 'draw'
-              : player?.hands[player.hands.length - 1]?.action === 'game-win'
-              ? 'win'
-              : 'lose'
-          }`}>
+                  "blackjack-win" || player.blackjack
+              ? "blackjack"
+              : player?.hands[player.hands.length - 1]?.action === "game-draw"
+              ? "draw"
+              : player?.hands[player.hands.length - 1]?.action === "game-win"
+              ? "win"
+              : "lose"
+          }`}
+        >
           {player?.isBusted
-            ? 'Bust'
+            ? "Bust"
             : player?.hands[player.hands.length - 1]?.action ===
-                'blackjack-win' || player.blackjack
-            ? 'Blackjack'
-            : player?.hands[player.hands.length - 1]?.action === 'game-draw'
-            ? 'Draw'
-            : player?.hands[player.hands.length - 1]?.action === 'game-win'
-            ? 'Win'
-            : 'Lose'}
+                "blackjack-win" || player.blackjack
+            ? "Blackjack"
+            : player?.hands[player.hands.length - 1]?.action === "game-draw"
+            ? "Draw"
+            : player?.hands[player.hands.length - 1]?.action === "game-win"
+            ? "Win"
+            : "Lose"}
         </div>
       ) : (
-        ''
+        ""
       )}
     </div>
   );
@@ -304,13 +311,13 @@ const TimerSeparator = ({ time, remainingTime }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [remainingTime]);
   return (
-    <div class='battery'>
+    <div class="battery">
       <CircularProgressbar
         counterClockwise
         value={activeTime}
         strokeWidth={50}
         styles={buildStyles({
-          strokeLinecap: 'butt',
+          strokeLinecap: "butt",
         })}
       />
     </div>

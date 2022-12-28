@@ -535,6 +535,11 @@ input[type="number"] {
   bottom: 0px;
   z-index: 99999;
   font-weight: 500;
+  min-height: 36px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .triangle-isosceles {
@@ -544,12 +549,13 @@ input[type="number"] {
   content: "";
   width: 0;
   height: 0;
-  border-top: 13px solid transparent;
-  border-bottom: 13px solid transparent;
-  border-right: 13px solid #f9ff00;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid #f9ff00;
   position: absolute;
-  left: -20px;
-  bottom: 2px;
+  left: -14px;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .btn-primary.disabled,
 .btn-primary:disabled {
