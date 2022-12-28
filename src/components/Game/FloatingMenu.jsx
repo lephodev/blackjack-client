@@ -27,7 +27,7 @@ const FloatingMenu = ({
               <div className="floating-menu-icon">
                 <LogoutIcon />
               </div>
-              <span className="submenu-tooltip tooltip-logout">Log Out</span>
+              <span className="submenu-tooltip tooltip-logout">Exit Table</span>
             </div>
             <div
               onClick={() => setModalShow(true)}
