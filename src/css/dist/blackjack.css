@@ -1027,7 +1027,8 @@ div#info-rules .card-box {
   line-height: 15px;
   text-align: center;
   color: #ffffff;
-  background: #333951;
+  background: rgba(42, 42, 42, 0.5);
+  border: 0.5px solid rgb(221 221 221 / 10%);
   border-radius: 6px;
   padding: 4px 8px;
   width: 80px;
@@ -1035,7 +1036,7 @@ div#info-rules .card-box {
   word-break: keep-all;
   left: 50%;
   transform: translateX(-50%);
-  transition: all 0.3s;
+  transition: linear 0.3s;
   opacity: 0;
   visibility: hidden;
 }
