@@ -27,6 +27,7 @@ const FloatingMenu = ({
               <div className="floating-menu-icon">
                 <LogoutIcon />
               </div>
+              <span className="submenu-tooltip tooltip-logout">Log Out</span>
             </div>
             <div
               onClick={() => setModalShow(true)}
@@ -35,11 +36,13 @@ const FloatingMenu = ({
               <div className="floating-menu-icon">
                 <AddCoinIcon />
               </div>
+              <span className="submenu-tooltip tooltip-coins">Buy Coins</span>
             </div>
             <div onClick={() => handleClick()} className="floating-menu-item">
               <div className="floating-menu-icon">
                 <ChatIcon />
               </div>
+              <span className="submenu-tooltip tooltip-chat">Chat</span>
             </div>
             <div
               onClick={() => setVolume(!volume)}
@@ -48,6 +51,7 @@ const FloatingMenu = ({
               <div className="floating-menu-icon">
                 {volume ? <VolumeIcon /> : <MuteIcon />}
               </div>
+              <span className="submenu-tooltip tooltip-volume">Volume</span>
             </div>
             <div
               onClick={() => setShowInvite(true)}
@@ -56,6 +60,7 @@ const FloatingMenu = ({
               <div className="floating-menu-icon">
                 <InviteIcon />
               </div>
+              <span className="submenu-tooltip tooltip-invite">Invitation</span>
             </div>
           </>
         ) : (
