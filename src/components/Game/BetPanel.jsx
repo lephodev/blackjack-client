@@ -82,7 +82,7 @@ const BetPanel = ({
       roomId: tableId,
     });
     setLastBet(0);
-    setRangeBetValue(0);
+    setRangeBetValue(1);
   };
 
   // const handleReBet = () => {
@@ -113,6 +113,26 @@ const BetPanel = ({
         !player?.isPlaying ? `` : `hide-panel show-popup`
       }`}>
       <div className='bets-container'>
+        <span className='bet-amt-placeholder'>
+          Bet: {numFormatter(player?.betAmount)}
+        </span>
+        <div className='bet-amt-range'>
+          <div className='bet-range-label'>
+            <span>{1}</span>
+            <span>{numFormatter(10000)}</span>
+          </div>
+          <InputRange
+            maxValue={10000}
+            minValue={1}
+            value={rangeBetValue}
+            onChange={(e) => setRangeBetValue(e)}
+            onChangeComplete={(betAmt) => {
+              handleBet(betAmt, true);
+              console.log(betAmt);
+              // setRangeBetValue(betAmt);
+            }}
+          />
+        </div>
         <div className='bets-btn-slider'>
           <Slider {...settings}>
             <span className='chip-10' onClick={playSound}>
@@ -259,7 +279,7 @@ const BetPanel = ({
             <button
               className='confirm-bet-btn'
               onClick={() => handleBetConfirm(true)}>
-              Bet: {numFormatter(player?.betAmount)}
+              Bet Now
             </button>
           ) : lastBet === 0 ? (
             <button

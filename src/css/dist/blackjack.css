@@ -11,6 +11,9 @@
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .blackjack-game:before {
@@ -121,7 +124,6 @@ button {
   border: 1px solid #393f54;
   padding: 5px 15px;
   color: #fff;
-  margin-bottom: 5px;
   border-radius: 50px;
   font-size: 13px;
   width: 49%;
@@ -171,6 +173,24 @@ button {
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
+}
+
+.bet-amt-placeholder {
+  background: url(../../imgs/blackjack/rectBtn.png) no-repeat;
+  background-size: cover;
+  width: 140px;
+  height: 50px;
+  color: #f9ff00;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  user-select: none;
 }
 
 .bet-btn-box .clear-bet-btn {
@@ -1521,6 +1541,9 @@ button .spinner-border {
   .bets-wrapper {
     padding: unset;
   }
+  .bet-amt-placeholder {
+    display: none;
+  }
 }
 @media (max-width: 632px) {
   .wallet-balance {
@@ -1753,7 +1776,7 @@ button .spinner-border {
   }
 
   .bets-btn-slider {
-    max-width: 160px;
+    max-width: 120px;
   }
 
   .bets-btn-slider .slick-prev {
@@ -1767,11 +1790,11 @@ button .spinner-border {
 
   .bets-btn-slider .slick-next:before,
   .bets-btn-slider .slick-prev:before {
-    font-size: 30px;
+    font-size: 24px;
   }
 
   .bets-wrapper {
-    padding: 0px 10px 0 40px;
+    padding: 0px 10px 5px 40px;
   }
   /* count 1  */
 
@@ -1929,6 +1952,14 @@ button .spinner-border {
   }
   .triangle-isosceles.left {
     font-size: 20px;
+  }
+  .bet-amt-range {
+    margin-bottom: 10px;
+    margin-left: -20px;
+    margin-right: 20px;
+  }
+  .bet-amt-placeholder {
+    display: none;
   }
 }
 
