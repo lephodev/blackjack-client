@@ -1,13 +1,42 @@
 import { socket } from '../../config/socket';
+import debounce from 'lodash.debounce';
+import { useCallback } from 'react';
 
-const ActionPanel = ({ actionopen, handleActionOpen, tableId, player }) => {
-  const handleAction = (value) => {
-    console.log({ player });
-    socket.emit(value, {
-      tableId,
-      userId: player.id,
-    });
-  };
+const ActionPanel = ({
+  actionopen,
+  handleActionOpen,
+  tableId,
+  player,
+  handleBetIntervel,
+}) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleAction = useCallback(
+    debounce((value) => {
+      console.log('hit', value);
+      socket.emit(value, {
+        tableId,
+        userId: player.id,
+      });
+    }, 300),
+    [tableId, player.id]
+  );
+
+  // const handleAction = (value) => {
+  //   if (handleBetIntervel) {
+  //     clearInterval(handleBetIntervel);
+  //   }
+  //   // handleBetIntervel = setTimeout(() => {
+  //   //   console.log('Api HIT');
+  //   //   // socket.emit(value, {
+  //   //   //   tableId,
+  //   //   //   userId: player.id,
+  //   //   // });
+  //   // }, 500);
+
+  //   debounce(() => {
+  //     console.log('hit');
+  //   }, 500);
+  // };
   return (
     <div className={`user-action-container ${actionopen ? `` : `hide-panel`}`}>
       {/* <span
