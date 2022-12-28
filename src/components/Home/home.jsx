@@ -358,7 +358,6 @@ const CreateTable = ({
 const GameTable = ({ data }) => {
   const history = useHistory();
   const redirectToTable = () => {
-    alert('HIT');
     history.push({
       pathname: '/game',
       search: '?gamecollection=Blackjack_Tables&tableid=' + data?._id,

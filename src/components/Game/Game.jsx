@@ -63,7 +63,7 @@ const getQueryParams = () => {
   const url = new URLSearchParams(window.location.search);
   return {
     tableid: url.get('tableid') || '',
-    gameCollection: url.get('gameCollection') || '',
+    gameCollection: url.get('gameCollection') || url.get('gamecollection'),
     // setTableId(urlParams['tableid'] || urlParams['tableId']);
     // setGameCollection(
     //   urlParams['gamecollection'] || urlParams['gameCollection']
@@ -143,7 +143,8 @@ const Game = () => {
   };
 
   useEffect(() => {
-    let urlParams = getQueryParams;
+    let urlParams = getQueryParams();
+    console.log({ urlParams, tId: urlParams['tableid'] });
     setTableId(urlParams['tableid'] || urlParams['tableId']);
     setGameCollection(
       urlParams['gamecollection'] || urlParams['gameCollection']
@@ -155,6 +156,8 @@ const Game = () => {
       }
     }, 3000);
   }, []);
+
+  console.log({ tableId });
 
   const useOutsideAlerter = (ref) => {
     useEffect(() => {
@@ -182,6 +185,7 @@ const Game = () => {
           } else {
             // re join
             let urlParams = getQueryParams();
+            console.log({ urlParams });
             let table = urlParams['tableid'] || urlParams['tableId'];
             let type =
               urlParams['gameCollection'] || urlParams['gamecollection'];
@@ -202,6 +206,7 @@ const Game = () => {
   useEffect(() => {
     const isLoggedIn = async () => {
       let urlParams = getQueryParams();
+      console.log({ urlParams });
       // let user;
       if (!localStorage.getItem('token') && !getCookie('token')) {
         return (window.location.href = `${CONSTANTS.landingClient}`);
@@ -530,7 +535,7 @@ const Game = () => {
     handleBetIntervel = setTimeout(() => {
       const userWallet = players.find((el) => el.id === userId)?.wallet;
       const userBet = players.find((el) => el.id === userId)?.betAmount;
-      setLastBet(userBet)
+      setLastBet(userBet);
       console.log('handleBetConfirm-----', { userWallet, userBet });
       if (!userBet && !userWallet) {
         toast.error("You don't have enough balance in your wallet.", {
@@ -627,7 +632,6 @@ const Game = () => {
 
   const [scaleValue, setScaleValue] = useState(initialScale);
   const [topValue, setTopValue] = useState(initialTop);
-  
 
   useEffect(() => {
     setScaleValue(initialScale);
@@ -683,7 +687,6 @@ const Game = () => {
           wallet={players.find((el) => el.id === userId)?.wallet}
           betAmount={players.find((el) => el.id === userId)?.betAmount}
         />
-
 
         <div className='players-wrapper'>
           <div
