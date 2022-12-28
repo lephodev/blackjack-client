@@ -1016,6 +1016,39 @@ div#info-rules .card-box {
   gap: 10px;
 }
 
+.floating-menu-item {
+  position: relative;
+}
+
+.submenu-tooltip {
+  position: absolute;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #ffffff;
+  background: #333951;
+  border-radius: 6px;
+  padding: 4px 8px;
+  width: 80px;
+  bottom: -30px;
+  word-break: keep-all;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.floating-menu-item:hover .tooltip-logout,
+.floating-menu-item:hover .tooltip-coins,
+.floating-menu-item:hover .tooltip-chat,
+.floating-menu-item:hover .tooltip-volume,
+.floating-menu-item:hover .tooltip-invite {
+  opacity: 1;
+  visibility: visible;
+}
+
 .floating-menu-icon {
   background: url(../../imgs/blackjack/circleBtn.png) no-repeat;
   background-size: cover;
