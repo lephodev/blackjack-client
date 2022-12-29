@@ -1832,11 +1832,15 @@ i {
 /* ****************** Bet range slider **************** */
 
 .bet-amt-range {
-  margin-bottom: 20px;
+  margin: 0 -30px 20px -30px;
 }
 
 .bet-amt-range span.input-range__label-container {
-  color: #f9ff00;
+  background: #f9ff00;
+  font-weight: 600;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #010101;
 }
 
 .bet-amt-range span.input-range__label.input-range__label--min,
@@ -1848,9 +1852,21 @@ i {
   background: gold;
 }
 
+.bet-amt-range .input-range__track {
+  height: 0.6rem;
+}
+
+.bet-amt-range .input-range__label--value {
+  top: -2.6rem;
+}
+
 .bet-amt-range .input-range__slider {
   background: #f9ff00;
   border-color: #f9ff00;
+  margin-left: -0.8rem;
+  margin-top: -1.2rem;
+  height: 1.6rem;
+  width: 1.6rem;
 }
 
 .bet-range-label {
