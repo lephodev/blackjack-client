@@ -86,7 +86,7 @@ const ActionPanel = ({
           >
             <DoubleIcon />
           </Button>
-          <div className="user-action-text">Double Down</div>
+          <div className="user-action-text">2X Down</div>
         </div>
       ) : (
         <div className="user-action-box">
@@ -97,7 +97,7 @@ const ActionPanel = ({
           >
             <DoubleIcon />
           </button>
-          <div className="user-action-text">Double Down</div>
+          <div className="user-action-text">2X Down</div>
         </div>
       )}
 
