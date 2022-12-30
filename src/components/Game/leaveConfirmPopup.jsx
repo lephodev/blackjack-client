@@ -19,6 +19,7 @@ const LeaveConfirmPopup = ({ setConfirmExit, confirmExit, handleExitRoom }) => {
           <p>Are sure you want to leave the Table ?</p>
           <div className="sub-btn text-center">
             <Button
+              className="exit-btn"
               onClick={() => {
                 setLoading(true);
                 handleExitRoom();
@@ -28,6 +29,7 @@ const LeaveConfirmPopup = ({ setConfirmExit, confirmExit, handleExitRoom }) => {
               {isLoading ? <Spinner animation="border" /> : "Exit Room"}
             </Button>
             <Button
+              className="grey-btn"
               onClick={() => {
                 setConfirmExit(false);
                 setLoading(false);

@@ -50,7 +50,7 @@ const Home = () => {
       setGameState({ ...gameState, [name]: e.target.checked });
     } else if (name === "gameName") {
       if (value.length <= 20) {
-        setGameState({ ...gameState, [name]: value.trim() });
+        setGameState({ ...gameState, [name]: value });
         setErrors({
           ...errors,
           gameName: "",
@@ -62,7 +62,7 @@ const Home = () => {
         });
       }
     } else {
-      setGameState({ ...gameState, [name]: value.trim() });
+      setGameState({ ...gameState, [name]: value });
     }
   };
   const handleChnageInviteUsers = (selectedOptions) => {
@@ -91,7 +91,10 @@ const Home = () => {
       return;
     }
     try {
-      const resp = await blackjackInstance().post("/createTable", gameState);
+      const resp = await blackjackInstance().post("/createTable", {
+        ...gameState,
+        gameName: gameState.gameName.trim(),
+      });
       setGameState({ ...gameInit });
       history.push({
         pathname: "/table",
