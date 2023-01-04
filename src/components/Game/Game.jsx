@@ -251,13 +251,29 @@ const Game = () => {
                 window.location.href = window.location.origin;
               }, 1000);
               return;
-            } else {
+            } else if (parseFloat(sitInAmount) < 0) {
+              toast.error('Amount is not valid.', {
+                id: 'notEnoughSitIn',
+              });
+              setTimeout(() => {
+                window.location.href = window.location.origin;
+              }, 1000);
+              return;
+            } else if (/\d/.test(sitInAmount)) {
               socket.emit('checkTable', {
                 tableId: table,
                 userId: userId,
                 gameType: type,
                 sitInAmount: parseFloat(sitInAmount),
               });
+            } else {
+              toast.error('Not valid amount.', {
+                id: 'notEnoughSitIn',
+              });
+              setTimeout(() => {
+                window.location.href = window.location.origin;
+              }, 1000);
+              return;
             }
           }
           // Create new table if not found table id
@@ -449,14 +465,14 @@ const Game = () => {
     socket.on('gameFinished', () => {
       localStorage.removeItem('isGuide');
       toast.error(`Game is finished`, { id: 'finished' });
-      return (window.location.href = `${CONSTANTS.landingClient}`);
+      return (window.location.href = window.location.origin);
     });
 
     socket.on('noTable', () => {
       setLoader(false);
       localStorage.removeItem('isGuide');
       toast.error(`Game is already finished`, { id: 'finished' });
-      return (window.location.href = `${CONSTANTS.landingClient}`);
+      return (window.location.href = window.location.origin);
     });
 
     socket.on('noAdmin', (data) => {
@@ -467,7 +483,7 @@ const Game = () => {
 
     socket.on('exitSuccess', () => {
       localStorage.removeItem('isGuide');
-      return (window.location.href = `${CONSTANTS.landingClient}`);
+      return (window.location.href = window.location.origin);
     });
 
     socket.on('actionError', (data) => {
