@@ -57,14 +57,16 @@ const BetPanel = ({
           betAmount: amount,
         });
         // SLIDER BET WILL CALL FROM HERE
-      } else if (totalWalletBalance > amount && isSliderBet) {
+      } else if (totalWalletBalance >= amount && isSliderBet) {
         socket.emit('makeSliderBet', {
           userId: player.id,
           roomId: tableId,
           betAmount: amount,
         });
       } else {
-        toast.error('Not Enough Balance', { id: 'lowBalance' });
+        toast.error(`Not Enough Balance`, {
+          id: 'lowBalance',
+        });
         setShowBuyInPopup(true);
       }
     }, 500);
@@ -82,7 +84,7 @@ const BetPanel = ({
       roomId: tableId,
     });
     setLastBet(0);
-    setRangeBetValue(1);
+    setRangeBetValue(0);
   };
 
   // const handleReBet = () => {
