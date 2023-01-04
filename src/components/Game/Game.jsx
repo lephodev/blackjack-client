@@ -486,6 +486,10 @@ const Game = () => {
       }, 1000);
     });
 
+    socket.on('redirectToClient', () => {
+      window.location.href = window.location.origin;
+    });
+
     socket.on('gameAlreadyStarted', () => {
       toast.error('Game already started, please wait', {
         id: 'already Started',
@@ -511,8 +515,8 @@ const Game = () => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setRoomData]);
-
+  }, [setRoomData, userId]);
+  console.log({ currentPlayer });
   useEffect(() => {
     socket.on('gameTimer', (data) => {
       if (currentPlayer?.id === data.id) setLeftTime(data.leftTime);
@@ -615,10 +619,12 @@ const Game = () => {
   };
 
   const playSound = (value) => {
-    let aud = document.getElementsByClassName(`audio-${value}`)[0];
-    if (aud) {
-      aud.play();
-    }
+    setTimeout(() => {
+      let aud = document.getElementsByClassName(`audio-${value}`)[0];
+      if (aud) {
+        aud.play();
+      }
+    }, 1000);
   };
 
   const stopSound = (value) => {
@@ -884,14 +890,7 @@ const Game = () => {
                   handleBetIntervel={handleBetIntervel}
                 />
               ) : (
-                <>
-                  {/* <ActionPanel
-                    actionopen={actionopen}
-                    handleActionOpen={handleActionOpen}
-                    tableId={tableId}
-                    player={players.find((el) => el.id === userId)}
-                  /> */}
-                </>
+                <></>
               )}
             </>
           )}
