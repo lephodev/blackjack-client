@@ -84,7 +84,7 @@ const BetPanel = ({
       roomId: tableId,
     });
     setLastBet(0);
-    setRangeBetValue(1);
+    setRangeBetValue(0);
   };
 
   // const handleReBet = () => {
