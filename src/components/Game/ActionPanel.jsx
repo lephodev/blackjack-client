@@ -2,6 +2,7 @@ import { socket } from '../../config/socket';
 import debounce from 'lodash.debounce';
 import { useCallback } from 'react';
 import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
 
 const ActionPanel = ({
   actionopen,
@@ -9,17 +10,27 @@ const ActionPanel = ({
   tableId,
   player,
   handleBetIntervel,
+  setActionCompleted,
+  actionCompleted,
 }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleAction = useCallback(
-    debounce((value) => {
-      console.log('hit', value);
-      socket.emit(value, {
-        tableId,
-        userId: player.id,
-      });
-    }, 300),
-    [tableId, player.id]
+    (val) => {
+      setActionCompleted(false);
+      debounce((value) => {
+        // if previous action is not completed then pause the button till then
+        if (!actionCompleted) {
+          return;
+        }
+        console.log({ tableId });
+        socket.emit(value, {
+          tableId,
+          userId: player.id,
+        });
+        setActionCompleted(false);
+      }, 300)(val);
+    },
+    [actionCompleted, tableId, player.id, setActionCompleted]
   );
 
   return (
@@ -28,6 +39,7 @@ const ActionPanel = ({
         <button
           className='user-action'
           id='surrender'
+          disabled={!actionCompleted}
           onClick={() => handleAction('surrender')}>
           <SurrenderIcon />
         </button>
@@ -37,6 +49,7 @@ const ActionPanel = ({
         <button
           className='user-action'
           id='stand'
+          disabled={!actionCompleted}
           onClick={() => handleAction('stand')}>
           <StandIcon />
         </button>
@@ -46,6 +59,7 @@ const ActionPanel = ({
         <button
           className='user-action'
           id='hit'
+          disabled={!actionCompleted}
           onClick={() => handleAction('hit')}>
           <HitIcon />
         </button>
@@ -67,6 +81,7 @@ const ActionPanel = ({
           <button
             className='user-action'
             id='doubleDown'
+            disabled={!actionCompleted}
             onClick={() => handleAction('double')}>
             <DoubleIcon />
           </button>
@@ -79,6 +94,7 @@ const ActionPanel = ({
           <button
             className='user-action'
             id='doubleDown'
+            disabled={!actionCompleted}
             onClick={() => handleAction('split')}>
             <SplitIcon />
           </button>

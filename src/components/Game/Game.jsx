@@ -97,6 +97,8 @@ const Game = () => {
   const [currentPlayer, setCurrentPlayer] = useState({});
   const [isTourOpen, setIsTourOPen] = useState(false);
   const [lastBet, setLastBet] = useState(0);
+  // Wait till previous action completed
+  const [actionCompleted, setActionCompleted] = useState(true);
 
   const isTablet = useMediaQuery({
     query: '(max-width: 1024px) and (min-width: 766px)',
@@ -498,6 +500,15 @@ const Game = () => {
 
     socket.on('action', (data) => {
       playSound(data.type);
+      const { type } = data;
+      if (type !== 'hit' && type !== 'doubleDown') {
+        setActionCompleted(true);
+      } else {
+        setTimeout(() => {
+          setActionCompleted(true);
+        }, 500);
+      }
+
       if (data.type === 'burst') setTimeout(playSound(data.type), 200);
       if (data.type === 'hit' || 'doubleDown' || 'split') {
         setTimeout(playSound('dealnewcard'), 200);
@@ -879,6 +890,8 @@ const Game = () => {
                   tableId={tableId}
                   player={players.find((el) => el.id === userId)}
                   handleBetIntervel={handleBetIntervel}
+                  actionCompleted={actionCompleted}
+                  setActionCompleted={setActionCompleted}
                 />
               ) : (
                 <></>
