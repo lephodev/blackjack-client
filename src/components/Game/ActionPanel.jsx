@@ -2,7 +2,6 @@ import { socket } from '../../config/socket';
 import debounce from 'lodash.debounce';
 import { useCallback } from 'react';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
 
 const ActionPanel = ({
   actionopen,
