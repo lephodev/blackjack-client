@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { FaWallet } from 'react-icons/fa';
+import { FaWallet, FaTicketAlt } from 'react-icons/fa';
 import './home.css';
 import { useEffect } from 'react';
 import userUtils from '../../utils/user';
@@ -186,6 +186,10 @@ const Home = () => {
                 <p>
                   <FaWallet />
                   <span>{userData?.wallet || 0}</span>
+                </p>
+                <p>
+                  <FaTicketAlt />
+                  <span>{userData?.ticket || 0}</span>
                 </p>
               </div>
               <button type='button' onClick={handleShow}>

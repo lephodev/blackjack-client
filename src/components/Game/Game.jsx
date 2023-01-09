@@ -65,9 +65,6 @@ const getQueryParams = () => {
   return {
     tableid: url.get('tableid') || '',
     gameCollection: url.get('gameCollection') || url.get('gamecollection'),
-    // setTableId(urlParams['tableid'] || urlParams['tableId']);
-    // setGameCollection(
-    //   urlParams['gamecollection'] || urlParams['gameCollection']
   };
 };
 
@@ -100,6 +97,8 @@ const Game = () => {
   const [currentPlayer, setCurrentPlayer] = useState({});
   const [isTourOpen, setIsTourOPen] = useState(false);
   const [lastBet, setLastBet] = useState(0);
+  // Wait till previous action completed
+  const [actionCompleted, setActionCompleted] = useState(true);
 
   const isTablet = useMediaQuery({
     query: '(max-width: 1024px) and (min-width: 766px)',
@@ -176,6 +175,7 @@ const Game = () => {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
+
   useEffect(() => {
     const tryReconnect = () => {
       setTimeout(() => {
@@ -295,30 +295,7 @@ const Game = () => {
           sitInAmount: 0,
         });
       }
-
       setLoader(true);
-
-      // firebase.auth().onAuthStateChanged(async(response) => {
-      //   user = response;
-      //   if (user) {
-      //     userId = user.uid;
-
-      //     let table = urlParams.get("tableid");
-      //     let type =
-      //       urlParams.get("gameCollection") ||
-      //       urlParams.get("gamecollection");
-      // const users = await getDoc("users", user.uid);
-      // setExchangeRate(users.exchangeRate)
-      //     socket.emit("checkTable", {
-      //       tableId: table,
-      //       userId: user.uid,
-      //       gameType: type,
-      //     });
-      //     setLoader(true);
-      //   } else {
-      //     return (window.location.href = `${window.location.origin}/login`);
-      //   }
-      // });
     };
     isLoggedIn();
   }, []);
@@ -523,6 +500,15 @@ const Game = () => {
 
     socket.on('action', (data) => {
       playSound(data.type);
+      const { type } = data;
+      if (type !== 'hit' && type !== 'doubleDown') {
+        setActionCompleted(true);
+      } else {
+        setTimeout(() => {
+          setActionCompleted(true);
+        }, 500);
+      }
+
       if (data.type === 'burst') setTimeout(playSound(data.type), 200);
       if (data.type === 'hit' || 'doubleDown' || 'split') {
         setTimeout(playSound('dealnewcard'), 200);
@@ -532,7 +518,7 @@ const Game = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setRoomData, userId]);
-  console.log({ currentPlayer });
+
   useEffect(() => {
     socket.on('gameTimer', (data) => {
       if (currentPlayer?.id === data.id) setLeftTime(data.leftTime);
@@ -904,6 +890,8 @@ const Game = () => {
                   tableId={tableId}
                   player={players.find((el) => el.id === userId)}
                   handleBetIntervel={handleBetIntervel}
+                  actionCompleted={actionCompleted}
+                  setActionCompleted={setActionCompleted}
                 />
               ) : (
                 <></>
