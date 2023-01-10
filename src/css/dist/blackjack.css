@@ -69,7 +69,7 @@ button {
   z-index: 999999;
 }
 
-.blackjack-game .blackjack-loader>img {
+.blackjack-game .blackjack-loader > img {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -458,7 +458,7 @@ input[type="number"] {
 }
 
 .blackjack-player-name {
-  background: rgba(42, 42, 42, 0.5);
+  background: rgb(42 42 42);
   text-align: center;
   color: #bfbfbf;
   padding: 5px;
@@ -538,7 +538,8 @@ input[type="number"] {
   position: absolute;
   border-radius: 8px;
   max-width: 100px;
-  right: -120px;
+  /* right: -120px; */
+  right: -75%;
   width: 100%;
   bottom: 0px;
   z-index: 99999;
@@ -900,11 +901,11 @@ input[type="number"] {
   background: #1b1f2e;
 }
 
-.stripe-confirmation-popup .table-hover>tbody>tr:hover>* {
+.stripe-confirmation-popup .table-hover > tbody > tr:hover > * {
   --bs-table-accent-bg: #1b1f2e;
 }
 
-.stripe-confirmation-popup .table-striped>tbody>tr:nth-of-type(odd)>* {
+.stripe-confirmation-popup .table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-accent-bg: #1b1f2e;
 }
 
@@ -974,7 +975,7 @@ h5.CoinsHeader {
   text-align: center;
 }
 
-#info-rules .table> :not(:first-child) {
+#info-rules .table > :not(:first-child) {
   border-top: none;
 }
 
@@ -1004,7 +1005,7 @@ div#info-rules-overflow::-webkit-scrollbar-thumb {
   background-color: #272d40;
 }
 
-#info-rules .table>thead {
+#info-rules .table > thead {
   vertical-align: bottom;
   position: sticky;
   top: 0;
@@ -1431,7 +1432,7 @@ button .spinner-border {
   color: #16181b;
 }
 
-.cam-tool .show>.btn-success.dropdown-toggle {
+.cam-tool .show > .btn-success.dropdown-toggle {
   background: transparent !important;
 }
 
@@ -1498,11 +1499,17 @@ button .spinner-border {
   margin: 0px auto;
 }
 
-.blackjack-player-avatar .battery .CircularProgressbar .CircularProgressbar-trail {
+.blackjack-player-avatar
+  .battery
+  .CircularProgressbar
+  .CircularProgressbar-trail {
   stroke: #00000000;
 }
 
-.blackjack-player-avatar .battery .CircularProgressbar .CircularProgressbar-path {
+.blackjack-player-avatar
+  .battery
+  .CircularProgressbar
+  .CircularProgressbar-path {
   stroke: #eade3acc;
   transition: stroke-dashoffset 2s ease 0s;
 }
@@ -1540,16 +1547,18 @@ button .spinner-border {
 
 .exit-btn.btn {
   color: #010101;
-  background: #e50000;
-  border-color: #e50000;
+  background: #f9ff00;
+  border-color: #f9ff00;
   transition: all 0.5s;
+  width: 120px;
+  height: 42px;
 }
 
 .exit-btn.btn:hover,
 .exit-btn.btn:focus,
 .exit-btn.btn:active {
-  background: rgb(175, 48, 46);
-  border-color: rgb(175, 48, 46);
+  background: #f9ff00;
+  border-color: #f9ff00;
   box-shadow: none;
 }
 
@@ -1567,8 +1576,104 @@ button .spinner-border {
   background: #3e3e3e;
   border-color: #3e3e3e;
   box-shadow: none;
+  width: 120px;
+  height: 42px;
 }
 
+.fa,
+.far,
+.fas {
+  font-family: "Font Awesome 5 Free" !important;
+}
+/* ****************************** */
+.count-2 .blackjack-players.player4 {
+  z-index: 9;
+}
+.count-2 .blackjack-players.player4 {
+  z-index: 99;
+}
+/* ****************************** */
+
+.count-3 .blackjack-players.player3 {
+  z-index: 9;
+}
+.count-3 .blackjack-players.player4 {
+  z-index: 99;
+}
+.count-3 .blackjack-players.player5 {
+  z-index: 99;
+}
+/* ****************************** */
+
+.count-4 .blackjack-players.player2 {
+  z-index: 9;
+}
+.count-4 .blackjack-players.player3 {
+  z-index: 99;
+}
+.count-4 .blackjack-players.player4 {
+  z-index: 999;
+}
+.count-4 .blackjack-players.player5 {
+  z-index: 9999;
+}
+/* ****************************** */
+.count-5 .blackjack-players.player2 {
+  z-index: 9;
+}
+.count-5 .blackjack-players.player3 {
+  z-index: 99;
+}
+.count-5 .blackjack-players.player4 {
+  z-index: 999;
+}
+.count-5 .blackjack-players.player5 {
+  z-index: 9999;
+}
+.count-5 .blackjack-players.player6 {
+  z-index: 99999;
+}
+/* ****************************** */
+.count-6 .blackjack-players.player1 {
+  z-index: 6;
+}
+.count-6 .blackjack-players.player2 {
+  z-index: 9;
+}
+.count-6 .blackjack-players.player3 {
+  z-index: 99;
+}
+.count-6 .blackjack-players.player4 {
+  z-index: 999;
+}
+.count-6 .blackjack-players.player5 {
+  z-index: 9999;
+}
+.count-6 .blackjack-players.player6 {
+  z-index: 99999;
+}
+/* ****************************** */
+.count-7 .blackjack-players.player1 {
+  z-index: 7;
+}
+.count-7 .blackjack-players.player2 {
+  z-index: 9;
+}
+.count-7 .blackjack-players.player3 {
+  z-index: 99;
+}
+.count-7 .blackjack-players.player4 {
+  z-index: 999;
+}
+.count-7 .blackjack-players.player5 {
+  z-index: 9999;
+}
+.count-7 .blackjack-players.player6 {
+  z-index: 99999;
+}
+.count-7 .blackjack-players.player7 {
+  z-index: 999999;
+}
 /************************************************************ Media Query ***********************************************************/
 /************************************************************ Media Query ***********************************************************/
 
@@ -1854,7 +1959,6 @@ button .spinner-border {
 /* landscape  */
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 991px) and (orientation: landscape) {
-
   .bets-container,
   .bet-btn-box {
     gap: 5px;
