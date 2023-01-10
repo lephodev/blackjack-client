@@ -24,7 +24,7 @@ const Home = () => {
   const gameInit = {
     gameName: '',
     public: false,
-    sitInAmount: 0,
+    sitInAmount: '',
     invitedUsers: [],
   };
 
@@ -70,7 +70,7 @@ const Home = () => {
         });
       } else {
         setErrors({ ...errors, sitInAmount: '' });
-        setGameState({ ...gameState, [name]: value });
+        setGameState({ ...gameState, sitInAmount: parseInt(value) });
       }
     } else {
       setGameState({ ...gameState, [name]: value });
@@ -87,6 +87,12 @@ const Home = () => {
       err.gameName = 'Game name is required.';
       valid = false;
     }
+
+    if (!gameState.sitInAmount) {
+      err.sitInAmount = 'Enter sit in amount.';
+      valid = false;
+    }
+
     if (parseFloat(gameState.sitInAmount) < 100) {
       err.sitInAmount = 'Miimum amount to bet is 100.';
       valid = false;

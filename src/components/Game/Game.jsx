@@ -906,12 +906,12 @@ const Game = () => {
         userId={userId}
         tableId={tableId}
       />
-      <NewBuyInPopup
+      {/* <NewBuyInPopup
         setBuyinPopup={setShowBuyInPopup}
         buyinPopup={newBuyInPopUp}
         setNewBuyInPopUp={setNewBuyInPopUp}
         leaveTable={handleExitRoom}
-      />
+      /> */}
       {/* // Uncomment it when uncomment buy in popup */}
       {/* <BuyInPopup
         setModalShow={setShowBuyInPopup}
