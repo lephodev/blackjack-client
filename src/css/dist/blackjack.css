@@ -1540,16 +1540,18 @@ button .spinner-border {
 
 .exit-btn.btn {
   color: #010101;
-  background: #e50000;
-  border-color: #e50000;
+  background: #f9ff00;
+  border-color: #f9ff00;
   transition: all 0.5s;
+  width: 120px;
+  height: 42px;
 }
 
 .exit-btn.btn:hover,
 .exit-btn.btn:focus,
 .exit-btn.btn:active {
-  background: rgb(175, 48, 46);
-  border-color: rgb(175, 48, 46);
+  background: #f9ff00;
+  border-color: #f9ff00;
   box-shadow: none;
 }
 
@@ -1567,6 +1569,8 @@ button .spinner-border {
   background: #3e3e3e;
   border-color: #3e3e3e;
   box-shadow: none;
+  width: 120px;
+  height: 42px;
 }
 
 /************************************************************ Media Query ***********************************************************/
