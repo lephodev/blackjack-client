@@ -99,6 +99,7 @@ const Game = () => {
   const [lastBet, setLastBet] = useState(0);
   // Wait till previous action completed
   const [actionCompleted, setActionCompleted] = useState(true);
+  const [retryIfUserNotJoin, setRetryIfUserNotJoin] = useState(false);
 
   const isTablet = useMediaQuery({
     query: '(max-width: 1024px) and (min-width: 766px)',
@@ -300,6 +301,24 @@ const Game = () => {
     isLoggedIn();
   }, []);
 
+  let timeout = useEffect(() => {
+    if (retryIfUserNotJoin) {
+      timeout = setTimeout(() => {
+        window.location.reload();
+      }, 7000);
+    } else {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [retryIfUserNotJoin]);
+
   useEffect(() => {
     socket.on('userId', async (data) => {
       userId = data;
@@ -317,6 +336,7 @@ const Game = () => {
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
+      setRetryIfUserNotJoin(false);
     });
 
     socket.on('newUser', (data) => {
@@ -328,6 +348,7 @@ const Game = () => {
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
+      setRetryIfUserNotJoin(false);
       setCurrentPlayer(data.players.find((el) => el.turn && el.action === ''));
       let me = data.players.find((el) => el.id === userId);
       if (me?.wallet === 0 && me?.betAmount === 0) {
