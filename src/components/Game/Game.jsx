@@ -13,7 +13,7 @@ import BetPanel from './BetPanel';
 import ActionPanel from './ActionPanel';
 import MeetingView from './MeetingView';
 import Chat from '../chat/chat';
-import NewBuyInPopup from '../stripe/newBuyinPopup';
+// import NewBuyInPopup from '../stripe/newBuyinPopup';
 // Uncomment it when uncomment buy in popup
 // import BuyInPopup from '../stripe/buyInPopup';
 import betAccepted from '../../sounds/bet-accepted.aac';
@@ -87,7 +87,7 @@ const Game = () => {
   const [videoPlayers, setVideoPlayers] = useState([]);
   // Uncomment it when uncomment buy in popup
   const [, /*showBuyInPopup */ setShowBuyInPopup] = useState(false);
-  const [newBuyInPopUp, setNewBuyInPopUp] = useState(false);
+  const [, /*newBuyInPopUp */ setNewBuyInPopUp] = useState(false);
   const [open, setOpen] = useState(false);
   // Uncomment it when uncomment buy in popup
   const [, /* newJoinlowBalance */ setNewJoinLowBalance] = useState(false);
