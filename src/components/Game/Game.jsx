@@ -525,11 +525,13 @@ const Game = () => {
       playSound(data.type);
       const { type } = data;
       if (type !== 'hit' && type !== 'doubleDown') {
-        setActionCompleted(true);
+        setTimeout(() => {
+          setActionCompleted(true);
+        }, 1000);
       } else {
         setTimeout(() => {
           setActionCompleted(true);
-        }, 500);
+        }, 1500);
       }
 
       if (data.type === 'burst') setTimeout(playSound(data.type), 200);

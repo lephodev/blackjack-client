@@ -26,11 +26,12 @@ const ActionPanel = ({
           tableId,
           userId: player.id,
         });
-        setActionCompleted(false);
       }, 300)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted]
   );
+
+  console.log('ACS', { actionCompleted });
 
   return (
     <div className={`user-action-container ${actionopen ? `` : `hide-panel`}`}>
