@@ -243,7 +243,9 @@ const Game = () => {
             });
             // Ask user to type wallet amount
           } else {
-            const sitInAmount = prompt('Enter sit in amount');
+            const sitInAmount = prompt(
+              'Enter sit in amount. Mininmum amount:100'
+            );
             if (parseFloat(sitInAmount) > checkAuth?.data?.user.wallet) {
               toast.error("You don't have enough balance.", {
                 id: 'notEnoughSitIn',
