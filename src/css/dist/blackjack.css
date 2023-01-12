@@ -872,7 +872,7 @@ input[type="number"] {
 
 .collect-slotcoin.win-slottype-one img {
   width: 150px;
-  margin-top: 120%;
+  margin-top: 42%;
 }
 
 /***************** Stripe Poup ******************/
@@ -1281,19 +1281,19 @@ div#info-rules .card-box {
 #how-to-play img {
   display: none;
 }
-.sitinPopup label.form-label{
+.sitinPopup label.form-label {
   font-size: 20px;
   font-weight: 500;
 }
-.sitinPopup .form-control{
+.sitinPopup .form-control {
   background-color: #1b1b1b;
   border: 1px solid rgb(63, 63, 63);
   color: #fff;
   font-size: 14px;
   height: 44px;
 }
-.sitinPopup .form-control:focus{
-box-shadow: none !important;
+.sitinPopup .form-control:focus {
+  box-shadow: none !important;
 }
 
 .tour-popup .modal-content {
@@ -1569,7 +1569,7 @@ button .spinner-border {
   background: #f9ff00;
   border-color: #f9ff00;
   transition: all 0.5s;
-    width: 122px;
+  width: 122px;
   height: 42px;
   font-weight: 600;
 }
@@ -1579,7 +1579,7 @@ button .spinner-border {
   background: #414141;
   border-color: #414141;
   transition: all 0.5s;
-    width: 122px;
+  width: 122px;
   height: 42px;
 }
 
@@ -1876,6 +1876,10 @@ button .spinner-border {
     flex-direction: column;
     gap: 5px;
     width: auto;
+  }
+  .collect-slotcoin.win-slottype-one img {
+    width: 120px;
+    margin-top: 172%;
   }
 
   .floating-menu.open {
@@ -2275,6 +2279,10 @@ button .spinner-border {
 @media only screen and (min-device-width: 280px) and (max-device-width: 767px) and (orientation: portrait) {
   .dealer-card {
     width: 88px;
+  }
+  .collect-slotcoin.win-slottype-one img {
+    width: 120px;
+    margin-top: 42%;
   }
 
   .dealer-sum span {
