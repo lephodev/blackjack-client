@@ -208,16 +208,19 @@
   border: none;
   margin-bottom: 4px;
 }
+.user-info-box button svg {
+  width: 14px;
+  height: 14px;
+}
 .user-info-box .btn-success:hover,
 .user-info-box .btn-success:active,
-.user-info-box .btn-success:focus
- {
+.user-info-box .btn-success:focus {
   color: #fff;
   background-color: transparent;
   border-color: none !important;
   box-shadow: none !important;
 }
-.fade.bs-tooltip-end{
+.fade.bs-tooltip-end {
   font-size: 10px;
   /* background-color: rgb(62, 62, 62); */
 }
@@ -409,14 +412,20 @@ input[type="number"] {
 .css-12jo7m5 {
   font-size: 14px !important;
 }
+.sitinPopup-div {
+  margin-bottom: 20px;
+  padding: 0px 10px;
+}
 @media screen and (max-width: 480px) {
   .no-room-available h4 {
     font-size: 20px;
   }
   .create-game-box button {
     font-size: 14px;
-  }
-  .create-game-box button {
     padding: 8px 12px;
+  }
+
+  .user-info-box button {
+    padding: 0px;
   }
 }
