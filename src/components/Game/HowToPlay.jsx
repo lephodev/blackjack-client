@@ -1,14 +1,17 @@
-import { Table } from 'react-bootstrap';
-import cardhistory from '../../imgs/blackjack/card-history-white.png';
+import { Table } from "react-bootstrap";
+import cardhistory from "../../imgs/blackjack/card-history-white.png";
 
-const HowToPlay = ({ handleHowtoPlay, players, gameCardStats }) => {
+const HowToPlay = ({ handleHowtoPlay, players, gameCardStats, howtoplay }) => {
   return (
-    <div id='info-rules' onClick={() => handleHowtoPlay()}>
-      <div id='how-to-play'>
+    <div
+      id={!howtoplay ? "info-rules" : "info-rules-expand"}
+      onClick={() => handleHowtoPlay()}
+    >
+      <div id="how-to-play">
         <span>Cards History</span>
-        <img src={cardhistory} alt='' />
+        <img src={cardhistory} alt="" />
       </div>
-      <div id='info-rules-overflow'>
+      <div id="info-rules-overflow">
         <Table>
           <thead>
             <tr>
@@ -25,29 +28,32 @@ const HowToPlay = ({ handleHowtoPlay, players, gameCardStats }) => {
                   <td key={`item-${j}`}>
                     <div
                       className={`card-box${
-                        Array.isArray(pl.cards[0]) ? 1 : ''
-                      }`}>
+                        Array.isArray(pl.cards[0]) ? 1 : ""
+                      }`}
+                    >
                       {pl.cards.map((card, l) =>
                         Array.isArray(card) ? (
-                          <div className='card-box' key={`item-${l}`}>
+                          <div className="card-box" key={`item-${l}`}>
                             {card.map((el, k) => (
                               <div
-                                className='card'
-                                key={el.value.card + el.suit + k}>
+                                className="card"
+                                key={el.value.card + el.suit + k}
+                              >
                                 <img
                                   src={`/cards/${el.value.card + el.suit}.svg`}
-                                  alt='card-img'
+                                  alt="card-img"
                                 />
                               </div>
                             ))}
                           </div>
                         ) : (
                           <div
-                            className='card'
-                            key={`item-${card.value.card}-${card.suit}-${l}`}>
+                            className="card"
+                            key={`item-${card.value.card}-${card.suit}-${l}`}
+                          >
                             <img
                               src={`/cards/${card.value.card + card.suit}.svg`}
-                              alt='card-img'
+                              alt="card-img"
                             />
                           </div>
                         )
@@ -56,14 +62,15 @@ const HowToPlay = ({ handleHowtoPlay, players, gameCardStats }) => {
                   </td>
                 ))}
                 <td>
-                  <div className='card-box'>
+                  <div className="card-box">
                     {gameCardStat?.dealerCards?.map((card, l) => (
                       <div
-                        className='card'
-                        key={`item-${card.value.card}-${card.suit}-${l}`}>
+                        className="card"
+                        key={`item-${card.value.card}-${card.suit}-${l}`}
+                      >
                         <img
                           src={`/cards/${card.value.card + card.suit}.svg`}
-                          alt='card-img'
+                          alt="card-img"
                         />
                       </div>
                     ))}

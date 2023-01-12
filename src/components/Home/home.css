@@ -148,6 +148,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  position: relative;
 }
 
 .create-game-box button {
@@ -199,6 +200,26 @@
 
 .user-info-box {
   padding-right: 20px;
+}
+.user-info-box button {
+  padding: 0px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  margin-bottom: 4px;
+}
+.user-info-box .btn-success:hover,
+.user-info-box .btn-success:active,
+.user-info-box .btn-success:focus
+ {
+  color: #fff;
+  background-color: transparent;
+  border-color: none !important;
+  box-shadow: none !important;
+}
+.fade.bs-tooltip-end{
+  font-size: 10px;
+  /* background-color: rgb(62, 62, 62); */
 }
 
 .user-info-box h5 {
