@@ -1,19 +1,19 @@
-import { useContext, useEffect, useState, useRef } from "react";
-import { MeetingProvider, MeetingConsumer } from "@videosdk.live/react-sdk";
-import { toast } from "react-hot-toast";
-import GameContext from "../../Context";
-import { socket } from "../../config/socket";
-import loaderImg from "../../imgs/blackjack/loader1.webp";
-import HowToPlay from "./HowToPlay";
-import UserOnline from "./UserOnline";
-import WalletBalance from "./WalletBalance";
-import Dealer from "./Dealer";
-import Players from "./Players";
-import BetPanel from "./BetPanel";
-import ActionPanel from "./ActionPanel";
-import MeetingView from "./MeetingView";
-import Chat from "../chat/chat";
-import NewBuyInPopup from "../stripe/newBuyinPopup";
+import { useContext, useEffect, useState, useRef } from 'react';
+import { MeetingProvider, MeetingConsumer } from '@videosdk.live/react-sdk';
+import { toast } from 'react-hot-toast';
+import GameContext from '../../Context';
+import { socket } from '../../config/socket';
+import loaderImg from '../../imgs/blackjack/loader1.webp';
+import HowToPlay from './HowToPlay';
+import UserOnline from './UserOnline';
+import WalletBalance from './WalletBalance';
+import Dealer from './Dealer';
+import Players from './Players';
+import BetPanel from './BetPanel';
+import ActionPanel from './ActionPanel';
+import MeetingView from './MeetingView';
+import Chat from '../chat/chat';
+// import NewBuyInPopup from '../stripe/newBuyinPopup';
 // Uncomment it when uncomment buy in popup
 // import BuyInPopup from '../stripe/buyInPopup';
 import betAccepted from "../../sounds/bet-accepted.aac";
@@ -69,6 +69,7 @@ const getQueryParams = () => {
   };
 };
 
+let timeout;
 const Game = () => {
   const [tableId, setTableId] = useState("");
   const [winUser, setWinUser] = useState(false);
@@ -88,7 +89,7 @@ const Game = () => {
   const [videoPlayers, setVideoPlayers] = useState([]);
   // Uncomment it when uncomment buy in popup
   const [, /*showBuyInPopup */ setShowBuyInPopup] = useState(false);
-  const [newBuyInPopUp, setNewBuyInPopUp] = useState(false);
+  const [, /*newBuyInPopUp */ setNewBuyInPopUp] = useState(false);
   const [open, setOpen] = useState(false);
   // Uncomment it when uncomment buy in popup
   const [, /* newJoinlowBalance */ setNewJoinLowBalance] = useState(false);
@@ -102,6 +103,7 @@ const Game = () => {
   const [actionCompleted, setActionCompleted] = useState(true);
   const [showEnterAmountPopup, setShowEnterAmountPopup] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [retryIfUserNotJoin, setRetryIfUserNotJoin] = useState(false);
 
   const isTablet = useMediaQuery({
     query: "(max-width: 1024px) and (min-width: 766px)",
@@ -145,6 +147,7 @@ const Game = () => {
     setOpen(!open);
   };
   const handleSitin = (sitInAmount) => {
+    alert('called')
     let urlParams = getQueryParams();
     let table = urlParams["tableid"];
     let type = urlParams["gameCollection"] || urlParams["gamecollection"];
@@ -181,6 +184,9 @@ const Game = () => {
                 sitInAmount: parseFloat(sitInAmount),
               });
               setShowEnterAmountPopup(false);
+              setRetryIfUserNotJoin(true);
+              
+      setLoader(true);
             } else {
               toast.error("Not valid amount.", {
                 id: "notEnoughSitIn",
@@ -285,12 +291,15 @@ const Game = () => {
           );
           // Let user join in game
           if (playerInTable.data.players.find((el) => el.id === userId)) {
+            setRetryIfUserNotJoin(true);
             socket.emit("checkTable", {
               tableId: table,
               userId: userId,
               gameType: type,
               sitInAmount: 0,
             });
+            
+      setLoader(true);
             // Ask user to type wallet amount
           } else {
             // Enter sit in amount popup
@@ -338,6 +347,8 @@ const Game = () => {
             gameType: type,
             sitInAmount: 0,
           });
+          
+          setLoader(true);
         }
       } catch (error) {
         console.log(error);
@@ -348,11 +359,31 @@ const Game = () => {
           gameType: type,
           sitInAmount: 0,
         });
-      }
+        
       setLoader(true);
+      }
     };
     isLoggedIn();
   }, []);
+
+
+   useEffect(() => {
+    if (retryIfUserNotJoin) {
+      timeout = setTimeout(() => {
+        window.location.reload();
+      }, 7000);
+    } else {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [retryIfUserNotJoin]);
 
   useEffect(() => {
     socket.on("userId", async (data) => {
@@ -371,6 +402,7 @@ const Game = () => {
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
+      setRetryIfUserNotJoin(false);
     });
 
     socket.on("newUser", (data) => {
@@ -382,7 +414,8 @@ const Game = () => {
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
-      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
+      setRetryIfUserNotJoin(false);
+      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ''));
       let me = data.players.find((el) => el.id === userId);
       if (me?.wallet === 0 && me?.betAmount === 0) {
         setShowBuyInPopup(true);
@@ -555,12 +588,14 @@ const Game = () => {
     socket.on("action", (data) => {
       playSound(data.type);
       const { type } = data;
-      if (type !== "hit" && type !== "doubleDown") {
-        setActionCompleted(true);
+      if (type !== 'hit' && type !== 'doubleDown') {
+        setTimeout(() => {
+          setActionCompleted(true);
+        }, 1000);
       } else {
         setTimeout(() => {
           setActionCompleted(true);
-        }, 500);
+        }, 1500);
       }
 
       if (data.type === "burst") setTimeout(playSound(data.type), 200);
@@ -961,12 +996,12 @@ const Game = () => {
         userId={userId}
         tableId={tableId}
       />
-      <NewBuyInPopup
+      {/* <NewBuyInPopup
         setBuyinPopup={setShowBuyInPopup}
         buyinPopup={newBuyInPopUp}
         setNewBuyInPopUp={setNewBuyInPopUp}
         leaveTable={handleExitRoom}
-      />
+      /> */}
       {/* // Uncomment it when uncomment buy in popup */}
       {/* <BuyInPopup
         setModalShow={setShowBuyInPopup}

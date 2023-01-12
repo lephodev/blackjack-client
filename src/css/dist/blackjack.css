@@ -871,7 +871,8 @@ input[type="number"] {
 }
 
 .collect-slotcoin.win-slottype-one img {
-  width: 180px;
+  width: 150px;
+  margin-top: 120%;
 }
 
 /***************** Stripe Poup ******************/

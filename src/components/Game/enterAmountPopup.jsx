@@ -32,7 +32,8 @@ const EnterAmountPopup = ({ handleSitin, showEnterAmountPopup, }) => {
         <div className="block">
           <Form.Group className="sitinPopup-div" controlId="formBasicEmail">
             <Form.Label>Enter sit in amount</Form.Label>
-            <Form.Control type="number" placeholder="minimum amount: 100" />
+            <Form.Control type="number" 
+              onChange={handleAmountChange} placeholder="minimum amount: 100" />
           </Form.Group>
 
           <div className="sub-btn text-center">
@@ -40,7 +41,6 @@ const EnterAmountPopup = ({ handleSitin, showEnterAmountPopup, }) => {
               className="exit-btn"
               onClick={joinGame}
               disabled={isLoading}
-              onChange={handleAmountChange}
             >
               {isLoading ? <Spinner animation="border" /> : "Join"}
             </Button>
