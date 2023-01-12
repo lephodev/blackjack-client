@@ -416,6 +416,13 @@ input[type="number"] {
   margin-bottom: 20px;
   padding: 0px 10px;
 }
+.errorMssg{
+  text-align: left;
+  color: red;
+  font-size: 14px !important;
+  padding-bottom: 0px !important;
+  margin: 0px !important;
+}
 @media screen and (max-width: 480px) {
   .no-room-available h4 {
     font-size: 20px;

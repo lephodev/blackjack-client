@@ -147,7 +147,6 @@ const Game = () => {
     setOpen(!open);
   };
   const handleSitin = (sitInAmount) => {
-    alert('called')
     let urlParams = getQueryParams();
     let table = urlParams["tableid"];
     let type = urlParams["gameCollection"] || urlParams["gamecollection"];
