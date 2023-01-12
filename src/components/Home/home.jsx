@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { FaWallet, FaTicketAlt } from "react-icons/fa";
+import { FaWallet, FaTicketAlt, FaQuestionCircle } from "react-icons/fa";
 import "./home.css";
 import { useEffect } from "react";
 import userUtils from "../../utils/user";
@@ -152,7 +154,16 @@ const Home = () => {
       }),
     [allUsers]
   );
-
+  const renderWallet = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      You can make bet with tha wallet chips
+    </Tooltip>
+  );
+  const renderTicket = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+     The winning chips will be added in the ticket
+    </Tooltip>
+  );
   return (
     <div className="poker-home">
       {loader && (
@@ -183,13 +194,32 @@ const Home = () => {
             <div className="create-game-box">
               <h5>{userData?.username}</h5>
               <div className="user-info-box">
-                <p>
+                <p className="user-info-box-wallet">
                   <FaWallet />
                   <span>{userData?.wallet || 0}</span>
+
+                  <OverlayTrigger
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderWallet}
+                  >
+                    <Button variant="success">
+                      <FaQuestionCircle />
+                    </Button>
+                  </OverlayTrigger>
                 </p>
-                <p>
+                <p className="user-info-box-ticket">
                   <FaTicketAlt />
                   <span>{userData?.ticket || 0}</span>
+                  <OverlayTrigger
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTicket}
+                  >
+                    <Button variant="success">
+                      <FaQuestionCircle />
+                    </Button>
+                  </OverlayTrigger>
                 </p>
               </div>
               <button type="button" onClick={handleShow}>

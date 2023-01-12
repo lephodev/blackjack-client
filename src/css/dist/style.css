@@ -385,9 +385,34 @@ button {
   background-color: #9e750d;
 }
 
+.table > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: 1px;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+  color: white;
+}
 #info-rules {
   position: absolute;
-  right: -1000px;
+  /* right: -1000px; */
+  left: 100vw;
+  top: 10px;
+  height: 90%;
+  width: 100%;
+  max-width: 1000px;
+  color: white;
+  background: rgba(42, 42, 42, 0.9);
+  background-clip: padding-box;
+  border-radius: 22px 0px 0px 22px;
+  padding: 0 0 0 25px;
+  opacity: 1;
+  transition: 300ms;
+  z-index: 99;
+}
+#info-rules-expand {
+  position: absolute;
+  right: 0px;
+  /* left: 100vw; */
   top: 10px;
   height: 90%;
   width: 100%;
@@ -433,7 +458,7 @@ button {
 
 #how-to-play {
   position: absolute;
-  left: -131px;
+  left: -120px;
   top: 100px;
   color: white;
   font-size: 14px;
@@ -2029,7 +2054,41 @@ i {
   }
 
   #users-online-box {
-    display: none;
+    width: 200px;
+    left: -164px;
+  }
+  #users-online-box #users-online-label {
+    margin: 8px 30px 8px 0px;
+    font-size: 10px;
+  }
+  #users-online-box #users-online-button {
+    width: 40px;
+    height: 30px;
+  }
+  #users-online-box ul .users-list-box .users-list-info .user-list-name {
+    font-size: 10px;
+    font-weight: 500;
+  }
+  #users-online-box ul .users-list-box .users-list-info div {
+    font-size: 8px;
+    color: #ddd;
+  }
+  #users-online-box ul .users-list-box .users-list-img {
+    width: 28px;
+    height: 28px;
+  }
+  #users-online-box ul .users-list-box {
+    height: 38px;
+  }
+  #users-online-box ul .users-list-box .users-list-info {
+    margin-left: 15px;
+  }
+  #how-to-play {
+    left: -95px;
+    top: 48px;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 6px 15px;
   }
 }
 @media all and (max-width: 576px) {

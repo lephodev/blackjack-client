@@ -870,6 +870,10 @@ input[type="number"] {
   font-size: 14px;
 }
 
+.collect-slotcoin.win-slottype-one img {
+  width: 180px;
+}
+
 /***************** Stripe Poup ******************/
 
 .stripe-confirmation-popup .modal-dialog .modal-content {
@@ -1276,6 +1280,20 @@ div#info-rules .card-box {
 #how-to-play img {
   display: none;
 }
+.sitinPopup label.form-label{
+  font-size: 20px;
+  font-weight: 500;
+}
+.sitinPopup .form-control{
+  background-color: #1b1b1b;
+  border: 1px solid rgb(63, 63, 63);
+  color: #fff;
+  font-size: 14px;
+  height: 44px;
+}
+.sitinPopup .form-control:focus{
+box-shadow: none !important;
+}
 
 .tour-popup .modal-content {
   background: #2a2a2a;
@@ -1550,7 +1568,17 @@ button .spinner-border {
   background: #f9ff00;
   border-color: #f9ff00;
   transition: all 0.5s;
-  width: 120px;
+    width: 122px;
+  height: 42px;
+  font-weight: 600;
+}
+
+.grey-btn.btn {
+  color: #fff;
+  background: #414141;
+  border-color: #414141;
+  transition: all 0.5s;
+    width: 122px;
   height: 42px;
 }
 
@@ -1562,13 +1590,6 @@ button .spinner-border {
   box-shadow: none;
 }
 
-.grey-btn.btn {
-  color: #fff;
-  background: #414141;
-  border-color: #414141;
-  transition: all 0.5s;
-}
-
 .grey-btn.btn:hover,
 .grey-btn.btn:focus,
 .grey-btn.btn:active {
@@ -1576,8 +1597,6 @@ button .spinner-border {
   background: #3e3e3e;
   border-color: #3e3e3e;
   box-shadow: none;
-  width: 120px;
-  height: 42px;
 }
 
 .fa,

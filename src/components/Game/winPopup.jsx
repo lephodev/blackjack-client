@@ -1,13 +1,14 @@
 import React from "react";
-import Lottie from "react-lottie";
-import coinicon from "../../imgs/animation/win.json";
+// import Lottie from "react-lottie";
+import coinicon from "../../imgs/animation/22.gif";
+// import coinicon from "../../imgs/animation/win.json";
 
 const WinPopup = ({ showPopup, amount, betAmount }) => {
-  const coinanim = {
-    loop: true,
-    autoplay: true,
-    animationData: coinicon,
-  };
+  // const coinanim = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: coinicon,
+  // };
   return (
 
       <div
@@ -15,7 +16,8 @@ const WinPopup = ({ showPopup, amount, betAmount }) => {
       >
         <div className="winning-content">
           <div className="collect-slotcoin win-slottype-one">
-            <Lottie options={coinanim} height={500} width={500} />
+            {/* <Lottie options={coinanim} height={500} width={500} /> */}
+            <img src={coinicon} alt="" />
           </div>
         </div>
       </div>
