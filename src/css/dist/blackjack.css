@@ -1238,7 +1238,7 @@ div#info-rules .card-box {
 
 .user-bet-amount {
   position: absolute;
-  right: -33px;
+  right: -72px;
   z-index: 1;
 }
 
@@ -1251,7 +1251,7 @@ div#info-rules .card-box {
   border-radius: 20px;
   font-size: 14px;
   position: relative;
-  width: 70px;
+  width: 100px;
   display: block;
   text-align: center;
   border: 1px solid #d9d9d9;
@@ -1889,7 +1889,8 @@ button .spinner-border {
     margin-top: 172%;
   }
   .blackjack-table {
-    height: 440px;
+    height: 446px;
+    max-width: 880px;
   }
   .floating-menu.open {
     display: flex;
@@ -1901,12 +1902,12 @@ button .spinner-border {
     height: 30px;
   }
   #how-to-play {
-    left: -56px;
+    left: -60px;
     top: 72px;
     font-weight: 500;
     padding: 6px 15px;
-    width: 90px;
-    font-size: 8px;
+    width: 98px;
+    font-size: 10px;
     border-radius: 15px 15px 0px 0px;
     rotate: -90deg;
     text-align: center;
@@ -2109,8 +2110,8 @@ button .spinner-border {
   }
 
   .count-1 .blackjack-player-avatar img {
-    width: 170px;
-    height: 170px;
+    width: 160px;
+    height: 160px;
   }
 
   .count-1 .player-with-icons {
@@ -2139,8 +2140,8 @@ button .spinner-border {
   }
 
   .count-3 .blackjack-player-avatar img {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
   }
 
   .count-3 .player-with-icons {
@@ -2170,8 +2171,8 @@ button .spinner-border {
   }
 
   .count-4 .blackjack-player-avatar img {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
   }
 
   .count-4 .player-with-icons {
@@ -2195,8 +2196,8 @@ button .spinner-border {
   }
 
   .count-5 .blackjack-player-avatar img {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
   }
 
   .count-5 .player-with-icons {
@@ -2220,8 +2221,8 @@ button .spinner-border {
   }
 
   .count-6 .blackjack-player-avatar img {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
   }
 
   .count-6 .player-with-icons {
@@ -2245,8 +2246,8 @@ button .spinner-border {
   }
 
   .count-7 .blackjack-player-avatar img {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
   }
 
   .count-7 .player-with-icons {
@@ -2306,7 +2307,7 @@ button .spinner-border {
   } */
   .dealer-card {
     width: 80px;
-}
+  }
   .collect-slotcoin.win-slottype-one img {
     width: 120px;
     margin-top: 42%;
@@ -2354,7 +2355,7 @@ button .spinner-border {
   } */
   .player-card img {
     width: 84px;
-}
+  }
 
   /* count 1  */
 
