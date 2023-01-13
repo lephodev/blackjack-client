@@ -162,7 +162,7 @@ const Home = () => {
   );
   const renderWallet = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      You can make bet with tha wallet chips
+      You can make bet with the wallet chips
     </Tooltip>
   );
   const renderTicket = (props) => (
