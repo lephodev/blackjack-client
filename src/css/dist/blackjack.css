@@ -2301,9 +2301,12 @@ button .spinner-border {
 /* portrait */
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 767px) and (orientation: portrait) {
-  .dealer-card {
+  /* .dealer-card {
     width: 88px;
-  }
+  } */
+  .dealer-card {
+    width: 80px;
+}
   .collect-slotcoin.win-slottype-one img {
     width: 120px;
     margin-top: 42%;
@@ -2346,9 +2349,12 @@ button .spinner-border {
     font-weight: 500;
   }
 
-  .player-card img {
+  /* .player-card img {
     width: 90px;
-  }
+  } */
+  .player-card img {
+    width: 84px;
+}
 
   /* count 1  */
 
