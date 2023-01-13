@@ -1251,7 +1251,7 @@ div#info-rules .card-box {
   border-radius: 20px;
   font-size: 14px;
   position: relative;
-  width: 100px;
+  width: 80px;
   display: block;
   text-align: center;
   border: 1px solid #d9d9d9;
@@ -1885,8 +1885,11 @@ button .spinner-border {
     margin-right: 4%;
   }
   .collect-slotcoin.win-slottype-one img {
+    margin-top: 150%;
     width: 120px;
-    margin-top: 172%;
+  }
+  .dealer {
+    top: -164px;
   }
   .blackjack-table {
     height: 446px;
@@ -1896,13 +1899,16 @@ button .spinner-border {
     display: flex;
     gap: 6px;
   }
+  .user-bet-amount span {
+    width: 100px;
+  }
 
   .floating-menu-icon {
     width: 30px;
     height: 30px;
   }
   #how-to-play {
-    left: -60px;
+    left: -62px;
     top: 72px;
     font-weight: 500;
     padding: 6px 15px;
@@ -1999,6 +2005,11 @@ button .spinner-border {
     height: 1rem;
     width: 1rem;
   }
+  .count-3 .blackjack-players {
+    max-width: 150px;
+    bottom: -96px !important;
+  }
+
 }
 
 /* landscape  */
@@ -2137,6 +2148,7 @@ button .spinner-border {
 
   .count-3 .blackjack-players {
     max-width: 150px;
+    bottom: -96px !important;
   }
 
   .count-3 .blackjack-player-avatar img {
@@ -2316,6 +2328,9 @@ button .spinner-border {
   .dealer-sum span {
     font-weight: 700;
     font-size: 22px;
+  }
+  .user-bet-amount span {
+    width: 100px;
   }
 
   .user-action-container .user-action-text {
