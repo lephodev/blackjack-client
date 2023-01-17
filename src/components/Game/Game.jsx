@@ -1,18 +1,18 @@
-import { useContext, useEffect, useState, useRef } from 'react';
-import { MeetingProvider, MeetingConsumer } from '@videosdk.live/react-sdk';
-import { toast } from 'react-hot-toast';
-import GameContext from '../../Context';
-import { socket } from '../../config/socket';
-import loaderImg from '../../imgs/blackjack/loader1.webp';
-import HowToPlay from './HowToPlay';
-import UserOnline from './UserOnline';
-import WalletBalance from './WalletBalance';
-import Dealer from './Dealer';
-import Players from './Players';
-import BetPanel from './BetPanel';
-import ActionPanel from './ActionPanel';
-import MeetingView from './MeetingView';
-import Chat from '../chat/chat';
+import { useContext, useEffect, useState, useRef } from "react";
+import { MeetingProvider, MeetingConsumer } from "@videosdk.live/react-sdk";
+import { toast } from "react-hot-toast";
+import GameContext from "../../Context";
+import { socket } from "../../config/socket";
+import loaderImg from "../../imgs/blackjack/loader1.webp";
+import HowToPlay from "./HowToPlay";
+import UserOnline from "./UserOnline";
+import WalletBalance from "./WalletBalance";
+import Dealer from "./Dealer";
+import Players from "./Players";
+import BetPanel from "./BetPanel";
+import ActionPanel from "./ActionPanel";
+import MeetingView from "./MeetingView";
+import Chat from "../chat/chat";
 // import NewBuyInPopup from '../stripe/newBuyinPopup';
 // Uncomment it when uncomment buy in popup
 // import BuyInPopup from '../stripe/buyInPopup';
@@ -151,55 +151,55 @@ const Game = () => {
     let table = urlParams["tableid"];
     let type = urlParams["gameCollection"] || urlParams["gamecollection"];
 
-    if(!tableId){
+    if (!tableId) {
       setTableId(table);
     }
 
-    if(!userData){
-      return window.location.href = window.location.origin;
+    if (!userData) {
+      return (window.location.href = window.location.origin);
     }
 
-     if (parseFloat(sitInAmount) > userData.wallet) {
-              toast.error("You don't have enough balance.", {
-                id: "notEnoughSitIn",
-              });
-              setTimeout(() => {
-                window.location.href = window.location.origin;
-              }, 1000);
-              return;
-            } else if (parseFloat(sitInAmount) < 0) {
-              toast.error("Amount is not valid.", {
-                id: "notEnoughSitIn",
-              });
-              setTimeout(() => {
-                window.location.href = window.location.origin;
-              }, 1000);
-              return;
-            } else if (/\d/.test(sitInAmount)) {
-              socket.emit("checkTable", {
-                tableId: table,
-                userId: userId,
-                gameType: type,
-                sitInAmount: parseFloat(sitInAmount),
-              });
-              setShowEnterAmountPopup(false);
-              setRetryIfUserNotJoin(true);
-              
+    if (parseFloat(sitInAmount) > userData.wallet) {
+      toast.error("You don't have enough balance.", {
+        id: "notEnoughSitIn",
+      });
+      setTimeout(() => {
+        window.location.href = window.location.origin;
+      }, 1000);
+      return;
+    } else if (parseFloat(sitInAmount) < 0) {
+      toast.error("Amount is not valid.", {
+        id: "notEnoughSitIn",
+      });
+      setTimeout(() => {
+        window.location.href = window.location.origin;
+      }, 1000);
+      return;
+    } else if (/\d/.test(sitInAmount)) {
+      socket.emit("checkTable", {
+        tableId: table,
+        userId: userId,
+        gameType: type,
+        sitInAmount: parseFloat(sitInAmount),
+      });
+      setShowEnterAmountPopup(false);
+      setRetryIfUserNotJoin(true);
+
       setLoader(true);
-            } else {
-              toast.error("Not valid amount.", {
-                id: "notEnoughSitIn",
-              });
-              setTimeout(() => {
-                window.location.href = window.location.origin;
-              }, 1000);
-              return;
-            }
+    } else {
+      toast.error("Not valid amount.", {
+        id: "notEnoughSitIn",
+      });
+      setTimeout(() => {
+        window.location.href = window.location.origin;
+      }, 1000);
+      return;
+    }
   };
 
   useEffect(() => {
     let urlParams = getQueryParams();
-    console.log({ urlParams, tId: urlParams["tableid"] });
+    // console.log({ urlParams, tId: urlParams["tableid"] });
     setTableId(urlParams["tableid"] || urlParams["tableId"]);
     setGameCollection(
       urlParams["gamecollection"] || urlParams["gameCollection"]
@@ -212,7 +212,7 @@ const Game = () => {
     }, 3000);
   }, []);
 
-  console.log({ tableId });
+  // console.log({ tableId });
 
   const useOutsideAlerter = (ref) => {
     useEffect(() => {
@@ -234,19 +234,19 @@ const Game = () => {
   useEffect(() => {
     const tryReconnect = () => {
       setTimeout(() => {
-        console.log("reconnect");
+        // console.log("reconnect");
         socket.io.open((err) => {
           if (err) {
-            console.log("reconnect err => ", err);
+            // console.log("reconnect err => ", err);
             tryReconnect();
           } else {
             // re join
             let urlParams = getQueryParams();
-            console.log({ urlParams });
+            // console.log({ urlParams });
             let table = urlParams["tableid"] || urlParams["tableId"];
             let type =
               urlParams["gameCollection"] || urlParams["gamecollection"];
-            console.log({ table, userId });
+            // console.log({ table, userId });
             socket.emit("checkTable", {
               userId,
               tableId: table,
@@ -263,7 +263,7 @@ const Game = () => {
   useEffect(() => {
     const isLoggedIn = async () => {
       let urlParams = getQueryParams();
-      console.log({ urlParams });
+      // console.log({ urlParams });
       // let user;
       if (!localStorage.getItem("token") && !getCookie("token")) {
         return (window.location.href = `${CONSTANTS.landingClient}`);
@@ -297,8 +297,8 @@ const Game = () => {
               gameType: type,
               sitInAmount: 0,
             });
-            
-      setLoader(true);
+
+            setLoader(true);
             // Ask user to type wallet amount
           } else {
             // Enter sit in amount popup
@@ -346,11 +346,11 @@ const Game = () => {
             gameType: type,
             sitInAmount: 0,
           });
-          
+
           setLoader(true);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         // Call the api still if there is any miss happening
         socket.emit("checkTable", {
           tableId: table,
@@ -358,15 +358,14 @@ const Game = () => {
           gameType: type,
           sitInAmount: 0,
         });
-        
-      setLoader(true);
+
+        setLoader(true);
       }
     };
     isLoggedIn();
   }, []);
 
-
-   useEffect(() => {
+  useEffect(() => {
     if (retryIfUserNotJoin) {
       timeout = setTimeout(() => {
         window.location.reload();
@@ -414,7 +413,7 @@ const Game = () => {
       updatePlayers(data);
       setLoader(false);
       setRetryIfUserNotJoin(false);
-      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ''));
+      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
       let me = data.players.find((el) => el.id === userId);
       if (me?.wallet === 0 && me?.betAmount === 0) {
         setShowBuyInPopup(true);
@@ -587,7 +586,7 @@ const Game = () => {
     socket.on("action", (data) => {
       playSound(data.type);
       const { type } = data;
-      if (type !== 'hit' && type !== 'doubleDown') {
+      if (type !== "hit" && type !== "doubleDown") {
         setTimeout(() => {
           setActionCompleted(true);
         }, 1000);
@@ -687,7 +686,7 @@ const Game = () => {
       const userWallet = players.find((el) => el.id === userId)?.wallet;
       const userBet = players.find((el) => el.id === userId)?.betAmount;
       setLastBet(userBet);
-      console.log("handleBetConfirm-----", { userWallet, userBet });
+      // console.log("handleBetConfirm-----", { userWallet, userBet });
       if (!userBet && !userWallet) {
         toast.error("You don't have enough balance in your wallet.", {
           id: "confirm-bet",
@@ -815,7 +814,7 @@ const Game = () => {
         showEnterAmountPopup={showEnterAmountPopup}
         setShowEnterAmountPopup={setShowEnterAmountPopup}
       />
-      
+
       <TourPopup isTourOpen={isTourOpen} handleClose={handleClose} />
       <HowToPlay
         handleHowtoPlay={handleHowtoPlay}

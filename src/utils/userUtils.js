@@ -6,7 +6,7 @@ const getAuthUserData = async () => {
     const userData = await authInstance().get('/check-auth');
     return { success: true, data: userData.data };
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return { success: false };
   }
 };

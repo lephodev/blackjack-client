@@ -138,7 +138,7 @@ const BetPanel = ({
             onChange={(e) => setRangeBetValue(e)}
             onChangeComplete={(betAmt) => {
               handleBet(betAmt, true);
-              console.log(betAmt);
+              // console.log(betAmt);
               // setRangeBetValue(betAmt);
             }}
           />
@@ -274,7 +274,7 @@ const BetPanel = ({
             onChange={(e) => setRangeBetValue(e)}
             onChangeComplete={(betAmt) => {
               handleBet(betAmt, true);
-              console.log(betAmt);
+              // console.log(betAmt);
               // setRangeBetValue(betAmt);
             }}
           />

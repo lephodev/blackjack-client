@@ -151,7 +151,7 @@ const CheckoutForm = (props) => {
         }
       }
     } catch (error) {
-      console.log('Error', error);
+      // console.log('Error', error);
     }
   };
 
@@ -432,7 +432,7 @@ const StripeConfirmation = (props) => {
 
 const StripeSuccess = (props) => {
   const handleClose = () => {
-    console.log('close ->', props.values.newJoinlowBalance);
+    // console.log('close ->', props.values.newJoinlowBalance);
     socket.emit('checkTable', {
       tableId: props.values.tableId,
       userId: props.values.uid,

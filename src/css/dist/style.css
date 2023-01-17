@@ -388,7 +388,7 @@ button {
 .table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
-  border-bottom-width: 1px;
+  border-bottom: 1px solid #424242;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
   color: white;
 }
@@ -418,7 +418,7 @@ button {
   width: 100%;
   max-width: 1000px;
   color: white;
-  background: rgba(42, 42, 42, 0.9);
+  background: rgba(42, 42, 42);
   background-clip: padding-box;
   border-radius: 22px 0px 0px 22px;
   padding: 0 0 0 25px;
@@ -433,9 +433,11 @@ button {
   padding-top: 15px;
 }
 .card-box {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 180px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(21px, 1fr));
+  max-width: 120px;
+  width: 100%;
+  row-gap: 6px;
 }
 #info-rules p,
 #info-rules li {
@@ -452,12 +454,15 @@ button {
 }
 
 #info-rules-overflow {
+  position: relative;
   height: 100%;
   width: 100%;
   padding: 0 12px 0 0;
   overflow: auto;
 }
-
+#info-rules-overflow th {
+  white-space: nowrap;
+}
 #how-to-play {
   position: absolute;
   left: -120px;
@@ -629,6 +634,7 @@ button {
   margin: 0;
   list-style-type: none;
   font-size: 15px;
+  overflow-y: auto;
 }
 #users-online-box ul .users-list-box {
   position: relative;
@@ -1624,10 +1630,10 @@ i {
 .bets-btn-slider .slick-prev:before {
   background: url(../../imgs//blackjack/circleNextBtn.png);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   color: transparent;
-  font-size: 40px;
+  font-size: 38px;
 }
 
 .bets-btn-slider .slick-prev {
@@ -1908,6 +1914,31 @@ i {
   color: #e9e9e9;
   font-weight: 500;
 }
+.yellowBtn {
+  width: 160px;
+  white-space: nowrap;
+  height: 40px;
+  background-color: yellow;
+  color: black;
+  padding: 6px 9px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+}
+.yellowBtn:hover,
+.yellowBtn:active,
+.yellowBtn:focus {
+  background-color: yellow;
+  color: #000;
+  height: 40px;
+  box-shadow: none !important;
+  /* border: none !important; */
+}
 
 @media all and (max-width: 1200px) {
   .players {
@@ -2086,7 +2117,8 @@ i {
   }
   #how-to-play {
     left: -95px;
-    top: 48px;
+    top: 80px;
+    width: 100px;
     font-size: 10px;
     font-weight: 500;
     padding: 6px 15px;

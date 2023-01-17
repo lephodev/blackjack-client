@@ -33,7 +33,7 @@ const Player = ({
       onStreamDisabled,
     }
   );
-  console.log("player----", player)
+  // console.log("player----", player)
   useEffect(() => {
     if (webcamRef.current) {
       if (webcamOn) {
