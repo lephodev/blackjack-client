@@ -1,13 +1,30 @@
+import { useRef } from "react";
+import { useEffect } from "react";
 import { Table } from "react-bootstrap";
 import cardhistory from "../../imgs/blackjack/card-history-white.png";
 
-const HowToPlay = ({ handleHowtoPlay, players, gameCardStats, howtoplay }) => {
+const HowToPlay = ({ handleHowtoPlay, players, gameCardStats, howtoplay, setHowtoplay }) => {
+
+  const wrapperRef = useRef(null)
+
+  const useOutsideAlerter = (ref) => {
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setHowtoplay(false)
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  };
+  useOutsideAlerter(wrapperRef);
+
   return (
-    <div
-      id={!howtoplay ? "info-rules" : "info-rules-expand"}
-      onClick={() => handleHowtoPlay()}
-    >
-      <div id="how-to-play">
+    <div id={!howtoplay ? "info-rules" : "info-rules-expand"} ref={wrapperRef}>
+      <div id="how-to-play" onClick={() => handleHowtoPlay()}>
         <span>Cards History</span>
         <img src={cardhistory} alt="" />
       </div>
@@ -79,6 +96,9 @@ const HowToPlay = ({ handleHowtoPlay, players, gameCardStats, howtoplay }) => {
               </tr>
             ))}
           </tbody>
+          <button className="yellowBtn" onClick={() => handleHowtoPlay()}>
+            Close
+          </button>
         </Table>
       </div>
     </div>

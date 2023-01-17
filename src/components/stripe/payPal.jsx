@@ -18,10 +18,10 @@ const PayPal = ({
         shippingPreference="NO_SHIPPING"
         style={{ layout: "vertical", color: "blue" }}
         onSuccess={(details, data) => {
-          console.log(
+          // console.log(
             "Transaction completed by " + details.payer.name.given_name
           );
-          console.log("Transaction completed details " + details);
+          // console.log("Transaction completed details " + details);
           socket.emit("addCoins", {
             userId: uid,
             tableId: tableId,

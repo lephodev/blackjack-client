@@ -40,7 +40,7 @@ const Home = () => {
   const history = useHistory();
   const [allUsers, setAllUsers] = useState([]);
 
-  console.log({ userData });
+  // console.log({ userData });
 
   // utils function
   const handleShow = () => setShow(!show);
@@ -162,12 +162,12 @@ const Home = () => {
   );
   const renderWallet = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      You can make bet with the wallet chips
+      This is your token balance, and can be used for betting.
     </Tooltip>
   );
   const renderTicket = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-     The winning chips will be added in the ticket
+     This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
   return (

@@ -21,7 +21,7 @@ const ActionPanel = ({
         if (!actionCompleted) {
           return;
         }
-        console.log({ tableId });
+        // console.log({ tableId });
         socket.emit(value, {
           tableId,
           userId: player.id,
@@ -31,7 +31,7 @@ const ActionPanel = ({
     [actionCompleted, tableId, player.id, setActionCompleted]
   );
 
-  console.log('ACS', { actionCompleted });
+  // console.log('ACS', { actionCompleted });
 
   return (
     <div className={`user-action-container ${actionopen ? `` : `hide-panel`}`}>
