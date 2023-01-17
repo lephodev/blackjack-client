@@ -1,15 +1,30 @@
-import React from "react";
-import { useState } from "react";
-import { Button, Form, Modal, Spinner } from "react-bootstrap";
+import React from 'react';
+import { useState } from 'react';
+import { Button, Form, Modal, Spinner } from 'react-bootstrap';
 
-const EnterAmountPopup = ({ handleSitin, showEnterAmountPopup }) => {
+const EnterAmountPopup = ({
+  handleSitin,
+  showEnterAmountPopup,
+  submitButtonText,
+  setShow,
+}) => {
   const [isLoading, setLoading] = useState(false);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState('');
+  const [error, setError] = useState('');
 
-  const joinGame = () => {
+  const joinGame = async () => {
     if (parseInt(amount) >= 100) {
       setLoading(true);
-      handleSitin(amount);
+      const msg = await handleSitin(amount);
+      setLoading(false);
+      console.log(msg);
+      if (msg) {
+        setError(msg);
+      }
+    } else if (parseInt(amount) < 100) {
+      setError('Minimum amount to enter is 100.');
+    } else {
+      setError('Please enter amount.');
     }
   };
   const handleAmountChange = (e) => {
@@ -18,37 +33,47 @@ const EnterAmountPopup = ({ handleSitin, showEnterAmountPopup }) => {
   };
 
   const redirectToLobby = () => {
-    window.location.href = window.location.origin;
+    if (submitButtonText.toLowerCase().startsWith('refill')) {
+      setShow(false);
+    } else {
+      window.location.href = window.location.origin;
+    }
   };
 
   return (
     <Modal
       show={showEnterAmountPopup}
       centered
-      className="friends-popup leave-confirm sitinPopup"
-    >
+      className='friends-popup leave-confirm sitinPopup'>
       <Modal.Body>
-        <div className="block">
-          <Form.Group className="sitinPopup-div" controlId="formBasicEmail">
-            <Form.Label>Enter sit in amount</Form.Label>
+        <div className='block'>
+          <Form.Group className='sitinPopup-div' controlId='formBasicEmail'>
+            <Form.Label>
+              Enter{' '}
+              {submitButtonText.toLowerCase().startsWith('refill')
+                ? 'refill'
+                : 'sit in'}{' '}
+              amount
+            </Form.Label>
             <Form.Control
-              type="number"
+              type='number'
               onChange={handleAmountChange}
-              placeholder="minimum amount: 100"
+              placeholder='minimum amount: 100'
             />
-            {parseInt(amount) < 100 && <p className="errorMssg">please enter amount more than 100</p>}
+            {error && <p className='errorMssg'>{error}</p>}
           </Form.Group>
 
-          <div className="sub-btn text-center">
+          <div className='sub-btn text-center'>
             <Button
-              className="exit-btn"
+              className='exit-btn'
               onClick={joinGame}
-              disabled={isLoading}
-            >
-              {isLoading ? <Spinner animation="border" /> : "Join"}
+              disabled={isLoading}>
+              {isLoading ? <Spinner animation='border' /> : submitButtonText}
             </Button>
-            <Button className="grey-btn" onClick={redirectToLobby}>
-              Lobby
+            <Button className='grey-btn' onClick={redirectToLobby}>
+              {submitButtonText.toLowerCase().startsWith('refill')
+                ? 'close'
+                : 'Lobby'}
             </Button>
           </div>
         </div>

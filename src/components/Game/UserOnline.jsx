@@ -1,4 +1,4 @@
-import {FaAngleRight} from "react-icons/fa"
+import { FaAngleRight } from 'react-icons/fa';
 
 const UserOnline = ({ userOnlinePanel, players }) => {
   return (
@@ -6,7 +6,7 @@ const UserOnline = ({ userOnlinePanel, players }) => {
       <div>
         <div id='users-online-label'>Users in Room</div>
         <div id='users-online-button'>
-          <FaAngleRight/>
+          <FaAngleRight />
         </div>
       </div>
       <ul id='users-online-container'>
@@ -22,8 +22,11 @@ const UserOnline = ({ userOnlinePanel, players }) => {
             <div className='users-list-img'>
               <img
                 src={
-                  item.avatar ||
-                  'https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png'
+                  item.avatar
+                    ? item.avatar
+                    : item.photoURI
+                    ? item.photoURI
+                    : 'https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png'
                 }
                 alt='avatar'
               />
