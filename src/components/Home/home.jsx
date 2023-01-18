@@ -20,6 +20,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Select from 'react-select';
 import { useMemo } from 'react';
+import numFormatter from '../../config/utils';
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -203,7 +204,7 @@ const Home = () => {
               <div className="user-info-box">
                 <p className="user-info-box-wallet">
                 <img src={coin} alt="" className='ticket-icon'/>
-                  <span>{userData?.wallet || 0}</span>
+                  <span>{numFormatter(userData?.wallet || 0)}</span>
                   <OverlayTrigger
                     placement="right"
                     delay={{ show: 250, hide: 400 }}
@@ -217,7 +218,7 @@ const Home = () => {
                 <p className="user-info-box-ticket">
                   {/* <FaTicketAlt /> */}
                   <img src={ticket} alt="" className='ticket-icon'/>
-                  <span>{userData?.ticket || 0}</span>
+                  <span>{numFormatter(userData?.ticket || 0)}</span>
                   <OverlayTrigger
                     placement="right"
                     delay={{ show: 250, hide: 400 }}
