@@ -1575,9 +1575,9 @@ button .spinner-border {
   background: #f9ff00;
   border-color: #f9ff00;
   transition: all 0.5s;
-  width: 122px;
+  width: 134px;
   height: 42px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .grey-btn.btn {
@@ -1585,7 +1585,7 @@ button .spinner-border {
   background: #414141;
   border-color: #414141;
   transition: all 0.5s;
-  width: 122px;
+  width: 134px;
   height: 42px;
 }
 
