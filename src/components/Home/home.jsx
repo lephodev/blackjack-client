@@ -5,7 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { FaWallet, FaTicketAlt, FaQuestionCircle } from 'react-icons/fa';
+import { FaWallet, FaQuestionCircle } from 'react-icons/fa';
 import './home.css';
 import { useEffect } from 'react';
 import userUtils from '../../utils/user';
@@ -14,7 +14,7 @@ import casino from '../../imgs/blackjack/blackjackPlaceholder.png';
 import logo from '../../imgs/blackjack/game1.png';
 import { blackjackInstance } from '../../utils/axios.config';
 import CONSTANTS from '../../config/contants';
-// import Homesvg from "../../imgs/blackjack/home.svg";
+import ticket from "../../imgs/blackjack/ticket.png";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Select from 'react-select';
@@ -215,7 +215,8 @@ const Home = () => {
                   </OverlayTrigger>
                 </p>
                 <p className="user-info-box-ticket">
-                  <FaTicketAlt />
+                  {/* <FaTicketAlt /> */}
+                  <img src={ticket} alt="" className='ticket-icon'/>
                   <span>{userData?.ticket || 0}</span>
                   <OverlayTrigger
                     placement="right"

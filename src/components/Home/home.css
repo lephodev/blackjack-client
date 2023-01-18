@@ -368,6 +368,9 @@ input[type="number"] {
   background-position: center;
   background-size: contain;
 }
+.ticket-icon{
+  width: 25px;
+}
 
 @media screen and (max-width: 991px) {
   .home-poker-card-grid {

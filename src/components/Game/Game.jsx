@@ -821,6 +821,7 @@ const Game = () => {
         players={players}
         gameCardStats={roomData?.gameCardStats}
         howtoplay={howtoplay}
+        setHowtoplay={setHowtoplay}
       />
       <div className="blackjack-game-room">
         <FloatingMenu
