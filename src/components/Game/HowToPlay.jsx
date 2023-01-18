@@ -3,15 +3,20 @@ import { useEffect } from "react";
 import { Table } from "react-bootstrap";
 import cardhistory from "../../imgs/blackjack/card-history-white.png";
 
-const HowToPlay = ({ handleHowtoPlay, players, gameCardStats, howtoplay, setHowtoplay }) => {
-
-  const wrapperRef = useRef(null)
+const HowToPlay = ({
+  handleHowtoPlay,
+  players,
+  gameCardStats,
+  howtoplay,
+  setHowtoplay,
+}) => {
+  const wrapperRef = useRef(null);
 
   const useOutsideAlerter = (ref) => {
     useEffect(() => {
       const handleClickOutside = (event) => {
         if (ref.current && !ref.current.contains(event.target)) {
-          setHowtoplay(false)
+          setHowtoplay(howtoplay);
         }
       };
       document.addEventListener("mousedown", handleClickOutside);
@@ -96,9 +101,11 @@ const HowToPlay = ({ handleHowtoPlay, players, gameCardStats, howtoplay, setHowt
               </tr>
             ))}
           </tbody>
-          <button className="yellowBtn" onClick={() => handleHowtoPlay()}>
-            Close
-          </button>
+          <div className="cardHistory-closeBtn">
+            <button className="yellowBtn" onClick={() => handleHowtoPlay()}>
+              Close
+            </button>
+          </div>
         </Table>
       </div>
     </div>
