@@ -159,16 +159,16 @@ const ApplePay = ({
         className="PaymentRequestButton"
         options={options}
         onReady={() => {
-          console.log("PaymentRequestButton [ready]");
+          // console.log("PaymentRequestButton [ready]");
         }}
         onClick={(event) => {
-          console.log("PaymentRequestButton [click]", event);
+          // console.log("PaymentRequestButton [click]", event);
         }}
         onBlur={() => {
-          console.log("PaymentRequestButton [blur]");
+          // console.log("PaymentRequestButton [blur]");
         }}
         onFocus={() => {
-          console.log("PaymentRequestButton [focus]");
+          // console.log("PaymentRequestButton [focus]");
         }}
       />
     </>

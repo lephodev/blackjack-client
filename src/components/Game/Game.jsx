@@ -221,7 +221,7 @@ const Game = () => {
 
   useEffect(() => {
     let urlParams = getQueryParams();
-    console.log({ urlParams, tId: urlParams['tableid'] });
+    // console.log({ urlParams, tId: urlParams["tableid"] });
     setTableId(urlParams['tableid'] || urlParams['tableId']);
     setGameCollection(
       urlParams['gamecollection'] || urlParams['gameCollection']
@@ -234,7 +234,7 @@ const Game = () => {
     }, 3000);
   }, []);
 
-  console.log({ tableId });
+  // console.log({ tableId });
 
   const useOutsideAlerter = (ref) => {
     useEffect(() => {
@@ -256,19 +256,19 @@ const Game = () => {
   useEffect(() => {
     const tryReconnect = () => {
       setTimeout(() => {
-        console.log('reconnect');
+        // console.log("reconnect");
         socket.io.open((err) => {
           if (err) {
-            console.log('reconnect err => ', err);
+            // console.log("reconnect err => ", err);
             tryReconnect();
           } else {
             // re join
             let urlParams = getQueryParams();
-            console.log({ urlParams });
+            // console.log({ urlParams });
             let table = urlParams['tableid'] || urlParams['tableId'];
             let type =
               urlParams['gameCollection'] || urlParams['gamecollection'];
-            console.log({ table, userId });
+            // console.log({ table, userId });
             socket.emit('checkTable', {
               userId,
               tableId: table,
@@ -285,7 +285,7 @@ const Game = () => {
   useEffect(() => {
     const isLoggedIn = async () => {
       let urlParams = getQueryParams();
-      console.log({ urlParams });
+      // console.log({ urlParams });
       // let user;
       if (!localStorage.getItem('token') && !getCookie('token')) {
         return (window.location.href = `${CONSTANTS.landingClient}`);
@@ -338,7 +338,7 @@ const Game = () => {
           setLoader(true);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         // Call the api still if there is any miss happening
         socket.emit('checkTable', {
           tableId: table,
@@ -675,6 +675,7 @@ const Game = () => {
       const userWallet = players.find((el) => el.id === userId)?.wallet;
       const userBet = players.find((el) => el.id === userId)?.betAmount;
       setLastBet(userBet);
+      // console.log("handleBetConfirm-----", { userWallet, userBet });
       if (!userBet && !userWallet) {
         toast.error("You don't have enough balance in your wallet.", {
           id: 'confirm-bet',
@@ -815,6 +816,7 @@ const Game = () => {
         players={players}
         gameCardStats={roomData?.gameCardStats}
         howtoplay={howtoplay}
+        setHowtoplay={setHowtoplay}
       />
       <div className='blackjack-game-room'>
         <FloatingMenu

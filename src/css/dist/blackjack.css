@@ -1002,7 +1002,7 @@ h5.CoinsHeader {
 
 div#info-rules-overflow::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: #42485c;
+  background-color: #2a2a2a;
 }
 
 div#info-rules-overflow::-webkit-scrollbar {
@@ -1013,7 +1013,7 @@ div#info-rules-overflow::-webkit-scrollbar {
 
 div#info-rules-overflow::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #272d40;
+  background-color: #000000;
 }
 
 #info-rules .table > thead {
@@ -2009,7 +2009,6 @@ button .spinner-border {
     max-width: 150px;
     bottom: -96px !important;
   }
-
 }
 
 /* landscape  */
@@ -2317,6 +2316,19 @@ button .spinner-border {
   /* .dealer-card {
     width: 88px;
   } */
+  .card-box {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(14px, 1fr));
+    max-width: 100%;
+    row-gap: 6px;
+}
+  .yellowBtn {
+    width: 130px;
+    height: 38px;
+    padding: 6px 9px;
+    font-size: 12px;
+    font-weight: 600;
+  }
   .dealer-card {
     width: 80px;
   }

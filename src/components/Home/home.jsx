@@ -5,7 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { FaWallet, FaTicketAlt, FaQuestionCircle } from 'react-icons/fa';
+import { FaQuestionCircle } from 'react-icons/fa';
 import './home.css';
 import { useEffect } from 'react';
 import userUtils from '../../utils/user';
@@ -14,7 +14,8 @@ import casino from '../../imgs/blackjack/blackjackPlaceholder.png';
 import logo from '../../imgs/blackjack/game1.png';
 import { blackjackInstance } from '../../utils/axios.config';
 import CONSTANTS from '../../config/contants';
-// import Homesvg from "../../imgs/blackjack/home.svg";
+import ticket from "../../imgs/blackjack/ticket.png";
+import coin from "../../imgs/blackjack/coin-img.png";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Select from 'react-select';
@@ -40,7 +41,7 @@ const Home = () => {
   const history = useHistory();
   const [allUsers, setAllUsers] = useState([]);
 
-  console.log({ userData });
+  // console.log({ userData });
 
   // utils function
   const handleShow = () => setShow(!show);
@@ -162,12 +163,12 @@ const Home = () => {
   );
   const renderWallet = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      You can make bet with the wallet chips
+      This is your token balance, and can be used for betting.
     </Tooltip>
   );
   const renderTicket = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-     The winning chips will be added in the ticket
+     This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
   return (
@@ -201,9 +202,8 @@ const Home = () => {
               <h5>{userData?.username}</h5>
               <div className="user-info-box">
                 <p className="user-info-box-wallet">
-                  <FaWallet />
+                <img src={coin} alt="" className='ticket-icon'/>
                   <span>{userData?.wallet || 0}</span>
-
                   <OverlayTrigger
                     placement="right"
                     delay={{ show: 250, hide: 400 }}
@@ -215,7 +215,8 @@ const Home = () => {
                   </OverlayTrigger>
                 </p>
                 <p className="user-info-box-ticket">
-                  <FaTicketAlt />
+                  {/* <FaTicketAlt /> */}
+                  <img src={ticket} alt="" className='ticket-icon'/>
                   <span>{userData?.ticket || 0}</span>
                   <OverlayTrigger
                     placement="right"

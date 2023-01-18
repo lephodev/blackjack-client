@@ -9,10 +9,10 @@ const socket = io(contants.serverUrl, {
   reconnection: false,
 });
 socket.on('connect', () => {
-  console.log('connected');
+  // console.log('connected');
 });
 socket.on('disconnect', () => {
-  console.log('Disconnected');
+  // console.log('Disconnected');
 });
 
 export { socket };

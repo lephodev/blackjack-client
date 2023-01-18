@@ -34,12 +34,12 @@ const InviteFriend = ({
       const res = await axios.get(
         contants.serverUrl + '/getUserForInvite/' + tableId
       );
-      console.log(res.data.data);
+      // console.log(res.data.data);
       if (res.data.data) {
         setFriendList(res.data.data);
       }
     } catch (err) {
-      console.log('Error in fetch friend list =>', err.message);
+      // console.log('Error in fetch friend list =>', err.message);
     }
   }, [tableId]);
 
