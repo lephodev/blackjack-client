@@ -49,9 +49,8 @@ const HowToPlay = ({
                 {gameCardStat.players.map((pl, j) => (
                   <td key={`item-${j}`}>
                     <div
-                      className={`card-box${
-                        Array.isArray(pl.cards[0]) ? 1 : ""
-                      }`}
+                      className={`card-box${Array.isArray(pl.cards[0]) ? 1 : ""
+                        }`}
                     >
                       {pl.cards.map((card, l) =>
                         Array.isArray(card) ? (
@@ -100,12 +99,15 @@ const HowToPlay = ({
                 </td>
               </tr>
             ))}
+            <br />
+            <br />
+            <div className="cardHistory-closeBtn">
+              <button className="yellowBtn" onClick={() => handleHowtoPlay()}>
+                Close
+              </button>
+            </div>
           </tbody>
-          <div className="cardHistory-closeBtn">
-            <button className="yellowBtn" onClick={() => handleHowtoPlay()}>
-              Close
-            </button>
-          </div>
+
         </Table>
       </div>
     </div>

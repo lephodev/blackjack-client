@@ -1932,8 +1932,8 @@ i {
   width: 160px;
   white-space: nowrap;
   height: 40px;
-  background-color: yellow;
-  color: black;
+  background-color: yellow !important;
+  color: black !important;
   padding: 6px 9px;
   border-radius: 10px;
   font-size: 14px;
