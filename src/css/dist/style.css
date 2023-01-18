@@ -1920,11 +1920,15 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 4%;
+  bottom: 2%;
   padding-right: 25px;
+  height: 40px;
 }
-
+.table > :not(:first-child) {
+  border-top: none !important;
+}
 .yellowBtn {
+  position: fixed;
   width: 160px;
   white-space: nowrap;
   height: 40px;
