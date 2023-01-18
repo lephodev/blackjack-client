@@ -192,8 +192,11 @@ const Player = ({
         ) : (
           <img
             src={
-              player.avatar ||
-              'https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png'
+              player.avatar
+                ? player.avatar
+                : player.photoURI
+                ? player.photoURI
+                : 'https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png'
             }
             alt='off-camera'
           />

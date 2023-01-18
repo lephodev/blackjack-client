@@ -1,55 +1,55 @@
-import { useContext, useEffect, useState, useRef } from "react";
-import { MeetingProvider, MeetingConsumer } from "@videosdk.live/react-sdk";
-import { toast } from "react-hot-toast";
-import GameContext from "../../Context";
-import { socket } from "../../config/socket";
-import loaderImg from "../../imgs/blackjack/loader1.webp";
-import HowToPlay from "./HowToPlay";
-import UserOnline from "./UserOnline";
-import WalletBalance from "./WalletBalance";
-import Dealer from "./Dealer";
-import Players from "./Players";
-import BetPanel from "./BetPanel";
-import ActionPanel from "./ActionPanel";
-import MeetingView from "./MeetingView";
-import Chat from "../chat/chat";
+import { useContext, useEffect, useState, useRef } from 'react';
+import { MeetingProvider, MeetingConsumer } from '@videosdk.live/react-sdk';
+import { toast } from 'react-hot-toast';
+import GameContext from '../../Context';
+import { socket } from '../../config/socket';
+import loaderImg from '../../imgs/blackjack/loader1.webp';
+import HowToPlay from './HowToPlay';
+import UserOnline from './UserOnline';
+import WalletBalance from './WalletBalance';
+import Dealer from './Dealer';
+import Players from './Players';
+import BetPanel from './BetPanel';
+import ActionPanel from './ActionPanel';
+import MeetingView from './MeetingView';
+import Chat from '../chat/chat';
 // import NewBuyInPopup from '../stripe/newBuyinPopup';
 // Uncomment it when uncomment buy in popup
 // import BuyInPopup from '../stripe/buyInPopup';
-import betAccepted from "../../sounds/bet-accepted.aac";
-import betClosed from "../../sounds/bet-closed-female.aac";
-import blackjackVoiceFemale from "../../sounds/blackjack-female.aac";
-import burstSound from "../../sounds/burst-female.aac";
-import dealerHasBlackjack from "../../sounds/dealer-has-blackjack-female.aac";
-import dealOneCardSound from "../../sounds/dealing_card_fix.mp3";
-import doubleDownSound from "../../sounds/double-down-female.aac";
-import hitSound from "../../sounds/hit-female.aac";
-import rebetSound from "../../sounds/rebet-female.aac";
-import splitSound from "../../sounds/split-female.aac";
-import standSound from "../../sounds/stand-female.aac";
-import timerRunningOut from "../../sounds/timer_running_out.mp3";
-import winSound from "../../sounds/win-sound.aac";
-import youLoseSound from "../../sounds/you-loose-female.aac";
-import youWin from "../../sounds/you-win-female.aac";
-import surrenderSound from "../../sounds/surrender-female.aac";
-import gameStartSound from "../../sounds/game started.mp3";
-import yourTurnSound from "../../sounds/Its your turn.mp3";
-import FloatingMenu from "./FloatingMenu";
-import InviteFriend from "./InviteFriends";
-import LeaveConfirmPopup from "./leaveConfirmPopup";
-import PreTimer from "../pretimer/Pretimer";
-import drawSound from "../../sounds/draw.mp3";
-import noBalance from "../../sounds/noBalance.mp3";
-import gameTimeSound from "../../sounds/gametime.mp3";
-import TourPopup from "./tourpopup";
-import WinPopup from "./winPopup";
-import axios from "axios";
-import { getCookie } from "../../utils/cookieUtil";
-import userUtils from "../../utils/userUtils";
-import CONSTANTS from "../../config/contants";
-import { useMediaQuery } from "react-responsive";
-import { blackjackInstance } from "../../utils/axios.config";
-import EnterAmountPopup from "./enterAmountPopup";
+import betAccepted from '../../sounds/bet-accepted.aac';
+import betClosed from '../../sounds/bet-closed-female.aac';
+import blackjackVoiceFemale from '../../sounds/blackjack-female.aac';
+import burstSound from '../../sounds/burst-female.aac';
+import dealerHasBlackjack from '../../sounds/dealer-has-blackjack-female.aac';
+import dealOneCardSound from '../../sounds/dealing_card_fix.mp3';
+import doubleDownSound from '../../sounds/double-down-female.aac';
+import hitSound from '../../sounds/hit-female.aac';
+import rebetSound from '../../sounds/rebet-female.aac';
+import splitSound from '../../sounds/split-female.aac';
+import standSound from '../../sounds/stand-female.aac';
+import timerRunningOut from '../../sounds/timer_running_out.mp3';
+import winSound from '../../sounds/win-sound.aac';
+import youLoseSound from '../../sounds/you-loose-female.aac';
+import youWin from '../../sounds/you-win-female.aac';
+import surrenderSound from '../../sounds/surrender-female.aac';
+import gameStartSound from '../../sounds/game started.mp3';
+import yourTurnSound from '../../sounds/Its your turn.mp3';
+import FloatingMenu from './FloatingMenu';
+import InviteFriend from './InviteFriends';
+import LeaveConfirmPopup from './leaveConfirmPopup';
+import PreTimer from '../pretimer/Pretimer';
+import drawSound from '../../sounds/draw.mp3';
+import noBalance from '../../sounds/noBalance.mp3';
+import gameTimeSound from '../../sounds/gametime.mp3';
+import TourPopup from './tourpopup';
+import WinPopup from './winPopup';
+import axios from 'axios';
+import { getCookie } from '../../utils/cookieUtil';
+import userUtils from '../../utils/userUtils';
+import CONSTANTS from '../../config/contants';
+import { useMediaQuery } from 'react-responsive';
+import { blackjackInstance } from '../../utils/axios.config';
+import EnterAmountPopup from './enterAmountPopup';
 
 let userId;
 let handleBetIntervel;
@@ -64,16 +64,16 @@ let handleBetIntervel;
 const getQueryParams = () => {
   const url = new URLSearchParams(window.location.search);
   return {
-    tableid: url.get("tableid") || "",
-    gameCollection: url.get("gameCollection") || url.get("gamecollection"),
+    tableid: url.get('tableid') || '',
+    gameCollection: url.get('gameCollection') || url.get('gamecollection'),
   };
 };
 
 let timeout;
 const Game = () => {
-  const [tableId, setTableId] = useState("");
+  const [tableId, setTableId] = useState('');
   const [winUser, setWinUser] = useState(false);
-  const [gameCollection, setGameCollection] = useState("");
+  const [gameCollection, setGameCollection] = useState('');
   const { roomData, setRoomData } = useContext(GameContext);
   const [howtoplay, setHowtoplay] = useState(false);
   const [usersOnline, setUsersOnline] = useState(false);
@@ -84,7 +84,7 @@ const Game = () => {
   const [preTimer, setPreTimer] = useState();
   const [gameFinish, setGameFinish] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [allowType, setAllowType] = useState("");
+  const [allowType, setAllowType] = useState('');
   const [isWatcher, setIsWatcher] = useState(false);
   const [videoPlayers, setVideoPlayers] = useState([]);
   // Uncomment it when uncomment buy in popup
@@ -104,29 +104,30 @@ const Game = () => {
   const [showEnterAmountPopup, setShowEnterAmountPopup] = useState(false);
   const [userData, setUserData] = useState(null);
   const [retryIfUserNotJoin, setRetryIfUserNotJoin] = useState(false);
+  const [refillSitInAmount, setRefillSitInAmount] = useState(false);
 
   const isTablet = useMediaQuery({
-    query: "(max-width: 1024px) and (min-width: 766px)",
+    query: '(max-width: 1024px) and (min-width: 766px)',
   });
   const isBigMobile = useMediaQuery({
-    query: "(max-width: 767px) and (min-width: 580px)",
+    query: '(max-width: 767px) and (min-width: 580px)',
   });
   const isMobile = useMediaQuery({
-    query: "(max-width: 579px) and (min-width: 451px)",
+    query: '(max-width: 579px) and (min-width: 451px)',
   });
-  const isMiniMobile = useMediaQuery({ query: "(max-width: 450px)" });
+  const isMiniMobile = useMediaQuery({ query: '(max-width: 450px)' });
 
   const handleClose = () => setIsTourOPen(false);
 
   // Uncomment it when uncomment buy in popup
   const [, /* exchangeRate */ setExchangeRate] = useState({
     rate: 1,
-    currency: "USD",
+    currency: 'USD',
   });
 
   const getDoc = async (coll, u) => {
     //u = user.uid
-    const res = await axios.get("https://get-doc-t3e66zpola-uc.a.run.app/", {
+    const res = await axios.get('https://get-doc-t3e66zpola-uc.a.run.app/', {
       params: {
         coll,
         usid: u,
@@ -148,8 +149,8 @@ const Game = () => {
   };
   const handleSitin = (sitInAmount) => {
     let urlParams = getQueryParams();
-    let table = urlParams["tableid"];
-    let type = urlParams["gameCollection"] || urlParams["gamecollection"];
+    let table = urlParams['tableid'];
+    let type = urlParams['gameCollection'] || urlParams['gamecollection'];
 
     if (!tableId) {
       setTableId(table);
@@ -161,22 +162,22 @@ const Game = () => {
 
     if (parseFloat(sitInAmount) > userData.wallet) {
       toast.error("You don't have enough balance.", {
-        id: "notEnoughSitIn",
+        id: 'notEnoughSitIn',
       });
       setTimeout(() => {
         window.location.href = window.location.origin;
       }, 1000);
       return;
     } else if (parseFloat(sitInAmount) < 0) {
-      toast.error("Amount is not valid.", {
-        id: "notEnoughSitIn",
+      toast.error('Amount is not valid.', {
+        id: 'notEnoughSitIn',
       });
       setTimeout(() => {
         window.location.href = window.location.origin;
       }, 1000);
       return;
     } else if (/\d/.test(sitInAmount)) {
-      socket.emit("checkTable", {
+      socket.emit('checkTable', {
         tableId: table,
         userId: userId,
         gameType: type,
@@ -187,8 +188,8 @@ const Game = () => {
 
       setLoader(true);
     } else {
-      toast.error("Not valid amount.", {
-        id: "notEnoughSitIn",
+      toast.error('Not valid amount.', {
+        id: 'notEnoughSitIn',
       });
       setTimeout(() => {
         window.location.href = window.location.origin;
@@ -197,16 +198,37 @@ const Game = () => {
     }
   };
 
+  const handleReffill = async (amount) => {
+    try {
+      await blackjackInstance().post('/refillWallet', { tableId, amount });
+      setRefillSitInAmount(false);
+      return 'success';
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        return error.response.data.msg || 'Some error occured';
+      }
+      return 'Failed to refill';
+    }
+  };
+
+  const handleSitInAmount = async (amount) => {
+    if (refillSitInAmount) {
+      return handleReffill(amount);
+    } else {
+      handleSitin(amount);
+    }
+  };
+
   useEffect(() => {
     let urlParams = getQueryParams();
     // console.log({ urlParams, tId: urlParams["tableid"] });
-    setTableId(urlParams["tableid"] || urlParams["tableId"]);
+    setTableId(urlParams['tableid'] || urlParams['tableId']);
     setGameCollection(
-      urlParams["gamecollection"] || urlParams["gameCollection"]
+      urlParams['gamecollection'] || urlParams['gameCollection']
     );
     setTimeout(() => {
-      if (!localStorage.getItem("isGuide")) {
-        localStorage.setItem("isGuide", true);
+      if (!localStorage.getItem('isGuide')) {
+        localStorage.setItem('isGuide', true);
         setIsTourOPen(true);
       }
     }, 3000);
@@ -221,9 +243,9 @@ const Game = () => {
           setShowBuyInPopup(false);
         }
       };
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener('mousedown', handleClickOutside);
       };
     }, [ref]);
   };
@@ -243,11 +265,11 @@ const Game = () => {
             // re join
             let urlParams = getQueryParams();
             // console.log({ urlParams });
-            let table = urlParams["tableid"] || urlParams["tableId"];
+            let table = urlParams['tableid'] || urlParams['tableId'];
             let type =
-              urlParams["gameCollection"] || urlParams["gamecollection"];
+              urlParams['gameCollection'] || urlParams['gamecollection'];
             // console.log({ table, userId });
-            socket.emit("checkTable", {
+            socket.emit('checkTable', {
               userId,
               tableId: table,
               gameType: type,
@@ -257,7 +279,7 @@ const Game = () => {
         });
       }, 2000);
     };
-    socket.io.on("close", tryReconnect);
+    socket.io.on('close', tryReconnect);
   }, []);
 
   useEffect(() => {
@@ -265,7 +287,7 @@ const Game = () => {
       let urlParams = getQueryParams();
       // console.log({ urlParams });
       // let user;
-      if (!localStorage.getItem("token") && !getCookie("token")) {
+      if (!localStorage.getItem('token') && !getCookie('token')) {
         return (window.location.href = `${CONSTANTS.landingClient}`);
       }
 
@@ -276,10 +298,10 @@ const Game = () => {
       }
 
       // console.log({urlParams:window.location.search})
-      let table = urlParams["tableid"];
-      let type = urlParams["gameCollection"] || urlParams["gamecollection"];
+      let table = urlParams['tableid'];
+      let type = urlParams['gameCollection'] || urlParams['gamecollection'];
 
-      localStorage.setItem("userId", checkAuth?.data.user?.id);
+      localStorage.setItem('userId', checkAuth?.data.user?.id);
       userId = checkAuth?.data.user?.id;
       setUserData(checkAuth.data.user);
       try {
@@ -291,7 +313,7 @@ const Game = () => {
           // Let user join in game
           if (playerInTable.data.players.find((el) => el.id === userId)) {
             setRetryIfUserNotJoin(true);
-            socket.emit("checkTable", {
+            socket.emit('checkTable', {
               tableId: table,
               userId: userId,
               gameType: type,
@@ -302,45 +324,11 @@ const Game = () => {
             // Ask user to type wallet amount
           } else {
             // Enter sit in amount popup
-
             setShowEnterAmountPopup(true);
-            // const sitInAmount = prompt("Enter sit in amount");
-            // if (parseFloat(sitInAmount) > checkAuth?.data?.user.wallet) {
-            //   toast.error("You don't have enough balance.", {
-            //     id: "notEnoughSitIn",
-            //   });
-            //   setTimeout(() => {
-            //     window.location.href = window.location.origin;
-            //   }, 1000);
-            //   return;
-            // } else if (parseFloat(sitInAmount) < 0) {
-            //   toast.error("Amount is not valid.", {
-            //     id: "notEnoughSitIn",
-            //   });
-            //   setTimeout(() => {
-            //     window.location.href = window.location.origin;
-            //   }, 1000);
-            //   return;
-            // } else if (/\d/.test(sitInAmount)) {
-            //   socket.emit("checkTable", {
-            //     tableId: table,
-            //     userId: userId,
-            //     gameType: type,
-            //     sitInAmount: parseFloat(sitInAmount),
-            //   });
-            // } else {
-            //   toast.error("Not valid amount.", {
-            //     id: "notEnoughSitIn",
-            //   });
-            //   setTimeout(() => {
-            //     window.location.href = window.location.origin;
-            //   }, 1000);
-            //   return;
-            // }
           }
           // Create new table if not found table id
         } else {
-          socket.emit("checkTable", {
+          socket.emit('checkTable', {
             tableId: table,
             userId: userId,
             gameType: type,
@@ -352,7 +340,7 @@ const Game = () => {
       } catch (error) {
         // console.log(error);
         // Call the api still if there is any miss happening
-        socket.emit("checkTable", {
+        socket.emit('checkTable', {
           tableId: table,
           userId: userId,
           gameType: type,
@@ -384,68 +372,68 @@ const Game = () => {
   }, [retryIfUserNotJoin]);
 
   useEffect(() => {
-    socket.on("userId", async (data) => {
+    socket.on('userId', async (data) => {
       userId = data;
-      const users = await getDoc("users", userId);
+      const users = await getDoc('users', userId);
       setExchangeRate(users.exchangeRate);
     });
-    socket.on("gameCreated", (data) => {
+    socket.on('gameCreated', (data) => {
       return (window.location.href = `${window.location.origin}/game?tableid=${data.tableId}&gameCollection=Blackjack_Tables`);
       // setRoomData(data.game);
       // updatePlayers(data.game);
       // setLoader(false);
     });
 
-    socket.on("newPlayer", (data) => {
+    socket.on('newPlayer', (data) => {
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
       setRetryIfUserNotJoin(false);
     });
 
-    socket.on("newUser", (data) => {
+    socket.on('newUser', (data) => {
       setAllowType(data.allow);
       setLoader(false);
     });
 
-    socket.on("updateRoom", (data) => {
+    socket.on('updateRoom', (data) => {
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
       setRetryIfUserNotJoin(false);
-      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
+      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ''));
       let me = data.players.find((el) => el.id === userId);
       if (me?.wallet === 0 && me?.betAmount === 0) {
-        setShowBuyInPopup(true);
+        setRefillSitInAmount(true);
       }
     });
 
-    socket.on("preTimer", (data) => {
+    socket.on('preTimer', (data) => {
       setPreTimer(data.remainingTime);
     });
 
-    socket.on("resetGame", (data) => {
+    socket.on('resetGame', (data) => {
       setGameFinish(false);
       setRoomData(data);
       updatePlayers(data);
-      playSound("reset");
+      playSound('reset');
       setWinUser(false);
       setActionOpen(true);
       let me = data.players.find((el) => el.id === userId);
       if (me?.wallet === 0 && me?.betAmount === 0) {
-        setShowBuyInPopup(true);
+        setRefillSitInAmount(true);
       }
     });
 
-    socket.on("timeCompleted", (data) => {
+    socket.on('timeCompleted', (data) => {
       setGameFinish(false);
       setRoomData(data);
       updatePlayers(data);
-      playSound("gameTimeSound");
+      playSound('gameTimeSound');
     });
 
-    socket.on("play", (data) => {
-      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
+    socket.on('play', (data) => {
+      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ''));
       setLeftTime(null);
       setRoomData(data);
       updatePlayers(data);
@@ -454,11 +442,11 @@ const Game = () => {
         !isYourturnPlay
       ) {
         setItsYourTurnPlay(true);
-        playSound("yourturn");
+        playSound('yourturn');
       }
     });
 
-    socket.on("playerReady", (data) => {
+    socket.on('playerReady', (data) => {
       toast.success(
         `${data.name} is ready`,
         { id: data.name },
@@ -467,115 +455,116 @@ const Game = () => {
       setRoomData(data.room);
       updatePlayers(data.room);
       if (data.userId === userId) {
-        playSound("bet-confirm");
+        playSound('bet-confirm');
       }
     });
 
-    socket.on("winner", (data) => {
+    socket.on('winner', (data) => {
       setGameFinish(true);
       setRoomData(data);
       updatePlayers(data);
       if (data.dealer.sum === 21 && data.dealer.cards.length === 2) {
-        playSound("dealer-blackjack");
+        playSound('dealer-blackjack');
       }
       if (data.winnerPlayer.find((el) => el.id === userId)) {
-        playSound("finish");
-        setTimeout(playSound("you-win"), 100);
+        playSound('finish');
+        setTimeout(playSound('you-win'), 100);
         setWinUser(true);
       } else if (data.drawPlayers.find((player) => player.id === userId)) {
-        playSound("draw");
+        playSound('draw');
       } else if (data.players.find((el) => el.id === userId)?.isPlaying) {
-        setTimeout(playSound("you-lose"), 100);
+        setTimeout(playSound('you-lose'), 100);
       }
     });
 
-    socket.on("newWatcherJoin", (data) => {
+    socket.on('newWatcherJoin', (data) => {
       if (userId === data.watcherId) setIsWatcher(true);
       setRoomData(data.roomData);
       updatePlayers(data.roomData);
     });
     // ----------------- toast sockets only message shows -------------//
-    socket.on("notAuthorized", () => {
+    socket.on('notAuthorized', () => {
       setLoader(false);
-      toast.error(`Not authorized please login`, { id: "logout" });
+      toast.error(`Not authorized please login`, { id: 'logout' });
       return (window.location.href = `${CONSTANTS.landingClient}`);
     });
 
-    socket.on("gameStarted", () => {
-      playSound("gameStart");
+    socket.on('gameStarted', () => {
+      playSound('gameStart');
     });
 
-    socket.on("lowBalance", () => {
+    socket.on('lowBalance', () => {
       setLoader(false);
-      toast.error(`Low balance`, { id: "lowBalance" });
+      toast.error(`Low balance`, { id: 'lowBalance' });
       setNewJoinLowBalance(true);
       setNewBuyInPopUp(true);
+      setRefillSitInAmount(true);
     });
 
-    socket.on("timeout", (data) => {
-      toast.error(`Timeout ${data.name} is auto stand`, { id: "timeout" });
+    socket.on('timeout', (data) => {
+      toast.error(`Timeout ${data.name} is auto stand`, { id: 'timeout' });
     });
-    socket.on("slotFull", () => {
+    socket.on('slotFull', () => {
       setLoader(false);
-      toast.error(`No empty Space, Slot full.`, { id: "slotFull" });
-      socket.emit("exitRoom", {
+      toast.error(`No empty Space, Slot full.`, { id: 'slotFull' });
+      socket.emit('exitRoom', {
         tableId,
         userId,
       });
     });
 
-    socket.on("gameFinished", () => {
-      localStorage.removeItem("isGuide");
-      toast.error(`Game is finished`, { id: "finished" });
+    socket.on('gameFinished', () => {
+      localStorage.removeItem('isGuide');
+      toast.error(`Game is finished`, { id: 'finished' });
       return (window.location.href = window.location.origin);
     });
 
-    socket.on("noTable", () => {
+    socket.on('noTable', () => {
       setLoader(false);
-      localStorage.removeItem("isGuide");
-      toast.error(`Game is already finished`, { id: "finished" });
+      localStorage.removeItem('isGuide');
+      toast.error(`Game is already finished`, { id: 'finished' });
       return (window.location.href = window.location.origin);
     });
 
-    socket.on("noAdmin", (data) => {
+    socket.on('noAdmin', (data) => {
       setLoader(false);
-      localStorage.removeItem("isGuide");
-      toast.error(data, { id: "noAdmin" });
+      localStorage.removeItem('isGuide');
+      toast.error(data, { id: 'noAdmin' });
     });
 
-    socket.on("exitSuccess", () => {
-      localStorage.removeItem("isGuide");
+    socket.on('exitSuccess', () => {
+      localStorage.removeItem('isGuide');
       return (window.location.href = window.location.origin);
     });
 
-    socket.on("actionError", (data) => {
+    socket.on('actionError', (data) => {
       setLoader(false);
-      if (data.msg === "Not enough balance") {
-        playSound("noBalance");
+      if (data.msg === 'Not enough balance') {
+        playSound('noBalance');
       }
-      toast.error(data.msg, { id: "error" });
+      toast.error(data.msg, { id: 'error' });
     });
 
-    socket.on("notEnoughBalanceSitIn", (data) => {
+    socket.on('notEnoughBalanceSitIn', (data) => {
       setLoader(false);
-      toast.error(data.msg, { id: "error" });
+      toast.error(data.msg, { id: 'error' });
       setTimeout(() => {
         window.location.href = window.location.origin;
       }, 1000);
     });
 
-    socket.on("redirectToClient", () => {
+    socket.on('redirectToClient', () => {
       window.location.href = window.location.origin;
     });
 
-    socket.on("gameAlreadyStarted", () => {
-      toast.error("Game already started, please wait", {
-        id: "already Started",
+    socket.on('gameAlreadyStarted', () => {
+      toast.error('Game already started, please wait', {
+        id: 'already Started',
       });
     });
 
-    socket.on("welcome", () => {
-      playSound("welcome");
+    socket.on('welcome', () => {
+      playSound('welcome');
       setAllowType(false);
       setConfirmExit(false);
       setCurrentPlayer({});
@@ -583,10 +572,10 @@ const Game = () => {
       setPreTimer();
     });
 
-    socket.on("action", (data) => {
+    socket.on('action', (data) => {
       playSound(data.type);
       const { type } = data;
-      if (type !== "hit" && type !== "doubleDown") {
+      if (type !== 'hit' && type !== 'doubleDown') {
         setTimeout(() => {
           setActionCompleted(true);
         }, 1000);
@@ -596,23 +585,23 @@ const Game = () => {
         }, 1500);
       }
 
-      if (data.type === "burst") setTimeout(playSound(data.type), 200);
-      if (data.type === "hit" || "doubleDown" || "split") {
-        setTimeout(playSound("dealnewcard"), 200);
+      if (data.type === 'burst') setTimeout(playSound(data.type), 200);
+      if (data.type === 'hit' || 'doubleDown' || 'split') {
+        setTimeout(playSound('dealnewcard'), 200);
       }
-      stopSound("timerRunningOut");
+      stopSound('timerRunningOut');
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setRoomData, userId]);
 
   useEffect(() => {
-    socket.on("gameTimer", (data) => {
+    socket.on('gameTimer', (data) => {
       if (currentPlayer?.id === data.id) setLeftTime(data.leftTime);
       if (data.leftTime === 5) {
-        playSound("timerRunningOut");
+        playSound('timerRunningOut');
       } else if (data.leftTime === 0) {
-        stopSound("timerRunningOut");
+        stopSound('timerRunningOut');
       }
     });
   }, [currentPlayer]);
@@ -657,7 +646,7 @@ const Game = () => {
       let whole = [];
       const index = roomData?.players?.findIndex((ele) => ele.id === userId);
       // console.log("ddd", index);
-      if (typeof index !== "undefined" && index !== -1) {
+      if (typeof index !== 'undefined' && index !== -1) {
         const split1 = roomData?.players?.slice(0, index);
         const split2 = roomData?.players?.slice(
           index,
@@ -689,18 +678,19 @@ const Game = () => {
       // console.log("handleBetConfirm-----", { userWallet, userBet });
       if (!userBet && !userWallet) {
         toast.error("You don't have enough balance in your wallet.", {
-          id: "confirm-bet",
+          id: 'confirm-bet',
         });
+        setRefillSitInAmount(true);
         return;
       } else if (!userBet) {
-        toast.error("Please enter bet amount", { id: "confirm-bet" });
+        toast.error('Please enter bet amount', { id: 'confirm-bet' });
         return;
       }
       // else if (!userWallet) {
       //   toast.error("You don't have enough balance in your wallet.");
       //   return;
       // }
-      socket.emit("confirmBet", {
+      socket.emit('confirmBet', {
         tableId,
         userId,
       });
@@ -733,39 +723,39 @@ const Game = () => {
   };
 
   const userOnlinePanel = () => {
-    let userOnline = document.getElementById("users-online-box");
-    let btn = document.querySelector("#users-online-button");
+    let userOnline = document.getElementById('users-online-box');
+    let btn = document.querySelector('#users-online-button');
     if (!usersOnline) {
-      userOnline.style.left = "0";
-      btn.style.transform = "rotate(180deg)";
+      userOnline.style.left = '0';
+      btn.style.transform = 'rotate(180deg)';
     } else {
-      userOnline.style.left = "";
-      btn.style.transform = "";
+      userOnline.style.left = '';
+      btn.style.transform = '';
     }
     setUsersOnline(!usersOnline);
   };
 
   const joinAsWatcher = () => {
-    socket.emit("joinAsWatcher", {
+    socket.emit('joinAsWatcher', {
       tableId,
       userId,
     });
-    setAllowType("");
+    setAllowType('');
   };
 
   const joinAsPlayer = () => {
-    socket.emit("joinAsPlayer", {
+    socket.emit('joinAsPlayer', {
       tableId,
       userId,
     });
-    setAllowType("");
+    setAllowType('');
   };
 
   const handleExitRoom = () => {
     if (players.find((el) => el.id === userId)?.isPlaying) {
-      return toast.error("Can't leave room in running round", { id: "Leave" });
+      return toast.error("Can't leave room in running round", { id: 'Leave' });
     }
-    socket.emit("exitRoom", {
+    socket.emit('exitRoom', {
       tableId,
       userId,
     });
@@ -791,10 +781,10 @@ const Game = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -803,17 +793,22 @@ const Game = () => {
   // }
 
   return (
-    <div className={`blackjack-game ${loader ? "loaderactive" : ""}`}>
+    <div className={`blackjack-game ${loader ? 'loaderactive' : ''}`}>
       {loader && (
-        <div className="blackjack-loader">
-          <img src={loaderImg} alt="loader-Scrooge Casino" />
+        <div className='blackjack-loader'>
+          <img src={loaderImg} alt='loader-Scrooge Casino' />
         </div>
       )}
-      <EnterAmountPopup
-        handleSitin={handleSitin}
-        showEnterAmountPopup={showEnterAmountPopup}
-        setShowEnterAmountPopup={setShowEnterAmountPopup}
-      />
+      {(showEnterAmountPopup || refillSitInAmount) && (
+        <EnterAmountPopup
+          handleSitin={handleSitInAmount}
+          showEnterAmountPopup={showEnterAmountPopup || refillSitInAmount}
+          submitButtonText={refillSitInAmount ? 'Refill wallet' : 'Join'}
+          setShow={
+            refillSitInAmount ? setRefillSitInAmount : setShowEnterAmountPopup
+          }
+        />
+      )}
 
       <TourPopup isTourOpen={isTourOpen} handleClose={handleClose} />
       <HowToPlay
@@ -823,9 +818,9 @@ const Game = () => {
         howtoplay={howtoplay}
         setHowtoplay={setHowtoplay}
       />
-      <div className="blackjack-game-room">
+      <div className='blackjack-game-room'>
         <FloatingMenu
-          setModalShow={setShowBuyInPopup}
+          setModalShow={setRefillSitInAmount}
           handleClick={handleClick}
           volume={volume}
           setVolume={setVolume}
@@ -840,15 +835,15 @@ const Game = () => {
           betAmount={players.find((el) => el.id === userId)?.betAmount}
         />
 
-        <div className="players-wrapper">
+        <div className='players-wrapper'>
           <div
-            className="player-wrapper-content"
+            className='player-wrapper-content'
             style={{
-              position: "absolute",
-              top: "25%",
-              left: "50%",
-              width: "1927px",
-              height: "100%",
+              position: 'absolute',
+              top: '25%',
+              left: '50%',
+              width: '1927px',
+              height: '100%',
               transform: isTablet
                 ? `translate(-50%, -${topValue * 0.99}%) scale(${
                     (scaleValue * 1.1) / 100
@@ -866,55 +861,54 @@ const Game = () => {
                     (scaleValue * 1.8) / 100
                   })`
                 : `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
-            }}
-          >
-            <div className="blackjack-table">
-              {allowType === "allowBoth" ? (
-                <div className="allow-both">
+            }}>
+            <div className='blackjack-table'>
+              {allowType === 'allowBoth' ? (
+                <div className='allow-both'>
                   <span>Join as -</span>
                   <button onClick={joinAsPlayer}> Player</button>
                   <button onClick={joinAsWatcher}> Watcher</button>
                 </div>
-              ) : allowType === "onlywatcher" ? (
-                <div className="only-watcher">
+              ) : allowType === 'onlywatcher' ? (
+                <div className='only-watcher'>
                   <span>Join as -</span>
                   <button onClick={joinAsWatcher}> Watcher</button>
                 </div>
-              ) : allowType === "onlyUser" ? (
-                <div className="only-watcher">
+              ) : allowType === 'onlyUser' ? (
+                <div className='only-watcher'>
                   <span>Join as -</span>
                   <button onClick={joinAsPlayer}> Player</button>
                 </div>
               ) : (
-                ""
+                ''
               )}
-              {isWatcher ? <div className="watcher">Watcher</div> : ""}
+              {isWatcher ? <div className='watcher'>Watcher</div> : ''}
 
               {roomData?.preTimer && preTimer ? (
-                <div className="waitTxtBoxContainer">
-                  <div className="wait-txt">
+                <div className='waitTxtBoxContainer'>
+                  <div className='wait-txt'>
                     <p>Game starts in</p>
                     <PreTimer timer={preTimer} />
                   </div>
                 </div>
               ) : roomData?.winnerPlayer?.length ? (
-                <div className="waitTxtBoxContainer">
-                  <div className="wait-txt">
+                <div className='waitTxtBoxContainer'>
+                  <div className='wait-txt'>
                     <p>New round start in 5 sec</p>
                   </div>
                 </div>
               ) : (
-                ""
+                ''
               )}
               <Dealer dealer={roomData?.dealer} players={players} />
               {userId &&
-              (roomData?.media === "video" || roomData.media === "audio") ? (
+              (roomData?.media === 'video' || roomData.media === 'audio') ? (
                 <MeetingProvider
                   config={{
                     meetingId: roomData.meetingId,
                     micEnabled:
-                      roomData.media === "video" || roomData.media === "audio",
-                    webcamEnabled: roomData.media === "video",
+                      roomData.media === 'video' || roomData.media === 'audio',
+                    webcamEnabled: roomData.media === 'video',
                     name: userId,
                   }}
                   token={
@@ -922,8 +916,7 @@ const Game = () => {
                       ? roomData.meetingToken
                       : roomData.players.find((ele) => ele.id === userId)
                           ?.meetingToken
-                  }
-                >
+                  }>
                   <MeetingConsumer {...{}}>
                     {() => (
                       <MeetingView
@@ -953,13 +946,13 @@ const Game = () => {
           {!roomData?.gamestart &&
             !players.find((el) => el.id === userId)?.isPlaying && (
               <BetPanel
-                data-tut="bet-panel"
+                data-tut='bet-panel'
                 handleBetConfirm={handleBetConfirm}
                 player={players.find((el) => el.id === userId)}
                 tableId={tableId}
                 volume={volume}
                 roomData={roomData}
-                setShowBuyInPopup={setShowBuyInPopup}
+                setShowBuyInPopup={setRefillSitInAmount}
                 players={players}
                 userId={userId}
                 actionopen={actionopen}
@@ -972,7 +965,7 @@ const Game = () => {
             <>
               {players.find((el) => el.id === userId) &&
               players.find((el) => el.id === userId)?.turn &&
-              players.find((el) => el.id === userId)?.action === "" ? (
+              players.find((el) => el.id === userId)?.action === '' ? (
                 <ActionPanel
                   actionopen={actionopen}
                   handleActionOpen={handleActionOpen}
@@ -1029,79 +1022,75 @@ const Game = () => {
       />
       {/* audio track  */}
       <div>
-        <audio className="audio-bet-confirm" muted={!volume || roomData.video}>
+        <audio className='audio-bet-confirm' muted={!volume || roomData.video}>
           <source src={betAccepted}></source>
         </audio>
-        <audio className="audio-reset" muted={!volume || roomData.video}>
+        <audio className='audio-reset' muted={!volume || roomData.video}>
           <source src={rebetSound}></source>
         </audio>
-        <audio className="audio-finish" muted={!volume || roomData.video}>
+        <audio className='audio-finish' muted={!volume || roomData.video}>
           <source src={winSound}></source>
         </audio>
-        <audio className="audio-you-win" muted={!volume || roomData.video}>
+        <audio className='audio-you-win' muted={!volume || roomData.video}>
           <source src={youWin}></source>
         </audio>
-        <audio className="audio-you-lose" muted={!volume || roomData.video}>
+        <audio className='audio-you-lose' muted={!volume || roomData.video}>
           <source src={youLoseSound}></source>
         </audio>
         <audio
-          className="audio-dealer-blackjack"
-          muted={!volume || roomData.video}
-        >
+          className='audio-dealer-blackjack'
+          muted={!volume || roomData.video}>
           <source src={dealerHasBlackjack}></source>
         </audio>
-        <audio className="audio-bet-closed" muted={!volume || roomData.video}>
+        <audio className='audio-bet-closed' muted={!volume || roomData.video}>
           <source src={betClosed}></source>
         </audio>
-        <audio className="audio-burst" muted={!volume || roomData.video}>
+        <audio className='audio-burst' muted={!volume || roomData.video}>
           <source src={burstSound}></source>
         </audio>
-        <audio className="audio-stand" muted={!volume || roomData.video}>
+        <audio className='audio-stand' muted={!volume || roomData.video}>
           <source src={standSound}></source>
         </audio>
-        <audio className="audio-hit" muted={!volume || roomData.video}>
+        <audio className='audio-hit' muted={!volume || roomData.video}>
           <source src={hitSound}></source>
         </audio>
-        <audio className="audio-split" muted={!volume || roomData.video}>
+        <audio className='audio-split' muted={!volume || roomData.video}>
           <source src={splitSound}></source>
         </audio>
-        <audio className="audio-doubleDown" muted={!volume || roomData.video}>
+        <audio className='audio-doubleDown' muted={!volume || roomData.video}>
           <source src={doubleDownSound}></source>
         </audio>
-        <audio className="audio-dealnewcard" muted={!volume || roomData.video}>
+        <audio className='audio-dealnewcard' muted={!volume || roomData.video}>
           <source src={dealOneCardSound}></source>
         </audio>
         <audio
-          className="audio-timerRunningOut"
-          muted={!volume || roomData.video}
-        >
+          className='audio-timerRunningOut'
+          muted={!volume || roomData.video}>
           <source src={timerRunningOut}></source>
         </audio>
         <audio
-          className="audio-player-blackjack"
-          muted={!volume || roomData.video}
-        >
+          className='audio-player-blackjack'
+          muted={!volume || roomData.video}>
           <source src={blackjackVoiceFemale}></source>
         </audio>
-        <audio className="audio-surrender" muted={!volume || roomData.video}>
+        <audio className='audio-surrender' muted={!volume || roomData.video}>
           <source src={surrenderSound}></source>
         </audio>
-        <audio className="audio-yourturn" muted={!volume || roomData.video}>
+        <audio className='audio-yourturn' muted={!volume || roomData.video}>
           <source src={yourTurnSound}></source>
         </audio>
-        <audio className="audio-gameStart" muted={!volume || roomData.video}>
+        <audio className='audio-gameStart' muted={!volume || roomData.video}>
           <source src={gameStartSound}></source>
         </audio>
-        <audio className="audio-draw" muted={!volume || roomData.video}>
+        <audio className='audio-draw' muted={!volume || roomData.video}>
           <source src={drawSound}></source>
         </audio>
-        <audio className="audio-noBalance" muted={!volume || roomData.video}>
+        <audio className='audio-noBalance' muted={!volume || roomData.video}>
           <source src={noBalance}></source>
         </audio>
         <audio
-          className="audio-gameTimeSound"
-          muted={!volume || roomData.video}
-        >
+          className='audio-gameTimeSound'
+          muted={!volume || roomData.video}>
           <source src={gameTimeSound}></source>
         </audio>
       </div>
@@ -1114,7 +1103,7 @@ const Game = () => {
         rounded={5}
         accentColor="#5cb7b7"
       /> */}
-      {winUser ? <WinPopup /> : ""}
+      {winUser ? <WinPopup /> : ''}
     </div>
   );
 };
