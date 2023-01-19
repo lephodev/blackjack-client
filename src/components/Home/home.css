@@ -422,7 +422,8 @@ input[type="number"] {
 }
 .errorMssg {
   text-align: left;
-  color: red;
+  font-weight: 600;
+  color: #ff2f2f;
   font-size: 14px !important;
   padding-bottom: 0px !important;
   margin: 0px !important;
@@ -447,7 +448,7 @@ input[type="number"] {
     padding: 10px 10px;
     row-gap: 12px;
   }
-  .create-game-box h5{
+  .create-game-box h5 {
     grid-column-start: 1;
     grid-column-end: 3;
     display: grid;
