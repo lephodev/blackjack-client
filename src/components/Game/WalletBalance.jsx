@@ -4,7 +4,7 @@ const WalletBalance = ({ wallet, betAmount }) => {
   return (
     <div className="wallet-balance">
       <div className="wallet-box">
-        <span>Wallet</span>
+        <span>Tokens</span>
         <h3>{numFormatter(wallet)}</h3>
       </div>
       <div className="wallet-box">

@@ -472,6 +472,11 @@ input[type="number"] {
   font-weight: 400;
   max-width: 150px;
   margin: 0px auto;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .blackjack-players-container .player1 {
@@ -1062,7 +1067,7 @@ div#info-rules .card-box {
   border: 0.5px solid rgb(221 221 221 / 10%);
   border-radius: 6px;
   padding: 4px 8px;
-  width: 80px;
+  width: 82px;
   bottom: -30px;
   word-break: keep-all;
   left: 50%;
@@ -1575,7 +1580,7 @@ button .spinner-border {
   background: #f9ff00;
   border-color: #f9ff00;
   transition: all 0.5s;
-  width: 134px;
+  width: 144px;
   height: 42px;
   font-weight: 500;
 }
@@ -1585,7 +1590,7 @@ button .spinner-border {
   background: #414141;
   border-color: #414141;
   transition: all 0.5s;
-  width: 134px;
+  width: 144px;
   height: 42px;
 }
 
@@ -2321,7 +2326,7 @@ button .spinner-border {
     grid-template-columns: repeat(5, minmax(14px, 1fr));
     max-width: 100%;
     row-gap: 6px;
-}
+  }
   .yellowBtn {
     width: 130px;
     height: 38px;
