@@ -28,7 +28,7 @@ const UserOnline = ({ userOnlinePanel, players }) => {
     <div id='users-online-box' ref={wrapperRef}>
       <div>
         <div id='users-online-label'>Users in Room</div>
-        <div id='users-online-button'>
+        <div id='users-online-button' onClick={userOnlinePanel}>
           <FaAngleRight />
         </div>
       </div>

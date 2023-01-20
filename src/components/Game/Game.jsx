@@ -829,6 +829,7 @@ const Game = () => {
         />
 
         <UserOnline userOnlinePanel={userOnlinePanel} players={players} />
+        {console.log("useriddddd", players)}
 
         <WalletBalance
           wallet={players.find((el) => el.id === userId)?.wallet}
