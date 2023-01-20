@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRef } from "react";
 
 const FloatingMenu = ({
   setModalShow,
@@ -9,8 +10,10 @@ const FloatingMenu = ({
   setShowInvite,
 }) => {
   const screenWidth = window.innerWidth;
+  const wrapperRef = useRef(null)
   const [screenSize, setScreenSize] = useState(screenWidth);
   const [toggle, setToggle] = useState(screenSize > 767 ? true : false);
+
   useEffect(() => {
     window.addEventListener("resize", (e) =>
       setScreenSize(e.target.innerWidth)
@@ -26,8 +29,23 @@ const FloatingMenu = ({
     setToggle(screenSize > 767 ? true : !toggle);
   };
 
+  const useOutsideAlerter = (ref) => {
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setToggle( screenSize < 767 ? false : true );
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  };
+  useOutsideAlerter(wrapperRef);
+
   return (
-    <div className="floating-container">
+    <div className="floating-container" ref={wrapperRef}>
       <div className={`floating-menu ${toggle ? "open" : ""}`}>
         <div onClick={handleToggleMenu} className="floating-menu-item">
           {screenSize > 767 && toggle ? (
