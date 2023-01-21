@@ -30,6 +30,15 @@ button {
   cursor: pointer;
 }
 
+.btn-success,.btn-success:active,.btn-success:active:focus,.btn-success:focus,.btn-success:hover {
+  color: #fff;
+  background-color: #19875400;
+  border-color: #19875400;
+  padding: 0px !important;
+  margin: 0px !important;
+  box-shadow: none !important;
+}
+
 .blackjack-game {
   font-family: "Poppins", sans-serif;
 }
@@ -127,6 +136,16 @@ button {
   width: 49%;
 }
 
+.wallet-box span {
+  display: flex;
+  align-items: center;
+}
+
+.wallet-box svg {
+  font-size: 14px;
+  margin: 0px 2px;
+}
+
 /* .bet-btn-box button:first-child {
   width: 100%;
 } */
@@ -188,7 +207,7 @@ button {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   user-select: none;
 }
 
@@ -639,18 +658,24 @@ input[type="number"] {
   border-radius: 5px;
   background: url(../../imgs/blackjack/Group.png) no-repeat;
   background-size: cover;
-  width: 270px;
-  height: 74px;
+    width: 250px;
+    height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
+  z-index: 99999;
 }
 
 .wallet-box {
   color: #fff;
-  min-width: 70px;
+  min-width: 112px;
   text-align: center;
+
+}
+
+.wallet-box button {
+  cursor: pointer !important;
 }
 
 .wallet-box h3 {
@@ -1768,7 +1793,7 @@ button .spinner-border {
   .wallet-box {
     padding: 0;
     color: #fff;
-    min-width: 74px;
+    min-width: 100px;
   }
 
   .wallet-balance {
@@ -1833,7 +1858,9 @@ button .spinner-border {
   }
 
   .bet-amt-placeholder {
-    display: none;
+    height: 43px;
+    width: 120px;
+    font-size: 14px;
   }
 }
 
@@ -1845,7 +1872,9 @@ button .spinner-border {
     padding: 0px 5px;
     gap: 2px;
   }
-
+.wallet-box svg {
+    font-size: 10px !important;
+}
   .wallet-box h3 {
     color: #f9ff00;
     font-size: 11px;
@@ -1855,7 +1884,7 @@ button .spinner-border {
   .wallet-box {
     padding: 0;
     color: #fff;
-    min-width: 44px;
+    min-width: 70px;
   }
 
   .bet-btn-box .confirm-bet-btn {
@@ -1916,8 +1945,8 @@ button .spinner-border {
   }
 
   .wallet-balance {
-    width: 138px;
-    height: 39px;
+    width: 152px;
+    height: 42px;
     font-size: 9px;
     padding: 0px 5px;
     gap: 1px;
@@ -1932,7 +1961,7 @@ button .spinner-border {
   .wallet-box {
     padding: 0;
     color: #fff;
-    min-width: 44px;
+    min-width: 66px;
   }
 }
 
@@ -2377,7 +2406,9 @@ button .spinner-border {
   }
 
   .bet-amt-placeholder {
-    display: none;
+    width: 120px;
+    height: 42px;
+    font-size: 14px;
   }
 }
 
@@ -2672,6 +2703,12 @@ button .spinner-border {
 
   .triangle-isosceles.left {
     font-size: 18px;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .create-game-box button {
+    color: #000 !important;
   }
 }
 

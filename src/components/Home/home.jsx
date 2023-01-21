@@ -5,7 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { FaQuestionCircle } from 'react-icons/fa';
+import { FaQuestionCircle, FaHome } from 'react-icons/fa';
 import './home.css';
 import { useEffect } from 'react';
 import userUtils from '../../utils/user';
@@ -151,7 +151,7 @@ const Home = () => {
       try {
         const response = await blackjackInstance().get('/getRunningGame');
         setPokerRooms(response.data.rooms);
-      } catch (error) {}
+      } catch (error) { }
     })();
   }, []);
 
@@ -169,7 +169,7 @@ const Home = () => {
   );
   const renderTicket = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-     This is your ticket balance and can be redeemed for prizes.
+      This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
   return (
@@ -203,11 +203,12 @@ const Home = () => {
               <h5>{userData?.username}</h5>
               <div className="user-info-box">
                 <p className="user-info-box-wallet">
-                <img src={coin} alt="" className='ticket-icon'/>
+                  <img src={coin} alt="" className='ticket-icon' />
                   <span>{numFormatter(userData?.wallet || 0)}</span>
                   <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 250, hide: 400 }}
+                    placement="bottom"
+                    fontSize="10px"
+                    delay={{ show: 250, hide: 300 }}
                     overlay={renderWallet}
                   >
                     <Button variant="success">
@@ -217,11 +218,11 @@ const Home = () => {
                 </p>
                 <p className="user-info-box-ticket">
                   {/* <FaTicketAlt /> */}
-                  <img src={ticket} alt="" className='ticket-icon'/>
+                  <img src={ticket} alt="" className='ticket-icon' />
                   <span>{numFormatter(userData?.ticket || 0)}</span>
                   <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 250, hide: 400 }}
+                    placement="bottom"
+                    delay={{ show: 250, hide: 300 }}
                     overlay={renderTicket}
                   >
                     <Button variant="success">
@@ -241,10 +242,10 @@ const Home = () => {
       <div className='home-poker-card'>
         <div className='container'>
           <div className='backtoHome'>
-            <span>
-              <LobbyIcon />
-              Lobby
-            </span>
+            <a href='https://scrooge.casino/'>
+              < FaHome />
+              Home
+            </a>
           </div>
 
           {pokerRooms.length > 0 ? (
@@ -476,25 +477,25 @@ const AvatarGroup = ({ imgArr }) => {
 
 export default Home;
 
-const LobbyIcon = () => {
-  return (
-    <svg
-      width='32'
-      height='32'
-      viewBox='0 0 32 32'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
-      <g clipPath='url(#clip0_980_30849)'>
-        <path
-          d='M29.6002 13.5329L17.3332 1.15993C17.0112 0.83093 16.5622 0.62793 16.0662 0.62793C15.5702 0.62793 15.1212 0.83193 14.8002 1.15993L2.40015 13.5199C1.27407 14.6734 0.500664 16.1243 0.170833 17.7022C-0.158998 19.2801 -0.0315425 20.9194 0.538217 22.4273C1.10798 23.9353 2.09636 25.2492 3.3872 26.2148C4.67804 27.1803 6.21768 27.7573 7.82515 27.8779L7.85316 27.8799H8.46615C9.72939 27.8802 10.9769 27.5994 12.1182 27.0579L12.0662 27.0799C11.2237 28.0565 10.2345 28.8962 9.13415 29.5689L9.08015 29.5999C8.90787 29.709 8.7754 29.8708 8.70244 30.0612C8.62948 30.2516 8.61992 30.4605 8.6752 30.6568C8.73048 30.853 8.84763 31.0262 9.00923 31.1506C9.17084 31.2749 9.36827 31.3438 9.57215 31.3469H22.4262C22.6299 31.3442 22.8273 31.2758 22.9891 31.1519C23.1508 31.0281 23.2684 30.8554 23.3242 30.6594C23.38 30.4635 23.3711 30.2547 23.2989 30.0642C23.2266 29.8737 23.0949 29.7116 22.9232 29.6019L22.9192 29.5999C21.8287 28.9289 20.8484 28.0934 20.0132 27.1229L19.9992 27.1069C21.125 27.6363 22.3541 27.9095 23.5982 27.9069H24.2122C28.5982 27.5569 32.0242 23.9109 32.0242 19.4659C32.027 17.246 31.155 15.1144 29.5972 13.5329L29.5982 13.5339L29.6002 13.5329ZM15.5472 19.0529L14.6672 22.7999H5.66715L6.44016 19.1599L6.69315 19.0269C10.0662 17.3339 12.0002 16.2399 12.0002 15.7469C11.754 15.6452 11.4882 15.5997 11.2222 15.6139H11.2262C10.5147 15.6201 9.82439 15.8562 9.25815 16.2869L9.26615 16.2809L8.70615 16.6809L7.01315 13.5479L7.41316 13.2279C8.58862 12.3415 10.0261 11.8725 11.4982 11.8949H11.4942C14.2942 11.8949 16.2542 13.4019 16.2542 15.5619C16.2277 16.2874 16.0115 16.9932 15.6271 17.6089C15.2426 18.2246 14.7033 18.7287 14.0632 19.0709L14.0412 19.0819L15.5472 19.0529ZM22.8802 22.7999H18.7332L19.8132 17.8799L18.7062 18.7869L16.7192 16.1199L21.7862 11.9999H25.2532L22.8802 22.7999Z'
-          fill='white'
-        />
-      </g>
-      <defs>
-        <clipPath id='clip0_980_30849'>
-          <rect width='32' height='32' fill='white' />
-        </clipPath>
-      </defs>
-    </svg>
-  );
-};
+// const LobbyIcon = () => {
+//   return (
+//     <svg
+//       width='32'
+//       height='32'
+//       viewBox='0 0 32 32'
+//       fill='none'
+//       xmlns='http://www.w3.org/2000/svg'>
+//       <g clipPath='url(#clip0_980_30849)'>
+//         <path
+//           d='M29.6002 13.5329L17.3332 1.15993C17.0112 0.83093 16.5622 0.62793 16.0662 0.62793C15.5702 0.62793 15.1212 0.83193 14.8002 1.15993L2.40015 13.5199C1.27407 14.6734 0.500664 16.1243 0.170833 17.7022C-0.158998 19.2801 -0.0315425 20.9194 0.538217 22.4273C1.10798 23.9353 2.09636 25.2492 3.3872 26.2148C4.67804 27.1803 6.21768 27.7573 7.82515 27.8779L7.85316 27.8799H8.46615C9.72939 27.8802 10.9769 27.5994 12.1182 27.0579L12.0662 27.0799C11.2237 28.0565 10.2345 28.8962 9.13415 29.5689L9.08015 29.5999C8.90787 29.709 8.7754 29.8708 8.70244 30.0612C8.62948 30.2516 8.61992 30.4605 8.6752 30.6568C8.73048 30.853 8.84763 31.0262 9.00923 31.1506C9.17084 31.2749 9.36827 31.3438 9.57215 31.3469H22.4262C22.6299 31.3442 22.8273 31.2758 22.9891 31.1519C23.1508 31.0281 23.2684 30.8554 23.3242 30.6594C23.38 30.4635 23.3711 30.2547 23.2989 30.0642C23.2266 29.8737 23.0949 29.7116 22.9232 29.6019L22.9192 29.5999C21.8287 28.9289 20.8484 28.0934 20.0132 27.1229L19.9992 27.1069C21.125 27.6363 22.3541 27.9095 23.5982 27.9069H24.2122C28.5982 27.5569 32.0242 23.9109 32.0242 19.4659C32.027 17.246 31.155 15.1144 29.5972 13.5329L29.5982 13.5339L29.6002 13.5329ZM15.5472 19.0529L14.6672 22.7999H5.66715L6.44016 19.1599L6.69315 19.0269C10.0662 17.3339 12.0002 16.2399 12.0002 15.7469C11.754 15.6452 11.4882 15.5997 11.2222 15.6139H11.2262C10.5147 15.6201 9.82439 15.8562 9.25815 16.2869L9.26615 16.2809L8.70615 16.6809L7.01315 13.5479L7.41316 13.2279C8.58862 12.3415 10.0261 11.8725 11.4982 11.8949H11.4942C14.2942 11.8949 16.2542 13.4019 16.2542 15.5619C16.2277 16.2874 16.0115 16.9932 15.6271 17.6089C15.2426 18.2246 14.7033 18.7287 14.0632 19.0709L14.0412 19.0819L15.5472 19.0529ZM22.8802 22.7999H18.7332L19.8132 17.8799L18.7062 18.7869L16.7192 16.1199L21.7862 11.9999H25.2532L22.8802 22.7999Z'
+//           fill='white'
+//         />
+//       </g>
+//       <defs>
+//         <clipPath id='clip0_980_30849'>
+//           <rect width='32' height='32' fill='white' />
+//         </clipPath>
+//       </defs>
+//     </svg>
+//   );
+// };

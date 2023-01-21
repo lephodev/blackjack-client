@@ -239,7 +239,7 @@ const Player = ({
           ''
         )}
 
-        <div className='blackjack-player-name'>{player?.name}</div>
+        <div className='blackjack-player-name' title={player?.name}>{player?.name}</div>
         {player?.id === messageBy ? <BubbleMessage message={message} /> : ''}
         {!player?.isSplitted && player?.sum !== 0 ? (
           <div className='player-sum'>
