@@ -206,8 +206,9 @@ const Home = () => {
                 <img src={coin} alt="" className='ticket-icon'/>
                   <span>{numFormatter(userData?.wallet || 0)}</span>
                   <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 250, hide: 400 }}
+                    placement="bottom"
+                    fontSize="10px"
+                    delay={{ show: 250, hide: 300 }}
                     overlay={renderWallet}
                   >
                     <Button variant="success">
@@ -220,8 +221,8 @@ const Home = () => {
                   <img src={ticket} alt="" className='ticket-icon'/>
                   <span>{numFormatter(userData?.ticket || 0)}</span>
                   <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 250, hide: 400 }}
+                    placement="bottom"
+                    delay={{ show: 250, hide: 300 }}
                     overlay={renderTicket}
                   >
                     <Button variant="success">
