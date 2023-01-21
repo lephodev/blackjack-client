@@ -14,7 +14,15 @@
   font-size: 10px !important;
   z-index: 999999999;
 }
-
+.backtoHome a{
+  color: #f9ff00;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+}
 .avatar img {
   border-radius: 50%;
   position: relative;
