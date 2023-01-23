@@ -926,6 +926,9 @@ input[type="number"] {
 }
 
 .sub-btn.text-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding-bottom: 20px;
 }
 
@@ -2716,14 +2719,27 @@ button .spinner-border {
   .no-room-available button {
     color: #000 !important;
   }
+
   .user-info-boxBtn {
     color: #000 !important;
   }
+
   .user-info-box button {
     color: #fff !important;
   }
+
   .home-poker-info button {
     color: #000 !important;
+  }
+
+  .cardHistory-closeBtn {
+    bottom: 4%;
+  }
+
+  .yellowBtn {
+    background: #f9ff00 !important;
+    color: #000 !important;
+    box-shadow: none !important;
   }
 }
 
