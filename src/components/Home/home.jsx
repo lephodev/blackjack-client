@@ -232,7 +232,7 @@ const Home = () => {
                   </OverlayTrigger>
                 </p>
               </div>
-              <button type='button' onClick={handleShow}>
+              <button className="user-info-boxBtn" type='button' onClick={handleShow}>
                 Create Game
               </button>
             </div>
