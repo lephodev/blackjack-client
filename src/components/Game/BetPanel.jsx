@@ -160,8 +160,8 @@ const BetPanel = ({
               <button
                 className="betButtons update-balance-bet"
                 id="chip50"
-                value="50"
-                onClick={() => handleBet(50)}
+                value="25"
+                onClick={() => handleBet(25)}
               >
                 25
               </button>
@@ -170,8 +170,8 @@ const BetPanel = ({
               <button
                 className="betButtons update-balance-bet"
                 id="chip100"
-                value="100"
-                onClick={() => handleBet(100)}
+                value="50"
+                onClick={() => handleBet(50)}
               >
                 50
               </button>
@@ -180,8 +180,8 @@ const BetPanel = ({
               <button
                 className="betButtons update-balance-bet"
                 id="chip500"
-                value="500"
-                onClick={() => handleBet(500)}
+                value="75"
+                onClick={() => handleBet(75)}
               >
                 75
               </button>
@@ -190,8 +190,8 @@ const BetPanel = ({
               <button
                 className="betButtons update-balance-bet"
                 id="chip1k"
-                value="1000"
-                onClick={() => handleBet(1000)}
+                value="100"
+                onClick={() => handleBet(100)}
               >
                 100
               </button>
