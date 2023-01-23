@@ -30,7 +30,11 @@ button {
   cursor: pointer;
 }
 
-.btn-success,.btn-success:active,.btn-success:active:focus,.btn-success:focus,.btn-success:hover {
+.btn-success,
+.btn-success:active,
+.btn-success:active:focus,
+.btn-success:focus,
+.btn-success:hover {
   color: #fff;
   background-color: #19875400;
   border-color: #19875400;
@@ -658,8 +662,8 @@ input[type="number"] {
   border-radius: 5px;
   background: url(../../imgs/blackjack/Group.png) no-repeat;
   background-size: cover;
-    width: 250px;
-    height: 68px;
+  width: 250px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1872,9 +1876,11 @@ button .spinner-border {
     padding: 0px 5px;
     gap: 2px;
   }
-.wallet-box svg {
+
+  .wallet-box svg {
     font-size: 10px !important;
-}
+  }
+
   .wallet-box h3 {
     color: #f9ff00;
     font-size: 11px;
@@ -2707,7 +2713,7 @@ button .spinner-border {
 }
 
 @supports (-webkit-touch-callout: none) {
-  .create-game-box button {
+  button {
     color: #000 !important;
   }
 }
