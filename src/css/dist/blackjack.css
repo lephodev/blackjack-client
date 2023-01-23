@@ -340,10 +340,10 @@ input[type="number"] {
   color: #fff;
 }
 
-.bet-btn-box .max-bet-btn:hover,
-.bet-btn-box .clear-bet-btn:hover,
-.bet-btn-box .confirm-bet-btn:hover,
-.custom-input:hover input::placeholder {
+.bet-btn-box .max-bet-btn:active,
+.bet-btn-box .clear-bet-btn:active,
+.bet-btn-box .confirm-bet-btn:active,
+.custom-input:active input::placeholder {
   color: #f9ff00;
   filter: drop-shadow(0px 10px 20px rgba(249, 255, 0, 0.1));
   transform: scale(0.95);
@@ -929,6 +929,7 @@ input[type="number"] {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding-bottom: 20px;
 }
 
@@ -1402,7 +1403,9 @@ div#info-rules .card-box {
   width: calc(100% - 400px);
   border-left: 1px dashed #23273a;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .tour-info p {
@@ -1410,6 +1413,16 @@ div#info-rules .card-box {
   font-size: 22px;
   margin: 0;
   font-weight: 400;
+}
+.tour-info-btn{
+  padding: 8px 15px;
+  text-align: center;
+  background: #f9ff00;
+  border: none !important;
+  border-radius: 4px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .stripe-confirmation-popup .tablelist-table .table-dark td {
