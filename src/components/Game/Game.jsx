@@ -227,7 +227,7 @@ const Game = () => {
       urlParams["gamecollection"] || urlParams["gameCollection"]
     );
     setTimeout(() => {
-      if (!localStorage.getItem("isGuide")) {
+      if (!localStorage.getItem("isGuide") && !localStorage.getItem("DontShowAgain")) {
         localStorage.setItem("isGuide", true);
         setIsTourOPen(true);
       }
