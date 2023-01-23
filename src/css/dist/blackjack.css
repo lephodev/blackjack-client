@@ -82,7 +82,7 @@ button {
   z-index: 999999;
 }
 
-.blackjack-game .blackjack-loader>img {
+.blackjack-game .blackjack-loader > img {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -668,14 +668,14 @@ input[type="number"] {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  z-index: 99999;
+  /* z-index: 99999; */
+  z-index: 9;
 }
 
 .wallet-box {
   color: #fff;
   min-width: 112px;
   text-align: center;
-
 }
 
 .wallet-box button {
@@ -946,11 +946,11 @@ input[type="number"] {
   background: #1b1f2e;
 }
 
-.stripe-confirmation-popup .table-hover>tbody>tr:hover>* {
+.stripe-confirmation-popup .table-hover > tbody > tr:hover > * {
   --bs-table-accent-bg: #1b1f2e;
 }
 
-.stripe-confirmation-popup .table-striped>tbody>tr:nth-of-type(odd)>* {
+.stripe-confirmation-popup .table-striped > tbody > tr:nth-of-type(odd) > * {
   --bs-table-accent-bg: #1b1f2e;
 }
 
@@ -1020,7 +1020,7 @@ h5.CoinsHeader {
   text-align: center;
 }
 
-#info-rules .table> :not(:first-child) {
+#info-rules .table > :not(:first-child) {
   border-top: none;
 }
 
@@ -1050,7 +1050,7 @@ div#info-rules-overflow::-webkit-scrollbar-thumb {
   background-color: #000000;
 }
 
-#info-rules .table>thead {
+#info-rules .table > thead {
   vertical-align: bottom;
   position: sticky;
   top: 0;
@@ -1494,7 +1494,7 @@ button .spinner-border {
   color: #16181b;
 }
 
-.cam-tool .show>.btn-success.dropdown-toggle {
+.cam-tool .show > .btn-success.dropdown-toggle {
   background: transparent !important;
 }
 
@@ -1561,11 +1561,17 @@ button .spinner-border {
   margin: 0px auto;
 }
 
-.blackjack-player-avatar .battery .CircularProgressbar .CircularProgressbar-trail {
+.blackjack-player-avatar
+  .battery
+  .CircularProgressbar
+  .CircularProgressbar-trail {
   stroke: #00000000;
 }
 
-.blackjack-player-avatar .battery .CircularProgressbar .CircularProgressbar-path {
+.blackjack-player-avatar
+  .battery
+  .CircularProgressbar
+  .CircularProgressbar-path {
   stroke: #eade3acc;
   transition: stroke-dashoffset 2s ease 0s;
 }
@@ -1677,7 +1683,7 @@ button .spinner-border {
 }
 
 .count-4 .blackjack-players.player4 {
-  z-index: 999;
+  z-index: 99999;
 }
 
 .count-4 .blackjack-players.player5 {
@@ -2116,7 +2122,6 @@ button .spinner-border {
 /* landscape  */
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 991px) and (orientation: landscape) {
-
   .bets-container,
   .bet-btn-box {
     gap: 5px;
@@ -2421,7 +2426,6 @@ button .spinner-border {
 /* portrait */
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 767px) and (orientation: portrait) {
-
   /* .dealer-card {
     width: 88px;
   } */
