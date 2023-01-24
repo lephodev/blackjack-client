@@ -377,7 +377,7 @@ const CreateTable = ({
           )}
         </Form.Group>
         <Form.Group className="form-group" controlId="formPlaintextPassword">
-          <Form.Label>Enter sit in amount</Form.Label>
+          <Form.Label>Enter sit inhgfgfg amount</Form.Label>
           <Form.Control
             name="sitInAmount"
             type="number"
@@ -456,13 +456,17 @@ const AvatarGroup = ({ imgArr }) => {
   return (
     <div className="poker-avatar-box">
       <div className="avatars">
+        {console.log({ imgArr })}
         {Array.isArray(imgArr) &&
           imgArr.map((el) => (
             <span className="avatar">
               <img
                 src={
-                  el.photoURI ||
-                  "https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
+                  el.avatar
+                    ? el.avatar
+                    : el.photoURI
+                    ? el.photoURI
+                    : "https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png"
                 }
                 width="30"
                 height="30"
