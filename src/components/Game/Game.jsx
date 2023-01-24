@@ -50,6 +50,7 @@ import CONSTANTS from "../../config/contants";
 import { useMediaQuery } from "react-responsive";
 import { blackjackInstance } from "../../utils/axios.config";
 import EnterAmountPopup from "./enterAmountPopup";
+import ChatHistory from "../chat/chatHistory";
 
 let userId;
 let handleBetIntervel;
@@ -105,6 +106,12 @@ const Game = () => {
   const [userData, setUserData] = useState(null);
   const [retryIfUserNotJoin, setRetryIfUserNotJoin] = useState(false);
   const [refillSitInAmount, setRefillSitInAmount] = useState(false);
+
+  const [openChatHistory, setOpenChatHistory] = useState(false);
+
+  const handleOpenChatHistory = () => {
+    setOpenChatHistory(!openChatHistory);
+  };
 
   const isDesktop = useMediaQuery({
     query: "(max-width: 1400px) and (min-width: 1024px)",
@@ -812,6 +819,17 @@ const Game = () => {
           }
         />
       )}
+      <div className="containerFor-chatHistory">
+        <div className="chatHistory-icon" onClick={handleOpenChatHistory}>
+          <button className="UsersCommentsBtns">Chat History</button>
+        </div>
+
+        <ChatHistory
+          setOpenChatHistory={setOpenChatHistory}
+          openChatHistory={openChatHistory}
+          handleOpenChatHistory={handleOpenChatHistory}
+        />
+      </div>
 
       <TourPopup isTourOpen={isTourOpen} handleClose={handleClose} />
       <HowToPlay
@@ -863,7 +881,7 @@ const Game = () => {
                       // : isMiniMobile
                       //   ? `translate(-50%, -${topValue * 0.65}%) scale(${(scaleValue * 1.8) / 100
                       //   })`
-                        : `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
+                      : `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
             }}
           >
             <div className="blackjack-table">

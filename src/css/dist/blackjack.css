@@ -2140,7 +2140,7 @@ button .spinner-border {
   }
 
   #users-online-box {
-    top: 55px;
+    top: 100px;
   }
 
   .bets-wrapper {
@@ -2730,6 +2730,14 @@ button .spinner-border {
 }
 
 @supports (-webkit-touch-callout: none) {
+  .cardHistory-closeBtn {
+    position: absolute;
+    width: 100%;
+    bottom: 2%;
+    padding-right: 25px;
+    height: 40px;
+  }
+
   .no-room-available button {
     color: #000 !important;
   }
