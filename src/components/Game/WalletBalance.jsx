@@ -4,46 +4,47 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Button from "react-bootstrap/Button";
 
-const WalletBalance = ({ wallet, betAmount }) => {
+const WalletBalance = ({ wallet, betAmount, ticket }) => {
   const renderWallet = (props) => (
-    <Tooltip id='button-tooltip' {...props}>
+    <Tooltip id="button-tooltip" {...props}>
       This is your token balance, and can be used for betting.
     </Tooltip>
   );
   const renderTicket = (props) => (
-    <Tooltip id='button-tooltip' {...props}>
+    <Tooltip id="button-tooltip" {...props}>
       This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
+
   return (
-    <div className='wallet-balance'>
-      <div className='wallet-box'>
+    <div className="wallet-balance">
+      <div className="wallet-box">
         <OverlayTrigger
-          placement='bottom'
-          fontSize='10px'
+          placement="bottom"
+          fontSize="10px"
           delay={{ show: 250, hide: 300 }}
           overlay={renderWallet}
         >
-          <Button variant='success'>
+          <Button variant="success">
             <span>
               Tokens
               <FaQuestionCircle />
             </span>
-            <h3>{wallet ? numFormatter(wallet) : 0}</h3>
+            <h3>{numFormatter(wallet)}</h3>
           </Button>
         </OverlayTrigger>
       </div>
-      <div className='wallet-box'>
+      <div className="wallet-box">
         <OverlayTrigger
-          placement='bottom'
+          placement="bottom"
           delay={{ show: 250, hide: 300 }}
           overlay={renderTicket}
         >
-          <Button variant='success'>
+          <Button variant="success">
             <span>
               Tickets <FaQuestionCircle />
             </span>
-            <h3>{wallet ? numFormatter(wallet) : 0}</h3>
+            <h3>{numFormatter(ticket)}</h3>
           </Button>
         </OverlayTrigger>
       </div>
