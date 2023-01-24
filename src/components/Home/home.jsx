@@ -11,7 +11,8 @@ import { useEffect } from "react";
 import userUtils from "../../utils/user";
 import loaderImg from "../../imgs/animation/loader1.webp";
 import casino from "../../imgs/blackjack/blackjackPlaceholder.png";
-import logo from "../../imgs/blackjack/game1.png";
+import logo from "../../imgs/blackjack/logo.png";
+
 import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
 import ticket from "../../imgs/blackjack/ticket.png";

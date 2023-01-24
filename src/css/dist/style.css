@@ -583,7 +583,7 @@ button {
   position: fixed;
   width: 220px;
   left: -166px;
-  top: 80px;
+  top: 135px;
   background-color: rgba(42, 42, 42, 0.9);
   color: white;
   text-align: center;
@@ -1932,7 +1932,7 @@ i {
   width: 160px;
   white-space: nowrap;
   height: 40px;
-  background-color: yellow !important;
+  background-color: #f9ff00 !important;
   color: black !important;
   padding: 6px 9px;
   border-radius: 10px;
@@ -1941,11 +1941,12 @@ i {
   text-align: center;
   vertical-align: middle;
   display: block;
+  box-shadow: none !important;
 }
 .yellowBtn:hover,
 .yellowBtn:active,
 .yellowBtn:focus {
-  background-color: yellow;
+  background-color: #f9ff00 !important;
   color: #000;
   height: 40px;
   box-shadow: none !important;

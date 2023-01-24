@@ -30,7 +30,11 @@ button {
   cursor: pointer;
 }
 
-.btn-success,.btn-success:active,.btn-success:active:focus,.btn-success:focus,.btn-success:hover {
+.btn-success,
+.btn-success:active,
+.btn-success:active:focus,
+.btn-success:focus,
+.btn-success:hover {
   color: #fff;
   background-color: #19875400;
   border-color: #19875400;
@@ -336,10 +340,10 @@ input[type="number"] {
   color: #fff;
 }
 
-.bet-btn-box .max-bet-btn:hover,
-.bet-btn-box .clear-bet-btn:hover,
-.bet-btn-box .confirm-bet-btn:hover,
-.custom-input:hover input::placeholder {
+.bet-btn-box .max-bet-btn:active,
+.bet-btn-box .clear-bet-btn:active,
+.bet-btn-box .confirm-bet-btn:active,
+.custom-input:active input::placeholder {
   color: #f9ff00;
   filter: drop-shadow(0px 10px 20px rgba(249, 255, 0, 0.1));
   transform: scale(0.95);
@@ -658,20 +662,20 @@ input[type="number"] {
   border-radius: 5px;
   background: url(../../imgs/blackjack/Group.png) no-repeat;
   background-size: cover;
-    width: 250px;
-    height: 68px;
+  width: 250px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  z-index: 99999;
+  /* z-index: 99999; */
+  z-index: 9;
 }
 
 .wallet-box {
   color: #fff;
   min-width: 112px;
   text-align: center;
-
 }
 
 .wallet-box button {
@@ -922,6 +926,10 @@ input[type="number"] {
 }
 
 .sub-btn.text-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   padding-bottom: 20px;
 }
 
@@ -1395,7 +1403,9 @@ div#info-rules .card-box {
   width: calc(100% - 400px);
   border-left: 1px dashed #23273a;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .tour-info p {
@@ -1403,6 +1413,17 @@ div#info-rules .card-box {
   font-size: 22px;
   margin: 0;
   font-weight: 400;
+}
+
+.tour-info-btn {
+  padding: 8px 15px;
+  text-align: center;
+  background: #f9ff00;
+  border: none !important;
+  border-radius: 4px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .stripe-confirmation-popup .tablelist-table .table-dark td {
@@ -1673,7 +1694,7 @@ button .spinner-border {
 }
 
 .count-4 .blackjack-players.player4 {
-  z-index: 999;
+  z-index: 99999;
 }
 
 .count-4 .blackjack-players.player5 {
@@ -1872,9 +1893,11 @@ button .spinner-border {
     padding: 0px 5px;
     gap: 2px;
   }
-.wallet-box svg {
+
+  .wallet-box svg {
     font-size: 10px !important;
-}
+  }
+
   .wallet-box h3 {
     color: #f9ff00;
     font-size: 11px;
@@ -2117,7 +2140,7 @@ button .spinner-border {
   }
 
   #users-online-box {
-    top: 55px;
+    top: 100px;
   }
 
   .bets-wrapper {
@@ -2707,9 +2730,51 @@ button .spinner-border {
 }
 
 @supports (-webkit-touch-callout: none) {
-  .create-game-box button {
+  .cardHistory-closeBtn {
+    position: absolute;
+    width: 100%;
+    bottom: 2%;
+    padding-right: 25px;
+    height: 40px;
+  }
+
+  .no-room-available button {
     color: #000 !important;
   }
+
+  .user-info-boxBtn {
+    color: #000 !important;
+  }
+
+  .user-info-box button {
+    color: #fff !important;
+  }
+
+  .home-poker-info button {
+    color: #000 !important;
+  }
+
+  .cardHistory-closeBtn {
+    bottom: 4%;
+  }
+
+  .yellowBtn {
+    background: #f9ff00 !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  .tour-popup {
+    z-index: 9999999 !important;
+  }
+
+  .player-wrapper-content {
+    transform: translate(-50%, 4%);
+  }
+}
+
+.tour-popup {
+  z-index: 9999999 !important;
 }
 
 /* @media screen and (min-width: 1366px) {
