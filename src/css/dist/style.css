@@ -1923,6 +1923,7 @@ i {
   bottom: 2%;
   padding-right: 25px;
   height: 40px;
+  z-index: 999999;
 }
 .table > :not(:first-child) {
   border-top: none !important;

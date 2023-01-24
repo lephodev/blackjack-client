@@ -2733,9 +2733,10 @@ button .spinner-border {
   .cardHistory-closeBtn {
     position: absolute;
     width: 100%;
-    bottom: 2%;
+    bottom: 6% !important;
     padding-right: 25px;
     height: 40px;
+    z-index: 9999999;
   }
 
   .no-room-available button {
@@ -2753,11 +2754,6 @@ button .spinner-border {
   .home-poker-info button {
     color: #000 !important;
   }
-
-  .cardHistory-closeBtn {
-    bottom: 4%;
-  }
-
   .yellowBtn {
     background: #f9ff00 !important;
     color: #000 !important;
