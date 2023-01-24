@@ -834,6 +834,7 @@ const Game = () => {
         <WalletBalance
           wallet={players.find((el) => el.id === userId)?.wallet}
           betAmount={players.find((el) => el.id === userId)?.betAmount}
+          ticket={players.find((el) => el.id === userId)?.ticket}
         />
 
         <div className="players-wrapper">
