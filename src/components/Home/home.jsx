@@ -164,20 +164,20 @@ const Home = () => {
     [allUsers]
   );
   const renderWallet = (props) => (
-    <Tooltip id='button-tooltip' {...props}>
+    <Tooltip id="button-tooltip" {...props}>
       This is your token balance, and can be used for betting.
     </Tooltip>
   );
   const renderTicket = (props) => (
-    <Tooltip id='button-tooltip' {...props}>
+    <Tooltip id="button-tooltip" {...props}>
       This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
   return (
-    <div className='poker-home'>
+    <div className="poker-home">
       {loader && (
-        <div className='poker-loader'>
-          <img src={loaderImg} alt='loader-Las vegas' />{" "}
+        <div className="poker-loader">
+          <img src={loaderImg} alt="loader-Las vegas" />{" "}
         </div>
       )}
       <CreateTable
@@ -192,47 +192,47 @@ const Home = () => {
         userWallet={userData?.wallet || 0}
       />
 
-      <div className='user-header'>
-        <div className='container'>
-          <div className='user-header-grid'>
-            <div className='casino-logo'>
-              <a href='https://scrooge.casino/'>
-                <img src={logo} alt='' />
+      <div className="user-header">
+        <div className="container">
+          <div className="user-header-grid">
+            <div className="casino-logo">
+              <a href="https://scrooge.casino/">
+                <img src={logo} alt="" />
               </a>
             </div>
-            <div className='create-game-box'>
+            <div className="create-game-box">
               <h5>{userData?.username}</h5>
-              <div className='user-info-box'>
-                <p className='user-info-box-wallet'>
-                  <img src={coin} alt='' className='ticket-icon' />
+              <div className="user-info-box">
+                <p className="user-info-box-wallet">
+                  <img src={coin} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.wallet || 0)}</span>
                   <OverlayTrigger
-                    placement='bottom'
-                    fontSize='10px'
+                    placement="bottom"
+                    fontSize="10px"
                     delay={{ show: 250, hide: 300 }}
                     overlay={renderWallet}
                   >
-                    <Button variant='success'>
+                    <Button variant="success">
                       <FaQuestionCircle />
                     </Button>
                   </OverlayTrigger>
                 </p>
-                <p className='user-info-box-ticket'>
+                <p className="user-info-box-ticket">
                   {/* <FaTicketAlt /> */}
-                  <img src={ticket} alt='' className='ticket-icon' />
+                  <img src={ticket} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.ticket || 0)}</span>
                   <OverlayTrigger
-                    placement='bottom'
+                    placement="bottom"
                     delay={{ show: 250, hide: 300 }}
                     overlay={renderTicket}
                   >
-                    <Button variant='success'>
+                    <Button variant="success">
                       <FaQuestionCircle />
                     </Button>
                   </OverlayTrigger>
                 </p>
               </div>
-              <button className="user-info-boxBtn" type='button' onClick={handleShow}>
+              <button type="button" onClick={handleShow}>
                 Create Game
               </button>
             </div>
@@ -240,10 +240,10 @@ const Home = () => {
         </div>
       </div>
 
-      <div className='home-poker-card'>
-        <div className='container'>
-          <div className='backtoHome'>
-            <a href='https://scrooge.casino/'>
+      <div className="home-poker-card">
+        <div className="container">
+          <div className="backtoHome">
+            <a href="https://scrooge.casino/">
               <FaHome />
               Home
             </a>
@@ -251,20 +251,20 @@ const Home = () => {
 
           {pokerRooms.length > 0 ? (
             <>
-              <div className='lobby-home-title'>
+              <div className="lobby-home-title">
                 <h3>Open Tables</h3>
               </div>
-              <div className='home-poker-card-grid'>
+              <div className="home-poker-card-grid">
                 {pokerRooms.map((el) => (
                   <GameTable data={el} />
                 ))}
               </div>
             </>
           ) : (
-            <div className='d-flex flex-column justify-content-center align-items-center create-game-box'>
-              <div className='no-room-available'>
+            <div className="d-flex flex-column justify-content-center align-items-center create-game-box">
+              <div className="no-room-available">
                 <h4>No Room Available</h4>
-                <button type='button' onClick={handleShow}>
+                <button type="button" onClick={handleShow}>
                   Create Game
                 </button>
               </div>
@@ -358,39 +358,39 @@ const CreateTable = ({
   userWallet,
 }) => {
   return (
-    <Modal show={show} onHide={handleShow} centered className='casino-popup'>
+    <Modal show={show} onHide={handleShow} centered className="casino-popup">
       <Modal.Header closeButton>
-        <Modal.Title className='text-dark'>Create Table</Modal.Title>
+        <Modal.Title className="text-dark">Create Table</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form.Group className='form-group' controlId='formPlaintextPassword'>
+        <Form.Group className="form-group" controlId="formPlaintextPassword">
           <Form.Label>Enter game name</Form.Label>
           <Form.Control
-            name='gameName'
-            type='text'
+            name="gameName"
+            type="text"
             placeholder="Ex : John's game"
             onChange={handleChange}
             value={values.gameName}
           />
           {!!errors?.gameName && (
-            <p className='text-danger'>{errors?.gameName}</p>
+            <p className="text-danger">{errors?.gameName}</p>
           )}
         </Form.Group>
-        <Form.Group className='form-group' controlId='formPlaintextPassword'>
+        <Form.Group className="form-group" controlId="formPlaintextPassword">
           <Form.Label>Enter sit in amount</Form.Label>
           <Form.Control
-            name='sitInAmount'
-            type='number'
-            placeholder='Ex : 100'
+            name="sitInAmount"
+            type="number"
+            placeholder="Ex : 100"
             onChange={handleChange}
             value={values.sitInAmount}
             max={userWallet}
           />
           {!!errors?.sitInAmount && (
-            <p className='text-danger'>{errors?.sitInAmount}</p>
+            <p className="text-danger">{errors?.sitInAmount}</p>
           )}
         </Form.Group>
-        <div className='searchSelectDropdown'>
+        <div className="searchSelectDropdown">
           <Form.Label>Invite Users</Form.Label>
           <Select
             isMulti
@@ -399,15 +399,15 @@ const CreateTable = ({
             styles={customStyles}
           />
           {!!errors?.invitedPlayer && (
-            <p className='text-danger'>{errors?.invitedPlayer}</p>
+            <p className="text-danger">{errors?.invitedPlayer}</p>
           )}
         </div>
-        <div className='createGameCheckHand'>
+        <div className="createGameCheckHand">
           <Form.Check
             inline
-            label='Public Game'
-            name='public'
-            type='checkbox'
+            label="Public Game"
+            name="public"
+            type="checkbox"
             id={"public"}
             onChange={handleChange}
             checked={values.public}
@@ -415,10 +415,10 @@ const CreateTable = ({
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant='secondary' onClick={handleShow}>
+        <Button variant="secondary" onClick={handleShow}>
           Close
         </Button>
-        <Button variant='primary' onClick={createTable}>
+        <Button variant="primary" onClick={createTable}>
           Create Table
         </Button>
       </Modal.Footer>
@@ -436,15 +436,15 @@ const GameTable = ({ data }) => {
   };
 
   return (
-    <div className='home-poker-content'>
-      <div className='home-poker-cover'>
-        <img alt='' src={casino} />
+    <div className="home-poker-content">
+      <div className="home-poker-cover">
+        <img alt="" src={casino} />
       </div>
-      <div className='home-poker-info'>
+      <div className="home-poker-info">
         <h4>{data.gameName}</h4>
 
         <AvatarGroup imgArr={data.players} />
-        <button onClick={redirectToTable} type='submit'>
+        <button onClick={redirectToTable} type="submit">
           Join Game
         </button>
       </div>
@@ -454,19 +454,19 @@ const GameTable = ({ data }) => {
 
 const AvatarGroup = ({ imgArr }) => {
   return (
-    <div className='poker-avatar-box'>
-      <div className='avatars'>
+    <div className="poker-avatar-box">
+      <div className="avatars">
         {Array.isArray(imgArr) &&
           imgArr.map((el) => (
-            <span className='avatar'>
+            <span className="avatar">
               <img
                 src={
                   el.photoURI ||
                   "https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
                 }
-                width='30'
-                height='30'
-                alt=''
+                width="30"
+                height="30"
+                alt=""
               />
             </span>
           ))}
