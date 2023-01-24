@@ -1414,7 +1414,8 @@ div#info-rules .card-box {
   margin: 0;
   font-weight: 400;
 }
-.tour-info-btn{
+
+.tour-info-btn {
   padding: 8px 15px;
   text-align: center;
   background: #f9ff00;
@@ -2754,6 +2755,18 @@ button .spinner-border {
     color: #000 !important;
     box-shadow: none !important;
   }
+
+  .tour-popup {
+    z-index: 9999999 !important;
+  }
+
+  .player-wrapper-content {
+    transform: translate(-50%, 4%);
+  }
+}
+
+.tour-popup {
+  z-index: 9999999 !important;
 }
 
 /* @media screen and (min-width: 1366px) {
