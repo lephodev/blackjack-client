@@ -521,10 +521,13 @@ const Game = () => {
     socket.on("slotFull", () => {
       setLoader(false);
       toast.error(`No empty Space, Slot full.`, { id: "slotFull" });
-      socket.emit("exitRoom", {
-        tableId,
-        userId,
-      });
+
+      setTimeout(() => {
+        socket.emit("exitRoom", {
+          tableId,
+          userId,
+        });
+      }, 3000);
     });
 
     socket.on("gameFinished", () => {
