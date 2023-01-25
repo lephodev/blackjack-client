@@ -35,6 +35,7 @@
   left: -5px;
   margin-left: -15px;
   z-index: 1;
+  object-fit: cover;
 }
 
 .casino-popup input .form-check-input {
@@ -158,6 +159,7 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .user-header {
@@ -191,7 +193,10 @@
   font-weight: 500;
   border: 1px solid #f9ff00;
   height: 42px;
-  color: black;
+  color: rgb(0, 0, 0);
+}
+.user-info-box button{
+  color: rgb(255, 255, 255) !important;
 }
 
 .backtoHome {
