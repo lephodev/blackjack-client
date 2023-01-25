@@ -463,13 +463,12 @@ input[type="number"] {
   .home-poker-card-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-}
-
-@media screen and (max-width: 800px) {
   .userOnline-header:hover p.userOnline-tooltip {
     display: none;
   }
+}
 
+@media screen and (max-width: 800px) {
   .home-poker-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
