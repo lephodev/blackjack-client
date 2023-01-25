@@ -67,6 +67,7 @@ button {
   opacity: 0;
   transition: 400ms;
 }
+
 *::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.3);
   background-color: #191b25;
@@ -142,6 +143,7 @@ button {
     transform: rotateZ(1500deg);
   }
 }
+
 #loading-screen {
   position: fixed;
   padding: 0;
@@ -163,6 +165,7 @@ button {
   align-items: center;
   justify-content: center;
 }
+
 #main-menu #blackjack-title {
   display: flex;
   justify-content: center;
@@ -177,65 +180,54 @@ button {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f6f8+0,d8e1e7+50,b5c6d0+51,e0eff9+100;Grey+Gloss+%232 */
   background: #f2f6f8;
   /* Old browsers */
-  background: -moz-linear-gradient(
-    top,
-    #f2f6f8 0%,
-    #d8e1e7 50%,
-    #b5c6d0 51%,
-    #e0eff9 100%
-  );
+  background: -moz-linear-gradient(top,
+      #f2f6f8 0%,
+      #d8e1e7 50%,
+      #b5c6d0 51%,
+      #e0eff9 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    top,
-    #f2f6f8 0%,
-    #d8e1e7 50%,
-    #b5c6d0 51%,
-    #e0eff9 100%
-  );
+  background: -webkit-linear-gradient(top,
+      #f2f6f8 0%,
+      #d8e1e7 50%,
+      #b5c6d0 51%,
+      #e0eff9 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #f2f6f8 0%,
-    #d8e1e7 50%,
-    #b5c6d0 51%,
-    #e0eff9 100%
-  );
+  background: linear-gradient(to bottom,
+      #f2f6f8 0%,
+      #d8e1e7 50%,
+      #b5c6d0 51%,
+      #e0eff9 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f2f6f8", endColorstr="#e0eff9",GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2f6f8", endColorstr="#e0eff9", GradientType=0);
   /* IE6-9 */
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 #main-menu #blackjack-title span {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#aebcbf+0,6e7774+50,0a0e0a+51,0a0809+100;Black+Gloss */
   background: #aebcbf;
   /* Old browsers */
-  background: -moz-linear-gradient(
-    top,
-    #aebcbf 0%,
-    #6e7774 50%,
-    #0a0e0a 51%,
-    #0a0809 100%
-  );
+  background: -moz-linear-gradient(top,
+      #aebcbf 0%,
+      #6e7774 50%,
+      #0a0e0a 51%,
+      #0a0809 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    top,
-    #aebcbf 0%,
-    #6e7774 50%,
-    #0a0e0a 51%,
-    #0a0809 100%
-  );
+  background: -webkit-linear-gradient(top,
+      #aebcbf 0%,
+      #6e7774 50%,
+      #0a0e0a 51%,
+      #0a0809 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #aebcbf 0%,
-    #6e7774 50%,
-    #0a0e0a 51%,
-    #0a0809 100%
-  );
+  background: linear-gradient(to bottom,
+      #aebcbf 0%,
+      #6e7774 50%,
+      #0a0e0a 51%,
+      #0a0809 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#aebcbf", endColorstr="#0a0809",GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#aebcbf", endColorstr="#0a0809", GradientType=0);
   /* IE6-9 */
   -webkit-background-clip: text;
   background-clip: text;
@@ -262,24 +254,29 @@ button {
 #main-box div {
   margin: 20px 0px 20px 0px;
 }
+
 #main-box #avatar-box {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 4px;
 }
+
 #main-box #avatar-box i {
   color: #d5c8c8;
   padding: 6px;
   font-weight: 700;
   font-size: 18px;
 }
+
 #main-box #avatar-box button:nth-of-type(1) i {
   margin-right: 6px;
 }
+
 #main-box #avatar-box button:nth-of-type(2) i {
   margin-left: 6px;
 }
+
 #main-box #avatar-box .slideAvatars {
   position: relative;
   border: 2px solid black;
@@ -288,11 +285,13 @@ button {
   width: 80px;
   height: 80px;
 }
+
 #main-box #avatar-box .slideAvatars img {
   max-width: 100%;
   max-height: 100%;
   border-radius: 8px;
 }
+
 #main-box #avatar-box .slideAvatars .numbertext {
   position: absolute;
   left: 50%;
@@ -302,6 +301,7 @@ button {
   color: white;
   opacity: 0.8;
 }
+
 #main-box #avatar-box button {
   border: none;
   outline: none;
@@ -309,12 +309,15 @@ button {
   cursor: pointer;
   padding: none;
 }
+
 #main-box #avatar-box button:hover i {
   color: rgba(255, 255, 255, 0.8);
 }
+
 #main-box #avatar-box button:active i {
   transform: scale(0.9);
 }
+
 #main-box input {
   max-width: 300px;
   width: 100%;
@@ -336,6 +339,7 @@ button {
 #main-box input:focus {
   box-shadow: none;
 }
+
 #main-box .play-btns {
   font-weight: 600;
   display: flex;
@@ -369,29 +373,34 @@ button {
   font-size: 20px;
   width: 38px;
 }
+
 #main-box #btnOffline {
   margin-top: 40px;
   background-color: #143853;
 }
+
 #main-box #btnOffline:hover {
   background-color: #0d2436;
 }
+
 #main-box #btnCreate,
 #main-box #btnJoin {
   background-color: #c7971d;
 }
+
 #main-box #btnCreate:hover,
 #main-box #btnJoin:hover {
   background-color: #9e750d;
 }
 
-.table > :not(caption) > * > * {
+.table> :not(caption)>*>* {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom: 1px solid #424242;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
   color: white;
 }
+
 #info-rules {
   position: absolute;
   /* right: -1000px; */
@@ -409,6 +418,7 @@ button {
   transition: 300ms;
   z-index: 99;
 }
+
 #info-rules-expand {
   position: absolute;
   right: 0px;
@@ -426,12 +436,14 @@ button {
   transition: 300ms;
   z-index: 99;
 }
+
 #info-rules table {
   color: white;
   font-size: 14px;
   font-weight: 500;
   padding-top: 15px;
 }
+
 .card-box {
   display: grid;
   grid-template-columns: repeat(5, minmax(21px, 1fr));
@@ -439,6 +451,7 @@ button {
   width: 100%;
   row-gap: 6px;
 }
+
 #info-rules p,
 #info-rules li {
   font-size: 14px;
@@ -448,6 +461,7 @@ button {
   padding-bottom: 8px;
   padding-top: 8px;
 }
+
 #info-rules #h2margin {
   margin-top: 64px;
   border-top: 0px solid rgba(255, 255, 255, 0);
@@ -460,9 +474,11 @@ button {
   padding: 0 12px 0 0;
   overflow: auto;
 }
+
 #info-rules-overflow th {
   white-space: nowrap;
 }
+
 #how-to-play {
   position: absolute;
   left: -120px;
@@ -520,6 +536,7 @@ button {
   z-index: 0;
   transition: 250ms;
 }
+
 #about-box ul {
   padding: 12px 0px 12px 20px;
   margin: 0;
@@ -575,6 +592,7 @@ button {
 #credits-container {
   color: white;
 }
+
 #credits-container a {
   color: rgba(87, 165, 255, 0.8);
 }
@@ -582,9 +600,9 @@ button {
 #users-online-box {
   position: fixed;
   width: 220px;
-  left: -166px;
+  left: -222px;
   top: 135px;
-  background-color: rgba(42, 42, 42, 0.9);
+  background-color: rgba(42, 42, 42, 1);
   color: white;
   text-align: center;
   transition: 300ms;
@@ -593,6 +611,7 @@ button {
   -webkit-user-select: none;
   user-select: none;
 }
+
 #users-online-box #users-online-label {
   text-shadow: 1px 1px black;
   font-size: 14px;
@@ -601,6 +620,7 @@ button {
   padding-left: 15px;
   margin: 12px 40px 12px 0px;
 }
+
 #users-online-box .user-list-name {
   -webkit-user-select: none;
   /* Safari */
@@ -609,23 +629,30 @@ button {
   user-select: none;
   /* Standard syntax */
 }
+
 #users-online-box #users-online-button {
   position: absolute;
-  right: 0;
-  width: 54px;
-  height: 46px;
+  right: -22%;
+  width: 28%;
+  height: 12%;
   top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background: #2c2b2a;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
+
 #users-online-box #users-online-button i {
   transition: 200ms;
 }
+
 #users-online-box #users-online-button:hover {
   color: #cccccc;
 }
+
 #users-online-box ul {
   position: relative;
   width: 100%;
@@ -636,6 +663,7 @@ button {
   font-size: 15px;
   overflow-y: auto;
 }
+
 #users-online-box ul .users-list-box {
   position: relative;
   width: 100%;
@@ -645,15 +673,18 @@ button {
   height: 56px;
   border-top: 1px solid #2d3038;
 }
+
 #users-online-box ul .users-list-box .users-list-info {
   margin-right: 80px;
   text-align: left;
   margin-left: 10px;
 }
+
 #users-online-box ul .users-list-box .users-list-info span {
   color: #f9ff00;
   font-weight: 500;
 }
+
 #users-online-box ul .users-list-box .users-list-info div {
   font-size: 12px;
   color: #ddd;
@@ -677,6 +708,7 @@ button {
   align-items: center;
   justify-content: center;
 }
+
 #users-online-box ul .users-list-box .users-list-img img {
   width: 100%;
   pointer-events: none;
@@ -707,6 +739,7 @@ button {
   color: white;
   padding: 5px 15px;
 }
+
 #invite-link-box #invite-label {
   position: absolute;
   top: 50%;
@@ -722,11 +755,13 @@ button {
   user-select: none;
   /* Standard syntax */
 }
+
 #invite-link-box #invite-label:hover {
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
   opacity: 0;
 }
+
 #invite-link-box button {
   background-color: #b9a11e;
   border-top-right-radius: 30px;
@@ -743,9 +778,11 @@ button {
   user-select: none;
   /* Standard syntax */
 }
+
 #invite-link-box button:hover {
   background-color: #a89319;
 }
+
 #invite-link-box #invite-link::placeholder {
   color: #c7c7c7;
 }
@@ -765,10 +802,12 @@ button {
   align-items: center;
   cursor: pointer;
 }
+
 #volume-button i {
   color: white;
   font-size: 18px;
 }
+
 #volume-button .fa-volume-mute {
   color: #db2a05;
 }
@@ -784,6 +823,7 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+
 #bg-color-box .bg-colors {
   width: 42px;
   height: 42px;
@@ -791,18 +831,23 @@ button {
   border: 1px solid black;
   cursor: pointer;
 }
+
 #bg-color-box #bg-green {
   background-color: #265328af;
 }
+
 #bg-color-box #bg-blue {
   background-color: #274f55af;
 }
+
 #bg-color-box #bg-purple {
   background-color: #293b5aaf;
 }
+
 #bg-color-box #bg-red {
   background-color: #582828af;
 }
+
 #bg-color-box #bg-brown {
   background-color: #534e26af;
 }
@@ -828,6 +873,7 @@ button {
   padding: 5px 15px;
   color: #fff;
 }
+
 #leave-button i {
   transform: rotate(180deg);
 }
@@ -859,6 +905,7 @@ button {
   padding: 5px 15px;
   color: #fff;
 }
+
 #buy-button i {
   transform: rotate(180deg);
 }
@@ -890,6 +937,7 @@ button {
   padding: 5px 15px;
   color: #fff;
 }
+
 #chat-button i {
   transform: rotate(180deg);
 }
@@ -921,6 +969,7 @@ button {
   padding: 5px 15px;
   color: #fff;
 }
+
 #leave-table i {
   color: #fff;
 }
@@ -951,14 +1000,12 @@ button {
   align-items: center;
   background: black;
   background: rgba(0, 0, 0, 0.25);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.2) 20%,
-    rgba(0, 0, 0, 0.25) 50%,
-    rgba(0, 0, 0, 0.2) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.2) 20%,
+      rgba(0, 0, 0, 0.25) 50%,
+      rgba(0, 0, 0, 0.2) 80%,
+      rgba(0, 0, 0, 0) 100%);
   text-shadow: 0 0 10px black;
   z-index: 50;
   pointer-events: none;
@@ -1055,6 +1102,7 @@ button {
   border-radius: 100%;
   transform: rotate(-90deg);
 }
+
 .players-timer .circle-animation {
   stroke: lime;
   stroke-dasharray: 301;
@@ -1068,6 +1116,7 @@ button {
     stroke: red;
   }
 }
+
 .players:nth-of-type(4) {
   margin-bottom: 100px;
 }
@@ -1424,6 +1473,7 @@ i {
   background: #a89319;
   border: 1px solid #a89319;
 }
+
 .balance-bet #total-bet {
   color: #a89319;
 }
@@ -1443,6 +1493,7 @@ i {
   user-select: none;
   /* Standard syntax */
 }
+
 #dealer h1 {
   display: flex;
   justify-content: center;
@@ -1454,6 +1505,7 @@ i {
   margin: 0;
   padding: 0;
 }
+
 #dealer #dealerSum {
   position: absolute;
   padding: 4px 8px;
@@ -1474,6 +1526,7 @@ i {
   /* allow the width to be calculated dynamically */
   width: auto;
 }
+
 #dealer .dealer-cards {
   display: flex;
   flex-direction: row;
@@ -1482,6 +1535,7 @@ i {
   width: 100%;
   transition: 500ms;
 }
+
 #dealer .visibleCards {
   margin: 0 auto;
   position: relative;
@@ -1538,54 +1592,63 @@ i {
   width: 100px;
   height: auto;
 }
+
 .bets-container #chip10 {
   background: url("../../imgs/chips/chip1.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
+
 .bets-container #chip50 {
   background: url("../../imgs/chips/chip2.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
+
 .bets-container #chip100 {
   background: url("../../imgs/chips/chip3.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
+
 .bets-container #chip500 {
   background: url("../../imgs/chips/chip4.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
+
 .bets-container #chip1k {
   background: url("../../imgs/chips/chip5.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
+
 .bets-container #chip5k {
   background: url("../../imgs/chips/chip6.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
+
 .bets-container #chip10k {
   background: url("../../imgs/chips/chip7.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
+
 .bets-container #chip50k {
   background: url("../../imgs/chips/chip8.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
+
 .bets-container #chip100k {
   background: url("../../imgs/chips/chip9.svg") no-repeat;
   background-size: cover;
@@ -1651,12 +1714,14 @@ i {
   font-weight: 500;
   padding-top: 5px;
 }
+
 .user-action-container #your-turn-label {
   position: absolute;
   font-size: 24px;
   top: 12px;
   pointer-events: none;
 }
+
 .user-action-container .user-action-box {
   max-width: 150px;
   display: flex;
@@ -1664,6 +1729,7 @@ i {
   justify-content: center;
   align-items: center;
 }
+
 .user-action-container .user-action {
   position: relative;
   background: url(../../imgs/blackjack/circleBtn.png) no-repeat;
@@ -1690,7 +1756,7 @@ i {
   outline: 0;
 }
 
-.user-action-container .user-action:disabled + .user-action-text {
+.user-action-container .user-action:disabled+.user-action-text {
   opacity: 0.65;
 }
 
@@ -1698,14 +1764,17 @@ i {
   color: #db2a05;
   transition: all 0.3s;
 }
+
 .user-action-container #surrender {
   color: #bfc8dd;
   transition: all 0.3s;
 }
+
 .user-action-container #hit {
   color: #0b8561;
   transition: all 0.3s;
 }
+
 .user-action-container #doubleDown {
   position: relative;
   color: #b9a11e;
@@ -1766,10 +1835,12 @@ i {
   0% {
     background-color: rgba(255, 217, 0, 0.8);
   }
+
   50% {
     background-color: rgba(255, 217, 0, 0.5);
   }
 }
+
 .ready:hover {
   opacity: 0.5;
 }
@@ -1854,9 +1925,11 @@ i {
 .player-card.split-card img {
   width: 55px;
 }
+
 .css-1rhbuit-multiValue {
   background-color: hsl(0deg 0% 15%) !important;
 }
+
 .css-12jo7m5 {
   border-radius: 2px;
   color: hsl(0deg 0% 100%) !important;
@@ -1914,6 +1987,7 @@ i {
   color: #e9e9e9;
   font-weight: 500;
 }
+
 .cardHistory-closeBtn {
   width: 100%;
   position: absolute;
@@ -1925,9 +1999,11 @@ i {
   height: 40px;
   z-index: 999999;
 }
-.table > :not(:first-child) {
+
+.table> :not(:first-child) {
   border-top: none !important;
 }
+
 .yellowBtn {
   position: fixed;
   width: 160px;
@@ -1944,6 +2020,7 @@ i {
   display: block;
   box-shadow: none !important;
 }
+
 .yellowBtn:hover,
 .yellowBtn:active,
 .yellowBtn:focus {
@@ -1959,14 +2036,17 @@ i {
     display: none;
   }
 }
+
 @media all and (max-width: 1200px) {
   .players {
     width: 90px;
     height: 90px;
   }
+
   .players .empty-slot {
     font-size: 42px;
   }
+
   .players .player-coin {
     width: 60px;
     height: 60px;
@@ -1989,6 +2069,7 @@ i {
     display: flex;
     flex-direction: column;
   }
+
   #balance-bet-box .balance-bet {
     height: calc(58px - 10px);
     width: calc(90px - 10px);
@@ -2006,19 +2087,23 @@ i {
   #invite-link-box {
     width: 230px;
   }
+
   #invite-link-box #invite-label {
     padding: 0px 4px;
     font-size: 15px;
   }
 }
+
 @media all and (max-width: 992px) {
   .players {
     width: 80px;
     height: 80px;
   }
+
   .players .empty-slot {
     font-size: 36px;
   }
+
   .players .player-coin {
     width: 54px;
     height: 54px;
@@ -2067,6 +2152,7 @@ i {
     gap: 10px;
   }
 }
+
 @media all and (max-width: 768px) {
   :root {
     --info-rules-width: -392px;
@@ -2082,6 +2168,12 @@ i {
     margin-left: -45%;
   }
 
+  #users-online-box #users-online-button {
+    position: absolute;
+    right: -16%;
+    width: 20%;
+  }
+
   #players-timer-container {
     width: 90%;
     margin-left: -45%;
@@ -2091,6 +2183,7 @@ i {
     width: 70px;
     height: 70px;
   }
+
   .players .empty-slot {
     font-size: 32px;
   }
@@ -2104,36 +2197,41 @@ i {
     height: 54px;
   }
 
-  #users-online-box {
-    width: 200px;
-    left: -164px;
-  }
+  #users-online-box {}
+
   #users-online-box #users-online-label {
     margin: 8px 30px 8px 0px;
     font-size: 10px;
   }
-  #users-online-box #users-online-button {
+
+  /* #users-online-box #users-online-button {
     width: 40px;
     height: 30px;
-  }
+  } */
+
   #users-online-box ul .users-list-box .users-list-info .user-list-name {
     font-size: 10px;
     font-weight: 500;
   }
+
   #users-online-box ul .users-list-box .users-list-info div {
     font-size: 8px;
     color: #ddd;
   }
+
   #users-online-box ul .users-list-box .users-list-img {
     width: 28px;
     height: 28px;
   }
+
   #users-online-box ul .users-list-box {
     height: 38px;
   }
+
   #users-online-box ul .users-list-box .users-list-info {
     margin-left: 15px;
   }
+
   #how-to-play {
     left: -90px;
     top: 80px;
@@ -2142,10 +2240,12 @@ i {
     font-weight: 500;
     padding: 6px 15px;
   }
+
   .card {
     width: 30px;
   }
 }
+
 @media all and (max-width: 576px) {
   :root {
     --info-rules-width: -292px;
@@ -2154,9 +2254,11 @@ i {
   #main-box {
     width: 90%;
   }
+
   #main-box .play-btns {
     width: 80%;
   }
+
   #main-box input {
     width: 60%;
   }
@@ -2174,6 +2276,7 @@ i {
     width: 50px;
     height: 50px;
   }
+
   .players .empty-slot {
     font-size: 22px;
   }
@@ -2183,6 +2286,7 @@ i {
     top: 38px;
     right: 10px;
   }
+
   #bg-color-box .bg-colors {
     width: 32px;
     height: 32px;
@@ -2193,10 +2297,12 @@ i {
     height: 54px;
   }
 }
+
 @media all and (max-width: 386px) {
   #about-box {
     padding: 6px;
   }
+
   #about-box ul {
     padding: 12px 0px 12px 12px;
   }
