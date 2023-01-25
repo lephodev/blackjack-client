@@ -877,7 +877,7 @@ const Game = () => {
               transform: isDesktop
                 ? `translate(-50%, -${topValue * 0}%) scale(${(scaleValue * 1.4) / 100
                 })`
-                : isLandscape ? `translate(-50%, -${topValue * 0.65}%) scale(${(scaleValue * 1) / 100
+                : isLandscape ? `translate(-50%, -${topValue * 1}%) scale(${(scaleValue * 1.05) / 100
                   })` : isTablet
                   ? `translate(-50%, -${topValue * 0.4}%) scale(${(scaleValue * 1.4) / 100
                   })`
