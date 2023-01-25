@@ -1997,6 +1997,15 @@ button .spinner-border {
     margin-right: 4%;
   }
 
+  .card {
+    width: 30px;
+  }
+
+  .yellowBtn {
+    position: fixed;
+    width: 140px;
+  }
+
   .collect-slotcoin.win-slottype-one img {
     margin-top: 150%;
     width: 120px;
