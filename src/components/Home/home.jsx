@@ -252,7 +252,7 @@ const Home = () => {
           {pokerRooms.length > 0 ? (
             <>
               <div className="lobby-home-title">
-                <h3>Open Tables</h3>
+                <h3>Blackjack Open Tables</h3>
               </div>
               <div className="home-poker-card-grid">
                 {pokerRooms.map((el) => (
