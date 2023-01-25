@@ -123,9 +123,10 @@ const Game = () => {
     query: "(max-width: 767px) and (min-width: 580px)",
   });
   const isMobile = useMediaQuery({
-    query: "(max-width: 579px)",
+    query: "(max-width: 579px) and (min-width: 450px)",
   });
-  // const isMiniMobile = useMediaQuery({ query: "(max-width: 450px)" });
+  const isMiniMobile = useMediaQuery({ query: "(max-width: 450px)" });
+  const isLandscape = useMediaQuery({ query: "(max-height: 480px) and (orientation: landscape)" })
 
   const handleClose = () => setIsTourOPen(false);
 
@@ -871,25 +872,23 @@ const Game = () => {
               width: "1927px",
               height: "100%",
               transform: isDesktop
-                ? `translate(-50%, -${topValue * 0}%) scale(${
-                    (scaleValue * 1.4) / 100
+                ? `translate(-50%, -${topValue * 0}%) scale(${(scaleValue * 1.4) / 100
+                })`
+                : isLandscape ? `translate(-50%, -${topValue * 0.65}%) scale(${(scaleValue * 1) / 100
+                  })` : isTablet
+                  ? `translate(-50%, -${topValue * 0.4}%) scale(${(scaleValue * 1.4) / 100
                   })`
-                : isTablet
-                ? `translate(-50%, -${topValue * 0.4}%) scale(${
-                    (scaleValue * 1.4) / 100
-                  })`
-                : isBigMobile
-                ? `translate(-50%, -${topValue * 0.85}%) scale(${
-                    (scaleValue * 1.5) / 100
-                  })`
-                : isMobile
-                ? `translate(-50%, -${topValue * 0.78}%) scale(${
-                    (scaleValue * 1.8) / 100
-                  })`
-                : // : isMiniMobile
-                  //   ? `translate(-50%, -${topValue * 0.65}%) scale(${(scaleValue * 1.8) / 100
-                  //   })`
-                  `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
+                  : isBigMobile
+                    ? `translate(-50%, -${topValue * 0.85}%) scale(${(scaleValue * 1.5) / 100
+                    })`
+                    : isMobile
+                      ? `translate(-50%, -${topValue * 0.78}%) scale(${(scaleValue * 1.8) / 100
+                      })`
+                      : isMiniMobile
+                        ? `translate(-50%, -${topValue * 0.65}%) scale(${(scaleValue * 1.8) / 100
+                        })`
+                        :
+                        `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
             }}
           >
             <div className="blackjack-table">
@@ -932,7 +931,7 @@ const Game = () => {
               )}
               <Dealer dealer={roomData?.dealer} players={players} />
               {userId &&
-              (roomData?.media === "video" || roomData.media === "audio") ? (
+                (roomData?.media === "video" || roomData.media === "audio") ? (
                 <MeetingProvider
                   config={{
                     meetingId: roomData.meetingId,
@@ -945,7 +944,7 @@ const Game = () => {
                     roomData.hostId === userId
                       ? roomData.meetingToken
                       : roomData.players.find((ele) => ele.id === userId)
-                          ?.meetingToken
+                        ?.meetingToken
                   }
                 >
                   <MeetingConsumer {...{}}>
@@ -995,8 +994,8 @@ const Game = () => {
           {(roomData?.gamestart || !roomData?.preTimer) && (
             <>
               {players.find((el) => el.id === userId) &&
-              players.find((el) => el.id === userId)?.turn &&
-              players.find((el) => el.id === userId)?.action === "" ? (
+                players.find((el) => el.id === userId)?.turn &&
+                players.find((el) => el.id === userId)?.action === "" ? (
                 <ActionPanel
                   actionopen={actionopen}
                   handleActionOpen={handleActionOpen}
