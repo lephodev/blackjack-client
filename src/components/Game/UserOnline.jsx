@@ -1,6 +1,7 @@
 import { FaAngleRight } from 'react-icons/fa';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import users from "../../imgs/blackjack/user1.png"
 
 const UserOnline = ({ userOnlinePanel, players }) => {
   const wrapperRef = useRef(null);
@@ -26,11 +27,12 @@ const UserOnline = ({ userOnlinePanel, players }) => {
   useOutsideAlerter(wrapperRef);
   return (
     <div id='users-online-box' ref={wrapperRef}>
-      <div>
+      <div className='userOnline-header'>
         <div id='users-online-label'>Users in Room</div>
         <div id='users-online-button' onClick={userOnlinePanel}>
           <FaAngleRight />
         </div>
+        <p className='userOnline-tooltip'>All table Users Status</p>
       </div>
       <ul id='users-online-container'>
         {players?.map((item, i) => (
@@ -51,7 +53,7 @@ const UserOnline = ({ userOnlinePanel, players }) => {
                     ? item.avatar
                     : item.photoURI
                     ? item.photoURI
-                    : 'https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png'
+                    : users
                 }
                 alt='avatar'
               />

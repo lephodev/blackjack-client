@@ -3,6 +3,22 @@
   min-height: 100vh;
 }
 
+.userOnline-header p.userOnline-tooltip {
+  display: none;
+}
+
+.userOnline-header:hover p.userOnline-tooltip {
+  display: block;
+  position: absolute;
+  background: #2b2a2a;
+  padding: 10px 15px;
+  width: 140px;
+  border-radius: 8px;
+  top: 58px;
+  right: -160px;
+  font-size: 12px;
+}
+
 .tooltip-inner {
   margin-top: 10px;
   max-width: 200px;
@@ -24,15 +40,20 @@
   font-weight: 500;
   text-decoration: none;
 }
+
 .player-wrapper-content {
   transform: translate(-50%, 4%);
 }
+
 .avatar img {
   border-radius: 50%;
   position: relative;
   left: -5px;
   margin-left: -15px;
   z-index: 1;
+  object-fit: cover;
+  width: 22px;
+  height: 22px;
 }
 
 .casino-popup input .form-check-input {
@@ -123,7 +144,8 @@
   padding-bottom: 30px;
   font-weight: 700;
   font-size: 22px;
-  line-height: 20px;;
+  line-height: 20px;
+  ;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #f9ff00;
@@ -154,7 +176,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 15px;
+  padding-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .user-header {
@@ -188,6 +211,11 @@
   font-weight: 500;
   border: 1px solid #f9ff00;
   height: 42px;
+  color: rgb(0, 0, 0);
+}
+
+.user-info-box button {
+  color: rgb(255, 255, 255) !important;
 }
 
 .backtoHome {
@@ -424,6 +452,7 @@ input[type="number"] {
   object-fit: contain;
   height: 25px;
 }
+
 @media screen and (max-width: 1200px) {
   .home-poker-card-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -436,7 +465,11 @@ input[type="number"] {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 800px) {
+  .userOnline-header:hover p.userOnline-tooltip {
+    display: none;
+  }
+
   .home-poker-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -468,6 +501,7 @@ input[type="number"] {
     padding: 10px 0 20px 0;
     font-size: 20px;
     line-height: 20px;
+    letter-spacing: 2px;
   }
 }
 
@@ -476,6 +510,7 @@ input[type="number"] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
 .css-12jo7m5 {
   font-size: 14px !important;
 }

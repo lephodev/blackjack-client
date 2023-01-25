@@ -2739,6 +2739,10 @@ button .spinner-border {
     z-index: 9999999;
   }
 
+  .create-game-box button {
+    color: black !important;
+  }
+
   .no-room-available button {
     color: #000 !important;
   }
@@ -2754,6 +2758,7 @@ button .spinner-border {
   .home-poker-info button {
     color: #000 !important;
   }
+
   .yellowBtn {
     background: #f9ff00 !important;
     color: #000 !important;
@@ -2766,6 +2771,19 @@ button .spinner-border {
 
   .player-wrapper-content {
     transform: translate(-50%, 4%);
+  }
+
+  .chatHistory-comments {
+    height: calc(100% - 54px);
+    overflow-y: auto;
+  }
+
+  #info-rules-overflow {
+    max-height: 80vh !important;
+  }
+
+  #info-rules-expand {
+    height: 84%;
   }
 }
 

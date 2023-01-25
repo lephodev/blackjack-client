@@ -12,7 +12,7 @@ import userUtils from "../../utils/user";
 import loaderImg from "../../imgs/animation/loader1.webp";
 import casino from "../../imgs/blackjack/blackjackPlaceholder.png";
 import logo from "../../imgs/blackjack/logo.png";
-
+import users from "../../imgs/blackjack/user1.png"
 import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
 import ticket from "../../imgs/blackjack/ticket.png";
@@ -252,7 +252,7 @@ const Home = () => {
           {pokerRooms.length > 0 ? (
             <>
               <div className="lobby-home-title">
-                <h3>Open Tables</h3>
+                <h3>Blackjack Open Tables</h3>
               </div>
               <div className="home-poker-card-grid">
                 {pokerRooms.map((el) => (
@@ -377,7 +377,7 @@ const CreateTable = ({
           )}
         </Form.Group>
         <Form.Group className="form-group" controlId="formPlaintextPassword">
-          <Form.Label>Enter sit inhgfgfg amount</Form.Label>
+          <Form.Label>Enter sit in amount</Form.Label>
           <Form.Control
             name="sitInAmount"
             type="number"
@@ -466,7 +466,7 @@ const AvatarGroup = ({ imgArr }) => {
                     ? el.avatar
                     : el.photoURI
                     ? el.photoURI
-                    : "https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png"
+                    : users
                 }
                 width="30"
                 height="30"

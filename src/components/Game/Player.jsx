@@ -7,6 +7,7 @@ import { Dropdown } from "react-bootstrap";
 import BubbleMessage from "./BubbleMessage";
 import { socket } from "../../config/socket";
 import numFormatter from "../../config/utils";
+import users from "../../imgs/blackjack/user1.png"
 
 const Player = ({
   player,
@@ -200,7 +201,7 @@ const Player = ({
                 ? player.avatar
                 : player.photoURI
                 ? player.photoURI
-                : "https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png"
+                : users
             }
             alt="off-camera"
           />
