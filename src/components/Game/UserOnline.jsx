@@ -27,11 +27,12 @@ const UserOnline = ({ userOnlinePanel, players }) => {
   useOutsideAlerter(wrapperRef);
   return (
     <div id='users-online-box' ref={wrapperRef}>
-      <div>
+      <div className='userOnline-header'>
         <div id='users-online-label'>Users in Room</div>
         <div id='users-online-button' onClick={userOnlinePanel}>
           <FaAngleRight />
         </div>
+        <p className='userOnline-tooltip'>All table Users Status</p>
       </div>
       <ul id='users-online-container'>
         {players?.map((item, i) => (
