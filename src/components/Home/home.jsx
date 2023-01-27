@@ -5,7 +5,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { FaQuestionCircle, FaHome } from "react-icons/fa";
+import { FaQuestionCircle, FaHome, FaSearch } from "react-icons/fa";
 import "./home.css";
 import { useEffect } from "react";
 import userUtils from "../../utils/user";
@@ -43,6 +43,8 @@ const Home = () => {
   const history = useHistory();
   const [allUsers, setAllUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [search, setSearch] = useState("");
+
   // console.log({ userData });
 
   // utils function
@@ -163,6 +165,9 @@ const Home = () => {
       }),
     [allUsers]
   );
+  const handleSearchChange = async (e) => {
+    setSearch(e.target.value);
+  };
   const renderWallet = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       This is your token balance, and can be used for betting.
@@ -206,7 +211,10 @@ const Home = () => {
               </a>
             </div>
             <div className="create-game-box">
-              <h5>{userData?.username}</h5>
+              <div className="create-game-box-avtar">
+                <img src={userData?.profile} alt="" />
+                <h5>{userData?.username}</h5>
+              </div>
               <div className="user-info-box">
                 <p className="user-info-box-wallet">
                   <img src={coin} alt="" className="ticket-icon" />
@@ -264,8 +272,26 @@ const Home = () => {
 
           {filterRoom.length > 0 ? (
             <>
-              <div className="lobby-home-title">
-                <h3>Blackjack Open Tables</h3>
+              <div className="poker-table-header">
+                <div className="lobby-home-title">
+                  <h3>Blackjack Open Tables</h3>
+                </div>
+                <div className="poker-tableSearch-box">
+                  <div className="poker-tableSearch">
+                    <input
+                      id="mySearchInput"
+                      className="form-control"
+                      type="text"
+                      name={search === "" ? "search" : ""}
+                      autoComplete="off"
+                      placeholder="Search in Tables.."
+                      onChange={handleSearchChange}
+                    />
+                    <button>
+                      <FaSearch />
+                    </button>
+                  </div>
+                </div>
               </div>
               <div className="home-poker-card-grid">
                 {filterRoom.map((el) => (
