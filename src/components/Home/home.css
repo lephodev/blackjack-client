@@ -218,8 +218,8 @@
 }
 
 .backtoHome {
-  position: absolute;
-  top: -30px;
+  /* position: absolute;
+  top: -30px; */
 }
 
 .backtoHome span {
@@ -494,7 +494,6 @@ input[type="number"] {
   .home-poker-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
  
   .user-header-grid {
     flex-direction: column;
@@ -527,9 +526,9 @@ input[type="number"] {
   }
 
   .poker-tableSearch-box {
-    position: absolute;
+    /* position: absolute;
     right: 0px;
-    top: -37px;
+    top: -37px; */
   }
 
   .create-game-box-avtar {
