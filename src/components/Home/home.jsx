@@ -5,7 +5,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { FaQuestionCircle, FaHome, FaSearch } from "react-icons/fa";
+import { FaQuestionCircle, FaHome } from "react-icons/fa";
 import "./home.css";
 import { useEffect } from "react";
 import userUtils from "../../utils/user";
@@ -43,7 +43,6 @@ const Home = () => {
   const history = useHistory();
   const [allUsers, setAllUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [search, setSearch] = useState("");
 
   // console.log({ userData });
 
@@ -154,7 +153,7 @@ const Home = () => {
       try {
         const response = await blackjackInstance().get("/getRunningGame");
         setPokerRooms(response.data.rooms);
-      } catch (error) {}
+      } catch (error) { }
     })();
   }, []);
 
@@ -165,9 +164,7 @@ const Home = () => {
       }),
     [allUsers]
   );
-  const handleSearchChange = async (e) => {
-    setSearch(e.target.value);
-  };
+
   const renderWallet = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       This is your token balance, and can be used for betting.
@@ -255,43 +252,33 @@ const Home = () => {
 
       <div className="home-poker-card">
         <div className="container">
-          <div className="backtoHome">
-            <a href="https://scrooge.casino/">
-              <FaHome />
-              Home
-            </a>
-          </div>
-
-          <div>
-            <input
-              value={searchText}
-              placeholder="Search your desire room"
-              onChange={(e) => setSearchText(e.target.value)}
-            />
+          <div className="poker-table-header">
+            <div className="backtoHome">
+              <a href="https://scrooge.casino/">
+                <FaHome />
+                Home
+              </a>
+            </div>
+            <div className="poker-tableSearch-box">
+              <div className="poker-tableSearch">
+                <input
+                  id="mySearchInput"
+                  className="form-control"
+                  value={searchText}
+                  placeholder="Search tables . . . ."
+                  onChange={(e) => setSearchText(e.target.value)}
+                  autoComplete="off" />
+                {/* <button>
+                  <FaSearch />
+                </button> */}
+              </div>
+            </div>
           </div>
 
           {filterRoom.length > 0 ? (
             <>
-              <div className="poker-table-header">
-                <div className="lobby-home-title">
-                  <h3>Blackjack Open Tables</h3>
-                </div>
-                <div className="poker-tableSearch-box">
-                  <div className="poker-tableSearch">
-                    <input
-                      id="mySearchInput"
-                      className="form-control"
-                      type="text"
-                      name={search === "" ? "search" : ""}
-                      autoComplete="off"
-                      placeholder="Search in Tables.."
-                      onChange={handleSearchChange}
-                    />
-                    <button>
-                      <FaSearch />
-                    </button>
-                  </div>
-                </div>
+              <div className="lobby-home-title">
+                <h3>Blackjack Open Tables</h3>
               </div>
               <div className="home-poker-card-grid">
                 {filterRoom.map((el) => (
@@ -311,17 +298,6 @@ const Home = () => {
           )}
         </div>
       </div>
-
-      {/* <div className='home-poker-card'>
-        <div className='container'>
-          <h3>Open Tournaments</h3>
-          <div className='home-poker-card-grid'>
-            <GameTable />
-            <GameTable />
-            <GameTable />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
