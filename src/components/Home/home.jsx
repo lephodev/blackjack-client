@@ -12,7 +12,7 @@ import userUtils from "../../utils/user";
 import loaderImg from "../../imgs/animation/loader1.webp";
 import casino from "../../imgs/blackjack/blackjackPlaceholder.png";
 import logo from "../../imgs/blackjack/logo.png";
-import users from "../../imgs/blackjack/user1.png"
+import users from "../../imgs/blackjack/user1.png";
 import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
 import ticket from "../../imgs/blackjack/ticket.png";
@@ -42,7 +42,7 @@ const Home = () => {
   const [pokerRooms, setPokerRooms] = useState([]);
   const history = useHistory();
   const [allUsers, setAllUsers] = useState([]);
-
+  const [searchText, setSearchText] = useState("");
   // console.log({ userData });
 
   // utils function
@@ -173,6 +173,11 @@ const Home = () => {
       This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
+
+  const filterRoom = pokerRooms.filter((el) =>
+    el.gameName.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
     <div className="poker-home">
       {loader && (
@@ -249,13 +254,21 @@ const Home = () => {
             </a>
           </div>
 
-          {pokerRooms.length > 0 ? (
+          <div>
+            <input
+              value={searchText}
+              placeholder="Search your desire room"
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </div>
+
+          {filterRoom.length > 0 ? (
             <>
               <div className="lobby-home-title">
                 <h3>Blackjack Open Tables</h3>
               </div>
               <div className="home-poker-card-grid">
-                {pokerRooms.map((el) => (
+                {filterRoom.map((el) => (
                   <GameTable data={el} />
                 ))}
               </div>
@@ -461,13 +474,7 @@ const AvatarGroup = ({ imgArr }) => {
           imgArr.map((el) => (
             <span className="avatar">
               <img
-                src={
-                  el.avatar
-                    ? el.avatar
-                    : el.photoURI
-                    ? el.photoURI
-                    : users
-                }
+                src={el.avatar ? el.avatar : el.photoURI ? el.photoURI : users}
                 width="30"
                 height="30"
                 alt=""
