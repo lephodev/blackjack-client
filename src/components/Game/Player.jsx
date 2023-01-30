@@ -191,7 +191,7 @@ const Player = ({
         ) : (
           ""
         )}
-        {console.log("player", player)}
+        {/* {console.log("player", player)} */}
         {roomData.media === "video" && videoPlayer && webcamOn ? (
           <video ref={webcamRef} autoPlay muted playsInline webkitPlaysInline />
         ) : (

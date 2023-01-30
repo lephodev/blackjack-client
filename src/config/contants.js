@@ -9,6 +9,11 @@ const env = {
     serverUrl: "https://blackjack-api.scrooge.casino",
     landingClient: "https://scrooge.casino",
   },
+  design: {
+    landingServerUrl: "https://api.scrooge.casino/v1",
+    serverUrl: "https://blackjack-api.scrooge.casino",
+    landingClient: "http://localhost:3000",
+  },
 };
 
 export default env.production;

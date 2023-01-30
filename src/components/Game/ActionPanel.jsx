@@ -15,7 +15,7 @@ const ActionPanel = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleAction = useCallback(
     (val) => {
-      console.log("val", val);
+      // console.log("val", val);
       setActionCompleted(false);
       debounce((value) => {
         // if previous action is not completed then pause the button till then

@@ -51,6 +51,7 @@ import { useMediaQuery } from "react-responsive";
 import { blackjackInstance } from "../../utils/axios.config";
 import EnterAmountPopup from "./enterAmountPopup";
 import ChatHistory from "../chat/chatHistory";
+import rotateAnime from "../../imgs/animation/rotate.gif"
 
 let userId;
 let handleBetIntervel;
@@ -106,6 +107,7 @@ const Game = () => {
   const [userData, setUserData] = useState(null);
   const [retryIfUserNotJoin, setRetryIfUserNotJoin] = useState(false);
   const [refillSitInAmount, setRefillSitInAmount] = useState(false);
+  const [rotation, setRotation] = useState(false);
 
   const [openChatHistory, setOpenChatHistory] = useState(false);
 
@@ -127,6 +129,7 @@ const Game = () => {
   });
   const isMiniMobile = useMediaQuery({ query: "(max-width: 450px)" });
   const isLandscape = useMediaQuery({ query: "(max-height: 480px) and (orientation: landscape)" })
+  const isPortrait = useMediaQuery({ query: "(max-width: 768px) and (orientation: portrait)" })
 
   const handleClose = () => setIsTourOPen(false);
 
@@ -298,6 +301,7 @@ const Game = () => {
 
   useEffect(() => {
     const isLoggedIn = async () => {
+
       let urlParams = getQueryParams();
       // console.log({ urlParams });
       // let user;
@@ -306,7 +310,6 @@ const Game = () => {
       }
 
       const checkAuth = await userUtils.getAuthUserData();
-
       if (!checkAuth.success) {
         return (window.location.href = `${CONSTANTS.landingClient}`);
       }
@@ -804,6 +807,14 @@ const Game = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  useEffect(() => {
+    if (isPortrait) {
+      setRotation(true);
+      setTimeout(() => {
+        setRotation(false);
+      }, 3000)
+    }
+  }, [isPortrait])
 
   // const LastBetAmt = () =>{
   //   setLastBet(players.find((el) => el.id === userId)?.betAmount);
@@ -864,34 +875,37 @@ const Game = () => {
           betAmount={players.find((el) => el.id === userId)?.betAmount}
           ticket={players.find((el) => el.id === userId)?.ticket}
         />
-
+        <div className={rotation ? 'rotateToLandscape' : 'rotateToLandscape-hide'} >
+          <img src={rotateAnime} alt="" />
+          </div>
         <div className="players-wrapper">
           <div
             className="player-wrapper-content"
             style={{
               position: "absolute",
-              top: "25%",
+              top: "-2%",
               left: "50%",
               width: "1927px",
               height: "100%",
               transform: isDesktop
-                ? `translate(-50%, -${topValue * 0}%) scale(${(scaleValue * 1.4) / 100
+                ? `translate(-50%, -${topValue * 0}%) scale(${(scaleValue * 1.1) / 100
                 })`
-                : isLandscape ? `translate(-50%, -${topValue * 1}%) scale(${(scaleValue * 1.05) / 100
-                  })` : isTablet
-                  ? `translate(-50%, -${topValue * 0.4}%) scale(${(scaleValue * 1.4) / 100
+                : isLandscape ? `translate(-50%, -${topValue * 0.8}%) scale(${(scaleValue * 0.8) / 100
                   })`
-                  : isBigMobile
-                    ? `translate(-50%, -${topValue * 0.85}%) scale(${(scaleValue * 1.5) / 100
+                  : isTablet
+                    ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                     })`
-                    : isMobile
-                      ? `translate(-50%, -${topValue * 0.78}%) scale(${(scaleValue * 1.8) / 100
+                    : isBigMobile
+                      ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                       })`
-                      : isMiniMobile
-                        ? `translate(-50%, -${topValue * 0.65}%) scale(${(scaleValue * 1.8) / 100
+                      : isMobile
+                        ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                         })`
-                        :
-                        `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
+                        : isMiniMobile
+                          ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
+                          })`
+                          :
+                          `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
             }}
           >
             <div className="blackjack-table">
@@ -1141,7 +1155,7 @@ const Game = () => {
         accentColor="#5cb7b7"
       /> */}
       {winUser ? <WinPopup /> : ""}
-    </div>
+    </div >
   );
 };
 

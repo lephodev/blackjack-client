@@ -1,4 +1,4 @@
-import dealerPic from '../../imgs/blackjack/dealer-lady1.png';
+// import dealerPic from '../../imgs/blackjack/dealer-lady1.png';
 import back from '../../imgs/blackjack/cards/Black-Card.png';
 
 const Dealer = ({ dealer, players }) => {
@@ -7,9 +7,9 @@ const Dealer = ({ dealer, players }) => {
       className={`dealer ${`deal-${
         players.length === 2 ? 3 : players.length
       }`}`}>
-      <div className='dealer-avatar'>
+      {/* <div className='dealer-avatar'>
         <img src={dealerPic} alt='' />
-      </div>
+      </div> */}
       {dealer?.cards.length ? (
         <div className='dealer-cards-box'>
           {dealer?.cards.map((card, i) => (
