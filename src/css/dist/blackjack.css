@@ -60,12 +60,13 @@ button {
   height: 100%;
 }
 
+
 .blackjack-table {
-  max-width: 920px;
+  max-width: 1540px;
   width: 100%;
-  background: url(../../imgs//blackjack/newTable2.png);
+  background: url(../../imgs/blackjack/newTable.png);
   margin: 0px auto;
-  height: 480px;
+  height: 800px;
   position: relative;
   background-size: cover;
 }
@@ -105,7 +106,10 @@ button {
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
+  background: #4f483e5e;
+  backdrop-filter: blur(6px);
+  padding: 10px 10px 20px 10px;
 }
 
 /* .bets-wrapper.hide-panel {
@@ -352,7 +356,7 @@ input[type="number"] {
 /******************** Dealer *******************/
 .dealer {
   position: absolute;
-  top: -180px;
+  top: 105px;
   left: 50%;
   transform: translateX(-50%);
   color: #fff;
@@ -381,7 +385,7 @@ input[type="number"] {
 }
 
 .dealer-card {
-  width: 60px;
+  width: 66px;
   margin-left: -24px;
 }
 
@@ -417,7 +421,7 @@ input[type="number"] {
 .dealer-sum span {
   display: block;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /******************** Players *******************/
@@ -443,7 +447,7 @@ input[type="number"] {
 } */
 
 .blackjack-players {
-  max-width: 122px;
+  max-width: 160px;
   position: absolute;
   width: 100%;
 }
@@ -462,8 +466,8 @@ input[type="number"] {
 }
 
 .blackjack-player-avatar img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border: 2px solid rgba(42, 42, 42, 0.5);
   border-radius: 100%;
@@ -471,8 +475,8 @@ input[type="number"] {
 }
 
 .blackjack-player-avatar video {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border: 2px solid #1b1f2e;
   border-radius: 100%;
@@ -488,13 +492,13 @@ input[type="number"] {
 .blackjack-player-name {
   background: rgb(42 42 42);
   text-align: center;
-  color: #bfbfbf;
-  padding: 5px;
+  color: #cfcfcf;
+  padding: 5px 10px;
   border-radius: 50px;
   border: 1px solid #2a2a2a;
-  font-size: 16px;
-  font-weight: 400;
-  max-width: 150px;
+  font-size: 20px;
+  font-weight: 500;
+  max-width: 160px;
   margin: 0px auto;
   word-break: break-all;
   display: -webkit-box;
@@ -504,13 +508,13 @@ input[type="number"] {
 }
 
 .blackjack-players-container .player1 {
-  bottom: 200px;
-  right: -92px;
+  bottom: 320px;
+  right: -90px;
 }
 
 .blackjack-players-container .player2 {
-  bottom: 10px;
-  right: 10px;
+  bottom: 25px;
+  right: 80px;
 }
 
 .blackjack-players-container .player3 {
@@ -520,7 +524,7 @@ input[type="number"] {
 }
 
 .blackjack-players-container .player4 {
-  bottom: -120px;
+  bottom: -130px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -532,13 +536,13 @@ input[type="number"] {
 }
 
 .blackjack-players-container .player6 {
-  bottom: 10px;
-  left: 10px;
+  bottom: 25px;
+  left: 80px;
 }
 
 .blackjack-players-container .player7 {
-  bottom: 200px;
-  left: -92px;
+  bottom: 320px;
+  left: -90px;
 }
 
 .player-cards-box {
@@ -911,7 +915,7 @@ input[type="number"] {
 }
 
 .collect-slotcoin.win-slottype-one img {
-  width: 150px;
+  width: 200px;
   margin-top: 42%;
 }
 
@@ -1287,7 +1291,7 @@ div#info-rules .card-box {
   padding: 2px 5px;
   padding-left: 12px;
   border-radius: 20px;
-  font-size: 14px;
+  font-size: 16px;
   position: relative;
   width: 80px;
   display: block;
@@ -1300,14 +1304,14 @@ div#info-rules .card-box {
 .user-bet-amount span:before {
   content: "";
   background: url(../../imgs/chips/Casino_Chip_Black.svg);
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
   position: absolute;
-  left: -12px;
-  top: -2px;
+  left: -14px;
+  top: -1px;
 }
 
 @keyframes mymove {
@@ -1593,7 +1597,7 @@ button .spinner-border {
 
 .player-with-icons {
   position: relative;
-  max-width: 150px;
+  max-width: 160px;
   margin: 0px auto;
   width: 100%;
 }
@@ -1784,6 +1788,8 @@ button .spinner-border {
     scale: 0.8;
     transform: translate(15%, 10%);
     padding: 16px 10px 10px 10px;
+    background: #4f483e00;
+    backdrop-filter: blur(0px);
   }
 }
 
@@ -1843,6 +1849,8 @@ button .spinner-border {
     transform: translateX(50%);
     gap: 15px;
     scale: unset;
+    background: #4f483e00;
+    backdrop-filter: blur(0px);
   }
 
   .tour-content {
@@ -2010,15 +2018,15 @@ button .spinner-border {
     margin-top: 150%;
     width: 120px;
   }
-
+/* 
   .dealer {
     top: -164px;
-  }
+  } */
 
-  .blackjack-table {
+  /* .blackjack-table {
     height: 446px;
     max-width: 880px;
-  }
+  } */
 
   .floating-menu.open {
     display: flex;
@@ -2114,6 +2122,8 @@ button .spinner-border {
   .bets-wrapper {
     right: 10px;
     transform: unset;
+    background: #4f483e00;
+    backdrop-filter: blur(0px);
   }
 
   .bet-amt-range .input-range__track {
@@ -2149,7 +2159,7 @@ button .spinner-border {
   }
 
   #users-online-box {
-    top: 100px;
+    top: 140px;
   }
 
   .bets-wrapper {
@@ -2249,6 +2259,7 @@ button .spinner-border {
 
   .count-1 .blackjack-players {
     max-width: 200px;
+    scale: 1.2;
   }
 
   .count-1 .blackjack-player-avatar img {
@@ -2274,12 +2285,16 @@ button .spinner-border {
   .count-1 .blackjack-player-avatar .battery svg.CircularProgressbar {
     width: 170px;
   }
-
+  .count-2 .blackjack-players {
+    max-width: 150px;
+    scale: 1.2;
+  }
   /* count 3  */
 
   .count-3 .blackjack-players {
     max-width: 150px;
-    bottom: -96px !important;
+    bottom: -70px !important;
+    scale: 1.2;
   }
 
   .count-3 .blackjack-player-avatar img {
@@ -2300,6 +2315,9 @@ button .spinner-border {
   .count-3 .player-card {
     width: 80px;
   }
+  .count-3 .blackjack-players.player4 {
+    bottom: -120px !important;
+  }
 
   /* count 4  */
 
@@ -2311,6 +2329,7 @@ button .spinner-border {
 
   .count-4 .blackjack-players {
     max-width: 150px;
+    scale: 1.2;
   }
 
   .count-4 .blackjack-player-avatar img {
@@ -2361,6 +2380,7 @@ button .spinner-border {
 
   .count-6 .blackjack-players {
     max-width: 150px;
+    scale: 1;
   }
 
   .count-6 .blackjack-player-avatar img {
@@ -2385,7 +2405,8 @@ button .spinner-border {
   /* count 7  */
 
   .count-7 .blackjack-players {
-    max-width: 150px;
+    max-width: 140px;
+    scale: 1;
   }
 
   .count-7 .blackjack-player-avatar img {
@@ -2408,12 +2429,12 @@ button .spinner-border {
   }
 
   .count-7 .blackjack-players.player7 {
-    bottom: 210px;
+    bottom: 310px;
     left: -60px;
   }
 
   .count-7 .blackjack-players.player1 {
-    bottom: 210px;
+    bottom: 310px;
     right: -60px;
   }
 
@@ -2471,8 +2492,8 @@ button .spinner-border {
   }
 
   .collect-slotcoin.win-slottype-one img {
-    width: 120px;
-    margin-top: 42%;
+    width: 76px;
+    margin-top: -90%;
   }
 
   .dealer-sum span {
@@ -2527,6 +2548,7 @@ button .spinner-border {
 
   .count-1 .blackjack-players {
     max-width: 200px;
+    scale: 1.2;
   }
 
   .count-1 .blackjack-player-avatar img {
@@ -2557,6 +2579,7 @@ button .spinner-border {
 
   .count-3 .blackjack-players {
     max-width: 150px;
+    scale: 1.2;
   }
 
   .count-3 .blackjack-player-avatar img {
@@ -2588,6 +2611,7 @@ button .spinner-border {
 
   .count-4 .blackjack-players {
     max-width: 150px;
+    scale: 1.2;
   }
 
   .count-4 .blackjack-player-avatar img {
@@ -2613,6 +2637,7 @@ button .spinner-border {
 
   .count-5 .blackjack-players {
     max-width: 150px;
+    scale: 1.2;
   }
 
   .count-5 .blackjack-player-avatar img {
@@ -2638,6 +2663,7 @@ button .spinner-border {
 
   .count-6 .blackjack-players {
     max-width: 150px;
+    scale: 1.2;
   }
 
   .count-6 .blackjack-player-avatar img {
@@ -2663,6 +2689,7 @@ button .spinner-border {
 
   .count-7 .blackjack-players {
     max-width: 150px;
+    scale: 1.2;
   }
 
   .count-7 .blackjack-player-avatar img {
@@ -2685,12 +2712,10 @@ button .spinner-border {
   }
 
   .count-7 .blackjack-players.player7 {
-    bottom: 210px;
     left: -60px;
   }
 
   .count-7 .blackjack-players.player1 {
-    bottom: 210px;
     right: -60px;
   }
 
