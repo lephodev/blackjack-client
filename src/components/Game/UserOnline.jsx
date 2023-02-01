@@ -2,6 +2,7 @@ import { FaAngleRight } from 'react-icons/fa';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import users from "../../imgs/blackjack/user1.png"
+import numFormatter from '../../config/utils';
 
 const UserOnline = ({ userOnlinePanel, players }) => {
   const wrapperRef = useRef(null);
@@ -43,7 +44,7 @@ const UserOnline = ({ userOnlinePanel, players }) => {
               </div>
               <div>
                 Balance:{' '}
-                <span className='users-list-balance'>{item.wallet}</span>
+                <span className='users-list-balance'>{numFormatter(item.wallet)}</span>
               </div>
             </div>
             <div className='users-list-img'>
@@ -52,8 +53,8 @@ const UserOnline = ({ userOnlinePanel, players }) => {
                   item.avatar
                     ? item.avatar
                     : item.photoURI
-                    ? item.photoURI
-                    : users
+                      ? item.photoURI
+                      : users
                 }
                 alt='avatar'
               />
