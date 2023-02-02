@@ -158,7 +158,7 @@ form.form-inline {
 }
 
 .triangle-isosceles.left {
-  word-break: break-word;
+  word-break: keep-all;
 }
 
 .start-game-btn p {
