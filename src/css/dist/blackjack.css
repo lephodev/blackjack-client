@@ -62,11 +62,11 @@ button {
 
 
 .blackjack-table {
-  max-width: 1540px;
+  max-width: 1450px;
   width: 100%;
   background: url(../../imgs/blackjack/newTable.png);
   margin: 0px auto;
-  height: 800px;
+  height: 760px;
   position: relative;
   background-size: cover;
 }
