@@ -1,8 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { socket } from "../../config/socket";
 // import logo from "../../assets/game/logo-poker.png";
 import avtar from "../../imgs/blackjack/user.jpg";
 
-const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistory }) => {
+const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistory, chatMessage, userId, scrollToBottom, scrollDownRef, openEmoji, setOpenEmoji }) => {
+
+    const [typing, setTyping] = useState(false);
+
     const wrapperRef = useRef(null);
 
     const useOutsideAlerter = (ref) => {
@@ -21,30 +25,50 @@ const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistor
 
     useOutsideAlerter(wrapperRef);
 
+    useEffect(() => {
+        if (openChatHistory) {
+            scrollToBottom();
+        }
+    });
+
+    useEffect(() => {
+        socket.on("updateTypingState", (data) => {
+            const { CrrUserId, typing } = data;
+            if (CrrUserId !== userId) setTyping(typing);
+        });
+    })
+
+
     return (
         <div
-            className={`chatHistory-Container ${!openChatHistory ? "" : "expand"}`}
+            className={`chatHistory-Container ${ !openChatHistory ? "" : "expand" }`}
             ref={wrapperRef}
         >
             <div className="chatHistory-header">
                 {/* <img className="Chatgame-logo " src={logo} alt="" /> */}
-                <div className="Chatgame-title"> Chat History</div>
-                <div className="Gameplayer-count">
+                <div className="Chatgame-title"> Chat History <span>{typing ? "Typing..." : ""}</span></div>
+                {/* <div className="Gameplayer-count">
                     <div className="greendot" /> <h4>Players</h4>
                     <h3>5</h3>
-                </div>
+                </div> */}
                 <div className="hamburger" onClick={handleOpenChatHistory}>
                     <div className="line"></div>
                     <div className="line"></div>
                 </div>
             </div>
             <div className="chatHistory-comments">
-                <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div>
-                <div className="playerComment-box playerSelfMssg">
+                {chatMessage?.map(chat => {
+                    return (
+                        <div className={chat.userId === userId ? "playerComment-box playerSelfMssg" : "playerComment-box"}>
+                            <img src={chat.profile ? chat.profile : avtar} alt="profile_image" />
+                            <div className="playerName">{chat.firstName}</div>
+                            <p>{chat.message}</p>
+                        </div>
+                    )
+                })
+                }
+
+                {/* <div className="playerComment-box playerSelfMssg">
                     <img src={avtar} alt="" />
                     <div className="playerName">Admin</div>
                     <p>
@@ -56,43 +80,9 @@ const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistor
                         dklfjklgjdfklgjdfjgdfjgkljdflgjkldfjgldfjgljdfklgjkldfj mssg
                         content .... content ....
                     </p>
-                </div>
-                <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div> <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div> <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div> <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div> <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div> <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div> <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div> <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
-                </div> <div className="playerComment-box">
-                    <img src={avtar} alt="" />
-                    <div className="playerName">Admin</div>
-                    <p>hi this chat history</p>
+                </div> */}
+                <div style={{ float: "left", clear: "both" }}
+                    ref={scrollDownRef}>
                 </div>
             </div>
         </div>
