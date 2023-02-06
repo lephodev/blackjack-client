@@ -108,11 +108,17 @@ const Game = () => {
   const [retryIfUserNotJoin, setRetryIfUserNotJoin] = useState(false);
   const [refillSitInAmount, setRefillSitInAmount] = useState(false);
   const [rotation, setRotation] = useState(false);
+  const [chatMessage, setChatMessage] = useState([]);
+  const [unReadMessages, setUnReadMessages] = useState(0);
+  const [openEmoji, setOpenEmoji] = useState(false);
 
   const [openChatHistory, setOpenChatHistory] = useState(false);
 
   const handleOpenChatHistory = () => {
+    socket.emit('updateChatIsRead', { tableId, userId });
+    setUnReadMessages(0);
     setOpenChatHistory(!openChatHistory);
+    setOpenEmoji(false);
   };
 
   const isDesktop = useMediaQuery({
@@ -160,6 +166,8 @@ const Game = () => {
 
   const handleClick = () => {
     setOpen(!open);
+    setOpenEmoji(false);
+
   };
   const handleSitin = (sitInAmount) => {
     let urlParams = getQueryParams();
@@ -306,12 +314,12 @@ const Game = () => {
       // console.log({ urlParams });
       // let user;
       if (!localStorage.getItem("token") && !getCookie("token")) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
 
       const checkAuth = await userUtils.getAuthUserData();
       if (!checkAuth.success) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
 
       // console.log({urlParams:window.location.search})
@@ -325,7 +333,7 @@ const Game = () => {
         // Join user if he is already or new user in game
         if (table) {
           const playerInTable = await blackjackInstance().get(
-            `/getTablePlayers/${table}`
+            `/getTablePlayers/${ table }`
           );
           // Let user join in game
           if (playerInTable.data.players.find((el) => el.id === userId)) {
@@ -395,13 +403,14 @@ const Game = () => {
       setExchangeRate(users.exchangeRate);
     });
     socket.on("gameCreated", (data) => {
-      return (window.location.href = `${window.location.origin}/game?tableid=${data.tableId}&gameCollection=Blackjack_Tables`);
+      return (window.location.href = `${ window.location.origin }/game?tableid=${ data.tableId }&gameCollection=Blackjack_Tables`);
       // setRoomData(data.game);
       // updatePlayers(data.game);
       // setLoader(false);
     });
 
     socket.on("newPlayer", (data) => {
+      console.log({ data })
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
@@ -414,10 +423,12 @@ const Game = () => {
     });
 
     socket.on("updateRoom", (data) => {
+      console.log("updated room data: ", data)
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
       setRetryIfUserNotJoin(false);
+      setChatMessage(data.chats);
       setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
       let me = data.players.find((el) => el.id === userId);
       if (me?.wallet === 0 && me?.betAmount === 0) {
@@ -465,7 +476,7 @@ const Game = () => {
 
     socket.on("playerReady", (data) => {
       toast.success(
-        `${data.name} is ready`,
+        `${ data.name } is ready`,
         { id: data.name },
         { id: data.name }
       );
@@ -503,7 +514,7 @@ const Game = () => {
     socket.on("notAuthorized", () => {
       setLoader(false);
       toast.error(`Not authorized please login`, { id: "logout" });
-      return (window.location.href = `${CONSTANTS.landingClient}`);
+      return (window.location.href = `${ CONSTANTS.landingClient }`);
     });
 
     socket.on("gameStarted", () => {
@@ -519,7 +530,7 @@ const Game = () => {
     });
 
     socket.on("timeout", (data) => {
-      toast.error(`Timeout ${data.name} is auto stand`, { id: "timeout" });
+      toast.error(`Timeout ${ data.name } is auto stand`, { id: "timeout" });
     });
     socket.on("slotFull", () => {
       setLoader(false);
@@ -719,7 +730,7 @@ const Game = () => {
 
   const playSound = (value) => {
     setTimeout(() => {
-      let aud = document.getElementsByClassName(`audio-${value}`)[0];
+      let aud = document.getElementsByClassName(`audio-${ value }`)[0];
       if (aud) {
         aud.play();
       }
@@ -727,7 +738,7 @@ const Game = () => {
   };
 
   const stopSound = (value) => {
-    let aud = document.getElementsByClassName(`audio-${value}`)[0];
+    let aud = document.getElementsByClassName(`audio-${ value }`)[0];
     if (aud) {
       aud.pause();
       aud.currentTime = 0;
@@ -814,14 +825,40 @@ const Game = () => {
         setRotation(false);
       }, 3000)
     }
-  }, [isPortrait])
+  }, [isPortrait]);
+
+  useEffect(() => {
+    socket.on("updateChat", async (data) => {
+      console.log("updated chat", data);
+      console.log("user id", userId);
+      const { chat } = data;
+      setChatMessage(chat);
+      if (openChatHistory) {
+        setUnReadMessages(0);
+        socket.emit('updateChatIsRead', { tableId, userId });
+      } else {
+        let unReadMsgsCnt = 0;
+        chat.forEach(msg => {
+          if (msg.userId !== userId && msg.seenBy.indexOf(userId) < 0) unReadMsgsCnt++
+        });
+        console.log("unReadMsgsCnt ==>", unReadMsgsCnt)
+        setUnReadMessages(unReadMsgsCnt);
+      }
+    });
+  });
+
+  const scrollDownRef = useRef(null);
+
+  const scrollToBottom = () => {
+    scrollDownRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   // const LastBetAmt = () =>{
   //   setLastBet(players.find((el) => el.id === userId)?.betAmount);
   // }
 
   return (
-    <div className={`blackjack-game ${loader ? "loaderactive" : ""}`}>
+    <div className={`blackjack-game ${ loader ? "loaderactive" : "" }`}>
       {loader && (
         <div className="blackjack-loader">
           <img src={loaderImg} alt="loader-Scrooge Casino" />
@@ -840,12 +877,19 @@ const Game = () => {
       <div className="containerFor-chatHistory">
         <div className="chatHistory-icon" onClick={handleOpenChatHistory}>
           <button className="UsersCommentsBtns">Chat History</button>
+          {unReadMessages !== 0 ? <p>{unReadMessages}</p> : ""}
         </div>
 
         <ChatHistory
           setOpenChatHistory={setOpenChatHistory}
           openChatHistory={openChatHistory}
           handleOpenChatHistory={handleOpenChatHistory}
+          chatMessage={chatMessage}
+          userId={userId}
+          scrollToBottom={scrollToBottom}
+          scrollDownRef={scrollDownRef}
+          openEmoji={openEmoji}
+          setOpenEmoji={setOpenEmoji}
         />
       </div>
 
@@ -877,7 +921,7 @@ const Game = () => {
         />
         <div className={rotation ? 'rotateToLandscape' : 'rotateToLandscape-hide'} >
           <img src={rotateAnime} alt="" />
-          </div>
+        </div>
         <div className="players-wrapper">
           <div
             className="player-wrapper-content"
@@ -888,24 +932,24 @@ const Game = () => {
               width: "1927px",
               height: "100%",
               transform: isDesktop
-                ? `translate(-50%, -${topValue * 0}%) scale(${(scaleValue * 1.1) / 100
+                ? `translate(-50%, -${ topValue * 0 }%) scale(${ (scaleValue * 1.1) / 100
                 })`
-                : isLandscape ? `translate(-50%, -${topValue * 0.8}%) scale(${(scaleValue * 0.8) / 100
+                : isLandscape ? `translate(-50%, -${ topValue * 0.8 }%) scale(${ (scaleValue * 0.8) / 100
                   })`
                   : isTablet
-                    ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
+                    ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
                     })`
                     : isBigMobile
-                      ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
+                      ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
                       })`
                       : isMobile
-                        ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
+                        ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
                         })`
                         : isMiniMobile
-                          ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
+                          ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
                           })`
                           :
-                          `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
+                          `translate(-50%, -${ topValue }%) scale(${ scaleValue / 100 })`,
             }}
           >
             <div className="blackjack-table">
@@ -1034,6 +1078,8 @@ const Game = () => {
         open={open}
         userId={userId}
         tableId={tableId}
+        openEmoji={openEmoji}
+        setOpenEmoji={setOpenEmoji}
       />
       {/* <NewBuyInPopup
         setBuyinPopup={setShowBuyInPopup}
