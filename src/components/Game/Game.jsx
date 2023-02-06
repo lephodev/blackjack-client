@@ -888,7 +888,7 @@ const Game = () => {
               width: "1927px",
               height: "100%",
               transform: isDesktop
-                ? `translate(-50%, -${topValue * 0}%) scale(${(scaleValue * 1.1) / 100
+                ? `translate(-50%, -${topValue * 0.2}%) scale(${(scaleValue * 1) / 100
                 })`
                 : isLandscape ? `translate(-50%, -${topValue * 0.8}%) scale(${(scaleValue * 0.8) / 100
                   })`
