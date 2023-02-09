@@ -2443,7 +2443,7 @@ button .spinner-border {
   }
 
   .chat-logo img {
-    max-width: 48px;
+    max-width: 100px;
   }
 
   .chat-search.chat-input {
@@ -2724,7 +2724,7 @@ button .spinner-border {
   }
 
   .chat-logo img {
-    max-width: 50px;
+    max-width: 100px;
   }
 
   span.msg-limit {
