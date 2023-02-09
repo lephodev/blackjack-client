@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../../imgs/blackjack/logocoin.png';
+import logo from '../../imgs/blackjack/game1.png';
 import close from '../../imgs/blackjack/close.png';
 import './chat.css';
 import { socket } from '../../config/socket';
