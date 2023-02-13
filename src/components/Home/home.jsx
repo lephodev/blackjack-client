@@ -201,6 +201,7 @@ const Home = () => {
 
       <div className="user-header">
         <div className="container">
+
           <div className="user-header-grid">
             <div className="casino-logo">
               <a href="https://scrooge.casino/">
@@ -276,27 +277,29 @@ const Home = () => {
             </div>
           </div>
 
-          {filterRoom.length > 0 ? (
-            <>
-              <div className="lobby-home-title">
-                <h3>Blackjack Open Tables</h3>
+          <div className="poker-table-content">
+            {filterRoom.length > 0 ? (
+              <>
+                <div className="lobby-home-title">
+                  <h3>Blackjack Open Tables</h3>
+                </div>
+                <div className="home-poker-card-grid">
+                  {filterRoom.map((el) => (
+                    <GameTable data={el} />
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="d-flex flex-column justify-content-center align-items-center create-game-box">
+                <div className="no-room-available">
+                  <h4>No Room Available</h4>
+                  <button type="button" onClick={handleShow}>
+                    Create Game
+                  </button>
+                </div>
               </div>
-              <div className="home-poker-card-grid">
-                {filterRoom.map((el) => (
-                  <GameTable data={el} />
-                ))}
-              </div>
-            </>
-          ) : (
-            <div className="d-flex flex-column justify-content-center align-items-center create-game-box">
-              <div className="no-room-available">
-                <h4>No Room Available</h4>
-                <button type="button" onClick={handleShow}>
-                  Create Game
-                </button>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>

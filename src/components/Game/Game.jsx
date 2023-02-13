@@ -829,8 +829,6 @@ const Game = () => {
 
   useEffect(() => {
     socket.on("updateChat", async (data) => {
-      console.log("updated chat", data);
-      console.log("user id", userId);
       const { chat } = data;
       setChatMessage(chat);
       if (openChatHistory) {
@@ -841,7 +839,6 @@ const Game = () => {
         chat.forEach(msg => {
           if (msg.userId !== userId && msg.seenBy.indexOf(userId) < 0) unReadMsgsCnt++
         });
-        console.log("unReadMsgsCnt ==>", unReadMsgsCnt)
         setUnReadMessages(unReadMsgsCnt);
       }
     });
@@ -886,6 +883,7 @@ const Game = () => {
           handleOpenChatHistory={handleOpenChatHistory}
           chatMessage={chatMessage}
           userId={userId}
+          roomData={roomData?.players}
           scrollToBottom={scrollToBottom}
           scrollDownRef={scrollDownRef}
           openEmoji={openEmoji}
@@ -932,9 +930,9 @@ const Game = () => {
               width: "1927px",
               height: "100%",
               transform: isDesktop
-                ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 1) / 100
+                ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 1.1) / 100
                 })`
-                : isLandscape ? `translate(-50%, -${ topValue * 0.8 }%) scale(${ (scaleValue * 0.8) / 100
+                : isLandscape ? `translate(-50%, -${ topValue * 0.8 }%) scale(${ (scaleValue * 0.9) / 100
                   })`
                   : isTablet
                     ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
