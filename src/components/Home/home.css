@@ -96,8 +96,9 @@
 .home-poker-content {
   position: relative;
   background: #141414;
-  border: 1px solid #111;
+  border: 1px solid #252525;
   border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgb(72 72 72 / 20%);
   overflow: hidden;
 }
 
@@ -122,7 +123,7 @@
   width: 100%;
   padding: 6px 12px;
   background: #f9ff00;
-  border-radius: 8px;
+  border-radius: 30px;
   font-weight: 600;
   font-size: 12px;
   border: 1px solid #f9ff00;
@@ -134,20 +135,30 @@
   padding-bottom: 40px;
 }
 
+.poker-table-content {
+  background: #141414;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 20px;
+  border: 1px solid #1f1e1e;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+}
+
+
 .lobby-home-title {
   display: inline-block;
   position: relative;
 }
 
 .lobby-home-title h3 {
-  padding-top: 22px;
+  padding-top: 2px;
   padding-bottom: 30px;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 20px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #fff;
+  color: #f9ff00;
   margin: 0;
   display: inline-block;
   position: relative;
@@ -180,10 +191,11 @@
 }
 
 .user-header {
-  margin-bottom: 65px;
+  margin-bottom: 50px;
   padding: 5px 0px 5px;
   background: #141414;
-  border-bottom: 1px solid #f9ff00;
+  border-bottom: 1px solid #1f1e1e;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 
 .user-header-grid {
@@ -195,7 +207,7 @@
 .user-info-box p {
   margin: 0;
   font-weight: 500;
-  color: #f9ff00;
+  color: #ffffff;
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -203,10 +215,24 @@
   position: relative;
 }
 
+.modal-backdrop.show {
+  opacity: 0.7;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100vw;
+  height: 100vh;
+  background-color: #2d2d2d;
+}
+
 .create-game-box button {
   padding: 8px 20px;
   background: #f9ff00;
-  border-radius: 8px;
+  border-radius: 30px;
   font-weight: 500;
   border: 1px solid #f9ff00;
   height: 42px;
@@ -272,6 +298,7 @@
 }
 
 .user-info-box button svg {
+  margin-bottom: 4px;
   width: 14px;
   height: 14px;
 }
@@ -359,8 +386,8 @@
 }
 
 .modal-footer .btn.btn-secondary {
-  background-color: #545b62 !important;
-  border-color: #4e555b !important;
+  background-color: #4b4b4b !important;
+  border-color: #4b4b4b !important;
   color: #fff !important;
 }
 
@@ -494,12 +521,13 @@ input[type="number"] {
   .home-poker-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
- 
+
   .user-header-grid {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
   }
+
   .create-game-box {
     margin-top: 10px;
     display: flex;
@@ -572,11 +600,11 @@ input[type="number"] {
   font-weight: 400;
   line-height: 1.5;
   color: #eaeaea !important;
-  border: 1px solid #35373f !important;
-  background: #35373f !important;
+  background: #141414 !important;
+  border: 1px solid #1f1e1e !important;
   background-clip: padding-box;
   /* border: 1px solid #ced4da; */
-  border-radius: 8px;
+  border-radius: 30px;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
