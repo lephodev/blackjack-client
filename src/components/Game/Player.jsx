@@ -25,8 +25,8 @@ const Player = ({
   const [messageBy, setMessageBy] = useState();
   const webcamRef = useRef(null);
   const micRef = useRef(null);
-  const onStreamEnabled = (stream) => {};
-  const onStreamDisabled = (stream) => {};
+  const onStreamEnabled = (stream) => { };
+  const onStreamDisabled = (stream) => { };
   const { webcamStream, micStream, webcamOn, micOn } = useParticipant(
     participantId,
     {
@@ -34,7 +34,7 @@ const Player = ({
       onStreamDisabled,
     }
   );
-  // console.log("player----", player)
+  console.log("player---->", player)
   useEffect(() => {
     if (webcamRef.current) {
       if (webcamOn) {
@@ -83,19 +83,17 @@ const Player = ({
   }, []);
   return (
     <div
-      className={`blackjack-players player${
-        videoPlayer ? videoPlayer?.position : player?.position
-      } ${player?.turn ? "active-player" : ""}`}
+      className={`blackjack-players player${ videoPlayer ? videoPlayer?.position : player?.position
+        } ${ player?.turn ? "active-player" : "" }`}
       key={player?.id}
     >
       {player?.isSplitted ? (
         <div className="split-result">
           {player?.cards.map((splitHand, i) => (
             <div
-              className={`player-cards-box split ${
-                player.splitIndex === i ? "activeCard" : ""
-              }`}
-              key={`item-${i}`}
+              className={`player-cards-box split ${ player.splitIndex === i ? "activeCard" : ""
+                }`}
+              key={`item-${ i }`}
             >
               {splitHand?.map((card, l) => (
                 <div
@@ -103,54 +101,53 @@ const Player = ({
                   key={card.value.card + card.suit + l}
                 >
                   <img
-                    src={`/cards/${card.value.card + card.suit}.svg`}
+                    src={`/cards/${ card.value.card + card.suit }.svg`}
                     alt=""
                   />
                 </div>
               ))}
               <div className="player-sum">
-                <span key={`item-${i}`} className="split-sum">
+                <span key={`item-${ i }`} className="split-sum">
                   {typeof player.splitSum[i] === "number"
-                    ? `(${player.splitSum[i]}),`
-                    : `(${player.splitSum[i].join(", ")}),`}
+                    ? `(${ player.splitSum[i] }),`
+                    : `(${ player.splitSum[i].join(", ") }),`}
                 </span>
               </div>
               <div className="split-game-result">
                 {player.isPlaying && gameFinish ? (
                   <div
-                    className={`player-result split-result ${
-                      player.splitSum[i] > 21
-                        ? "busted"
-                        : player.hands[
-                            player.hands.length - player.splitSum.length + i
-                          ]?.action === "blackjack-win"
+                    className={`player-result split-result ${ player.splitSum[i] > 21
+                      ? "busted"
+                      : player.hands[
+                        player.hands.length - player.splitSum.length + i
+                      ]?.action === "blackjack-win"
                         ? "blackjack"
                         : player.hands[
-                            player.hands.length - player.splitSum.length + i
-                          ]?.action === "game-draw"
-                        ? "draw"
-                        : player.hands[
+                          player.hands.length - player.splitSum.length + i
+                        ]?.action === "game-draw"
+                          ? "draw"
+                          : player.hands[
                             player.hands.length - player.splitSum.length + i
                           ]?.action === "game-win"
-                        ? "win"
-                        : "lose"
-                    }`}
+                            ? "win"
+                            : "lose"
+                      }`}
                   >
                     {player.splitSum[i] > 21
                       ? "Bust"
                       : player.hands[
-                          player.hands.length - player.splitSum.length + i
-                        ]?.action === "blackjack-win"
-                      ? "Blackjack"
-                      : player.hands[
+                        player.hands.length - player.splitSum.length + i
+                      ]?.action === "blackjack-win"
+                        ? "Blackjack"
+                        : player.hands[
                           player.hands.length - player.splitSum.length + i
                         ]?.action === "game-draw"
-                      ? "Draw"
-                      : player.hands[
-                          player.hands.length - player.splitSum.length + i
-                        ]?.action === "game-win"
-                      ? "Win"
-                      : "Lose"}
+                          ? "Draw"
+                          : player.hands[
+                            player.hands.length - player.splitSum.length + i
+                          ]?.action === "game-win"
+                            ? "Win"
+                            : "Lose"}
                   </div>
                 ) : (
                   ""
@@ -163,7 +160,7 @@ const Player = ({
         <div className="player-cards-box">
           {player?.cards?.map((card, l) => (
             <div className="player-card" key={card.value.card + card.suit + l}>
-              <img src={`/cards/${card.value.card + card.suit}.svg`} alt="" />
+              <img src={`/cards/${ card.value.card + card.suit }.svg`} alt="" />
             </div>
           ))}
         </div>
@@ -184,9 +181,9 @@ const Player = ({
       {/* player bet amount */}
       <div className="blackjack-player-avatar">
         {currentPlayer?.id === player?.id &&
-        letTime &&
-        player?.turn &&
-        player.action === "" ? (
+          letTime &&
+          player?.turn &&
+          player.action === "" ? (
           <TimerSeparator time={roomData?.timer} remainingTime={letTime} />
         ) : (
           ""
@@ -200,8 +197,8 @@ const Player = ({
               player.avatar
                 ? player.avatar
                 : player.photoURI
-                ? player.photoURI
-                : users
+                  ? player.photoURI
+                  : users
             }
             alt="off-camera"
           />
@@ -222,18 +219,16 @@ const Player = ({
                     onClick={() => {
                       toggleMic();
                     }}
-                    className={`cursor ${
-                      micOn
-                        ? "fas fa-microphone-alt"
-                        : "fas fa-microphone-alt-slash"
-                    }`}
+                    className={`cursor ${ micOn
+                      ? "fas fa-microphone-alt"
+                      : "fas fa-microphone-alt-slash"
+                      }`}
                   ></i>
                   {roomData?.media === "video" ? (
                     <i
                       onClick={() => toggleWebcam()}
-                      className={`cursor ${
-                        webcamOn ? "fas fa-video" : "fas fa-video-slash"
-                      }`}
+                      className={`cursor ${ webcamOn ? "fas fa-video" : "fas fa-video-slash"
+                        }`}
                     ></i>
                   ) : (
                     ""
@@ -261,32 +256,31 @@ const Player = ({
         )}
       </div>
       {player?.isPlaying &&
-      !player?.isSplitted &&
-      (player?.isBusted || gameFinish || player?.blackjack) ? (
+        !player?.isSplitted &&
+        (player?.isBusted || gameFinish || player?.blackjack) ? (
         <div
-          className={`player-result ${
-            player?.isBusted
-              ? "busted"
-              : player?.hands[player.hands.length - 1]?.action ===
-                  "blackjack-win" || player.blackjack
+          className={`player-result ${ player?.isBusted
+            ? "busted"
+            : player?.hands[player.hands.length - 1]?.action ===
+              "blackjack-win" || player.blackjack
               ? "blackjack"
               : player?.hands[player.hands.length - 1]?.action === "game-draw"
-              ? "draw"
-              : player?.hands[player.hands.length - 1]?.action === "game-win"
-              ? "win"
-              : "lose"
-          }`}
+                ? "draw"
+                : player?.hands[player.hands.length - 1]?.action === "game-win"
+                  ? "win"
+                  : "lose"
+            }`}
         >
           {player?.isBusted
             ? "Bust"
             : player?.hands[player.hands.length - 1]?.action ===
-                "blackjack-win" || player.blackjack
-            ? "Blackjack"
-            : player?.hands[player.hands.length - 1]?.action === "game-draw"
-            ? "Draw"
-            : player?.hands[player.hands.length - 1]?.action === "game-win"
-            ? "Win"
-            : "Lose"}
+              "blackjack-win" || player.blackjack
+              ? "Blackjack"
+              : player?.hands[player.hands.length - 1]?.action === "game-draw"
+                ? "Draw"
+                : player?.hands[player.hands.length - 1]?.action === "game-win"
+                  ? "Win"
+                  : "Lose"}
         </div>
       ) : (
         ""
