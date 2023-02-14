@@ -481,15 +481,15 @@ input[type="number"] {
 
 .create-game-box-avtar h5 {
   margin-bottom: 0px !important;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   margin-top: 2px;
 }
 
 .create-game-box-avtar img {
-  width: 50px;
+  width: 40px;
   border-radius: 50%;
-  height: 50px;
+  height: 40px;
   object-fit: cover;
 }
 
@@ -673,5 +673,9 @@ input[type="number"] {
 
   .poker-tableSearch {
     max-width: 200px;
+  }
+
+  .lobby-home-title h3::after {
+    display: none !important;
   }
 }
