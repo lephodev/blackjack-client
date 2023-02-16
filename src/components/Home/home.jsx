@@ -488,7 +488,7 @@ const AvatarGroup = ({ imgArr }) => {
             </span>
           ))}
       </div>
-      <p>{imgArr?.length || 0} people</p>
+      <p>{imgArr?.length || 0} players</p>
     </div>
   );
 };

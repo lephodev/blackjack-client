@@ -1150,7 +1150,7 @@ div#info-rules .card-box {
 } */
 
 .leave-confirm .modal-content {
-background: #141414;
+  background: #141414;
   color: #fff;
 }
 
@@ -2018,7 +2018,8 @@ button .spinner-border {
     margin-top: 150%;
     width: 120px;
   }
-/* 
+
+  /* 
   .dealer {
     top: -164px;
   } */
@@ -2285,10 +2286,12 @@ button .spinner-border {
   .count-1 .blackjack-player-avatar .battery svg.CircularProgressbar {
     width: 170px;
   }
+
   .count-2 .blackjack-players {
     max-width: 150px;
     scale: 1.2;
   }
+
   /* count 3  */
 
   .count-3 .blackjack-players {
@@ -2315,6 +2318,7 @@ button .spinner-border {
   .count-3 .player-card {
     width: 80px;
   }
+
   .count-3 .blackjack-players.player4 {
     bottom: -120px !important;
   }
@@ -2466,12 +2470,49 @@ button .spinner-border {
 }
 
 /* portrait */
+@media only screen and (max-device-height: 750px) and (orientation: portrait) {
+  #users-online-box {
+    position: fixed;
+    width: 220px;
+    left: -222px;
+    top: 90px;
+  }
+
+  #info-rules {
+    position: absolute;
+    /* right: -1000px; */
+    left: 100vw;
+    top: -20px;
+  }
+
+  .count-7 .blackjack-players.player7 {
+    left: 18% !important;
+    bottom: 52% !important;
+  }
+
+  .count-7 .blackjack-players.player1 {
+    right: 18% !important;
+    bottom: 52% !important;
+  }
+
+  .count-7 .blackjack-players.player2 {
+    right: 20%;
+    bottom: 18%;
+  }
+
+  .count-7 .blackjack-players.player6 {
+    left: 20%;
+    bottom: 18%;
+  }
+}
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 767px) and (orientation: portrait) {
 
-  /* .dealer-card {
-    width: 88px;
-  } */
+  .blackjack-table {
+    background: url(../../imgs/blackjack/tablePortrait.png) no-repeat center;
+    background-size: contain;
+  }
+
   .card-box {
     display: grid;
     grid-template-columns: repeat(5, minmax(14px, 1fr));
@@ -2611,7 +2652,7 @@ button .spinner-border {
 
   .count-4 .blackjack-players {
     max-width: 150px;
-    scale: 1.2;
+    scale: 1.1;
   }
 
   .count-4 .blackjack-player-avatar img {
@@ -2637,7 +2678,7 @@ button .spinner-border {
 
   .count-5 .blackjack-players {
     max-width: 150px;
-    scale: 1.2;
+    scale: 1.1;
   }
 
   .count-5 .blackjack-player-avatar img {
@@ -2663,7 +2704,7 @@ button .spinner-border {
 
   .count-6 .blackjack-players {
     max-width: 150px;
-    scale: 1.2;
+    scale: 1;
   }
 
   .count-6 .blackjack-player-avatar img {
@@ -2685,11 +2726,12 @@ button .spinner-border {
     width: 80px;
   }
 
+
   /* count 7  */
 
   .count-7 .blackjack-players {
     max-width: 150px;
-    scale: 1.2;
+    scale: 1;
   }
 
   .count-7 .blackjack-player-avatar img {
@@ -2712,11 +2754,132 @@ button .spinner-border {
   }
 
   .count-7 .blackjack-players.player7 {
-    left: -60px;
+    left: 23%;
+    bottom: 60%;
   }
 
   .count-7 .blackjack-players.player1 {
-    right: -60px;
+    right: 23%;
+    bottom: 60%;
+  }
+
+  .count-7 .blackjack-players.player2 {
+    right: 24%;
+    bottom: 22%;
+  }
+
+  .count-7 .blackjack-players.player6 {
+    left: 24%;
+    bottom: 22%;
+  }
+
+  .count-7 .blackjack-players.player3 {
+    right: 30%;
+    bottom: -14%;
+  }
+
+  .count-7 .blackjack-players.player5 {
+    left: 30%;
+    bottom: -14%;
+  }
+
+  .count-7 .blackjack-players.player4 {
+    /* right: -60px; */
+    left: 51%;
+    bottom: -22%;
+  }
+
+
+  .count-6 .blackjack-players.player1 {
+    right: 23%;
+    bottom: 60%;
+  }
+
+  .count-6 .blackjack-players.player2 {
+    right: 24%;
+    bottom: 22%;
+  }
+
+  .count-6 .blackjack-players.player6 {
+    left: 24%;
+    bottom: 22%;
+  }
+
+  .count-6 .blackjack-players.player3 {
+    right: 30%;
+    bottom: -14%;
+  }
+
+  .count-6 .blackjack-players.player5 {
+    left: 30%;
+    bottom: -14%;
+  }
+
+  .count-6 .blackjack-players.player4 {
+    /* right: -60px; */
+    left: 51%;
+    bottom: -22%;
+  }
+
+  .count-5 .blackjack-players.player2 {
+    right: 23%;
+    bottom: 46%;
+  }
+
+  .count-5 .blackjack-players.player6 {
+    left: 23%;
+    bottom: 46%;
+  }
+
+  .count-5 .blackjack-players.player3 {
+    right: 30%;
+    bottom: 0%;
+  }
+
+  .count-5 .blackjack-players.player5 {
+    left: 30%;
+    bottom: 0%;
+  }
+
+  .count-5 .blackjack-players.player4 {
+    /* right: -60px; */
+    left: 51%;
+    bottom: -22%;
+  }
+
+  .count-4 .blackjack-players.player2 {
+    right: 23%;
+    bottom: 46%;
+  }
+
+  .count-4 .blackjack-players.player3 {
+    right: 30%;
+    bottom: 0%;
+  }
+
+  .count-4 .blackjack-players.player5 {
+    left: 27%;
+    bottom: 46%;
+  }
+
+  .count-4 .blackjack-players.player4 {
+    left: 30%;
+    bottom: 0%;
+  }
+
+  .count-3 .blackjack-players.player3 {
+    right: 27%;
+    bottom: 10%;
+  }
+
+  .count-3 .blackjack-players.player5 {
+    left: 27%;
+    bottom: 10%;
+  }
+
+  .count-3 .blackjack-players.player4 {
+    left: 51%;
+    bottom: -10%;
   }
 
   .chat-content {

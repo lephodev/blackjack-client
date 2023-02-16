@@ -8,9 +8,11 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
+
 .chatHistory-icon {
   position: relative;
 }
+
 .chatHistory-icon p {
   position: absolute;
   top: 8px;
@@ -25,6 +27,7 @@
   border-radius: 50%;
   font-weight: 500;
 }
+
 .chat-header {
   padding: 0;
   display: flex;
@@ -360,6 +363,7 @@ span.msg-limit {
   border-radius: 0px 20px 20px 0px;
   border: 1px solid #282828;
 }
+
 .Chatgame-title span {
   font-size: 12px;
   color: #bcbcbc;
@@ -439,6 +443,17 @@ span.msg-limit {
 @media only screen and (min-device-width: 280px) and (max-device-width: 767px) and (orientation: portrait) {
   .containerFor-chatHistory {
     position: fixed;
-    top: 80px;
+    top: 48px;
+  }
+
+  #users-online-box {
+    position: fixed;
+    width: 220px;
+    left: -222px;
+    top: 100px;
+  }
+
+  #info-rules {
+    top: -16px;
   }
 }

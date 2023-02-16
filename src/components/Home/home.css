@@ -521,7 +521,11 @@ input[type="number"] {
   .home-poker-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
+  .poker-table-content {
+    padding: 28px;
+  }
+  .user-header {
+    margin-bottom: 30px;}
   .user-header-grid {
     flex-direction: column;
     justify-content: center;
@@ -547,7 +551,6 @@ input[type="number"] {
   }
 
   .lobby-home-title h3 {
-    padding: 30px 0 44px 0;
     font-size: 20px;
     line-height: 20px;
     letter-spacing: 2px;
