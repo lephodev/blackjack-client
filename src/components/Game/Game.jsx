@@ -691,6 +691,7 @@ const Game = () => {
       whole?.forEach((item, i) => {
         players.push({ ...item, position: availablePosition[i] });
       });
+
       setPlayers(players);
       if (players.length !== videoPlayers.length) {
         setVideoPlayers(players);
@@ -911,7 +912,7 @@ const Game = () => {
         />
 
         <UserOnline userOnlinePanel={userOnlinePanel} players={players} />
-        {console.log("useriddddd", players)}
+        {/* {console.log("useriddddd", players)} */}
 
         <WalletBalance
           wallet={players.find((el) => el.id === userId)?.wallet}
@@ -1061,6 +1062,7 @@ const Game = () => {
                 players.find((el) => el.id === userId)?.turn &&
                 players.find((el) => el.id === userId)?.action === "" ? (
                 <ActionPanel
+                  wallet={players.find((el) => el.id === userId)?.wallet}
                   actionopen={actionopen}
                   handleActionOpen={handleActionOpen}
                   tableId={tableId}

@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import Button from "react-bootstrap/Button";
 
 const ActionPanel = ({
+  wallet,
   actionopen,
   handleActionOpen,
   tableId,
@@ -26,16 +27,17 @@ const ActionPanel = ({
         socket.emit(value, {
           tableId,
           userId: player.id,
+          wallet
         });
       }, 300)(val);
     },
-    [actionCompleted, tableId, player.id, setActionCompleted]
+    [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
 
   // console.log('ACS', { actionCompleted });
 
   return (
-    <div className={`user-action-container ${actionopen ? `` : `hide-panel`}`}>
+    <div className={`user-action-container ${ actionopen ? `` : `hide-panel` }`}>
       <div className="user-action-box">
         <button
           className="user-action"
