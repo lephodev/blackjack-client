@@ -2467,6 +2467,11 @@ button .spinner-border {
     height: 42px;
     font-size: 14px;
   }
+
+  .collect-slotcoin.win-slottype-one img {
+    margin-top: 2%;
+    width: 140px;
+  }
 }
 
 /* portrait */
@@ -2481,7 +2486,7 @@ button .spinner-border {
   #info-rules {
     position: absolute;
     /* right: -1000px; */
-    left: 100vw;
+    left: 100vw; 
     top: -20px;
   }
 
@@ -2590,6 +2595,7 @@ button .spinner-border {
   .count-1 .blackjack-players {
     max-width: 200px;
     scale: 1.2;
+    left: 51%;
   }
 
   .count-1 .blackjack-player-avatar img {
