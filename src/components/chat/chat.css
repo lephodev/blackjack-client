@@ -350,7 +350,7 @@ span.msg-limit {
   top: 70px;
   left: -14px;
   cursor: pointer;
-  z-index: 99;
+  z-index: 999;
   padding: 5px;
   border-radius: 50%;
 }
