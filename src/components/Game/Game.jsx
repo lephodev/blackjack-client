@@ -937,7 +937,7 @@ const Game = () => {
                 })`
                 : isLandscape ? `translate(-50%, -${topValue * 0.8}%) scale(${(scaleValue * 0.9) / 100
                   })`
-                  : isPhoneSE ? `translate(-50%, -${topValue * 0.45}%) scale(${(scaleValue * 2) / 100
+                  : isPhoneSE ? `translate(-50%, -${topValue * 0.4}%) scale(${(scaleValue * 2) / 100
                     })`
                     : isTablet
                       ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100

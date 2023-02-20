@@ -116,9 +116,9 @@ const BetPanel = ({
       }`}
     >
       <div className="bets-container">
-        <span className="bet-amt-placeholder">
+        {/* <span className="bet-amt-placeholder">
           Bet: {numFormatter(player?.betAmount)}
-        </span>
+        </span> */}
         <div className="bet-amt-range">
           <div className="bet-range-label">
             <span>{0}</span>

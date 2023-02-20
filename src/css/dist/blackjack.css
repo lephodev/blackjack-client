@@ -202,11 +202,9 @@ button {
 }
 
 .bet-amt-placeholder {
-  background: url(../../imgs/blackjack/rectBtn.png) no-repeat;
-  background-size: cover;
-  width: 140px;
   height: 50px;
   color: #f9ff00;
+  background-color: #000;
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
@@ -215,8 +213,9 @@ button {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  margin-bottom: 15px;
   user-select: none;
+  width: 80%;
+  border-radius: 8px;
 }
 
 .bet-btn-box .clear-bet-btn {
@@ -1081,7 +1080,7 @@ div#info-rules .card-box {
   max-width: 250px;
   top: 10px;
   left: 10px;
-  z-index: 9;
+  z-index: 99;
 }
 
 .floating-menu.open {
@@ -1275,7 +1274,7 @@ div#info-rules .card-box {
 .wait-txt .progress {
   max-width: 100px;
   margin: 0px auto;
-  height: 8px;
+  height: 12px;
 }
 
 .user-bet-amount {
@@ -1805,16 +1804,19 @@ button .spinner-border {
   .floating-menu.open {
     display: flex;
     gap: 4px;
+    backdrop-filter: blur(10px);
+    padding: 2px;
+    border-radius: 10px;
   }
 
   .floating-menu-icon {
-    width: 30px;
-    height: 30px;
+    width: 38px;
+    height: 38px;
   }
 
   .floating-menu-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
 
   .wallet-box {
@@ -1869,13 +1871,13 @@ button .spinner-border {
   }
 
   .user-action-container .user-action {
-    width: 40px;
-    height: 40px;
+    width: 54px;
+    height: 54px;
   }
 
   .user-action-container .user-action svg {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
 
   .user-action-container .user-action-text {
@@ -1887,8 +1889,7 @@ button .spinner-border {
   }
 
   .bet-amt-placeholder {
-    height: 43px;
-    width: 120px;
+    height: 44px;
     font-size: 14px;
   }
 }
@@ -1919,27 +1920,23 @@ button .spinner-border {
   }
 
   .bet-btn-box .confirm-bet-btn {
-    width: 120px;
-    height: 44px;
-    font-size: 12px;
+    width: 166px;
+    height: 60px;
+    font-size: 15px;
   }
 
   .bet-btn-box .max-bet-btn {
-    width: 44px;
-    height: 44px;
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .bet-btn-box .clear-bet-btn {
-    width: 45px;
-    height: 45px;
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .bets-container span button {
-    width: 40px;
-    height: 40px;
-    font-size: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
   }
 
   /* .bets-wrapper {
@@ -1970,10 +1967,10 @@ button .spinner-border {
 }
 
 @media (max-width: 380px) {
-  .floating-menu-icon svg {
+  /* .floating-menu-icon svg {
     width: 15px;
     height: 15px;
-  }
+  } */
 
   .wallet-balance {
     width: 152px;
@@ -2486,10 +2483,12 @@ button .spinner-border {
   #info-rules {
     position: absolute;
     /* right: -1000px; */
-    left: 100vw; 
+    left: 100vw;
     top: -20px;
   }
-
+  .bets-wrapper {
+    width: 100%;
+  }
   .count-7 .blackjack-players.player7 {
     left: 18% !important;
     bottom: 52% !important;
@@ -2538,7 +2537,7 @@ button .spinner-border {
   }
 
   .collect-slotcoin.win-slottype-one img {
-    width: 76px;
+    width: 100px;
     margin-top: -90%;
   }
 
@@ -2552,13 +2551,13 @@ button .spinner-border {
   }
 
   .user-action-container .user-action-text {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .wait-txt,
   .wait-txt h3 {
     color: #f9ff00;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 600;
   }
 
@@ -2588,6 +2587,12 @@ button .spinner-border {
   } */
   .player-card img {
     width: 84px;
+  }
+
+  .blackjack-players.player3 .user-bet-amount,
+  .blackjack-players.player3 .user-bet-amount,
+  .blackjack-players.player3 .user-bet-amount {
+    left: -72px
   }
 
   /* count 1  */
@@ -2940,6 +2945,23 @@ button .spinner-border {
     padding-right: 25px;
     height: 40px;
     z-index: 9999999;
+  }
+
+  .yellowBtn {
+    position: fixed;
+    white-space: nowrap;
+    background-color: #f9ff00 !important;
+    color: black !important;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    display: block;
+    box-shadow: none !important;
+    width: 130px;
+    height: 38px;
+    padding: 6px 9px;
+    font-size: 12px;
+    font-weight: 600;
   }
 
   .create-game-box button {
