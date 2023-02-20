@@ -1832,9 +1832,11 @@ button .spinner-border {
   }
 
   .bet-btn-box .max-bet-btn {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
+    font-size: 14px;
   }
+
 
   .bet-btn-box .confirm-bet-btn {
     width: 165px;
@@ -1902,7 +1904,9 @@ button .spinner-border {
     padding: 0px 5px;
     gap: 2px;
   }
-
+  .bets-wrapper {
+    width: 100%;
+  }
   .wallet-box svg {
     font-size: 10px !important;
   }
@@ -1920,17 +1924,15 @@ button .spinner-border {
   }
 
   .bet-btn-box .confirm-bet-btn {
-    width: 166px;
-    height: 60px;
-    font-size: 15px;
-  }
-
-  .bet-btn-box .max-bet-btn {
-    font-size: 15px;
+    width: 160px;
+    height: 57px;
+    font-size: 14px;
   }
 
   .bet-btn-box .clear-bet-btn {
-    font-size: 15px;
+    font-size: 13px;
+    width: 56px;
+    height: 56px;
   }
 
   .bets-container span button {
@@ -2036,9 +2038,9 @@ button .spinner-border {
   }
 
   .floating-menu-icon {
-    width: 30px;
-    height: 30px;
-  }
+    width: 40px;
+    height: 40px;
+}
 
   #how-to-play {
     left: -62px;
@@ -2053,8 +2055,8 @@ button .spinner-border {
   }
 
   .floating-menu-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
 
   .user-action-container .user-action {
@@ -2157,7 +2159,7 @@ button .spinner-border {
   }
 
   #users-online-box {
-    top: 140px;
+    top: 115px;
   }
 
   .bets-wrapper {
@@ -2485,9 +2487,6 @@ button .spinner-border {
     /* right: -1000px; */
     left: 100vw;
     top: -20px;
-  }
-  .bets-wrapper {
-    width: 100%;
   }
   .count-7 .blackjack-players.player7 {
     left: 18% !important;
