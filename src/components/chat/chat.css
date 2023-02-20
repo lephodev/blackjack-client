@@ -350,7 +350,7 @@ span.msg-limit {
   top: 70px;
   left: -14px;
   cursor: pointer;
-  z-index: 99;
+  z-index: 999;
   padding: 5px;
   border-radius: 50%;
 }
@@ -436,7 +436,7 @@ span.msg-limit {
 
   .containerFor-chatHistory {
     position: fixed;
-    top: 50px;
+    top: 54px;
   }
 }
 
