@@ -475,10 +475,9 @@ const AvatarGroup = ({ imgArr }) => {
   return (
     <div className="poker-avatar-box">
       <div className="avatars">
-        {console.log({ imgArr })}
         {Array.isArray(imgArr) &&
-          imgArr.map((el) => (
-            <span className="avatar">
+          imgArr.map((el, i) => (
+            <span className="avatar" key={i}>
               <img
                 src={el.avatar ? el.avatar : el.photoURI ? el.photoURI : users}
                 width="30"
