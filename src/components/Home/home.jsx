@@ -253,7 +253,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       <div className="home-poker-card">
         <div className="container">
           <div className="poker-table-header">
