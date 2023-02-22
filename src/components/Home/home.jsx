@@ -184,7 +184,7 @@ const Home = () => {
     <div className="poker-home">
       {loader && (
         <div className="poker-loader">
-          <img src={loaderImg} alt="loader-Las vegas" />{" "}
+          <img src={loaderImg} alt="loader" />{" "}
         </div>
       )}
       <CreateTable
@@ -209,11 +209,13 @@ const Home = () => {
               </a>
             </div>
             <div className="create-game-box">
-              <div className="create-game-box-avtar">
-                <img src={userData?.profile || "https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
-                } alt="" />
-                <h5>{userData?.username}</h5>
-              </div>
+              <a href="https://scrooge.casino/profile">
+                <div className="create-game-box-avtar">
+                  <img src={userData?.profile || "https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
+                  } alt="" />
+                  <h5>{userData?.username}</h5>
+                </div>
+              </a>
               <div className="user-info-box">
                 <p className="user-info-box-wallet">
                   <img src={coin} alt="" className="ticket-icon" />
