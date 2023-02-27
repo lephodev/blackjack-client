@@ -153,7 +153,9 @@ button {
   font-size: 14px;
   margin: 0px 2px;
 }
-
+.blackjack-players.inActive{
+  filter: brightness(0.5);
+}
 /* .bet-btn-box button:first-child {
   width: 100%;
 } */
@@ -1904,9 +1906,11 @@ button .spinner-border {
     padding: 0px 5px;
     gap: 2px;
   }
+
   .bets-wrapper {
     width: 100%;
   }
+
   .wallet-box svg {
     font-size: 10px !important;
   }
@@ -2040,7 +2044,7 @@ button .spinner-border {
   .floating-menu-icon {
     width: 40px;
     height: 40px;
-}
+  }
 
   #how-to-play {
     left: -62px;
@@ -2488,6 +2492,7 @@ button .spinner-border {
     left: 100vw;
     top: -20px;
   }
+
   .count-7 .blackjack-players.player7 {
     left: 18% !important;
     bottom: 52% !important;

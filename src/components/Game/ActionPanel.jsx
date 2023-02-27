@@ -71,19 +71,22 @@ const ActionPanel = ({
         </button>
         <div className="user-action-text">Hit</div>
       </div>
-      {player?.isActed || player?.splitSum?.length !== 0 ? (
-        <div className="user-action-box">
-          <Button
-            className="user-action"
-            id="doubleDown"
-            onClick={() => handleAction("double")}
-            disabled
-          >
-            <DoubleIcon />
-          </Button>
-          <div className="user-action-text">2X Down</div>
-        </div>
-      ) : (
+
+      {player?.isActed || player?.splitSum?.length !== 0 ? 
+      // (
+      //   <div className="user-action-box">
+      //     <Button
+      //       className="user-action"
+      //       id="doubleDown"
+      //       onClick={() => handleAction("double")}
+      //       disabled
+      //     >
+      //       <DoubleIcon />
+      //     </Button>
+      //     <div className="user-action-text">2X Down</div>
+      //   </div>
+      // ) : 
+      (
         <div className="user-action-box">
           <button
             className="user-action"
@@ -95,7 +98,8 @@ const ActionPanel = ({
           </button>
           <div className="user-action-text">2X Down</div>
         </div>
-      )}
+      ) : ''
+      }
 
       {player?.splitSum?.length === 0 && player?.isSameCard ? (
         <div className="user-action-box">
