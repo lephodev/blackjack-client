@@ -105,6 +105,16 @@ const Player = ({
                   />
                 </div>
               ))}
+
+              {/* player bet amount */}
+              {player?.isPlaying ? (
+                <div className="user-bet-amount">
+                  <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
+                </div>
+              ) : (
+                ""
+              )}
+              {/* </div> */}
               <div className="player-sum">
                 <span key={`item-${i}`} className="split-sum">
                   {typeof player.splitSum[i] === "number"
