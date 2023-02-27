@@ -3022,8 +3022,25 @@ button .spinner-border {
 .tour-popup {
   z-index: 9999999 !important;
 }
+.user-bet-amount.betAmt-onTable{
+  animation: betOn 0.5s;
+  position: absolute;
+  top: -25%;
+  right: 25%;
+}
+@keyframes betOn {
+  from {
+    top: 0%;
+    right: -72px;
+  }
+  to {
+    top: -25%;
+    right: 25%;
+  }
+  
+}
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .user-bet-amount {
     position: absolute;
     right: 30px;
@@ -3061,7 +3078,7 @@ button .spinner-border {
     left: -14px;
     top: -1px;
   }
-}
+} */
 
 /* @media screen and (min-width: 1366px) {
   .count-1.blackjack-players-container .blackjack-players,
