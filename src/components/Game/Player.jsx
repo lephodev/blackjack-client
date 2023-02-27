@@ -34,7 +34,6 @@ const Player = ({
       onStreamDisabled,
     }
   );
-  console.log("player---->", player)
   useEffect(() => {
     if (webcamRef.current) {
       if (webcamOn) {
@@ -84,7 +83,7 @@ const Player = ({
   return (
     <div
       className={`blackjack-players player${videoPlayer ? videoPlayer?.position : player?.position
-        } ${player?.turn ? "active-player" : ""}`}
+        } ${player?.turn ? "active-player" : ""} ${player?.betAmount === 0 && roomData?.gamestart ? 'inActive' : ''}`}
       key={player?.id}
     >
       {player?.isSplitted ? (
@@ -107,15 +106,6 @@ const Player = ({
                 </div>
               ))}
 
-              {/* player bet amount */}
-              {player?.isPlaying ? (
-                <div className="user-bet-amount">
-                  <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
-                </div>
-              ) : (
-                ""
-              )}
-              {/* </div> */}
               <div className="player-sum">
                 <span key={`item-${i}`} className="split-sum">
                   {typeof player.splitSum[i] === "number"
@@ -181,6 +171,15 @@ const Player = ({
         ""
       )}
       {/* player bet amount */}
+
+      {/* {player?.isPlaying ? (
+        <div className={`user-bet-amount ${player?.cards?.length > 0 ? 'betAmt-onTable' : ''}`}>
+          <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
+        </div>
+      ) : (
+        ""
+      )} */}
+      
       {player?.isPlaying ? (
         <div className="user-bet-amount">
           <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
@@ -198,7 +197,6 @@ const Player = ({
         ) : (
           ""
         )}
-        {/* {console.log("player", player)} */}
         {roomData.media === "video" && videoPlayer && webcamOn ? (
           <video ref={webcamRef} autoPlay muted playsInline webkitPlaysInline />
         ) : (

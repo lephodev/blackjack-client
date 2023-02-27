@@ -424,7 +424,6 @@ const Game = () => {
     });
 
     socket.on("updateRoom", (data) => {
-      console.log("updated room data: ", data)
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
@@ -923,7 +922,6 @@ const Game = () => {
           <img src={rotateAnime} alt="" />
         </div> */}
         <div className="players-wrapper">
-          {console.log({isPhoneSE:isPhoneSE})}
           <div
             className="player-wrapper-content"
             style={{
