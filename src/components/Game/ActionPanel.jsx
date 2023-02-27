@@ -1,5 +1,5 @@
 import { socket } from "../../config/socket";
-import debounce from "lodash.debounce";
+// import debounce from "lodash.debounce";
 import { useCallback } from "react";
 import Button from "react-bootstrap/Button";
 
@@ -18,18 +18,18 @@ const ActionPanel = ({
     (val) => {
       // console.log("val", val);
       setActionCompleted(false);
-      debounce((value) => {
-        // if previous action is not completed then pause the button till then
-        if (!actionCompleted) {
-          return;
-        }
-        // console.log({ tableId });
-        socket.emit(value, {
-          tableId,
-          userId: player.id,
-          wallet
-        });
-      }, 300)(val);
+      // debounce((value) => {
+      // if previous action is not completed then pause the button till then
+      if (!actionCompleted) {
+        return;
+      }
+      // console.log({ tableId });
+      socket.emit(val, {
+        tableId,
+        userId: player.id,
+        wallet
+      });
+      // }, 300)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
