@@ -656,7 +656,7 @@ button {
 #users-online-box ul {
   position: relative;
   width: 100%;
-  height: 100%;
+  max-height: 56vh;
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -1193,10 +1193,12 @@ button {
   object-fit: contain;
   pointer-events: none;
 }
-.rotateToLandscape-hide{
+
+.rotateToLandscape-hide {
   display: none;
 }
-.rotateToLandscape{
+
+.rotateToLandscape {
   position: fixed;
   background: #1a1a1aa1;
   backdrop-filter: blur(5px);
@@ -1207,6 +1209,7 @@ button {
   align-items: center;
   justify-content: center;
 }
+
 .player-sum {
   position: absolute;
   margin: 0 auto;
@@ -1916,13 +1919,14 @@ i {
 .player-cards-box.split .player-sum {
   position: absolute;
   top: -5px;
-  right: -50px;
+  right: -160px;
   height: 30px;
-  width: 30px;
+  /* width: 100%; */
+  min-width: 80px;
   line-height: 30px;
-  font-size: 9px;
+  font-size: 16px;
   display: block;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .player-cards-box.split {
@@ -2212,7 +2216,9 @@ i {
     height: 54px;
   }
 
-  #users-online-box {}
+  #users-online-box {
+    top: 90px;
+  }
 
   #users-online-box #users-online-label {
     margin: 8px 30px 8px 0px;
@@ -2331,6 +2337,7 @@ i {
     font-size: 10px;
   }
 }
+
 
 /* .bets-container span.chip-10 {
   position: absolute;

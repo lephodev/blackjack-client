@@ -2,7 +2,11 @@
   position: relative;
   min-height: 100vh;
 }
-
+.create-game-box a{
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
 .userOnline-header p.userOnline-tooltip {
   display: none;
 }
@@ -562,9 +566,9 @@ input[type="number"] {
     top: -37px; */
   }
 
-  .create-game-box-avtar {
+  .create-game-box a {
     position: absolute;
-    top: 0%;
+    top: 1%;
     right: 17%;
   }
 

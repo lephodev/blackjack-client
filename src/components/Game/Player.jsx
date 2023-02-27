@@ -34,7 +34,6 @@ const Player = ({
       onStreamDisabled,
     }
   );
-  console.log("player---->", player)
   useEffect(() => {
     if (webcamRef.current) {
       if (webcamOn) {
@@ -83,17 +82,17 @@ const Player = ({
   }, []);
   return (
     <div
-      className={`blackjack-players player${ videoPlayer ? videoPlayer?.position : player?.position
-        } ${ player?.turn ? "active-player" : "" }`}
+      className={`blackjack-players player${videoPlayer ? videoPlayer?.position : player?.position
+        } ${player?.turn ? "active-player" : ""} ${player?.betAmount === 0 && roomData?.gamestart ? 'inActive' : ''}`}
       key={player?.id}
     >
       {player?.isSplitted ? (
         <div className="split-result">
           {player?.cards.map((splitHand, i) => (
             <div
-              className={`player-cards-box split ${ player.splitIndex === i ? "activeCard" : ""
+              className={`player-cards-box split ${player.splitIndex === i ? "activeCard" : ""
                 }`}
-              key={`item-${ i }`}
+              key={`item-${i}`}
             >
               {splitHand?.map((card, l) => (
                 <div
@@ -101,22 +100,23 @@ const Player = ({
                   key={card.value.card + card.suit + l}
                 >
                   <img
-                    src={`/cards/${ card.value.card + card.suit }.svg`}
+                    src={`/cards/${card.value.card + card.suit}.svg`}
                     alt=""
                   />
                 </div>
               ))}
+
               <div className="player-sum">
-                <span key={`item-${ i }`} className="split-sum">
+                <span key={`item-${i}`} className="split-sum">
                   {typeof player.splitSum[i] === "number"
-                    ? `(${ player.splitSum[i] }),`
-                    : `(${ player.splitSum[i].join(", ") }),`}
+                    ? `(${player.splitSum[i]}),`
+                    : `(${player.splitSum[i].join(", ")}),`}
                 </span>
               </div>
               <div className="split-game-result">
                 {player.isPlaying && gameFinish ? (
                   <div
-                    className={`player-result split-result ${ player.splitSum[i] > 21
+                    className={`player-result split-result ${player.splitSum[i] > 21
                       ? "busted"
                       : player.hands[
                         player.hands.length - player.splitSum.length + i
@@ -160,7 +160,7 @@ const Player = ({
         <div className="player-cards-box">
           {player?.cards?.map((card, l) => (
             <div className="player-card" key={card.value.card + card.suit + l}>
-              <img src={`/cards/${ card.value.card + card.suit }.svg`} alt="" />
+              <img src={`/cards/${card.value.card + card.suit}.svg`} alt="" />
             </div>
           ))}
         </div>
@@ -171,6 +171,15 @@ const Player = ({
         ""
       )}
       {/* player bet amount */}
+
+      {/* {player?.isPlaying ? (
+        <div className={`user-bet-amount ${player?.cards?.length > 0 ? 'betAmt-onTable' : ''}`}>
+          <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
+        </div>
+      ) : (
+        ""
+      )} */}
+      
       {player?.isPlaying ? (
         <div className="user-bet-amount">
           <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
@@ -188,7 +197,6 @@ const Player = ({
         ) : (
           ""
         )}
-        {/* {console.log("player", player)} */}
         {roomData.media === "video" && videoPlayer && webcamOn ? (
           <video ref={webcamRef} autoPlay muted playsInline webkitPlaysInline />
         ) : (
@@ -219,7 +227,7 @@ const Player = ({
                     onClick={() => {
                       toggleMic();
                     }}
-                    className={`cursor ${ micOn
+                    className={`cursor ${micOn
                       ? "fas fa-microphone-alt"
                       : "fas fa-microphone-alt-slash"
                       }`}
@@ -227,7 +235,7 @@ const Player = ({
                   {roomData?.media === "video" ? (
                     <i
                       onClick={() => toggleWebcam()}
-                      className={`cursor ${ webcamOn ? "fas fa-video" : "fas fa-video-slash"
+                      className={`cursor ${webcamOn ? "fas fa-video" : "fas fa-video-slash"
                         }`}
                     ></i>
                   ) : (
@@ -259,7 +267,7 @@ const Player = ({
         !player?.isSplitted &&
         (player?.isBusted || gameFinish || player?.blackjack) ? (
         <div
-          className={`player-result ${ player?.isBusted
+          className={`player-result ${player?.isBusted
             ? "busted"
             : player?.hands[player.hands.length - 1]?.action ===
               "blackjack-win" || player.blackjack

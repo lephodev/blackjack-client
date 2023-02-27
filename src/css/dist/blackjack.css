@@ -153,7 +153,9 @@ button {
   font-size: 14px;
   margin: 0px 2px;
 }
-
+.blackjack-players.inActive{
+  filter: brightness(0.5);
+}
 /* .bet-btn-box button:first-child {
   width: 100%;
 } */
@@ -1293,6 +1295,7 @@ div#info-rules .card-box {
   font-size: 16px;
   position: relative;
   width: 80px;
+  /* min-height: 40px; */
   display: block;
   text-align: center;
   border: 1px solid #d9d9d9;
@@ -1904,9 +1907,11 @@ button .spinner-border {
     padding: 0px 5px;
     gap: 2px;
   }
+
   .bets-wrapper {
     width: 100%;
   }
+
   .wallet-box svg {
     font-size: 10px !important;
   }
@@ -2035,12 +2040,14 @@ button .spinner-border {
 
   .user-bet-amount span {
     width: 100px;
+    height: 40px;
+
   }
 
   .floating-menu-icon {
     width: 40px;
     height: 40px;
-}
+  }
 
   #how-to-play {
     left: -62px;
@@ -2488,6 +2495,7 @@ button .spinner-border {
     left: 100vw;
     top: -20px;
   }
+
   .count-7 .blackjack-players.player7 {
     left: 18% !important;
     bottom: 52% !important;
@@ -3014,6 +3022,63 @@ button .spinner-border {
 .tour-popup {
   z-index: 9999999 !important;
 }
+.user-bet-amount.betAmt-onTable{
+  animation: betOn 0.5s;
+  position: absolute;
+  top: -25%;
+  right: 25%;
+}
+@keyframes betOn {
+  from {
+    top: 0%;
+    right: -72px;
+  }
+  to {
+    top: -25%;
+    right: 25%;
+  }
+  
+}
+
+/* @media screen and (min-width: 768px) {
+  .user-bet-amount {
+    position: absolute;
+    right: 30px;
+    top: -130px;
+    z-index: 1;
+  }
+
+  .user-bet-amount span {
+    color: #222;
+    font-weight: 800;
+    background: #d9d9d9;
+    padding: 2px 5px;
+    padding-left: 12px;
+    border-radius: 20px;
+    font-size: 18px;
+    position: relative;
+    width: 100px;
+    min-height: 40px;
+    display: block;
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    animation: mymove 0.5s;
+    transition: all 0.5s;
+  }
+
+  .user-bet-amount span:before {
+    content: "";
+    background: url(../../imgs/chips/Casino_Chip_Black.svg);
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    left: -14px;
+    top: -1px;
+  }
+} */
 
 /* @media screen and (min-width: 1366px) {
   .count-1.blackjack-players-container .blackjack-players,
