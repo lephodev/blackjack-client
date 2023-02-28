@@ -135,6 +135,7 @@ const Game = () => {
   });
   const isMiniMobile = useMediaQuery({ query: "(max-width: 450px)" });
   const isPhoneSE = useMediaQuery({ query: "(max-width: 385px) and (max-height: 750px)" });
+  const isMinlandscape = useMediaQuery({ query: "(max-width: 685px) and (max-height:380px)" });
   const isLandscape = useMediaQuery({ query: "(max-height: 480px) and (orientation: landscape)" })
   // const isPortrait = useMediaQuery({ query: "(max-width: 768px) and (orientation: portrait)" })
 
@@ -934,25 +935,27 @@ const Game = () => {
               transform: isDesktop
                 ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 1.1) / 100
                 })`
-                : isLandscape ? `translate(-50%, -${ topValue * 1.1 }%) scale(${ (scaleValue * 0.9) / 100
+                : isMinlandscape ? `translate(-50%, -${topValue * 0.7}%) scale(${(scaleValue * 0.9) / 100
                   })`
-                  : isPhoneSE ? `translate(-50%, -${ topValue * 0.4 }%) scale(${ (scaleValue * 2) / 100
+                  : isLandscape ? `translate(-50%, -${topValue * 1}%) scale(${(scaleValue * 0.9) / 100
                     })`
-                    : isTablet
-                      ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                    : isPhoneSE ? `translate(-50%, -${topValue * 0.2}%) scale(${(scaleValue * 2) / 100
                       })`
-                      : isBigMobile
-                        ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                      : isTablet
+                        ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                         })`
-                        : isMobile
-                          ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                        : isBigMobile
+                          ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                           })`
-                          : isMiniMobile
-                            ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2.3) / 100
+                          : isMobile
+                            ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                             })`
+                            : isMiniMobile
+                              ? `translate(-50%, -${topValue * 0.2}%) scale(${(scaleValue * 2.3) / 100
+                              })`
 
-                            :
-                            `translate(-50%, -${ topValue }%) scale(${ scaleValue / 100 })`,
+                              :
+                              `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
             }}
           >
             <div className="blackjack-table">
