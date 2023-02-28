@@ -25,6 +25,9 @@ const BetPanel = ({
 }) => {
   const [rangeBetValue, setRangeBetValue] = useState(0);
 
+
+
+
   const handleBet = (amount, isSliderBet = false) => {
     if (handleBetTimeout) {
       clearTimeout(handleBetTimeout);
@@ -33,13 +36,22 @@ const BetPanel = ({
       const totalWalletBalance = player?.wallet + player?.betAmount;
       // If bet is made by the slider so total bet amount will be the slider amount
       const toatBetAmount = isSliderBet ? amount : player?.betAmount + amount;
+      console.log("handle bet executes", isSliderBet, amount, toatBetAmount, maxBetAmount, player?.betAmount);
 
       // If user already make max bet and trying to increase bet
       if (player?.betAmount === maxBetAmount || toatBetAmount > maxBetAmount) {
+        console.log("first if executed");
         toast.error(`Max bet amount is ${ maxBetAmount }`, {
           id: "maxBetAmount",
         });
         setRangeBetValue(maxBetAmount);
+        if (toatBetAmount < player?.betAmount) {
+          socket.emit("makeSliderBet", {
+            userId: player.id,
+            roomId: tableId,
+            betAmount: amount,
+          });
+        }
         return;
       } else if (
         player?.betAmount < maxBetAmount &&
@@ -68,9 +80,10 @@ const BetPanel = ({
         });
         setShowBuyInPopup(true);
       }
-    }, 500);
+    }, 1000);
 
   };
+
 
   useEffect(() => {
     if (player?.betAmount) {
