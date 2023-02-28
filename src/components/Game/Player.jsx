@@ -171,22 +171,23 @@ const Player = ({
         ""
       )}
       {/* player bet amount */}
-
-      {/* {player?.isPlaying ? (
-        <div className={`user-bet-amount ${player?.cards?.length > 0 ? 'betAmt-onTable' : ''}`}>
+      {player?.isPlaying ? (player?.cards?.length > 0 ? <div className={`user-bet-amount ${player?.cards?.length > 0 ? 'betAmt-onTable' : ''}`}>
+        <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
+      </div> :
+        <div className={`user-bet-amount ${player?.cards?.length > 0 ? 'betRemove' : ''}`}>
           <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
         </div>
-      ) : (
-        ""
-      )} */}
-      
-      {player?.isPlaying ? (
+      ) : (''
+      )}
+
+      {/* {player?.isPlaying ? (
         <div className="user-bet-amount">
           <span>{player.betAmount ? numFormatter(player.betAmount) : 0}</span>
         </div>
       ) : (
         ""
-      )}
+      )} */}
+
       {/* player bet amount */}
       <div className="blackjack-player-avatar">
         {currentPlayer?.id === player?.id &&
