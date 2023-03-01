@@ -28,7 +28,7 @@ const ActionPanel = ({
           userId: player.id,
           wallet
         });
-      }, 300)(val);
+      }, 1500)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
@@ -46,6 +46,7 @@ const ActionPanel = ({
         </button>
         <div className="user-action-text">Surrender</div>
       </div>
+      {console.log("actionCompleted ==>", actionCompleted)}
       <div className="user-action-box">
         <button
           className="user-action"
