@@ -66,7 +66,7 @@ button {
   width: 100%;
   background: url(../../imgs/blackjack/newTable.png);
   margin: 0px auto;
-  height: 760px;
+  height: 754px;
   position: relative;
   background-size: cover;
 }
@@ -152,6 +152,10 @@ button {
 .wallet-box svg {
   font-size: 14px;
   margin: 0px 2px;
+}
+
+.blackjack-players.inActive {
+  filter: brightness(0.5);
 }
 
 /* .bet-btn-box button:first-child {
@@ -1293,6 +1297,7 @@ div#info-rules .card-box {
   font-size: 16px;
   position: relative;
   width: 80px;
+  /* min-height: 40px; */
   display: block;
   text-align: center;
   border: 1px solid #d9d9d9;
@@ -1782,6 +1787,8 @@ button .spinner-border {
 /************************************************************ Media Query ***********************************************************/
 /************************************************************ Media Query ***********************************************************/
 
+
+
 @media screen and (max-width: 1140px) {
   .bets-wrapper {
     scale: 0.8;
@@ -1797,6 +1804,14 @@ button .spinner-border {
     padding: 10px;
     gap: 5px;
     width: 100%;
+  }
+
+  .betAmt-onTable span {
+    width: 100px;
+    font-weight: 600;
+    padding: 2px 5px;
+    border-radius: 30px;
+    font-size: 16px;
   }
 }
 
@@ -1904,9 +1919,11 @@ button .spinner-border {
     padding: 0px 5px;
     gap: 2px;
   }
+
   .bets-wrapper {
     width: 100%;
   }
+
   .wallet-box svg {
     font-size: 10px !important;
   }
@@ -1966,6 +1983,243 @@ button .spinner-border {
   .bet-amt-range {
     margin-top: 20px;
   }
+}
+
+@media screen and (min-width: 540px) {
+  .player5 .user-bet-amount.betAmt-onTable {
+    top: -33%;
+    right: -101px;
+    rotate: 19deg;
+    transition: all 0.3s ease;
+  }
+
+  .player5 .user-bet-amount.betRemove {
+    animation: betOn 0.5s;
+    top: -33%;
+    right: -101px;
+    opacity: 0;
+
+  }
+
+  @keyframes betOn {
+    from {
+      top: 0%;
+      right: -72px;
+      opacity: 1;
+    }
+
+    to {
+      top: -33%;
+      right: -101px;
+      opacity: 0;
+      rotate: 19deg;
+    }
+  }
+
+  .player6 .user-bet-amount.betAmt-onTable {
+    right: -172px;
+    top: -22%;
+    rotate: 37deg;
+    transition: all 0.3s ease;
+  }
+
+  .player6 .user-bet-amount.betRemove {
+    animation: betOn 0.5s;
+    right: -172px;
+    top: -22%;
+    opacity: 0;
+
+  }
+
+  @keyframes betOn {
+    from {
+      top: 0%;
+      right: -72px;
+      opacity: 1;
+    }
+
+    to {
+      right: -172px;
+      top: -22%;
+      rotate: 37deg;
+      opacity: 0;
+    }
+  }
+
+  .player7 .user-bet-amount.betAmt-onTable {
+    right: -228px;
+    top: 26%;
+    rotate: 70deg;
+    transition: all 0.3s ease;
+  }
+
+  .player7 .user-bet-amount.betRemove {
+    animation: betOn 0.5s;
+    right: -228px;
+    top: 26%;
+    opacity: 0;
+  }
+
+  @keyframes betOn {
+    from {
+      top: 0%;
+      right: -72px;
+      opacity: 1;
+    }
+
+    to {
+      right: -228px;
+      top: 26%;
+      rotate: 70deg;
+      opacity: 0;
+    }
+  }
+
+  .player3 .user-bet-amount.betAmt-onTable {
+    right: 152px;
+    top: -33%;
+    rotate: -19deg;
+    transition: all 0.3s ease;
+  }
+
+  .player3 .user-bet-amount.betRemove {
+    animation: betOn 0.5s;
+    right: 158px;
+    top: -96%;
+    opacity: 0;
+
+  }
+
+  @keyframes betOn {
+    from {
+      top: 0%;
+      right: -72px;
+      opacity: 1;
+    }
+
+    to {
+      right: 152px;
+      top: -33%;
+      opacity: 0;
+      rotate: -19deg;
+    }
+  }
+
+  .player2 .user-bet-amount.betAmt-onTable {
+    right: 224px;
+    top: -24%;
+    rotate: -37deg;
+    transition: all 0.3s ease;
+  }
+
+  .player2 .user-bet-amount.betRemove {
+    animation: betOn 0.5s;
+    right: 224px;
+    top: -24%;
+    opacity: 0;
+  }
+
+  @keyframes betOn {
+    from {
+      top: 0%;
+      right: -72px;
+      opacity: 1;
+    }
+
+    to {
+      right: 224px;
+      top: -24%;
+      rotate: -37deg;
+      opacity: 0;
+    }
+  }
+
+  .player1 .user-bet-amount.betAmt-onTable {
+    right: 278px;
+    top: 26%;
+    rotate: -70deg;
+    transition: all 0.3s ease;
+  }
+
+  .player1 .user-bet-amount.betRemove {
+    animation: betOn 0.5s;
+    right: 278px;
+    top: 26%;
+    opacity: 0;
+  }
+
+  @keyframes betOn {
+    from {
+      top: 0%;
+      right: -72px;
+      opacity: 1;
+    }
+
+    to {
+      right: 278px;
+      rotate: -70deg;
+      top: 26%;
+      opacity: 0;
+    }
+  }
+
+  .player4 .user-bet-amount.betAmt-onTable {
+    top: -38%;
+    right: 19%;
+    transition: all 0.3s ease;
+  }
+
+  .player4 .user-bet-amount.betRemove {
+    animation: betOn 0.5s;
+    top: -34%;
+    right: 25%;
+    opacity: 0;
+  }
+
+  @keyframes betOn {
+    from {
+      top: 0%;
+      right: -72px;
+      opacity: 1;
+    }
+
+    to {
+      top: -100%;
+      right: 25%;
+      opacity: 0;
+    }
+  }
+
+  .user-bet-amount.betAmt-onTable span:before {
+    content: "";
+    background: url(../../imgs/blackjack/profile/coin-5.png);
+    width: 70px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    left: 10%;
+    top: -74px;
+  }
+
+  .betAmt-onTable span {
+    background: url(../../imgs/blackjack/rectBtn.png) no-repeat center !important;
+    background-size: contain !important;
+    width: 100px;
+    border: none !important;
+    color: #e1e1e1;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 30px;
+    font-size: 18px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
 }
 
 @media (max-width: 380px) {
@@ -2035,12 +2289,14 @@ button .spinner-border {
 
   .user-bet-amount span {
     width: 100px;
+    height: 40px;
+
   }
 
   .floating-menu-icon {
     width: 40px;
     height: 40px;
-}
+  }
 
   #how-to-play {
     left: -62px;
@@ -2324,12 +2580,6 @@ button .spinner-border {
 
   /* count 4  */
 
-  .count-4 .blackjack-players.player4 {
-    bottom: 10px;
-    left: 10px;
-    transform: inherit;
-  }
-
   .count-4 .blackjack-players {
     max-width: 150px;
     scale: 1.2;
@@ -2471,6 +2721,99 @@ button .spinner-border {
     margin-top: 2%;
     width: 140px;
   }
+
+  .count-1 .user-bet-amount {
+    transform: translate(4%, -115%);
+  }
+
+  .count-3 .user-bet-amount {
+    transform: translate(15%, -92px);
+  }
+
+  .count-3 .player5 .user-bet-amount.betAmt-onTable {
+    top: -35%;
+    right: -43px;
+  }
+
+  .count-3 .player3 .user-bet-amount.betAmt-onTable {
+    right: 117px;
+    top: -28%;
+  }
+
+  .count-4 .user-bet-amount {
+    /* transform: translate(15%, -100px); */
+    transform: translate(15%, 36px);
+  }
+
+  .player5 .user-bet-amount.betAmt-onTable {
+    top: -42%;
+    right: -42px;
+  }
+
+  .player3 .user-bet-amount.betAmt-onTable {
+    right: 116px;
+    top: -36%;
+  }
+
+  .player2 .user-bet-amount.betAmt-onTable {
+    right: 138px;
+    top: -28%;
+  }
+
+  .player1 .user-bet-amount.betAmt-onTable {
+    right: 128px;
+    top: 12%;
+  }
+
+  .count-5 .user-bet-amount {
+    transform: translate(12%, -146px);
+  }
+
+  .count-6 .user-bet-amount {
+    transform: translate(6%, -144px);
+  }
+
+  .player6 .user-bet-amount.betAmt-onTable {
+    right: -84px;
+    top: -36%;
+  }
+
+  .count-7 .user-bet-amount {
+    transform: translate(4%, -156px);
+  }
+
+  .count-7 .player1 .user-bet-amount.betAmt-onTable {
+    right: 98px;
+    top: 2%;
+  }
+
+  .count-7 .player2 .user-bet-amount.betAmt-onTable {
+    right: 128px;
+    top: -28%;
+  }
+
+  .count-7 .player3 .user-bet-amount.betAmt-onTable {
+    right: 98px;
+    top: -35%;
+  }
+
+  .count-7 .player5 .user-bet-amount.betAmt-onTable {
+    top: -35%;
+    right: -60px;
+  }
+
+  .count-7 .player6 .user-bet-amount.betAmt-onTable {
+    right: -92px;
+    top: -34%;
+  }
+
+  .player7 .user-bet-amount.betAmt-onTable {
+    right: -66px;
+    top: -4%;
+  }
+  .Chatgame-title {
+    font-size: 14px;}
+
 }
 
 /* portrait */
@@ -2488,6 +2831,7 @@ button .spinner-border {
     left: 100vw;
     top: -20px;
   }
+
   .count-7 .blackjack-players.player7 {
     left: 18% !important;
     bottom: 52% !important;
@@ -3014,6 +3358,46 @@ button .spinner-border {
 .tour-popup {
   z-index: 9999999 !important;
 }
+
+/* @media screen and (min-width: 768px) {
+  .user-bet-amount {
+    position: absolute;
+    right: 30px;
+    top: -130px;
+    z-index: 1;
+  }
+
+  .user-bet-amount span {
+    color: #222;
+    font-weight: 800;
+    background: #d9d9d9;
+    padding: 2px 5px;
+    padding-left: 12px;
+    border-radius: 20px;
+    font-size: 18px;
+    position: relative;
+    width: 100px;
+    min-height: 40px;
+    display: block;
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    animation: mymove 0.5s;
+    transition: all 0.5s;
+  }
+
+  .user-bet-amount span:before {
+    content: "";
+    background: url(../../imgs/chips/Casino_Chip_Black.svg);
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    left: -14px;
+    top: -1px;
+  }
+} */
 
 /* @media screen and (min-width: 1366px) {
   .count-1.blackjack-players-container .blackjack-players,

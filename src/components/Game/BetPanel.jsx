@@ -24,59 +24,154 @@ const BetPanel = ({
   setLastBet,
 }) => {
   const [rangeBetValue, setRangeBetValue] = useState(0);
+  const [totalBetAmount, setTotalBetAmount] = useState(player?.betAmount);
 
   const handleBet = (amount, isSliderBet = false) => {
-    if (handleBetTimeout) {
-      clearTimeout(handleBetTimeout);
-    }
-
-    const totalWalletBalance = player?.wallet + player?.betAmount;
-    // If bet is made by the slider so total bet amount will be the slider amount
-    const toatBetAmount = isSliderBet ? amount : player?.betAmount + amount;
-
-    // If user already make max bet and trying to increase bet
-    if (player?.betAmount === maxBetAmount && toatBetAmount > maxBetAmount) {
-      toast.error(`Max bet amount is ${maxBetAmount}`, {
-        id: "maxBetAmount",
-      });
-      setRangeBetValue(maxBetAmount);
-      return;
-    } else if (
-      player?.betAmount < maxBetAmount &&
-      toatBetAmount > maxBetAmount
-    ) {
-      const maxBetUserCanMake = maxBetAmount - player?.betAmount;
-      amount = maxBetUserCanMake > amount ? amount : maxBetUserCanMake;
-    }
-
-    if (player?.wallet >= amount && amount && !isSliderBet) {
-      socket.emit("bet", {
-        userId: player.id,
-        roomId: tableId,
-        betAmount: amount,
-      });
-      // SLIDER BET WILL CALL FROM HERE
-    } else if (totalWalletBalance >= amount && isSliderBet) {
+    if (isSliderBet) {
       socket.emit("makeSliderBet", {
         userId: player.id,
         roomId: tableId,
         betAmount: amount,
       });
+      setRangeBetValue(amount);
     } else {
-      toast.error(`Not Enough Balance`, {
-        id: "lowBalance",
-      });
-      setShowBuyInPopup(true);
+      if (handleBetTimeout) {
+        clearTimeout(handleBetTimeout);
+      }
+      handleBetTimeout = setTimeout(() => {
+        let totalBetAmt = totalBetAmount + amount;
+        console.log(player);
+        console.log("totalBetAmount", totalBetAmount, amount, totalBetAmt);
+        if (totalBetAmt > maxBetAmount) {
+          console.log("max bet executed");
+          toast.error(`Max bet amount is ${maxBetAmount}`, {
+            id: "maxBetAmount",
+          });
+          setTotalBetAmount(maxBetAmount);
+          socket.emit("makeSliderBet", {
+            userId: player.id,
+            roomId: tableId,
+            betAmount: maxBetAmount,
+          });
+          setRangeBetValue(maxBetAmount);
+        } else if (totalBetAmt > player.wallet) {
+          console.log("wallet exceed executed");
+          toast.error(`betting amount is exceeding wallet balance`, {
+            id: "maxBetAmount",
+          });
+          setTotalBetAmount(player.wallet);
+          socket.emit("makeSliderBet", {
+            userId: player.id,
+            roomId: tableId,
+            betAmount: player.wallet,
+          });
+          setRangeBetValue(player.wallet);
+        } else {
+          console.log("betting executed");
+          setRangeBetValue(totalBetAmt);
+          socket.emit("bet", {
+            userId: player.id,
+            roomId: tableId,
+            betAmount: amount,
+            maxBetAmount,
+          });
+          setTotalBetAmount(totalBetAmt);
+        }
+      }, 1000);
     }
   };
 
+  // const handleBet = (amount, isSliderBet = false) => {
+  //   if (handleBetTimeout) {
+  //     if (!isSliderBet) {
+  //       socket.emit("makeSliderBet", {
+  //         userId: player.id,
+  //         roomId: tableId,
+  //         betAmount: 0,
+  //       });
+  //     }
+  //     clearTimeout(handleBetTimeout);
+  //   }
+  //   handleBetTimeout = setTimeout(() => {
+  //     const totalWalletBalance = player?.wallet + player?.betAmount;
+  //     // If bet is made by the slider so total bet amount will be the slider amount
+  //     const toatBetAmount = isSliderBet ? amount : player?.betAmount + amount;
+  //     console.log("handle bet executes", isSliderBet, amount, toatBetAmount, maxBetAmount, player?.betAmount);
+
+  //     // If user already make max bet and trying to increase bet
+  //     if (player?.betAmount === maxBetAmount || toatBetAmount > maxBetAmount) {
+  //       console.log("first if executed");
+  //       toast.error(`Max bet amount is ${ maxBetAmount }`, {
+  //         id: "maxBetAmount",
+  //       });
+  //       setRangeBetValue(maxBetAmount);
+  //       if (isSliderBet) {
+  //         socket.emit("makeSliderBet", {
+  //           userId: player.id,
+  //           roomId: tableId,
+  //           betAmount: amount,
+  //         });
+  //       } else {
+  //         socket.emit("makeSliderBet", {
+  //           userId: player.id,
+  //           roomId: tableId,
+  //           betAmount: maxBetAmount,
+  //         });
+  //       }
+  //       return;
+  //     } else if (
+  //       player?.betAmount < maxBetAmount &&
+  //       toatBetAmount > maxBetAmount
+  //     ) {
+  //       const maxBetUserCanMake = maxBetAmount - player?.betAmount;
+  //       amount = maxBetUserCanMake > amount ? amount : maxBetUserCanMake;
+  //     }
+
+  //     if (player?.wallet >= amount && amount && !isSliderBet) {
+  //       console.log("bet part executed");
+  //       toast.error(`Max bet amount is ${ maxBetAmount }`, {
+  //         id: "maxBetAmount",
+  //       });
+  //       if (totalBetAmount + amount > maxBetAmount) {
+  //         socket.emit("bet", {
+  //           userId: player.id,
+  //           roomId: tableId,
+  //           betAmount: maxBetAmount,
+  //         });
+  //       } else {
+  //         socket.emit("bet", {
+  //           userId: player.id,
+  //           roomId: tableId,
+  //           betAmount: amount,
+  //         });
+  //       }
+
+  //       // SLIDER BET WILL CALL FROM HERE
+  //     } else if (totalWalletBalance >= amount && isSliderBet) {
+  //       socket.emit("makeSliderBet", {
+  //         userId: player.id,
+  //         roomId: tableId,
+  //         betAmount: amount,
+  //       });
+  //     } else {
+  //       toast.error(`Not Enough Balance`, {
+  //         id: "lowBalance",
+  //       });
+  //       setShowBuyInPopup(true);
+  //     }
+  //   }, 500);
+
+  // };
+
   useEffect(() => {
     if (player?.betAmount) {
+      setTotalBetAmount(player?.betAmount);
       setRangeBetValue(player?.betAmount);
     }
   }, [player?.betAmount]);
 
   const handleClearBet = () => {
+    setTotalBetAmount(0);
     socket.emit("clearbet", {
       userId: player.id,
       roomId: tableId,
@@ -137,8 +232,6 @@ const BetPanel = ({
             onChange={(e) => setRangeBetValue(e)}
             onChangeComplete={(betAmt) => {
               handleBet(betAmt, true);
-              // console.log(betAmt);
-              // setRangeBetValue(betAmt);
             }}
           />
         </div>
@@ -284,10 +377,7 @@ const BetPanel = ({
           />
         </div> */}
         <div className="bet-btn-box">
-          <button
-            className="max-bet-btn"
-            onClick={() => handleBet(player?.wallet)}
-          >
+          <button className="max-bet-btn" onClick={() => handleBet(100, true)}>
             Max
           </button>
           {player?.betAmount ? (
