@@ -26,7 +26,6 @@ const BetPanel = ({
   const [rangeBetValue, setRangeBetValue] = useState(0);
   const [totalBetAmount, setTotalBetAmount] = useState(player?.betAmount);
 
-
   const handleBet = (amount, isSliderBet = false) => {
     if (isSliderBet) {
       socket.emit("makeSliderBet", {
@@ -37,16 +36,15 @@ const BetPanel = ({
       setRangeBetValue(amount);
     } else {
       if (handleBetTimeout) {
-
         clearTimeout(handleBetTimeout);
       }
       handleBetTimeout = setTimeout(() => {
-        let totalBetAmt = totalBetAmount + amount;
+        let totalBetAmt = totalBetAmount ? totalBetAmount : 0 + amount;
         console.log(player);
         console.log("totalBetAmount", totalBetAmount, amount, totalBetAmt);
         if (totalBetAmt > maxBetAmount) {
           console.log("max bet executed");
-          toast.error(`Max bet amount is ${ maxBetAmount }`, {
+          toast.error(`Max bet amount is ${maxBetAmount}`, {
             id: "maxBetAmount",
           });
           setTotalBetAmount(maxBetAmount);
@@ -75,14 +73,13 @@ const BetPanel = ({
             userId: player.id,
             roomId: tableId,
             betAmount: amount,
-            maxBetAmount
+            maxBetAmount,
           });
           setTotalBetAmount(totalBetAmt);
         }
-      }, 1000);
+      }, 500);
     }
-  }
-
+  };
 
   // const handleBet = (amount, isSliderBet = false) => {
   //   if (handleBetTimeout) {
@@ -166,11 +163,10 @@ const BetPanel = ({
 
   // };
 
-
   useEffect(() => {
     if (player?.betAmount) {
-      setTotalBetAmount(player?.betAmount);
-      setRangeBetValue(player?.betAmount);
+      setTotalBetAmount(player?.betAmount || 0);
+      setRangeBetValue(player?.betAmount || 0);
     }
   }, [player?.betAmount]);
 
@@ -208,8 +204,9 @@ const BetPanel = ({
 
   return (
     <div
-      className={`bets-wrapper ${ !player?.isPlaying ? `` : `hide-panel show-popup`
-        }`}
+      className={`bets-wrapper ${
+        !player?.isPlaying ? `` : `hide-panel show-popup`
+      }`}
     >
       <div className="bets-container">
         {/* <span className="bet-amt-placeholder">
@@ -380,10 +377,7 @@ const BetPanel = ({
           />
         </div> */}
         <div className="bet-btn-box">
-          <button
-            className="max-bet-btn"
-            onClick={() => handleBet(100, true)}
-          >
+          <button className="max-bet-btn" onClick={() => handleBet(100, true)}>
             Max
           </button>
           {player?.betAmount ? (
