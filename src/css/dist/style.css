@@ -134,7 +134,7 @@ button {
   margin-top: -25px;
   z-index: 200;
   animation-name: loadingIcon;
-  animation-duration: 1s;
+  animation-duration: 0.3s;
   animation-timing-function: linear;
 }
 
@@ -180,23 +180,29 @@ button {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f6f8+0,d8e1e7+50,b5c6d0+51,e0eff9+100;Grey+Gloss+%232 */
   background: #f2f6f8;
   /* Old browsers */
-  background: -moz-linear-gradient(top,
-      #f2f6f8 0%,
-      #d8e1e7 50%,
-      #b5c6d0 51%,
-      #e0eff9 100%);
+  background: -moz-linear-gradient(
+    top,
+    #f2f6f8 0%,
+    #d8e1e7 50%,
+    #b5c6d0 51%,
+    #e0eff9 100%
+  );
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,
-      #f2f6f8 0%,
-      #d8e1e7 50%,
-      #b5c6d0 51%,
-      #e0eff9 100%);
+  background: -webkit-linear-gradient(
+    top,
+    #f2f6f8 0%,
+    #d8e1e7 50%,
+    #b5c6d0 51%,
+    #e0eff9 100%
+  );
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,
-      #f2f6f8 0%,
-      #d8e1e7 50%,
-      #b5c6d0 51%,
-      #e0eff9 100%);
+  background: linear-gradient(
+    to bottom,
+    #f2f6f8 0%,
+    #d8e1e7 50%,
+    #b5c6d0 51%,
+    #e0eff9 100%
+  );
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2f6f8", endColorstr="#e0eff9", GradientType=0);
   /* IE6-9 */
@@ -209,23 +215,29 @@ button {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#aebcbf+0,6e7774+50,0a0e0a+51,0a0809+100;Black+Gloss */
   background: #aebcbf;
   /* Old browsers */
-  background: -moz-linear-gradient(top,
-      #aebcbf 0%,
-      #6e7774 50%,
-      #0a0e0a 51%,
-      #0a0809 100%);
+  background: -moz-linear-gradient(
+    top,
+    #aebcbf 0%,
+    #6e7774 50%,
+    #0a0e0a 51%,
+    #0a0809 100%
+  );
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,
-      #aebcbf 0%,
-      #6e7774 50%,
-      #0a0e0a 51%,
-      #0a0809 100%);
+  background: -webkit-linear-gradient(
+    top,
+    #aebcbf 0%,
+    #6e7774 50%,
+    #0a0e0a 51%,
+    #0a0809 100%
+  );
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,
-      #aebcbf 0%,
-      #6e7774 50%,
-      #0a0e0a 51%,
-      #0a0809 100%);
+  background: linear-gradient(
+    to bottom,
+    #aebcbf 0%,
+    #6e7774 50%,
+    #0a0e0a 51%,
+    #0a0809 100%
+  );
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#aebcbf", endColorstr="#0a0809", GradientType=0);
   /* IE6-9 */
@@ -393,7 +405,7 @@ button {
   background-color: #9e750d;
 }
 
-.table> :not(caption)>*>* {
+.table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom: 1px solid #424242;
@@ -1000,12 +1012,14 @@ button {
   align-items: center;
   background: black;
   background: rgba(0, 0, 0, 0.25);
-  background: linear-gradient(90deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.2) 20%,
-      rgba(0, 0, 0, 0.25) 50%,
-      rgba(0, 0, 0, 0.2) 80%,
-      rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.2) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
   text-shadow: 0 0 10px black;
   z-index: 50;
   pointer-events: none;
@@ -1295,7 +1309,7 @@ button {
   position: absolute !important;
   margin-top: -35px;
   opacity: 1 !important;
-  transition: 200ms !important;
+  transition: 0.2s !important;
   transform: rotate(0deg) !important;
 }
 
@@ -1773,7 +1787,7 @@ i {
   outline: 0;
 }
 
-.user-action-container .user-action:disabled+.user-action-text {
+.user-action-container .user-action:disabled + .user-action-text {
   opacity: 0.65;
 }
 
@@ -1842,9 +1856,9 @@ i {
   background-color: rgba(255, 217, 0, 0.8);
   box-shadow: 0 0 10px gold;
   animation-name: placeBetsColor;
-  animation-duration: 2s;
+  animation-duration: 0.3s;
   animation-iteration-count: infinite;
-  transition: 100ms;
+  transition: 0.1s;
   z-index: 10;
 }
 
@@ -2018,7 +2032,7 @@ i {
   z-index: 999999;
 }
 
-.table> :not(:first-child) {
+.table > :not(:first-child) {
   border-top: none !important;
 }
 
@@ -2217,7 +2231,7 @@ i {
   }
 
   #users-online-box {
-    top: 90px;
+    top: 100px;
   }
 
   #users-online-box #users-online-label {
@@ -2337,7 +2351,6 @@ i {
     font-size: 10px;
   }
 }
-
 
 /* .bets-container span.chip-10 {
   position: absolute;
