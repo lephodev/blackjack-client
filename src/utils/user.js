@@ -1,9 +1,16 @@
-import { blackjackInstance } from './axios.config';
+import axios from "axios";
 
 // This function is alternative of firebase.auth().onAuthStateChanged
 const getAuthUserData = async () => {
   try {
-    const userData = await blackjackInstance().get('/check-auth');
+    let userData = await axios({
+      method: "get",
+      url: "https://api.scrooge.casino/v1/auth/check-auth",
+      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
+      withCredentials: true,
+      credentials: "include",
+    });
+
     return { success: true, data: userData.data };
   } catch (error) {
     return { success: false };
