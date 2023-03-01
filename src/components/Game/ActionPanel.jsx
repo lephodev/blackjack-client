@@ -1,5 +1,5 @@
 import { socket } from "../../config/socket";
-// import debounce from "lodash.debounce";
+import debounce from "lodash.debounce";
 import { useCallback } from "react";
 import Button from "react-bootstrap/Button";
 
@@ -17,19 +17,20 @@ const ActionPanel = ({
   const handleAction = useCallback(
     (val) => {
       // console.log("val", val);
+      console.log("use callback executed");
       setActionCompleted(false);
-      // debounce((value) => {
-      // if previous action is not completed then pause the button till then
-      if (!actionCompleted) {
-        return;
-      }
-      // console.log({ tableId });
-      socket.emit(val, {
-        tableId,
-        userId: player.id,
-        wallet
-      });
-      // }, 300)(val);
+      debounce((value) => {
+        // if previous action is not completed then pause the button till then
+        if (!actionCompleted) {
+          return;
+        }
+        // console.log({ tableId });
+        socket.emit(value, {
+          tableId,
+          userId: player.id,
+          wallet
+        });
+      }, 300)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
@@ -72,33 +73,33 @@ const ActionPanel = ({
         <div className="user-action-text">Hit</div>
       </div>
 
-      {player?.isActed || player?.splitSum?.length !== 0 ? 
-      // (
-      //   <div className="user-action-box">
-      //     <Button
-      //       className="user-action"
-      //       id="doubleDown"
-      //       onClick={() => handleAction("double")}
-      //       disabled
-      //     >
-      //       <DoubleIcon />
-      //     </Button>
-      //     <div className="user-action-text">2X Down</div>
-      //   </div>
-      // ) : 
-      (
-        <div className="user-action-box">
-          <button
-            className="user-action"
-            id="doubleDown"
-            disabled={!actionCompleted}
-            onClick={() => handleAction("double")}
-          >
-            <DoubleIcon />
-          </button>
-          <div className="user-action-text">2X Down</div>
-        </div>
-      ) : ''
+      {player?.isActed || player?.splitSum?.length !== 0 ?
+        (
+          <div className="user-action-box">
+            <Button
+              className="user-action"
+              id="doubleDown"
+              onClick={() => handleAction("double")}
+              disabled={!actionCompleted}
+            >
+              <DoubleIcon />
+            </Button>
+            <div className="user-action-text">2X Down</div>
+          </div>
+        ) :
+        (
+          <div className="user-action-box">
+            <button
+              className="user-action"
+              id="doubleDown"
+              disabled={!actionCompleted}
+              onClick={() => handleAction("double")}
+            >
+              <DoubleIcon />
+            </button>
+            <div className="user-action-text">2X Down</div>
+          </div>
+        )
       }
 
       {player?.splitSum?.length === 0 && player?.isSameCard ? (

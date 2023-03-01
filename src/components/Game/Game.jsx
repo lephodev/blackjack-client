@@ -618,9 +618,10 @@ const Game = () => {
         // }, 1500);
       }
 
-      if (data.type === "burst") setTimeout(playSound(data.type), 200);
+      if (data.type === "burst") playSound(data.type);//setTimeout(, 200);
       if (data.type === "hit" || "doubleDown" || "split") {
-        setTimeout(playSound("dealnewcard"), 200);
+        // setTimeout(, 200);
+        playSound("dealnewcard")
       }
       stopSound("timerRunningOut");
     });
@@ -702,33 +703,35 @@ const Game = () => {
   };
 
   const handleBetConfirm = (e) => {
+    console.log("handle confrim bet executed");
     if (handleBetIntervel) {
       clearInterval(handleBetIntervel);
     }
-    // handleBetIntervel = setTimeout(() => {
-    const userWallet = players.find((el) => el.id === userId)?.wallet;
-    const userBet = players.find((el) => el.id === userId)?.betAmount;
-    setLastBet(userBet);
-    // console.log("handleBetConfirm-----", { userWallet, userBet });
-    if (!userBet && !userWallet) {
-      toast.error("You don't have enough balance in your wallet.", {
-        id: "confirm-bet",
+    handleBetIntervel = setTimeout(() => {
+      const userWallet = players.find((el) => el.id === userId)?.wallet;
+      const userBet = players.find((el) => el.id === userId)?.betAmount;
+      setLastBet(userBet);
+      // console.log("handleBetConfirm-----", { userWallet, userBet });
+      if (!userBet && !userWallet) {
+        toast.error("You don't have enough balance in your wallet.", {
+          id: "confirm-bet",
+        });
+        setRefillSitInAmount(true);
+        return;
+      } else if (!userBet) {
+        toast.error("Please enter bet amount", { id: "confirm-bet" });
+        return;
+      }
+      // else if (!userWallet) {
+      //   toast.error("You don't have enough balance in your wallet.");
+      //   return;
+      // }
+      console.log("confirm-bet executed successfully 2");
+      socket.emit("confirmBet", {
+        tableId,
+        userId,
       });
-      setRefillSitInAmount(true);
-      return;
-    } else if (!userBet) {
-      toast.error("Please enter bet amount", { id: "confirm-bet" });
-      return;
-    }
-    // else if (!userWallet) {
-    //   toast.error("You don't have enough balance in your wallet.");
-    //   return;
-    // }
-    socket.emit("confirmBet", {
-      tableId,
-      userId,
-    });
-    // }, 1000);
+    }, 500);
   };
 
   const playSound = (value) => {
@@ -935,27 +938,27 @@ const Game = () => {
               transform: isDesktop
                 ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 1.1) / 100
                 })`
-                : isMinlandscape ? `translate(-50%, -${topValue * 0.7}%) scale(${(scaleValue * 0.9) / 100
+                : isMinlandscape ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 0.9) / 100
                   })`
-                  : isLandscape ? `translate(-50%, -${topValue * 1}%) scale(${(scaleValue * 0.9) / 100
+                  : isLandscape ? `translate(-50%, -${ topValue * 1 }%) scale(${ (scaleValue * 0.9) / 100
                     })`
-                    : isPhoneSE ? `translate(-50%, -${topValue * 0.2}%) scale(${(scaleValue * 2) / 100
+                    : isPhoneSE ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2) / 100
                       })`
                       : isTablet
-                        ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
+                        ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
                         })`
                         : isBigMobile
-                          ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
+                          ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
                           })`
                           : isMobile
-                            ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
+                            ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
                             })`
                             : isMiniMobile
-                              ? `translate(-50%, -${topValue * 0.2}%) scale(${(scaleValue * 2.3) / 100
+                              ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2.3) / 100
                               })`
 
                               :
-                              `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
+                              `translate(-50%, -${ topValue }%) scale(${ scaleValue / 100 })`,
             }}
           >
             <div className="blackjack-table">

@@ -41,7 +41,7 @@ const BetPanel = ({
         clearTimeout(handleBetTimeout);
       }
       handleBetTimeout = setTimeout(() => {
-        let totalBetAmt = totalBetAmount + amount;
+        let totalBetAmt = totalBetAmount ? totalBetAmount : 0 + amount;
         console.log(player);
         console.log("totalBetAmount", totalBetAmount, amount, totalBetAmt);
         if (totalBetAmt > maxBetAmount) {
@@ -79,7 +79,7 @@ const BetPanel = ({
           });
           setTotalBetAmount(totalBetAmt);
         }
-      }, 1000);
+      }, 500);
     }
   }
 
@@ -169,8 +169,8 @@ const BetPanel = ({
 
   useEffect(() => {
     if (player?.betAmount) {
-      setTotalBetAmount(player?.betAmount);
-      setRangeBetValue(player?.betAmount);
+      setTotalBetAmount(player?.betAmount || 0);
+      setRangeBetValue(player?.betAmount || 0);
     }
   }, [player?.betAmount]);
 
