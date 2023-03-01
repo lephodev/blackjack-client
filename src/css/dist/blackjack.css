@@ -735,8 +735,8 @@ input[type="number"] {
 
 .player1 .player-cards-box .player-card {
   position: relative;
-  animation-name: cardAnimation;
-  animation-duration: 0.8s;
+  /* animation-name: cardAnimation;
+  animation-duration: 0.8s; */
   transition: all 0.5s;
 }
 
@@ -748,17 +748,17 @@ input[type="number"] {
 .player1 .player-cards-box .player-card:nth-child(7),
 .player1 .player-cards-box .player-card:nth-child(8),
 .player1 .player-cards-box .player-card:nth-child(9) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player1 .player-cards-box .player-card:nth-child(2) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player2 .player-cards-box .player-card {
   position: relative;
-  animation-name: cardAnimation;
-  animation-duration: 0.8s;
+  /* animation-name: cardAnimation;
+  animation-duration: 0.8s; */
   transition: all 0.5s;
 }
 
@@ -770,17 +770,17 @@ input[type="number"] {
 .player2 .player-cards-box .player-card:nth-child(7),
 .player2 .player-cards-box .player-card:nth-child(8),
 .player2 .player-cards-box .player-card:nth-child(9) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player2 .player-cards-box .player-card:nth-child(2) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player3 .player-cards-box .player-card {
   position: relative;
-  animation-name: cardAnimation;
-  animation-duration: 0.8s;
+  /* animation-name: cardAnimation;
+  animation-duration: 0.8s; */
   transition: all 0.5s;
 }
 
@@ -792,17 +792,17 @@ input[type="number"] {
 .player3 .player-cards-box .player-card:nth-child(7),
 .player3 .player-cards-box .player-card:nth-child(8),
 .player3 .player-cards-box .player-card:nth-child(9) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player3 .player-cards-box .player-card:nth-child(2) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player4 .player-cards-box .player-card {
   position: relative;
-  animation-name: cardAnimation;
-  animation-duration: 0.8s;
+  /* animation-name: cardAnimation;
+  animation-duration: 0.8s; */
   transition: all 0.5s;
 }
 
@@ -814,17 +814,17 @@ input[type="number"] {
 .player4 .player-cards-box .player-card:nth-child(7),
 .player4 .player-cards-box .player-card:nth-child(8),
 .player4 .player-cards-box .player-card:nth-child(9) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player4 .player-cards-box .player-card:nth-child(2) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player5 .player-cards-box .player-card {
   position: relative;
-  animation-name: cardAnimation;
-  animation-duration: 0.8s;
+  /* animation-name: cardAnimation;
+  animation-duration: 0.8s; */
   transition: all 0.5s;
 }
 
@@ -836,17 +836,17 @@ input[type="number"] {
 .player5 .player-cards-box .player-card:nth-child(7),
 .player5 .player-cards-box .player-card:nth-child(8),
 .player5 .player-cards-box .player-card:nth-child(9) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player5 .player-cards-box .player-card:nth-child(2) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player6 .player-cards-box .player-card {
   position: relative;
-  animation-name: cardAnimation;
-  animation-duration: 0.8s;
+  /* animation-name: cardAnimation;
+  animation-duration: 0.8s; */
   transition: all 0.5s;
 }
 
@@ -858,17 +858,17 @@ input[type="number"] {
 .player6 .player-cards-box .player-card:nth-child(7),
 .player6 .player-cards-box .player-card:nth-child(8),
 .player6 .player-cards-box .player-card:nth-child(9) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player6 .player-cards-box .player-card:nth-child(2) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player7 .player-cards-box .player-card {
   position: relative;
-  animation-name: cardAnimation;
-  animation-duration: 0.8s;
+  /* animation-name: cardAnimation;
+  animation-duration: 0.8s; */
   transition: all 0.5s;
 }
 
@@ -880,11 +880,11 @@ input[type="number"] {
 .player7 .player-cards-box .player-card:nth-child(7),
 .player7 .player-cards-box .player-card:nth-child(8),
 .player7 .player-cards-box .player-card:nth-child(9) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 .player7 .player-cards-box .player-card:nth-child(2) {
-  animation-delay: 0.1s;
+  /* animation-delay: 0.1s; */
 }
 
 /* ************** Cam Tool CSS *************** */
@@ -1985,7 +1985,7 @@ button .spinner-border {
   }
 }
 
-@media screen and (min-width: 540px) {
+/* @media screen and (min-width: 540px) {
   .player5 .user-bet-amount.betAmt-onTable {
     top: -33%;
     right: -101px;
@@ -2220,7 +2220,7 @@ button .spinner-border {
     transition: all 0.3s;
   }
 
-}
+} */
 
 @media (max-width: 380px) {
   /* .floating-menu-icon svg {
@@ -2722,95 +2722,6 @@ button .spinner-border {
     width: 140px;
   }
 
-  .count-1 .user-bet-amount {
-    transform: translate(4%, -115%);
-  }
-
-  .count-3 .user-bet-amount {
-    transform: translate(15%, -92px);
-  }
-
-  .count-3 .player5 .user-bet-amount.betAmt-onTable {
-    top: -35%;
-    right: -43px;
-  }
-
-  .count-3 .player3 .user-bet-amount.betAmt-onTable {
-    right: 117px;
-    top: -28%;
-  }
-
-  .count-4 .user-bet-amount {
-    /* transform: translate(15%, -100px); */
-    transform: translate(15%, 36px);
-  }
-
-  .player5 .user-bet-amount.betAmt-onTable {
-    top: -42%;
-    right: -42px;
-  }
-
-  .player3 .user-bet-amount.betAmt-onTable {
-    right: 116px;
-    top: -36%;
-  }
-
-  .player2 .user-bet-amount.betAmt-onTable {
-    right: 138px;
-    top: -28%;
-  }
-
-  .player1 .user-bet-amount.betAmt-onTable {
-    right: 128px;
-    top: 12%;
-  }
-
-  .count-5 .user-bet-amount {
-    transform: translate(12%, -146px);
-  }
-
-  .count-6 .user-bet-amount {
-    transform: translate(6%, -144px);
-  }
-
-  .player6 .user-bet-amount.betAmt-onTable {
-    right: -84px;
-    top: -36%;
-  }
-
-  .count-7 .user-bet-amount {
-    transform: translate(4%, -156px);
-  }
-
-  .count-7 .player1 .user-bet-amount.betAmt-onTable {
-    right: 98px;
-    top: 2%;
-  }
-
-  .count-7 .player2 .user-bet-amount.betAmt-onTable {
-    right: 128px;
-    top: -28%;
-  }
-
-  .count-7 .player3 .user-bet-amount.betAmt-onTable {
-    right: 98px;
-    top: -35%;
-  }
-
-  .count-7 .player5 .user-bet-amount.betAmt-onTable {
-    top: -35%;
-    right: -60px;
-  }
-
-  .count-7 .player6 .user-bet-amount.betAmt-onTable {
-    right: -92px;
-    top: -34%;
-  }
-
-  .player7 .user-bet-amount.betAmt-onTable {
-    right: -66px;
-    top: -4%;
-  }
   .Chatgame-title {
     font-size: 14px;}
 
