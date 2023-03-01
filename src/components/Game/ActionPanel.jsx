@@ -16,8 +16,6 @@ const ActionPanel = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleAction = useCallback(
     (val) => {
-      // console.log("val", val);
-      console.log("use callback executed");
       setActionCompleted(false);
       debounce((value) => {
         // if previous action is not completed then pause the button till then
@@ -34,8 +32,6 @@ const ActionPanel = ({
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
-
-  // console.log('ACS', { actionCompleted });
 
   return (
     <div className={`user-action-container ${ actionopen ? `` : `hide-panel` }`}>
