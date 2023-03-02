@@ -47,13 +47,13 @@ const Home = () => {
   // console.log({ userData });
 
   // utils function
-  const handleShow = () =>{
+  const handleShow = () => {
     setShow(!show)
     setGameState({ ...gameInit })
   };
 
   const handleChange = (e) => {
-  
+
     const { name, value } = e.target;
     if (name === "public" || name === "autohand") {
       setGameState({ ...gameState, [name]: e.target.checked });
@@ -399,7 +399,7 @@ const CreateTable = ({
             onChange={handleChange}
             value={values.gameName}
           />
-          
+
           {!!errors?.gameName && (
             <p className="text-danger">{errors?.gameName}</p>
           )}
