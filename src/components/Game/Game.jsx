@@ -115,7 +115,7 @@ const Game = () => {
   const [openChatHistory, setOpenChatHistory] = useState(false);
 
   const handleOpenChatHistory = () => {
-    socket.emit('updateChatIsRead', { tableId, userId });
+    socket.emit("updateChatIsRead", { tableId, userId });
     setUnReadMessages(0);
     setOpenChatHistory(!openChatHistory);
     setOpenEmoji(false);
@@ -128,7 +128,8 @@ const Game = () => {
     query: "(max-width: 1025px) and (min-width: 766px)",
   });
   const isTabletLandscape = useMediaQuery({
-    query: "(max-width: 1024px) and (min-height: 580px) and (orientation: landscape)",
+    query:
+      "(max-width: 1024px) and (min-height: 580px) and (orientation: landscape)",
   });
   const isBigMobile = useMediaQuery({
     query: "(max-width: 767px) and (min-width: 580px)",
@@ -137,9 +138,15 @@ const Game = () => {
     query: "(max-width: 579px) and (min-width: 450px)",
   });
   const isMiniMobile = useMediaQuery({ query: "(max-width: 450px)" });
-  const isPhoneSE = useMediaQuery({ query: "(max-width: 385px) and (max-height: 750px)" });
-  const isMinlandscape = useMediaQuery({ query: "(max-width: 685px) and (max-height:380px)" });
-  const isLandscape = useMediaQuery({ query: "(max-height: 480px) and (orientation: landscape)" })
+  const isPhoneSE = useMediaQuery({
+    query: "(max-width: 385px) and (max-height: 750px)",
+  });
+  const isMinlandscape = useMediaQuery({
+    query: "(max-width: 685px) and (max-height:380px)",
+  });
+  const isLandscape = useMediaQuery({
+    query: "(max-height: 480px) and (orientation: landscape)",
+  });
   // const isPortrait = useMediaQuery({ query: "(max-width: 768px) and (orientation: portrait)" })
 
   const handleClose = () => setIsTourOPen(false);
@@ -171,7 +178,6 @@ const Game = () => {
   const handleClick = () => {
     setOpen(!open);
     setOpenEmoji(false);
-
   };
   const handleSitin = (sitInAmount) => {
     let urlParams = getQueryParams();
@@ -313,7 +319,6 @@ const Game = () => {
 
   useEffect(() => {
     const isLoggedIn = async () => {
-
       let urlParams = getQueryParams();
       // console.log({ urlParams });
       // let user;
@@ -414,7 +419,7 @@ const Game = () => {
     });
 
     socket.on("newPlayer", (data) => {
-      console.log({ data })
+      console.log({ data });
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
@@ -620,10 +625,10 @@ const Game = () => {
         // }, 1500);
       }
 
-      if (data.type === "burst") playSound(data.type);//setTimeout(, 200);
+      if (data.type === "burst") playSound(data.type); //setTimeout(, 200);
       if (data.type === "hit" || "doubleDown" || "split") {
         // setTimeout(, 200);
-        playSound("dealnewcard")
+        playSound("dealnewcard");
       }
       stopSound("timerRunningOut");
     });
@@ -704,38 +709,67 @@ const Game = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   };
 
-  const handleBetConfirm = (e) => {
-    console.log("handle confrim bet executed");
-    if (handleBetIntervel) {
-      clearInterval(handleBetIntervel);
-    }
-    handleBetIntervel = setTimeout(() => {
-      const userWallet = players.find((el) => el.id === userId)?.wallet;
-      const userBet = players.find((el) => el.id === userId)?.betAmount;
-      console.log("user bet", userBet);
-      setLastBet(userBet);
-      // console.log("handleBetConfirm-----", { userWallet, userBet });
-      if (!userBet && !userWallet) {
-        toast.error("You don't have enough balance in your wallet.", {
-          id: "confirm-bet",
-        });
-        setRefillSitInAmount(true);
-        return;
-      } else if (!userBet) {
-        toast.error("Please enter bet amount", { id: "confirm-bet" });
-        return;
-      }
-      // else if (!userWallet) {
-      //   toast.error("You don't have enough balance in your wallet.");
-      //   return;
-      // }
-      console.log("confirm-bet executed successfully 2");
-      socket.emit("confirmBet", {
-        tableId,
-        userId,
-      });
-    }, 200);
-  };
+  // const handleBetConfirm = (e) => {
+  //   if (handleBetIntervel) {
+  //     clearInterval(handleBetIntervel);
+  //   }
+  //   handleBetIntervel = setTimeout(() => {
+  //     const userWallet = players.find((el) => el.id === userId)?.wallet;
+  //     const userBet = players.find((el) => el.id === userId)?.betAmount;
+  //     console.log("userBet", players);
+  //     setLastBet(userBet);
+  //     // console.log("handleBetConfirm-----", { userWallet, userBet });
+  //     if (!userBet && !userWallet) {
+  //       toast.error("You don't have enough balance in your wallet.", {
+  //         id: "confirm-bet",
+  //       });
+  //       setRefillSitInAmount(true);
+  //       return;
+  //     } else if (!userBet) {
+  //       toast.error("Please enter bet amount", { id: "confirm-bet" });
+  //       return;
+  //     }
+  //     // else if (!userWallet) {
+  //     //   toast.error("You don't have enough balance in your wallet.");
+  //     //   return;
+  //     // }
+  //     socket.emit("confirmBet", {
+  //       tableId,
+  //       userId,
+  //     });
+  //   }, 1000);
+  // };
+  // const handleBetConfirm = (e) => {
+  //   console.log("handle confrim bet executed");
+  //   if (handleBetIntervel) {
+  //     clearInterval(handleBetIntervel);
+  //   }
+  //   handleBetIntervel = setTimeout(() => {
+  //     const userWallet = players.find((el) => el.id === userId)?.wallet;
+  //     const userBet = players.find((el) => el.id === userId)?.betAmount;
+  //     setLastBet(userBet);
+  //     // console.log("handleBetConfirm-----", { userWallet, userBet });
+  //     if (!userBet && !userWallet) {
+  //       toast.error("You don't have enough balance in your wallet.", {
+  //         id: "confirm-bet",
+  //       });
+  //       setRefillSitInAmount(true);
+  //       return;
+  //     } else if (!userBet) {
+  //       toast.error("Please enter bet amount", { id: "confirm-bet" });
+  //       return;
+  //     }
+  //     // else if (!userWallet) {
+  //     //   toast.error("You don't have enough balance in your wallet.");
+  //     //   return;
+  //     // }
+  //     console.log("confirm-bet executed successfully 2");
+  //     socket.emit("confirmBet", {
+  //       tableId,
+  //       userId,
+  //     });
+  //   }, 200);
+  // };
 
   const playSound = (value) => {
     // setTimeout(() => {
@@ -842,11 +876,12 @@ const Game = () => {
       setChatMessage(chat);
       if (openChatHistory) {
         setUnReadMessages(0);
-        socket.emit('updateChatIsRead', { tableId, userId });
+        socket.emit("updateChatIsRead", { tableId, userId });
       } else {
         let unReadMsgsCnt = 0;
-        chat.forEach(msg => {
-          if (msg.userId !== userId && msg.seenBy.indexOf(userId) < 0) unReadMsgsCnt++
+        chat.forEach((msg) => {
+          if (msg.userId !== userId && msg.seenBy.indexOf(userId) < 0)
+            unReadMsgsCnt++;
         });
         setUnReadMessages(unReadMsgsCnt);
       }
@@ -856,8 +891,8 @@ const Game = () => {
   const scrollDownRef = useRef(null);
 
   const scrollToBottom = () => {
-    scrollDownRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    scrollDownRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   // const LastBetAmt = () =>{
   //   setLastBet(players.find((el) => el.id === userId)?.betAmount);
@@ -944,11 +979,14 @@ const Game = () => {
                 : isDesktop
                   ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 1) / 100
                   })`
-                  : isMinlandscape ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 0.9) / 100
+                  : isMinlandscape
+                    ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 0.9) / 100
                     })`
-                    : isLandscape ? `translate(-50%, -${ topValue * 1 }%) scale(${ (scaleValue * 0.9) / 100
+                    : isLandscape
+                      ? `translate(-50%, -${ topValue * 1 }%) scale(${ (scaleValue * 0.9) / 100
                       })`
-                      : isPhoneSE ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2) / 100
+                      : isPhoneSE
+                        ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2) / 100
                         })`
                         : isTablet
                           ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
@@ -962,12 +1000,9 @@ const Game = () => {
                               : isMiniMobile
                                 ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2.3) / 100
                                 })`
-
-                                :
-                                `translate(-50%, -${ topValue }%) scale(${ scaleValue / 100 })`,
+                                : `translate(-50%, -${ topValue }%) scale(${ scaleValue / 100 })`,
             }}
           >
-
             <div className="blackjack-table">
               {allowType === "allowBoth" ? (
                 <div className="allow-both">
@@ -1054,7 +1089,7 @@ const Game = () => {
             !players.find((el) => el.id === userId)?.isPlaying && (
               <BetPanel
                 data-tut="bet-panel"
-                handleBetConfirm={handleBetConfirm}
+                // handleBetConfirm={handleBetConfirm}
                 player={players.find((el) => el.id === userId)}
                 tableId={tableId}
                 volume={volume}
@@ -1218,7 +1253,7 @@ const Game = () => {
         accentColor="#5cb7b7"
       /> */}
       {winUser ? <WinPopup /> : ""}
-    </div >
+    </div>
   );
 };
 
