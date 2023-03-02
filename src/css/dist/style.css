@@ -402,7 +402,8 @@ button {
 }
 
 #info-rules {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   /* right: -1000px; */
   left: 100vw;
   top: 10px;
@@ -2118,6 +2119,37 @@ i {
     font-size: 15px;
   }
 }
+
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+  .winning-animation.winning-bg-animation.winning-animation-win {
+    top: 46% !important;
+  }
+
+  .collect-slotcoin.win-slottype-one img {
+    width: 120px !important;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 991px) and (orientation: landscape) {
+  .winning-animation.winning-bg-animation.winning-animation-win {
+    top: 62% !important;
+  }
+
+  .collect-slotcoin.win-slottype-one img {
+    width: 160px !important;
+  }
+}
+
+@media screen and (max-width: 1300px) and (min-width: 1025px) and (orientation: landscape) {
+  .winning-animation.winning-bg-animation.winning-animation-win {
+    top: 63% !important;
+  }
+
+  .collect-slotcoin.win-slottype-one img {
+    width: 168px !important;
+  }
+}
+
 
 @media all and (max-width: 992px) {
   .players {

@@ -441,10 +441,10 @@ span.msg-limit {
 }
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 767px) and (orientation: portrait) {
-  .containerFor-chatHistory {
+.containerFor-chatHistory {
     position: fixed;
-    top: 55px;
-  }
+    top: 60px;
+}
 
   #how-to-play {
     left: -90px;

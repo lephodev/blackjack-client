@@ -47,9 +47,13 @@ const Home = () => {
   // console.log({ userData });
 
   // utils function
-  const handleShow = () => setShow(!show);
+  const handleShow = () =>{
+    setShow(!show)
+    setGameState({ ...gameInit })
+  };
 
   const handleChange = (e) => {
+  
     const { name, value } = e.target;
     if (name === "public" || name === "autohand") {
       setGameState({ ...gameState, [name]: e.target.checked });
@@ -93,7 +97,10 @@ const Home = () => {
       err.gameName = "Game name is required.";
       valid = false;
     }
-
+    if (gameState.gameName.trim() === '') {
+      err.gameName = "Game name is required.";
+      valid = false;
+    }
     if (!gameState.sitInAmount) {
       err.sitInAmount = "Enter sit in amount.";
       valid = false;
@@ -392,6 +399,7 @@ const CreateTable = ({
             onChange={handleChange}
             value={values.gameName}
           />
+          
           {!!errors?.gameName && (
             <p className="text-danger">{errors?.gameName}</p>
           )}
