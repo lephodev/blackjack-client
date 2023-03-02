@@ -125,7 +125,10 @@ const Game = () => {
     query: "(max-width: 1400px) and (min-width: 1024px)",
   });
   const isTablet = useMediaQuery({
-    query: "(max-width: 1024px) and (min-width: 766px)",
+    query: "(max-width: 1025px) and (min-width: 766px)",
+  });
+  const isTabletLandscape = useMediaQuery({
+    query: "(max-width: 1024px) and (min-height: 580px) and (orientation: landscape)",
   });
   const isBigMobile = useMediaQuery({
     query: "(max-width: 767px) and (min-width: 580px)",
@@ -140,7 +143,6 @@ const Game = () => {
   // const isPortrait = useMediaQuery({ query: "(max-width: 768px) and (orientation: portrait)" })
 
   const handleClose = () => setIsTourOPen(false);
-
   // Uncomment it when uncomment buy in popup
   const [, /* exchangeRate */ setExchangeRate] = useState({
     rate: 1,
@@ -935,32 +937,36 @@ const Game = () => {
               left: "50%",
               width: "1927px",
               height: "100%",
-              transform: isDesktop
-                ? `translate(-50%, -${topValue * 0.7}%) scale(${(scaleValue * 1.1) / 100
+              transform: isTabletLandscape
+                ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1) / 100
                 })`
-                : isMinlandscape ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 0.9) / 100
+                : isDesktop
+                  ? `translate(-50%, -${topValue * 0.7}%) scale(${(scaleValue * 1) / 100
                   })`
-                  : isLandscape ? `translate(-50%, -${ topValue * 1 }%) scale(${ (scaleValue * 0.9) / 100
+                  : isMinlandscape ? `translate(-50%, -${topValue * 0.7}%) scale(${(scaleValue * 0.9) / 100
                     })`
-                    : isPhoneSE ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2) / 100
+                    : isLandscape ? `translate(-50%, -${topValue * 1}%) scale(${(scaleValue * 0.9) / 100
                       })`
-                      : isTablet
-                        ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                      : isPhoneSE ? `translate(-50%, -${topValue * 0.2}%) scale(${(scaleValue * 2) / 100
                         })`
-                        : isBigMobile
-                          ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                        : isTablet
+                          ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                           })`
-                          : isMobile
-                            ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                          : isBigMobile
+                            ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                             })`
-                            : isMiniMobile
-                              ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2.3) / 100
+                            : isMobile
+                              ? `translate(-50%, -${topValue * 0.3}%) scale(${(scaleValue * 1.1) / 100
                               })`
+                              : isMiniMobile
+                                ? `translate(-50%, -${topValue * 0.2}%) scale(${(scaleValue * 2.3) / 100
+                                })`
 
-                              :
-                              `translate(-50%, -${ topValue }%) scale(${ scaleValue / 100 })`,
+                                :
+                                `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
             }}
           >
+
             <div className="blackjack-table">
               {allowType === "allowBoth" ? (
                 <div className="allow-both">

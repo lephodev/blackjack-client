@@ -82,7 +82,7 @@ button {
   z-index: 999999;
 }
 
-.blackjack-game .blackjack-loader > img {
+.blackjack-game .blackjack-loader>img {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -918,7 +918,6 @@ input[type="number"] {
 
 .collect-slotcoin.win-slottype-one img {
   width: 200px;
-  margin-top: 42%;
 }
 
 /***************** Stripe Poup ******************/
@@ -956,11 +955,11 @@ input[type="number"] {
   background: #1b1f2e;
 }
 
-.stripe-confirmation-popup .table-hover > tbody > tr:hover > * {
+.stripe-confirmation-popup .table-hover>tbody>tr:hover>* {
   --bs-table-accent-bg: #1b1f2e;
 }
 
-.stripe-confirmation-popup .table-striped > tbody > tr:nth-of-type(odd) > * {
+.stripe-confirmation-popup .table-striped>tbody>tr:nth-of-type(odd)>* {
   --bs-table-accent-bg: #1b1f2e;
 }
 
@@ -1030,7 +1029,7 @@ h5.CoinsHeader {
   text-align: center;
 }
 
-#info-rules .table > :not(:first-child) {
+#info-rules .table> :not(:first-child) {
   border-top: none;
 }
 
@@ -1060,7 +1059,7 @@ div#info-rules-overflow::-webkit-scrollbar-thumb {
   background-color: #000000;
 }
 
-#info-rules .table > thead {
+#info-rules .table>thead {
   vertical-align: bottom;
   position: sticky;
   top: 0;
@@ -1468,7 +1467,7 @@ button .spinner-border {
   position: fixed;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 50%;
+  top: 84%;
   z-index: 9999999;
 }
 
@@ -1518,7 +1517,7 @@ button .spinner-border {
   color: #16181b;
 }
 
-.cam-tool .show > .btn-success.dropdown-toggle {
+.cam-tool .show>.btn-success.dropdown-toggle {
   background: transparent !important;
 }
 
@@ -1585,17 +1584,11 @@ button .spinner-border {
   margin: 0px auto;
 }
 
-.blackjack-player-avatar
-  .battery
-  .CircularProgressbar
-  .CircularProgressbar-trail {
+.blackjack-player-avatar .battery .CircularProgressbar .CircularProgressbar-trail {
   stroke: #00000000;
 }
 
-.blackjack-player-avatar
-  .battery
-  .CircularProgressbar
-  .CircularProgressbar-path {
+.blackjack-player-avatar .battery .CircularProgressbar .CircularProgressbar-path {
   stroke: #eade3acc;
   transition: stroke-dashoffset 2s ease 0s;
 }
@@ -2266,7 +2259,6 @@ button .spinner-border {
   }
 
   .collect-slotcoin.win-slottype-one img {
-    margin-top: 150%;
     width: 120px;
   }
 
@@ -2405,13 +2397,18 @@ button .spinner-border {
 /* landscape  */
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 991px) and (orientation: landscape) {
+
   .bets-container,
   .bet-btn-box {
     gap: 5px;
   }
 
+  .blackjack-players-container .player4 {
+    bottom: -155px;
+  }
+
   #users-online-box {
-    top: 115px;
+    top: 100px;
   }
 
   .bets-wrapper {
@@ -2572,6 +2569,7 @@ button .spinner-border {
 
   .count-3 .blackjack-players.player4 {
     bottom: -120px !important;
+    left: 51%;
   }
 
   /* count 4  */
@@ -2714,8 +2712,11 @@ button .spinner-border {
   }
 
   .collect-slotcoin.win-slottype-one img {
-    margin-top: 2%;
-    width: 140px;
+    width: 100px !important;
+  }
+
+  .winning-animation.winning-bg-animation.winning-animation-win {
+    top: 78% !important;
   }
 
   .Chatgame-title {
@@ -2726,10 +2727,7 @@ button .spinner-border {
 /* portrait */
 @media only screen and (max-device-height: 750px) and (orientation: portrait) {
   #users-online-box {
-    position: fixed;
-    width: 220px;
-    left: -222px;
-    top: 90px;
+    top: 104px !important;
   }
 
   #info-rules {
@@ -2737,6 +2735,11 @@ button .spinner-border {
     /* right: -1000px; */
     left: 100vw;
     top: -20px;
+  }
+
+  #how-to-play {
+    left: -90px;
+    top: 85px !important;
   }
 
   .count-7 .blackjack-players.player7 {
@@ -2766,11 +2769,32 @@ button .spinner-border {
     background-size: contain;
   }
 
+  .chat-wrapper {
+    max-width: 350px;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    left: 50%;
+    z-index: 99;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transform: translate(-50%, -50%);
+  }
+
   .card-box {
     display: grid;
     grid-template-columns: repeat(5, minmax(14px, 1fr));
     max-width: 100%;
     row-gap: 6px;
+  }
+
+  #how-to-play {
+    left: -90px;
+    top: 58px;
+  }
+
+  #users-online-box {
+    top: 108px;
   }
 
   .yellowBtn {
@@ -2786,8 +2810,11 @@ button .spinner-border {
   }
 
   .collect-slotcoin.win-slottype-one img {
-    width: 100px;
-    margin-top: -90%;
+    width: 116px !important;
+  }
+
+  .winning-animation.winning-bg-animation.winning-animation-win {
+    top: 56% !important;
   }
 
   .dealer-sum span {
