@@ -488,7 +488,7 @@ const AvatarGroup = ({ imgArr }) => {
           imgArr.map((el, i) => (
             <span className="avatar" key={i}>
               <img
-                src={el.avatar ? el.avatar : el.photoURI ? el.photoURI : users}
+                src={el?.avatar ? el?.avatar : el?.photoURI ? el?.photoURI : users}
                 width="30"
                 height="30"
                 alt=""
