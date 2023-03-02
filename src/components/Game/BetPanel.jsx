@@ -27,6 +27,9 @@ const BetPanel = ({
   const [totalBetAmount, setTotalBetAmount] = useState(player?.betAmount);
 
   const handleBet = (amount, isSliderBet = false) => {
+    if (lastBet) {
+      setLastBet(0);
+    }
     if (isSliderBet) {
       socket.emit("makeSliderBet", {
         userId: player.id,
@@ -44,7 +47,7 @@ const BetPanel = ({
         console.log("totalBetAmount", totalBetAmount, amount, totalBetAmt);
         if (totalBetAmt > maxBetAmount) {
           console.log("max bet executed");
-          toast.error(`Max bet amount is ${maxBetAmount}`, {
+          toast.error(`Max bet amount is ${ maxBetAmount }`, {
             id: "maxBetAmount",
           });
           setTotalBetAmount(maxBetAmount);
@@ -204,9 +207,8 @@ const BetPanel = ({
 
   return (
     <div
-      className={`bets-wrapper ${
-        !player?.isPlaying ? `` : `hide-panel show-popup`
-      }`}
+      className={`bets-wrapper ${ !player?.isPlaying ? `` : `hide-panel show-popup`
+        }`}
     >
       <div className="bets-container">
         {/* <span className="bet-amt-placeholder">

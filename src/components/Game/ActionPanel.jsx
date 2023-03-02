@@ -1,5 +1,5 @@
 import { socket } from "../../config/socket";
-import debounce from "lodash.debounce";
+// import debounce from "lodash.debounce";
 import { useCallback } from "react";
 import Button from "react-bootstrap/Button";
 
@@ -17,21 +17,32 @@ const ActionPanel = ({
   const handleAction = useCallback(
     (val) => {
       setActionCompleted(false);
-      debounce((value) => {
-        // if previous action is not completed then pause the button till then
-        if (!actionCompleted) {
-          return;
-        }
-        // console.log({ tableId });
-        socket.emit(value, {
-          tableId,
-          userId: player.id,
-          wallet
-        });
-      }, 300)(val);
+      // debounce((value) => {
+      // if previous action is not completed then pause the button till then
+      if (!actionCompleted) {
+        return;
+      }
+      console.log(val);
+      playSound(val);
+      // console.log({ tableId });
+      socket.emit(val, {
+        tableId,
+        userId: player.id,
+        wallet
+      });
+      // }, 300)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
+
+  const playSound = (value) => {
+    // setTimeout(() => {
+    let aud = document.getElementsByClassName(`audio-${ value }`)[0];
+    if (aud) {
+      aud.play();
+    }
+    // }, 1000);
+  };
 
   return (
     <div className={`user-action-container ${ actionopen ? `` : `hide-panel` }`}>
@@ -46,6 +57,7 @@ const ActionPanel = ({
         </button>
         <div className="user-action-text">Surrender</div>
       </div>
+      {console.log("actionCompleted ==>", actionCompleted)}
       <div className="user-action-box">
         <button
           className="user-action"
