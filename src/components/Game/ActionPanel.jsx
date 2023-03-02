@@ -17,18 +17,18 @@ const ActionPanel = ({
   const handleAction = useCallback(
     (val) => {
       setActionCompleted(false);
-      debounce((value) => {
-        // if previous action is not completed then pause the button till then
-        if (!actionCompleted) {
-          return;
-        }
-        // console.log({ tableId });
-        socket.emit(val, {
-          tableId,
-          userId: player.id,
-          wallet
-        });
-      }, 300)(val);
+      // debounce((value) => {
+      // if previous action is not completed then pause the button till then
+      if (!actionCompleted) {
+        return;
+      }
+      // console.log({ tableId });
+      socket.emit(val, {
+        tableId,
+        userId: player.id,
+        wallet
+      });
+      // }, 300)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
