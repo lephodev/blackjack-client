@@ -23,12 +23,12 @@ const ActionPanel = ({
           return;
         }
         // console.log({ tableId });
-        socket.emit(value, {
+        socket.emit(val, {
           tableId,
           userId: player.id,
           wallet
         });
-      }, 1500)(val);
+      }, 300)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
