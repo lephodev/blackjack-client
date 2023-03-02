@@ -22,6 +22,8 @@ const ActionPanel = ({
       if (!actionCompleted) {
         return;
       }
+      console.log(val);
+      playSound(val);
       // console.log({ tableId });
       socket.emit(val, {
         tableId,
@@ -32,6 +34,15 @@ const ActionPanel = ({
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
+
+  const playSound = (value) => {
+    // setTimeout(() => {
+    let aud = document.getElementsByClassName(`audio-${ value }`)[0];
+    if (aud) {
+      aud.play();
+    }
+    // }, 1000);
+  };
 
   return (
     <div className={`user-action-container ${ actionopen ? `` : `hide-panel` }`}>

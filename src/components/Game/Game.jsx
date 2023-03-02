@@ -606,7 +606,7 @@ const Game = () => {
     });
 
     socket.on("action", (data) => {
-      playSound(data.type);
+      // playSound(data.type);
       const { type } = data;
       if (type !== "hit" && type !== "doubleDown") {
         // setTimeout(() => {
