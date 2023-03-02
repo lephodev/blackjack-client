@@ -23,7 +23,12 @@ const ActionPanel = ({
         return;
       }
       console.log(val);
-      playSound(val);
+      if (val === "double") {
+        playSound("doubleDown");
+      } else {
+        playSound(val);
+      }
+
       // console.log({ tableId });
       socket.emit(val, {
         tableId,
