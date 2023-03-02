@@ -35,7 +35,7 @@ const ActionPanel = ({
         userId: player.id,
         wallet
       });
-      // }, 300)(val);
+      // }, 100)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]
   );
@@ -48,6 +48,10 @@ const ActionPanel = ({
     }
     // }, 1000);
   };
+
+  if (!actionCompleted) {
+    return "";
+  }
 
   return (
     <div className={`user-action-container ${ actionopen ? `` : `hide-panel` }`}>

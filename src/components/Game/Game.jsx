@@ -323,12 +323,12 @@ const Game = () => {
       // console.log({ urlParams });
       // let user;
       if (!localStorage.getItem("token") && !getCookie("token")) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
 
       const checkAuth = await userUtils.getAuthUserData();
       if (!checkAuth.success) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
 
       // console.log({urlParams:window.location.search})
@@ -342,7 +342,7 @@ const Game = () => {
         // Join user if he is already or new user in game
         if (table) {
           const playerInTable = await blackjackInstance().get(
-            `/getTablePlayers/${table}`
+            `/getTablePlayers/${ table }`
           );
           // Let user join in game
           if (playerInTable.data.players.find((el) => el.id === userId)) {
@@ -412,7 +412,7 @@ const Game = () => {
       setExchangeRate(users.exchangeRate);
     });
     socket.on("gameCreated", (data) => {
-      return (window.location.href = `${window.location.origin}/game?tableid=${data.tableId}&gameCollection=Blackjack_Tables`);
+      return (window.location.href = `${ window.location.origin }/game?tableid=${ data.tableId }&gameCollection=Blackjack_Tables`);
       // setRoomData(data.game);
       // updatePlayers(data.game);
       // setLoader(false);
@@ -484,7 +484,7 @@ const Game = () => {
 
     socket.on("playerReady", (data) => {
       toast.success(
-        `${data.name} is ready`,
+        `${ data.name } is ready`,
         { id: data.name },
         { id: data.name }
       );
@@ -522,7 +522,7 @@ const Game = () => {
     socket.on("notAuthorized", () => {
       setLoader(false);
       toast.error(`Not authorized please login`, { id: "logout" });
-      return (window.location.href = `${CONSTANTS.landingClient}`);
+      return (window.location.href = `${ CONSTANTS.landingClient }`);
     });
 
     socket.on("gameStarted", () => {
@@ -538,7 +538,7 @@ const Game = () => {
     });
 
     socket.on("timeout", (data) => {
-      toast.error(`Timeout ${data.name} is auto stand`, { id: "timeout" });
+      toast.error(`Timeout ${ data.name } is auto stand`, { id: "timeout" });
     });
 
     socket.on("slotFull", () => {
@@ -773,7 +773,7 @@ const Game = () => {
 
   const playSound = (value) => {
     // setTimeout(() => {
-    let aud = document.getElementsByClassName(`audio-${value}`)[0];
+    let aud = document.getElementsByClassName(`audio-${ value }`)[0];
     if (aud) {
       aud.play();
     }
@@ -781,7 +781,7 @@ const Game = () => {
   };
 
   const stopSound = (value) => {
-    let aud = document.getElementsByClassName(`audio-${value}`)[0];
+    let aud = document.getElementsByClassName(`audio-${ value }`)[0];
     if (aud) {
       aud.pause();
       aud.currentTime = 0;
@@ -899,7 +899,7 @@ const Game = () => {
   // }
 
   return (
-    <div className={`blackjack-game ${loader ? "loaderactive" : ""}`}>
+    <div className={`blackjack-game ${ loader ? "loaderactive" : "" }`}>
       {loader && (
         <div className="blackjack-loader">
           <img src={loaderImg} alt="loader-Scrooge Casino" />
@@ -974,42 +974,33 @@ const Game = () => {
               width: "1927px",
               height: "100%",
               transform: isTabletLandscape
-                ? `translate(-50%, -${topValue * 0.3}%) scale(${
-                    (scaleValue * 1) / 100
-                  })`
+                ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1) / 100
+                })`
                 : isDesktop
-                ? `translate(-50%, -${topValue * 0.7}%) scale(${
-                    (scaleValue * 1) / 100
+                  ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 1) / 100
                   })`
-                : isMinlandscape
-                ? `translate(-50%, -${topValue * 0.7}%) scale(${
-                    (scaleValue * 0.9) / 100
-                  })`
-                : isLandscape
-                ? `translate(-50%, -${topValue * 1}%) scale(${
-                    (scaleValue * 0.9) / 100
-                  })`
-                : isPhoneSE
-                ? `translate(-50%, -${topValue * 0.2}%) scale(${
-                    (scaleValue * 2) / 100
-                  })`
-                : isTablet
-                ? `translate(-50%, -${topValue * 0.3}%) scale(${
-                    (scaleValue * 1.1) / 100
-                  })`
-                : isBigMobile
-                ? `translate(-50%, -${topValue * 0.3}%) scale(${
-                    (scaleValue * 1.1) / 100
-                  })`
-                : isMobile
-                ? `translate(-50%, -${topValue * 0.3}%) scale(${
-                    (scaleValue * 1.1) / 100
-                  })`
-                : isMiniMobile
-                ? `translate(-50%, -${topValue * 0.2}%) scale(${
-                    (scaleValue * 2.3) / 100
-                  })`
-                : `translate(-50%, -${topValue}%) scale(${scaleValue / 100})`,
+                  : isMinlandscape
+                    ? `translate(-50%, -${ topValue * 0.7 }%) scale(${ (scaleValue * 0.9) / 100
+                    })`
+                    : isLandscape
+                      ? `translate(-50%, -${ topValue * 1 }%) scale(${ (scaleValue * 0.9) / 100
+                      })`
+                      : isPhoneSE
+                        ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2) / 100
+                        })`
+                        : isTablet
+                          ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                          })`
+                          : isBigMobile
+                            ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                            })`
+                            : isMobile
+                              ? `translate(-50%, -${ topValue * 0.3 }%) scale(${ (scaleValue * 1.1) / 100
+                              })`
+                              : isMiniMobile
+                                ? `translate(-50%, -${ topValue * 0.2 }%) scale(${ (scaleValue * 2.3) / 100
+                                })`
+                                : `translate(-50%, -${ topValue }%) scale(${ scaleValue / 100 })`,
             }}
           >
             <div className="blackjack-table">
@@ -1052,7 +1043,7 @@ const Game = () => {
               )}
               <Dealer dealer={roomData?.dealer} players={players} />
               {userId &&
-              (roomData?.media === "video" || roomData.media === "audio") ? (
+                (roomData?.media === "video" || roomData.media === "audio") ? (
                 <MeetingProvider
                   config={{
                     meetingId: roomData.meetingId,
@@ -1065,7 +1056,7 @@ const Game = () => {
                     roomData.hostId === userId
                       ? roomData.meetingToken
                       : roomData.players.find((ele) => ele.id === userId)
-                          ?.meetingToken
+                        ?.meetingToken
                   }
                 >
                   <MeetingConsumer {...{}}>
@@ -1115,8 +1106,8 @@ const Game = () => {
           {(roomData?.gamestart || !roomData?.preTimer) && (
             <>
               {players.find((el) => el.id === userId) &&
-              players.find((el) => el.id === userId)?.turn &&
-              players.find((el) => el.id === userId)?.action === "" ? (
+                players.find((el) => el.id === userId)?.turn &&
+                players.find((el) => el.id === userId)?.action === "" ? (
                 <ActionPanel
                   wallet={players.find((el) => el.id === userId)?.wallet}
                   actionopen={actionopen}
