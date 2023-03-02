@@ -116,7 +116,7 @@ const BetPanel = ({
         tableId,
         userId,
       });
-    }, 2000);
+    }, 500);
   };
 
   console.log("totalBetAmount", totalBetAmount);
