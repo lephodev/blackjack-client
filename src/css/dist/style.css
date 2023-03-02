@@ -1850,9 +1850,9 @@ i {
   align-items: center;
   background-color: rgba(255, 217, 0, 0.8);
   box-shadow: 0 0 10px gold;
-  animation-name: placeBetsColor;
+  /* animation-name: placeBetsColor;
   animation-duration: 0.3s;
-  animation-iteration-count: infinite;
+  animation-iteration-count: infinite; */
   transition: 0.1s;
   z-index: 10;
 }
