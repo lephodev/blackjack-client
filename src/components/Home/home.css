@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
 }
-.create-game-box a{
+.create-game-box a {
   text-decoration: none;
   color: #fff;
   cursor: pointer;
@@ -147,7 +147,6 @@
   border: 1px solid #1f1e1e;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
-
 
 .lobby-home-title {
   display: inline-block;
@@ -387,6 +386,10 @@
   font-weight: 500;
   color: #000 !important;
   box-shadow: none !important;
+  height: 42px;
+  width: 146px;
+  display: grid;
+  place-content: center;
 }
 
 .modal-footer .btn.btn-secondary {
@@ -529,7 +532,8 @@ input[type="number"] {
     padding: 28px;
   }
   .user-header {
-    margin-bottom: 30px;}
+    margin-bottom: 30px;
+  }
   .user-header-grid {
     flex-direction: column;
     justify-content: center;
@@ -571,7 +575,6 @@ input[type="number"] {
     top: 1%;
     right: 17%;
   }
-
 }
 
 @media screen and (max-width: 520px) {
@@ -612,7 +615,7 @@ input[type="number"] {
   background-clip: padding-box;
   /* border: 1px solid #ced4da; */
   border-radius: 30px;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .poker-table-header .form-control:active,
@@ -634,7 +637,6 @@ input[type="number"] {
   top: 3.5px;
   right: 4px;
 }
-
 
 .sitinPopup-div {
   margin-bottom: 20px;

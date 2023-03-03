@@ -22,6 +22,7 @@ import toast from "react-hot-toast";
 import Select from "react-select";
 import { useMemo } from "react";
 import numFormatter from "../../config/utils";
+import { Spinner } from "react-bootstrap";
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -43,6 +44,7 @@ const Home = () => {
   const history = useHistory();
   const [allUsers, setAllUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [showSpinner, setShowSpinner] = useState(false);;
 
   // console.log({ userData });
 
@@ -119,6 +121,7 @@ const Home = () => {
 
   const createTable = async () => {
     setErrors({});
+    setShowSpinner(true);
     const tableValidation = validateCreateTable();
     if (!tableValidation.valid) {
       setErrors({ ...tableValidation.err });
@@ -134,10 +137,12 @@ const Home = () => {
         pathname: "/game",
         search: "?gameCollection=Blackjack_Tables&tableid=" + resp.data.roomId,
       });
+      setShowSpinner(false);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         toast.error(error.response.data.message, { id: "create-table-error" });
       }
+      setShowSpinner(false);
     }
   };
 
@@ -146,7 +151,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
@@ -204,6 +209,7 @@ const Home = () => {
         options={options}
         handleChnageInviteUsers={handleChnageInviteUsers}
         userWallet={userData?.wallet || 0}
+        showSpinner={showSpinner}
       />
 
       <div className="user-header">
@@ -383,6 +389,7 @@ const CreateTable = ({
   options,
   handleChnageInviteUsers,
   userWallet,
+  showSpinner
 }) => {
   return (
     <Modal show={show} onHide={handleShow} centered className="casino-popup">
@@ -447,7 +454,7 @@ const CreateTable = ({
           Close
         </Button>
         <Button variant="primary" onClick={createTable}>
-          Create Table
+          {!showSpinner ? <Spinner animation="border" /> : "Create Table"}
         </Button>
       </Modal.Footer>
     </Modal>
