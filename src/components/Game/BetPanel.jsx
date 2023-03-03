@@ -217,9 +217,11 @@ const BetPanel = ({
 
   useEffect(() => {
     if (lastBet) {
-      setRangeBetValue(lastBet || 0);
+      const betAMt = (lastBet > player?.wallet) ? player?.wallet : lastBet;
+      console.log("betAMt ===>", betAMt);
+      setRangeBetValue(betAMt || 0);
     }
-  }, [lastBet]);
+  }, [lastBet, player?.wallet]);
 
   const handleClearBet = () => {
     setTotalBetAmount(0);
@@ -253,7 +255,7 @@ const BetPanel = ({
     slidesToScroll: 1,
   };
 
-  console.log("setBetRaised :==>", setBetRaised);
+  // console.log("setBetRaised :==>", setBetRaised);
   if (betRaised) {
     return "";
   }
