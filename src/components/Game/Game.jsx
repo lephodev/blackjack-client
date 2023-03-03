@@ -490,6 +490,7 @@ const Game = () => {
       );
       setRoomData(data.room);
       updatePlayers(data.room);
+      setLastBet(data?.room?.players?.find(el => (el.id === userId))?.betAmount)
       if (data.userId === userId) {
         playSound("bet-confirm");
       }

@@ -87,13 +87,12 @@ const BetPanel = ({
     }
   };
 
-  const handleBetConfirm = (e, totlBetAm) => {
+  const handleBetConfirm = (e) => {
     if (handleBetIntervel) {
       clearInterval(handleBetIntervel);
     }
 
     const userWallet = player?.wallet;
-    setLastBet(totlBetAm);
     // console.log("handleBetConfirm-----", { userWallet, userBet });
     // handleBetIntervel = setTimeout(() => {
     if (!totalBetAmount && !userWallet) {
@@ -115,6 +114,7 @@ const BetPanel = ({
       userId,
       betAmount: totalBetAmount
     });
+    // setLastBet(totalBetAmount);
     // }, 500);
   };
 
