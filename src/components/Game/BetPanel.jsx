@@ -12,7 +12,6 @@ import { useEffect } from "react";
 
 let handleBetTimeout;
 const maxBetAmount = 100;
-let handleBetIntervel;
 
 const BetPanel = ({
   // handleBetConfirm,
@@ -24,6 +23,8 @@ const BetPanel = ({
   lastBet,
   setLastBet,
   userId,
+  betRaised,
+  setBetRaised
 }) => {
   const [rangeBetValue, setRangeBetValue] = useState(0);
   const [totalBetAmount, setTotalBetAmount] = useState(player?.betAmount);
@@ -88,10 +89,11 @@ const BetPanel = ({
   };
 
   const handleBetConfirm = (e) => {
-    if (handleBetIntervel) {
-      clearInterval(handleBetIntervel);
-    }
 
+    if (betRaised) {
+      return;
+    }
+    setBetRaised(true);
     const userWallet = player?.wallet;
     // console.log("handleBetConfirm-----", { userWallet, userBet });
     // handleBetIntervel = setTimeout(() => {
@@ -99,10 +101,12 @@ const BetPanel = ({
       toast.error("You don't have enough balance in your wallet.", {
         id: "confirm-bet",
       });
+      setBetRaised(false);
       // setRefillSitInAmount(true);
       return;
     } else if (!totalBetAmount) {
       toast.error("Please enter bet amount", { id: "confirm-bet" });
+      setBetRaised(false);
       return;
     }
     // else if (!userWallet) {
@@ -114,9 +118,12 @@ const BetPanel = ({
       userId,
       betAmount: totalBetAmount
     });
+    // playSound("bet-confirm");
+    // setBetRaised(false);
     // setLastBet(totalBetAmount);
     // }, 500);
   };
+
 
   console.log("totalBetAmount", totalBetAmount);
   // const handleBet = (amount, isSliderBet = false) => {
@@ -245,6 +252,11 @@ const BetPanel = ({
     slidesToShow: 3,
     slidesToScroll: 1,
   };
+
+  console.log("setBetRaised :==>", setBetRaised);
+  if (betRaised) {
+    return "";
+  }
 
   return (
     <div

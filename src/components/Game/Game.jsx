@@ -111,6 +111,10 @@ const Game = () => {
   const [chatMessage, setChatMessage] = useState([]);
   const [unReadMessages, setUnReadMessages] = useState(0);
   const [openEmoji, setOpenEmoji] = useState(false);
+  const [betRaised, setBetRaised] = useState(false);
+  const [isGameStarted, setIsGameStarted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
 
   const [openChatHistory, setOpenChatHistory] = useState(false);
 
@@ -488,12 +492,15 @@ const Game = () => {
         { id: data.name },
         { id: data.name }
       );
+      setIsGameStarted(data.room?.gamestart);
+      setIsPlaying(data.room?.players?.find((el) => el.id === userId)?.isPlaying);
       setRoomData(data.room);
       updatePlayers(data.room);
       setLastBet(data?.room?.players?.find(el => (el.id === userId))?.betAmount)
       if (data.userId === userId) {
         playSound("bet-confirm");
       }
+      setBetRaised(false);
     });
 
     socket.on("winner", (data) => {
@@ -636,6 +643,11 @@ const Game = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setRoomData, userId]);
+
+  useEffect(() => {
+    setIsGameStarted(roomData?.gamestart);
+    setIsPlaying(players.find((el) => el.id === userId)?.isPlaying);
+  }, [roomData, players]);
 
   useEffect(() => {
     socket.on("gameTimer", (data) => {
@@ -1086,8 +1098,8 @@ const Game = () => {
               )}
             </div>
           </div>
-          {!roomData?.gamestart &&
-            !players.find((el) => el.id === userId)?.isPlaying && (
+          {!isGameStarted &&
+            !isPlaying && (
               <BetPanel
                 data-tut="bet-panel"
                 // handleBetConfirm={handleBetConfirm}
@@ -1102,6 +1114,8 @@ const Game = () => {
                 handleActionOpen={handleActionOpen}
                 lastBet={lastBet}
                 setLastBet={setLastBet}
+                betRaised={betRaised}
+                setBetRaised={setBetRaised}
               />
             )}
           {(roomData?.gamestart || !roomData?.preTimer) && (
