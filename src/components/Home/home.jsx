@@ -454,7 +454,7 @@ const CreateTable = ({
           Close
         </Button>
         <Button variant="primary" onClick={createTable}>
-          {!showSpinner ? <Spinner animation="border" /> : "Create Table"}
+          {showSpinner ? <Spinner animation="border" /> : "Create Table"}
         </Button>
       </Modal.Footer>
     </Modal>
