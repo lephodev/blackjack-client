@@ -1231,8 +1231,7 @@ button {
   text-align: center;
   left: 50%;
   font-weight: 600;
-  min-width: 40px;
-
+  max-width: 80px;
   height: 40px;
   line-height: 40px;
   font-size: 16px;
@@ -1931,11 +1930,11 @@ i {
 
 .player-cards-box.split .player-sum {
   position: absolute;
-  top: -5px;
+  top: 38%;
   right: -160px;
   height: 30px;
-  /* width: 100%; */
-  min-width: 80px;
+  width: 100%;
+  max-width: 80px;
   line-height: 30px;
   font-size: 16px;
   display: block;
