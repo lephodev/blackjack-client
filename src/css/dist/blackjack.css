@@ -1168,6 +1168,7 @@ div#info-rules .card-box {
   max-width: 350px;
   margin: 0px auto;
   padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 .block-view h4 {
@@ -1194,13 +1195,14 @@ div#info-rules .card-box {
   background: #f9ff00;
   border-color: #f9ff00;
   box-shadow: none;
-  font-size: 12px;
-  font-weight: 500 !important;
-  width: 130px;
+  font-size: 14px;
+  font-weight: 600 !important;
+  width: 150px;
   color: #010101;
   font-weight: 500;
-  height: 34px;
-  margin-top: 4px;
+  height: 38px;
+  margin-top: 14px;
+  border-radius: 30px;
 }
 
 .select__control.css-8f46bn-Control {
@@ -1333,16 +1335,21 @@ div#info-rules .card-box {
 }
 
 .sitinPopup label.form-label {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: 600;
+  color: #ddd;
+  margin-bottom: 18px;
 }
 
 .sitinPopup .form-control {
-  background-color: #1b1b1b;
-  border: 1px solid rgb(63, 63, 63);
+  background-color: #000000;
+  border: 1px solid rgb(12, 12, 12);
   color: #fff;
   font-size: 14px;
   height: 44px;
+  border-radius: 30px;
+  padding: 2px 20px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.597);
 }
 
 .sitinPopup .form-control:focus {
@@ -1636,17 +1643,26 @@ button .spinner-border {
   border-color: #f9ff00;
   transition: all 0.3s;
   width: 144px;
-  height: 42px;
-  font-weight: 500;
+  height: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 30px;
+  display: grid;
+  place-content: center;
 }
 
 .grey-btn.btn {
-  color: #fff;
-  background: #414141;
-  border-color: #414141;
+  color: #ddd;
+  background: #343a40 !important;
+  border-color: #343a40!important;
   transition: all 0.3s;
   width: 144px;
-  height: 42px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 30px;
+  display: grid;
+  place-content: center;
 }
 
 .exit-btn.btn:hover,

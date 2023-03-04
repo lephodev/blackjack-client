@@ -703,7 +703,7 @@ input[type="number"] {
   color: #ff2f2f;
   font-size: 14px !important;
   padding-bottom: 0px !important;
-  margin: 0px !important;
+  margin: 0px 10px !important;
 }
 
 @media screen and (max-width: 480px) {
