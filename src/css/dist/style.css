@@ -2047,6 +2047,7 @@ i {
   vertical-align: middle;
   display: block;
   box-shadow: none !important;
+  border-radius: 30px;
 }
 
 .yellowBtn:hover,

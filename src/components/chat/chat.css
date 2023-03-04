@@ -74,7 +74,7 @@ form.form-inline {
 
 .chat-content {
   transition: all 0.5s;
-  background: #2a2a2a;
+  background: #141414;
   padding: 20px;
   /* border: 1px solid #010101; */
   border-radius: 5px;
@@ -105,24 +105,18 @@ form.form-inline {
 }
 
 .chat-search.chat-input .form-inline .form-control {
-  border: 1px solid #31374c;
+  border: 1px solid #121212;
   width: calc(100% - 38px);
   font-family: sans-serif;
-  background: transparent;
-  margin-left: -2px;
+  background: black;
   color: #fff;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  height: calc(1.5em + 0.75rem + 2px);
+  height: 38px;
   padding: 0.375rem 0.75rem;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  border-radius: 0.25rem;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  height: 38px;
-}
+  border-radius: 8px 0px 0px 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.647);}
 
 .chat-search.chat-input .form-inline .form-control::placeholder {
   color: #848897;

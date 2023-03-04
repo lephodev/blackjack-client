@@ -140,6 +140,7 @@ const Home = () => {
     const tableValidation = validateCreateTable();
     if (!tableValidation.valid) {
       setErrors({ ...tableValidation.err });
+      setShowSpinner(false);
       return;
     }
     try {
@@ -367,7 +368,7 @@ const customStyles = {
     color: "#fff",
     display: "flex",
     alignItem: "center",
-    height: "41",
+    height: "42px",
     margin: "2px 0",
     boxShadow: " 0 2px 10px #000000a5",
     cursor: "pointer",
