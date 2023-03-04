@@ -242,6 +242,7 @@
   border: 1px solid #f9ff00;
   height: 40px;
   color: rgb(0, 0, 0);
+  font-size: 14px;
 }
 
 .user-info-box button {
@@ -402,7 +403,7 @@
   background: #f9ff00 !important;
   border-color: #f9ff00 !important;
   border-radius: 30px;
-  font-weight: 500;
+  font-weight: 600;
   color: #000 !important;
   box-shadow: none !important;
   height: 40px;
