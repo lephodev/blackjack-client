@@ -43,7 +43,7 @@ const Chat = ({ open, handleClick, userId, tableId, openEmoji, setOpenEmoji }) =
 
   const handleOpenEmoji = () => {
     setOpenEmoji(!openEmoji);
-    console.log(openEmoji);
+    // console.log(openEmoji);
   }
 
   const handleCloseChat = () => {

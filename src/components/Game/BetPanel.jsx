@@ -46,9 +46,7 @@ const BetPanel = ({
       }
       // handleBetTimeout = setTimeout(() => {
       let totalBetAmt = (totalBetAmount ? totalBetAmount : 0) + amount;
-      console.log("totalBetAmount", totalBetAmount, amount, totalBetAmt);
       if (totalBetAmt > maxBetAmount) {
-        console.log("max bet executed");
         toast.error(`Max bet amount is ${ maxBetAmount }`, {
           id: "maxBetAmount",
         });
@@ -60,7 +58,6 @@ const BetPanel = ({
         // });
         setRangeBetValue(maxBetAmount);
       } else if (totalBetAmt > player.wallet) {
-        console.log("wallet exceed executed");
         toast.error(`betting amount is exceeding wallet balance`, {
           id: "maxBetAmount",
         });
@@ -72,7 +69,6 @@ const BetPanel = ({
         // });
         setRangeBetValue(player.wallet);
       } else {
-        console.log("betting executed");
         setTotalBetAmount(totalBetAmt);
         setRangeBetValue(totalBetAmt);
         // amt = totalBetAmt;
@@ -118,7 +114,6 @@ const BetPanel = ({
     // }, 500);
   };
 
-  console.log("totalBetAmount", totalBetAmount);
   // const handleBet = (amount, isSliderBet = false) => {
   //   if (handleBetTimeout) {
   //     if (!isSliderBet) {
@@ -423,7 +418,6 @@ const BetPanel = ({
           <button className="max-bet-btn" onClick={() => handleBet(100, true)}>
             Max
           </button>
-          {console.log("hell---", totalBetAmount)}
           {player?.betAmount ? (
             <button
               className="confirm-bet-btn"

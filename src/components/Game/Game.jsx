@@ -419,7 +419,7 @@ const Game = () => {
     });
 
     socket.on("newPlayer", (data) => {
-      console.log({ data });
+      // console.log({ data });
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);

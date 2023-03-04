@@ -22,7 +22,7 @@ const ActionPanel = ({
       if (!actionCompleted) {
         return;
       }
-      console.log(val);
+      // console.log(val);
       if (val === "double") {
         playSound("doubleDown");
       } else {
@@ -66,7 +66,7 @@ const ActionPanel = ({
         </button>
         <div className="user-action-text">Surrender</div>
       </div>
-      {console.log("actionCompleted ==>", actionCompleted)}
+      {/* {console.log("actionCompleted ==>", actionCompleted)} */}
       <div className="user-action-box">
         <button
           className="user-action"

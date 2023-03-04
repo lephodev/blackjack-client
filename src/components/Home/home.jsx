@@ -52,6 +52,8 @@ const Home = () => {
   const handleShow = () => {
     setShow(!show)
     setGameState({ ...gameInit })
+    setShowSpinner(false)
+    setErrors({})
   };
 
   const handleChange = (e) => {
@@ -93,6 +95,14 @@ const Home = () => {
   };
 
   const validateCreateTable = () => {
+    let checkIfExist =
+      game_name?.length > 0 &&
+      game_name?.find(
+        (el) => (
+          el.toLowerCase() === gameState?.gameName.trim().toLowerCase()
+        )
+      );
+
     let valid = true;
     let err = {};
     if (gameState.gameName === "") {
@@ -114,6 +124,11 @@ const Home = () => {
     }
     if (!gameState.public && !gameState.invitedUsers.length) {
       err.invitedPlayer = "Please invite some player if table is private.";
+      valid = false;
+    }
+
+    if (checkIfExist) {
+      err.gameName = "Game name is already exist.";
       valid = false;
     }
     return { valid, err };
@@ -151,7 +166,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${ CONSTANTS.landingClient }`);
+        return (window.location.href = `${CONSTANTS.landingClient}`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
@@ -191,6 +206,7 @@ const Home = () => {
   const filterRoom = pokerRooms.filter((el) =>
     el.gameName.toLowerCase().includes(searchText.toLowerCase())
   );
+  const game_name = filterRoom.map((e) => { return e.gameName })
 
   return (
     <div className="poker-home">
