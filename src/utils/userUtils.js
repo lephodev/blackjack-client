@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getCookie } from "../config/utils";
-
+import contants from '../config/contants'
 // This function is alternative of firebase.auth().onAuthStateChanged
 const getAuthUserData = async () => {
   try {
