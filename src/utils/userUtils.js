@@ -6,7 +6,7 @@ const getAuthUserData = async () => {
   try {
     let userData = await axios({
       method: "get",
-      url: "https://api.scrooge.casino/v1/auth/check-auth",
+      url: `${contants.landingServerUrl}/auth/check-auth`,
       headers: { authorization: `Bearer ${getCookie("token")}` },
       withCredentials: true,
       credentials: "include",
