@@ -1,4 +1,4 @@
-import config from './'
+import config from './config.json'
 // const env = {
 //   dev: {
 //     landingServerUrl: "https://api.scrooge.casino/v1",
