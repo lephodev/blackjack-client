@@ -23,11 +23,6 @@ const ActionPanel = ({
         return;
       }
       // console.log(val);
-      if (val === "double") {
-        playSound("doubleDown");
-      } else {
-        playSound(val);
-      }
 
       // console.log({ tableId });
       socket.emit(val, {
@@ -35,6 +30,11 @@ const ActionPanel = ({
         userId: player.id,
         wallet
       });
+      if (val === "double") {
+        playSound("doubleDown");
+      } else {
+        playSound(val);
+      }
       // }, 100)(val);
     },
     [actionCompleted, tableId, player.id, setActionCompleted, wallet]

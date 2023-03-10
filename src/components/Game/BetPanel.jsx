@@ -254,6 +254,37 @@ const BetPanel = ({
     return "";
   }
 
+  const handleRebet = (betAmt) => {
+    if (betRaised) {
+      return;
+    }
+    setBetRaised(true);
+    const userWallet = player?.wallet;
+    // console.log("handleBetConfirm-----", { userWallet, userBet });
+    // handleBetIntervel = setTimeout(() => {
+    if (!betAmt && !userWallet) {
+      toast.error("You don't have enough balance in your wallet.", {
+        id: "confirm-bet",
+      });
+      setBetRaised(false);
+      // setRefillSitInAmount(true);
+      return;
+    } else if (!betAmt) {
+      toast.error("Please enter bet amount", { id: "confirm-bet" });
+      setBetRaised(false);
+      return;
+    }
+    // else if (!userWallet) {
+    //   toast.error("You don't have enough balance in your wallet.");
+    //   return;
+    // }
+    socket.emit("confirmBet", {
+      tableId,
+      userId,
+      betAmount: betAmt
+    });
+  }
+
   return (
     <div
       className={`bets-wrapper ${ !player?.isPlaying ? `` : `hide-panel show-popup`
@@ -428,7 +459,7 @@ const BetPanel = ({
           />
         </div> */}
         <div className="bet-btn-box">
-          <button className="max-bet-btn" onClick={() => handleBet(100, true)}>
+          <button className="max-bet-btn" onClick={() => handleBet((player?.wallet >= 100 ? 100 : player?.wallet), true)}>
             Max
           </button>
           {player?.betAmount ? (
@@ -448,7 +479,7 @@ const BetPanel = ({
           ) : (
             <button
               className="confirm-bet-btn"
-              onClick={() => handleBet(lastBet)}
+              onClick={() => handleRebet(lastBet)}
             >
               ReBet: {numFormatter(lastBet)}
             </button>
