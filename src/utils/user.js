@@ -1,13 +1,13 @@
 import axios from "axios";
 import { getCookie } from "../config/utils";
-
+import contants from '../config/contants'
 // This function is alternative of firebase.auth().onAuthStateChanged
 const getAuthUserData = async () => {
   console.log("getCookie", getCookie("token"));
   try {
     let userData = await axios({
       method: "get",
-      url: "https://api.scrooge.casino/v1/auth/check-auth",
+      url: `${contants.landingServerUrl}/auth/check-auth`,
       headers: { authorization: `Bearer ${getCookie("token")}` },
       withCredentials: true,
       credentials: "include",
