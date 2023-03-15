@@ -385,7 +385,10 @@
 
 .css-tj5bde-Svg {
   display: inline-block;
-  fill: #858585c7 !important;
+  /* fill: #858585c7 !important; */
+}
+.css-wsp0cs-MultiValueGeneric {
+  color: #e7e7e7 !important;
 }
 
 .casino-popup .text-danger {
