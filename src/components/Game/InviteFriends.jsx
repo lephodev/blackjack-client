@@ -101,7 +101,7 @@ const customStyles = {
     color: "#fff",
     display: "flex",
     alignItem: "center",
-    height: "42px",
+    minHeight: "42px",
     margin: "2px 0",
     boxShadow: " 0 2px 10px #000000a5",
     cursor: "pointer",
