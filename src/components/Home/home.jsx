@@ -418,6 +418,11 @@ const customStyles = {
       fill: '#858585c7 !important',
     },
   }),
+  multiValue: (provided) => ({
+    ...provided,
+    fontWeight: '500',
+    background: '#343a40',
+  }),
 };
 
 const CreateTable = ({
