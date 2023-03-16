@@ -3,9 +3,10 @@ import { socket } from "../../config/socket";
 // import logo from "../../assets/game/logo-poker.png";
 import avtar from "../../imgs/blackjack/user.jpg";
 
-const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistory,roomData, chatMessage, userId, scrollToBottom, scrollDownRef, openEmoji, setOpenEmoji }) => {
+const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistory, roomData, chatMessage, userId, scrollToBottom, scrollDownRef, openEmoji, setOpenEmoji }) => {
 
     const [typing, setTyping] = useState(false);
+    const [typingPlayername, setTypingPlayername] = useState("");
 
     const wrapperRef = useRef(null);
 
@@ -33,8 +34,11 @@ const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistor
 
     useEffect(() => {
         socket.on("updateTypingState", (data) => {
-            const { CrrUserId, typing } = data;
-            if (CrrUserId !== userId) setTyping(typing);
+            const { CrrUserId, typing, userName } = data;
+            if (CrrUserId !== userId) {
+                setTypingPlayername(userName)
+                setTyping(typing);
+            }
         });
     })
 
@@ -46,7 +50,7 @@ const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistor
         >
             <div className="chatHistory-header">
                 {/* <img className="Chatgame-logo " src={logo} alt="" /> */}
-                <div className="Chatgame-title"> Chat History <span>{typing ? "Typing..." : ""}</span></div>
+                <div className="Chatgame-title"> Chat History <span>{typing ? `${ typingPlayername } Typing...` : ""}</span></div>
                 <div className="Gameplayer-count">
                     <div className="greendot" /> <h4>Players</h4>
                     <h3>{roomData?.length}</h3>

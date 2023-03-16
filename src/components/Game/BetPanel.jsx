@@ -24,16 +24,13 @@ const BetPanel = ({
   setLastBet,
   userId,
   betRaised,
-  setBetRaised
+  setBetRaised,
 }) => {
   const [rangeBetValue, setRangeBetValue] = useState(0);
   const [totalBetAmount, setTotalBetAmount] = useState(player?.betAmount);
 
   // let amt = 0;
   const handleBet = (amount, isSliderBet = false) => {
-
-   
-
     if (lastBet) {
       setLastBet(0);
     }
@@ -46,13 +43,13 @@ const BetPanel = ({
       setTotalBetAmount(amount);
       setRangeBetValue(amount);
     } else {
-     
       if (handleBetTimeout) {
         clearTimeout(handleBetTimeout);
       }
       // handleBetTimeout = setTimeout(() => {
-      let totalBetAmt = (totalBetAmount ? totalBetAmount : lastBet?lastBet:0) + amount;
-     
+      let totalBetAmt =
+        (totalBetAmount ? totalBetAmount : lastBet ? lastBet : 0) + amount;
+
       if (totalBetAmt > player?.wallet && maxBetAmount > player?.wallet) {
         toast.error(`betting amount is exceeding wallet balance`, {
           id: "maxBetAmount",
@@ -64,8 +61,8 @@ const BetPanel = ({
         //   betAmount: player.wallet,
         // });
         setRangeBetValue(player?.wallet);
-      }else if (totalBetAmt > maxBetAmount) {
-        toast.error(`Max bet amount is ${ maxBetAmount }`, {
+      } else if (totalBetAmt > maxBetAmount) {
+        toast.error(`Max bet amount is ${maxBetAmount}`, {
           id: "maxBetAmount",
         });
 
@@ -92,7 +89,6 @@ const BetPanel = ({
   };
 
   const handleBetConfirm = (e) => {
-
     if (betRaised) {
       return;
     }
@@ -112,7 +108,7 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
-    } else if(!(Number(totalBetAmount)>=10)) {
+    } else if (!(Number(totalBetAmount) >= 10)) {
       toast.error(`Bet amount should be equal or more than 10`, {
         id: "betexceed",
       });
@@ -126,7 +122,7 @@ const BetPanel = ({
     socket.emit("confirmBet", {
       tableId,
       userId,
-      betAmount: totalBetAmount
+      betAmount: totalBetAmount,
     });
     // playSound("bet-confirm");
     // setBetRaised(false);
@@ -225,7 +221,7 @@ const BetPanel = ({
 
   useEffect(() => {
     if (lastBet) {
-      const betAMt = (lastBet > player?.wallet) ? player?.wallet : lastBet;
+      const betAMt = lastBet > player?.wallet ? player?.wallet : lastBet;
       console.log("betAMt ===>", betAMt);
       setRangeBetValue(betAMt || 0);
     }
@@ -269,7 +265,7 @@ const BetPanel = ({
   }
 
   const handleRebet = (betAmt) => {
-
+    console.log("betAmt", betAmt);
     if (betRaised) {
       return;
     }
@@ -288,6 +284,12 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
+    } else if (!(Number(betAmt) >= 10)) {
+      toast.error(`Bet amount should be equal or more than 10`, {
+        id: "betexceed",
+      });
+      setBetRaised(false);
+      return;
     }
     // else if (!userWallet) {
     //   toast.error("You don't have enough balance in your wallet.");
@@ -296,14 +298,15 @@ const BetPanel = ({
     socket.emit("confirmBet", {
       tableId,
       userId,
-      betAmount: betAmt
+      betAmount: betAmt,
     });
-  }
+  };
 
   return (
     <div
-      className={`bets-wrapper ${ !player?.isPlaying ? `` : `hide-panel show-popup`
-        }`}
+      className={`bets-wrapper ${
+        !player?.isPlaying ? `` : `hide-panel show-popup`
+      }`}
     >
       <div className="bets-container">
         {/* <span className="bet-amt-placeholder">
@@ -474,7 +477,12 @@ const BetPanel = ({
           />
         </div> */}
         <div className="bet-btn-box">
-          <button className="max-bet-btn" onClick={() => handleBet((player?.wallet >= 100 ? 100 : player?.wallet), true)}>
+          <button
+            className="max-bet-btn"
+            onClick={() =>
+              handleBet(player?.wallet >= 100 ? 100 : player?.wallet, true)
+            }
+          >
             Max
           </button>
           {player?.betAmount ? (
