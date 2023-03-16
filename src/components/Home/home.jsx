@@ -23,6 +23,7 @@ import Select from "react-select";
 import { useMemo } from "react";
 import numFormatter from "../../config/utils";
 import { Spinner } from "react-bootstrap";
+import { landingClient } from "../../config/keys";
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -234,12 +235,12 @@ const Home = () => {
 
           <div className="user-header-grid">
             <div className="casino-logo">
-              <a href="https://scrooge.casino/">
+              <a href={landingClient}>
                 <img src={logo} alt="" />
               </a>
             </div>
             <div className="create-game-box">
-              <a href="https://scrooge.casino/profile">
+              <a href={`${landingClient}/profile`}>
                 <div className="create-game-box-avtar">
                   <img src={userData?.profile || "https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
                   } alt="" />
@@ -287,7 +288,7 @@ const Home = () => {
         <div className="container">
           <div className="poker-table-header">
             <div className="backtoHome">
-              <a href="https://scrooge.casino/">
+              <a href={landingClient}>
                 <FaHome />
                 Home
               </a>
@@ -301,9 +302,6 @@ const Home = () => {
                   placeholder="Search tables . . . ."
                   onChange={(e) => setSearchText(e.target.value)}
                   autoComplete="off" />
-                {/* <button>
-                  <FaSearch />
-                </button> */}
               </div>
             </div>
           </div>
