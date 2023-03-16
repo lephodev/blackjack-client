@@ -117,6 +117,7 @@ const Game = () => {
 
 
   const [openChatHistory, setOpenChatHistory] = useState(false);
+  const [isLobbyBtnShow,setIsLobbyBtnShow] = useState(false)
 
   const handleOpenChatHistory = () => {
     socket.emit("updateChatIsRead", { tableId, userId });
@@ -238,6 +239,7 @@ const Game = () => {
     try {
       await blackjackInstance().post("/refillWallet", { tableId, amount });
       setRefillSitInAmount(false);
+      setIsLobbyBtnShow(false)
       return "success";
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -443,9 +445,12 @@ const Game = () => {
       setChatMessage(data.chats);
       setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
       let me = data.players.find((el) => el.id === userId);
-      if (me?.wallet === 0 && me?.betAmount === 0) {
+      let islobby = false
+      if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
         setRefillSitInAmount(true);
+          islobby = true
       }
+      setIsLobbyBtnShow(islobby)
     });
 
     socket.on("preTimer", (data) => {
@@ -460,9 +465,12 @@ const Game = () => {
       setWinUser(false);
       setActionOpen(true);
       let me = data.players.find((el) => el.id === userId);
-      if (me?.wallet === 0 && me?.betAmount === 0) {
+      let islobby = false
+      if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
         setRefillSitInAmount(true);
+          islobby = true
       }
+      setIsLobbyBtnShow(islobby)
     });
 
     socket.on("timeCompleted", (data) => {
@@ -929,6 +937,8 @@ const Game = () => {
           setShow={
             refillSitInAmount ? setRefillSitInAmount : setShowEnterAmountPopup
           }
+          isLobbyBtnShow={isLobbyBtnShow}
+          handleExitRoom={handleExitRoom}
         />
       )}
       <div className="containerFor-chatHistory">

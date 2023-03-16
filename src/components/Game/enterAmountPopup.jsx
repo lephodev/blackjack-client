@@ -7,6 +7,8 @@ const EnterAmountPopup = ({
   showEnterAmountPopup,
   submitButtonText,
   setShow,
+  isLobbyBtnShow,
+  handleExitRoom
 }) => {
   const [isLoading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
@@ -33,7 +35,7 @@ const EnterAmountPopup = ({
   };
 
   const redirectToLobby = () => {
-    if (submitButtonText.toLowerCase().startsWith("refill")) {
+    if (!isLobbyBtnShow && submitButtonText.toLowerCase().startsWith("refill")) {
       setShow(false);
     } else {
       window.location.href = window.location.origin;
@@ -73,8 +75,8 @@ const EnterAmountPopup = ({
               {isLoading ? <Spinner animation="border" /> : submitButtonText}
             </Button>
             <Button className="grey-btn" onClick={redirectToLobby}>
-              {submitButtonText.toLowerCase().startsWith("refill")
-                ? "close"
+              {submitButtonText.toLowerCase().startsWith("refill") 
+                ? isLobbyBtnShow ? "Lobby":"Close"
                 : "Lobby"}
             </Button>
           </div>
