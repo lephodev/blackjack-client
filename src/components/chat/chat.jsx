@@ -38,7 +38,11 @@ const Chat = ({ open, handleClick, userId, tableId, openEmoji, setOpenEmoji }) =
   }
 
   const handleOnEmojiClick = (emojiObj, e) => {
-    setMessage(message + emojiObj.emoji);
+    if (message.length !== 60) {
+      console.log(emojiObj.emoji, " ", emojiObj.emoji.length);
+      setMessage(message + emojiObj.emoji);
+    }
+
   }
 
   const handleOpenEmoji = () => {
