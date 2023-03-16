@@ -309,7 +309,7 @@ const Game = () => {
             let table = urlParams["tableid"] || urlParams["tableId"];
             let type =
               urlParams["gameCollection"] || urlParams["gamecollection"];
-            // console.log({ table, userId });
+            // console.log('condition4',{ table, userId });
             socket.emit("checkTable", {
               userId,
               tableId: table,
@@ -347,36 +347,17 @@ const Game = () => {
       try {
         // Join user if he is already or new user in game
         if (table) {
-          const playerInTable = await blackjackInstance().get(
-            `/getTablePlayers/${ table }`
-          );
-          // Let user join in game
-          if (playerInTable.data.players.find((el) => el.id === userId)) {
-            setRetryIfUserNotJoin(true);
-            socket.emit("checkTable", {
-              tableId: table,
-              userId: userId,
-              gameType: type,
-              sitInAmount: 0,
-            });
-
-            setLoader(true);
-            // Ask user to type wallet amount
-          } else {
-            // Enter sit in amount popup
-            setShowEnterAmountPopup(true);
-          }
-          // Create new table if not found table id
-        } else {
-          socket.emit("checkTable", {
-            tableId: table,
-            userId: userId,
-            gameType: type,
-            sitInAmount: 0,
-          });
-
-          setLoader(true);
+          //Let user join in game
+        setRetryIfUserNotJoin(true);
         }
+        socket.emit("checkTable", {
+          tableId: table,
+          userId: userId,
+          gameType: type,
+          sitInAmount: 0,
+        });
+
+        setLoader(true);
       } catch (error) {
         // console.log(error);
         // Call the api still if there is any miss happening
@@ -438,6 +419,11 @@ const Game = () => {
     });
 
     socket.on("updateRoom", (data) => {
+        if(!data.players.find(el => el.id === userId)){
+          setShowEnterAmountPopup(true);
+        }else{
+          setShowEnterAmountPopup(false);
+        }
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
@@ -451,6 +437,7 @@ const Game = () => {
           islobby = true
       }
       setIsLobbyBtnShow(islobby)
+
     });
 
     socket.on("preTimer", (data) => {

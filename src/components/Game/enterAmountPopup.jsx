@@ -35,8 +35,11 @@ const EnterAmountPopup = ({
   };
 
   const redirectToLobby = () => {
-    if (!isLobbyBtnShow && submitButtonText.toLowerCase().startsWith("refill")) {
-      setShow(false);
+    if (submitButtonText.toLowerCase().startsWith("refill")) {
+     if(isLobbyBtnShow){
+      handleExitRoom()
+      return
+     } setShow(false);
     } else {
       window.location.href = window.location.origin;
     }
