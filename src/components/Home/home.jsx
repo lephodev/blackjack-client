@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -24,6 +24,8 @@ import { useMemo } from "react";
 import numFormatter from "../../config/utils";
 import { Spinner } from "react-bootstrap";
 import { landingClient } from "../../config/keys";
+import GameContext from "../../Context";
+import AlreadyInGame from "../Game/AlreadyInGame";
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -34,7 +36,7 @@ const Home = () => {
     sitInAmount: "",
     invitedUsers: [],
   };
-
+ const {userInAnyGame,setUserInAnyGame}=useContext(GameContext)
   // States
   const [loader, setLoader] = useState(true);
   const [userData, setUserData] = useState({});
@@ -212,6 +214,7 @@ const Home = () => {
 
   return (
     <div className="poker-home">
+      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame}/>}
       {loader && (
         <div className="poker-loader">
           <img src={loaderImg} alt="loader" />{" "}
