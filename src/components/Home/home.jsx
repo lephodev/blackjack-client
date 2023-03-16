@@ -35,7 +35,7 @@ const Home = () => {
     sitInAmount: "",
     invitedUsers: [],
   };
- const {userInAnyGame}=useContext(GameContext)
+ const {userInAnyGame,setUserInAnyGame}=useContext(GameContext)
   // States
   const [loader, setLoader] = useState(true);
   const [userData, setUserData] = useState({});
@@ -213,7 +213,7 @@ const Home = () => {
 
   return (
     <div className="poker-home">
-      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame}/>}
+      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame}/>}
       {loader && (
         <div className="poker-loader">
           <img src={loaderImg} alt="loader" />{" "}

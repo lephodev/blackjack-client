@@ -2,19 +2,22 @@ import axios from "axios";
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 
-const AlreadyInGame = ({ userInAnyGame }) => {
+const AlreadyInGame = ({ userInAnyGame,setUserInAnyGame }) => {
     
     const joinGame=async()=>{
         window.location.href=userInAnyGame.reJoinUrl
     }
     const leaveGame=async()=>{
-        const leave=  await axios({
-            method: "get",
-            url: `${userInAnyGame?.leaveTable}`,
-          });
-       if(leave?.data?.success){
-        userInAnyGame.inGame=false
-       }
+        try{
+           await axios({
+                method: "get",
+                url: `${userInAnyGame?.leaveTable}`,
+              });
+              setUserInAnyGame({...userInAnyGame,inGame:false})
+        }catch(err){
+            console.log("Error in leave API call")
+        }
+       
     }
     console.log("userInAnyGame-->",userInAnyGame)
   return (
