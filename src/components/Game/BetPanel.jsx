@@ -24,10 +24,11 @@ const BetPanel = ({
   setLastBet,
   userId,
   betRaised,
-  setBetRaised
+  setBetRaised,
 }) => {
   const [rangeBetValue, setRangeBetValue] = useState(0);
   const [totalBetAmount, setTotalBetAmount] = useState(player?.betAmount);
+
   // let amt = 0;
   const handleBet = (amount, isSliderBet = false) => {
     if (lastBet) {
@@ -46,11 +47,25 @@ const BetPanel = ({
         clearTimeout(handleBetTimeout);
       }
       // handleBetTimeout = setTimeout(() => {
-      let totalBetAmt = (totalBetAmount ? totalBetAmount : 0) + amount;
-      if (totalBetAmt > maxBetAmount) {
-        toast.error(`Max bet amount is ${ maxBetAmount }`, {
+      let totalBetAmt =
+        (totalBetAmount ? totalBetAmount : lastBet ? lastBet : 0) + amount;
+
+      if (totalBetAmt > player?.wallet && maxBetAmount > player?.wallet) {
+        toast.error(`betting amount is exceeding wallet balance`, {
           id: "maxBetAmount",
         });
+        setTotalBetAmount(player?.wallet);
+        // socket.emit("makeSliderBet", {
+        //   userId: player.id,
+        //   roomId: tableId,
+        //   betAmount: player.wallet,
+        // });
+        setRangeBetValue(player?.wallet);
+      } else if (totalBetAmt > maxBetAmount) {
+        toast.error(`Max bet amount is ${maxBetAmount}`, {
+          id: "maxBetAmount",
+        });
+
         setTotalBetAmount(maxBetAmount);
         // socket.emit("makeSliderBet", {
         //   userId: player.id,
@@ -58,17 +73,6 @@ const BetPanel = ({
         //   betAmount: maxBetAmount,
         // });
         setRangeBetValue(maxBetAmount);
-      } else if (totalBetAmt > player.wallet) {
-        toast.error(`betting amount is exceeding wallet balance`, {
-          id: "maxBetAmount",
-        });
-        setTotalBetAmount(player.wallet);
-        // socket.emit("makeSliderBet", {
-        //   userId: player.id,
-        //   roomId: tableId,
-        //   betAmount: player.wallet,
-        // });
-        setRangeBetValue(player.wallet);
       } else {
         setTotalBetAmount(totalBetAmt);
         setRangeBetValue(totalBetAmt);
@@ -85,7 +89,6 @@ const BetPanel = ({
   };
 
   const handleBetConfirm = (e) => {
-
     if (betRaised) {
       return;
     }
@@ -93,6 +96,7 @@ const BetPanel = ({
     const userWallet = player?.wallet;
     // console.log("handleBetConfirm-----", { userWallet, userBet });
     // handleBetIntervel = setTimeout(() => {
+
     if (!totalBetAmount && !userWallet) {
       toast.error("You don't have enough balance in your wallet.", {
         id: "confirm-bet",
@@ -104,6 +108,12 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
+    } else if (!(Number(totalBetAmount) >= 10)) {
+      toast.error(`Bet amount should be equal or more than 10`, {
+        id: "betexceed",
+      });
+      setBetRaised(false);
+      return;
     }
     // else if (!userWallet) {
     //   toast.error("You don't have enough balance in your wallet.");
@@ -112,7 +122,7 @@ const BetPanel = ({
     socket.emit("confirmBet", {
       tableId,
       userId,
-      betAmount: totalBetAmount
+      betAmount: totalBetAmount,
     });
     // playSound("bet-confirm");
     // setBetRaised(false);
@@ -211,7 +221,7 @@ const BetPanel = ({
 
   useEffect(() => {
     if (lastBet) {
-      const betAMt = (lastBet > player?.wallet) ? player?.wallet : lastBet;
+      const betAMt = lastBet > player?.wallet ? player?.wallet : lastBet;
       console.log("betAMt ===>", betAMt);
       setRangeBetValue(betAMt || 0);
     }
@@ -255,6 +265,7 @@ const BetPanel = ({
   }
 
   const handleRebet = (betAmt) => {
+    console.log("betAmt", betAmt);
     if (betRaised) {
       return;
     }
@@ -273,6 +284,12 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
+    } else if (!(Number(betAmt) >= 10)) {
+      toast.error(`Bet amount should be equal or more than 10`, {
+        id: "betexceed",
+      });
+      setBetRaised(false);
+      return;
     }
     // else if (!userWallet) {
     //   toast.error("You don't have enough balance in your wallet.");
@@ -281,14 +298,15 @@ const BetPanel = ({
     socket.emit("confirmBet", {
       tableId,
       userId,
-      betAmount: betAmt
+      betAmount: betAmt,
     });
-  }
+  };
 
   return (
     <div
-      className={`bets-wrapper ${ !player?.isPlaying ? `` : `hide-panel show-popup`
-        }`}
+      className={`bets-wrapper ${
+        !player?.isPlaying ? `` : `hide-panel show-popup`
+      }`}
     >
       <div className="bets-container">
         {/* <span className="bet-amt-placeholder">
@@ -459,7 +477,12 @@ const BetPanel = ({
           />
         </div> */}
         <div className="bet-btn-box">
-          <button className="max-bet-btn" onClick={() => handleBet((player?.wallet >= 100 ? 100 : player?.wallet), true)}>
+          <button
+            className="max-bet-btn"
+            onClick={() =>
+              handleBet(player?.wallet >= 100 ? 100 : player?.wallet, true)
+            }
+          >
             Max
           </button>
           {player?.betAmount ? (
