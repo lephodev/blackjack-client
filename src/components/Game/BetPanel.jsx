@@ -265,6 +265,7 @@ const BetPanel = ({
   }
 
   const handleRebet = (betAmt) => {
+    console.log("betAmt", betAmt);
     if (betRaised) {
       return;
     }
@@ -283,7 +284,7 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
-    } else if (!(Number(totalBetAmount) >= 10)) {
+    } else if (!(Number(betAmt) >= 10)) {
       toast.error(`Bet amount should be equal or more than 10`, {
         id: "betexceed",
       });
