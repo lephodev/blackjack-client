@@ -227,6 +227,7 @@ const BetPanel = ({
     }
   }, [lastBet, player?.wallet]);
 
+
   const handleClearBet = () => {
     setTotalBetAmount(0);
     socket.emit("clearbet", {
@@ -301,6 +302,8 @@ const BetPanel = ({
       betAmount: betAmt,
     });
   };
+
+  let finalBetAmount =  lastBet > player?.wallet ? player?.wallet : lastBet
 
   return (
     <div
@@ -485,6 +488,9 @@ const BetPanel = ({
           >
             Max
           </button>
+
+            {console.log('player',{betAmount:player?.betAmount,lastBet})}
+
           {player?.betAmount ? (
             <button
               className="confirm-bet-btn"
@@ -502,9 +508,9 @@ const BetPanel = ({
           ) : (
             <button
               className="confirm-bet-btn"
-              onClick={() => handleRebet(lastBet)}
+              onClick={() => handleRebet(finalBetAmount)}
             >
-              ReBet: {numFormatter(lastBet)}
+              ReBet: {numFormatter(finalBetAmount)}
             </button>
           )}
 
