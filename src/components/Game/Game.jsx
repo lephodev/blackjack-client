@@ -117,6 +117,7 @@ const Game = () => {
 
 
   const [openChatHistory, setOpenChatHistory] = useState(false);
+  const [isLobbyBtnShow,setIsLobbyBtnShow] = useState(false)
 
   const handleOpenChatHistory = () => {
     socket.emit("updateChatIsRead", { tableId, userId });
@@ -238,6 +239,7 @@ const Game = () => {
     try {
       await blackjackInstance().post("/refillWallet", { tableId, amount });
       setRefillSitInAmount(false);
+      setIsLobbyBtnShow(false)
       return "success";
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -307,7 +309,7 @@ const Game = () => {
             let table = urlParams["tableid"] || urlParams["tableId"];
             let type =
               urlParams["gameCollection"] || urlParams["gamecollection"];
-            // console.log({ table, userId });
+            // console.log('condition4',{ table, userId });
             socket.emit("checkTable", {
               userId,
               tableId: table,
@@ -345,36 +347,17 @@ const Game = () => {
       try {
         // Join user if he is already or new user in game
         if (table) {
-          const playerInTable = await blackjackInstance().get(
-            `/getTablePlayers/${ table }`
-          );
-          // Let user join in game
-          if (playerInTable.data.players.find((el) => el.id === userId)) {
-            setRetryIfUserNotJoin(true);
-            socket.emit("checkTable", {
-              tableId: table,
-              userId: userId,
-              gameType: type,
-              sitInAmount: 0,
-            });
-
-            setLoader(true);
-            // Ask user to type wallet amount
-          } else {
-            // Enter sit in amount popup
-            setShowEnterAmountPopup(true);
-          }
-          // Create new table if not found table id
-        } else {
-          socket.emit("checkTable", {
-            tableId: table,
-            userId: userId,
-            gameType: type,
-            sitInAmount: 0,
-          });
-
-          setLoader(true);
+          //Let user join in game
+        setRetryIfUserNotJoin(true);
         }
+        socket.emit("checkTable", {
+          tableId: table,
+          userId: userId,
+          gameType: type,
+          sitInAmount: 0,
+        });
+
+        setLoader(true);
       } catch (error) {
         // console.log(error);
         // Call the api still if there is any miss happening
@@ -436,6 +419,11 @@ const Game = () => {
     });
 
     socket.on("updateRoom", (data) => {
+        if(!data.players.find(el => el.id === userId)){
+          setShowEnterAmountPopup(true);
+        }else{
+          setShowEnterAmountPopup(false);
+        }
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
@@ -443,9 +431,13 @@ const Game = () => {
       setChatMessage(data.chats);
       setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
       let me = data.players.find((el) => el.id === userId);
-      if (me?.wallet === 0 && me?.betAmount === 0) {
+      let islobby = false
+      if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
         setRefillSitInAmount(true);
+          islobby = true
       }
+      setIsLobbyBtnShow(islobby)
+
     });
 
     socket.on("preTimer", (data) => {
@@ -460,9 +452,12 @@ const Game = () => {
       setWinUser(false);
       setActionOpen(true);
       let me = data.players.find((el) => el.id === userId);
-      if (me?.wallet === 0 && me?.betAmount === 0) {
+      let islobby = false
+      if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
         setRefillSitInAmount(true);
+          islobby = true
       }
+      setIsLobbyBtnShow(islobby)
     });
 
     socket.on("timeCompleted", (data) => {
@@ -929,6 +924,8 @@ const Game = () => {
           setShow={
             refillSitInAmount ? setRefillSitInAmount : setShowEnterAmountPopup
           }
+          isLobbyBtnShow={isLobbyBtnShow}
+          handleExitRoom={handleExitRoom}
         />
       )}
       <div className="containerFor-chatHistory">
