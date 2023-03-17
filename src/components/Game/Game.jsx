@@ -405,6 +405,10 @@ const Game = () => {
       // setLoader(false);
     });
 
+    socket.on("notjoined", () => {
+      setShowEnterAmountPopup(true);
+    })
+
     socket.on("newPlayer", (data) => {
       // console.log({ data });
       setRoomData(data);
@@ -424,6 +428,7 @@ const Game = () => {
         }else{
           setShowEnterAmountPopup(false);
         }
+
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
