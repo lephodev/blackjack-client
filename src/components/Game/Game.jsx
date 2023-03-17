@@ -71,7 +71,7 @@ const getQueryParams = () => {
   };
 };
 
-let timeout;
+// let timeout;
 const Game = () => {
   const [tableId, setTableId] = useState("");
   const [winUser, setWinUser] = useState(false);
@@ -105,7 +105,7 @@ const Game = () => {
   const [actionCompleted, setActionCompleted] = useState(true);
   const [showEnterAmountPopup, setShowEnterAmountPopup] = useState(false);
   const [userData, setUserData] = useState(null);
-  const [retryIfUserNotJoin, setRetryIfUserNotJoin] = useState(false);
+  // const [retryIfUserNotJoin, setRetryIfUserNotJoin] = useState(false);
   const [refillSitInAmount, setRefillSitInAmount] = useState(false);
   // const [rotation, setRotation] = useState(false);
   const [chatMessage, setChatMessage] = useState([]);
@@ -221,7 +221,7 @@ const Game = () => {
         sitInAmount: parseFloat(sitInAmount),
       });
       setShowEnterAmountPopup(false);
-      setRetryIfUserNotJoin(true);
+      // setRetryIfUserNotJoin(true);
 
       setLoader(true);
     } else {
@@ -348,7 +348,7 @@ const Game = () => {
         // Join user if he is already or new user in game
         if (table) {
           //Let user join in game
-        setRetryIfUserNotJoin(true);
+        // setRetryIfUserNotJoin(true);
         }
         socket.emit("checkTable", {
           tableId: table,
@@ -374,23 +374,23 @@ const Game = () => {
     isLoggedIn();
   }, []);
 
-  useEffect(() => {
-    if (retryIfUserNotJoin) {
-      timeout = setTimeout(() => {
-        window.location.reload();
-      }, 7000);
-    } else {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    }
+  // useEffect(() => {
+  //   if (retryIfUserNotJoin) {
+  //     timeout = setTimeout(() => {
+  //       window.location.reload();
+  //     }, 7000);
+  //   } else {
+  //     if (timeout) {
+  //       clearTimeout(timeout);
+  //     }
+  //   }
 
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    };
-  }, [retryIfUserNotJoin]);
+  //   return () => {
+  //     if (timeout) {
+  //       clearTimeout(timeout);
+  //     }
+  //   };
+  // }, [retryIfUserNotJoin]);
 
   useEffect(() => {
     socket.on("userId", async (data) => {
@@ -405,12 +405,17 @@ const Game = () => {
       // setLoader(false);
     });
 
+    socket.on("notjoined", () => {
+      setShowEnterAmountPopup(true);
+      setLoader(false)
+    })
+
     socket.on("newPlayer", (data) => {
       // console.log({ data });
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
-      setRetryIfUserNotJoin(false);
+      // setRetryIfUserNotJoin(false);
     });
 
     socket.on("newUser", (data) => {
@@ -424,10 +429,11 @@ const Game = () => {
         }else{
           setShowEnterAmountPopup(false);
         }
+
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
-      setRetryIfUserNotJoin(false);
+      // setRetryIfUserNotJoin(false);
       setChatMessage(data.chats);
       setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
       let me = data.players.find((el) => el.id === userId);
