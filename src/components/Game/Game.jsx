@@ -221,7 +221,7 @@ const Game = () => {
         sitInAmount: parseFloat(sitInAmount),
       });
       setShowEnterAmountPopup(false);
-      setRetryIfUserNotJoin(true);
+      // setRetryIfUserNotJoin(true);
 
       setLoader(true);
     } else {
@@ -348,7 +348,7 @@ const Game = () => {
         // Join user if he is already or new user in game
         if (table) {
           //Let user join in game
-        setRetryIfUserNotJoin(true);
+        // setRetryIfUserNotJoin(true);
         }
         socket.emit("checkTable", {
           tableId: table,
@@ -374,23 +374,23 @@ const Game = () => {
     isLoggedIn();
   }, []);
 
-  useEffect(() => {
-    if (retryIfUserNotJoin) {
-      timeout = setTimeout(() => {
-        window.location.reload();
-      }, 7000);
-    } else {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    }
+  // useEffect(() => {
+  //   if (retryIfUserNotJoin) {
+  //     timeout = setTimeout(() => {
+  //       window.location.reload();
+  //     }, 7000);
+  //   } else {
+  //     if (timeout) {
+  //       clearTimeout(timeout);
+  //     }
+  //   }
 
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    };
-  }, [retryIfUserNotJoin]);
+  //   return () => {
+  //     if (timeout) {
+  //       clearTimeout(timeout);
+  //     }
+  //   };
+  // }, [retryIfUserNotJoin]);
 
   useEffect(() => {
     socket.on("userId", async (data) => {
