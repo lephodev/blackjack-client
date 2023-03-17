@@ -407,6 +407,7 @@ const Game = () => {
 
     socket.on("notjoined", () => {
       setShowEnterAmountPopup(true);
+      setLoader(false)
     })
 
     socket.on("newPlayer", (data) => {
