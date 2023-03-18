@@ -31,7 +31,6 @@ const BetPanel = ({
 
   // let amt = 0;
   const handleBet = (amount, isSliderBet = false) => {
-    console.log({amount,lastBet})
     if (lastBet) {
       setLastBet(0);
     }
