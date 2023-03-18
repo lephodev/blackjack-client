@@ -35,7 +35,7 @@ const ChatHistory = ({ openChatHistory, handleOpenChatHistory, setOpenChatHistor
     useEffect(() => {
         socket.on("updateTypingState", (data) => {
             const { CrrUserId, typing, userName } = data;
-            if (CrrUserId !== userId) {
+            if (CrrUserId.toString() !== userId.toString()) {
                 setTypingPlayername(userName)
                 setTyping(typing);
             }
