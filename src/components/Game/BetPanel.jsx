@@ -303,7 +303,7 @@ const BetPanel = ({
     });
   };
 
-  let finalBetAmount =  lastBet > player?.wallet ? player?.wallet : lastBet
+  let finalBetAmount =  lastBet > player?.wallet ? 0 : lastBet
 
   return (
     <div

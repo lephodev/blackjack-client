@@ -498,8 +498,7 @@ const Game = () => {
       setRoomData(data.room);
       updatePlayers(data.room);
       const crrPlyr = data?.room?.players?.find(el => (el.id === userId));
-      console.log("crrPlyr ==>", crrPlyr);
-      const betAmt = crrPlyr?.betAmount > crrPlyr.wallet ? crrPlyr.wallet : crrPlyr?.betAmount
+      const betAmt = crrPlyr?.betAmount > crrPlyr.wallet ? 0 : crrPlyr?.betAmount
       setLastBet(betAmt);
       if (data.userId === userId) {
         playSound("bet-confirm");
