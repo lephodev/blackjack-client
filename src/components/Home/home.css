@@ -352,7 +352,7 @@
 }
 
 .casino-popup .modal-footer {
-  border-top:1px solid #000;
+  border-top: 1px solid #000;
   align-items: center;
   padding: 1rem 2rem;
 }
@@ -387,7 +387,8 @@
   display: inline-block;
   /* fill: #858585c7 !important; */
 }
-.css-9jq23d ,
+
+.css-9jq23d,
 .css-wsp0cs-MultiValueGeneric {
   color: #e7e7e7 !important;
 }
@@ -580,6 +581,11 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 767px) {
+  .no-room-available {
+
+    padding: 30px;
+  }
+
   .home-poker-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
