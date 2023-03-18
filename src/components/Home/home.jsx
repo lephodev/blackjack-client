@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -193,23 +192,23 @@ const Home = () => {
     } catch (error) { }
   }
 
-  const checkUserInGame = async() => {
-    let userData = await axios({
-      method: "get",
-      url: `${contants.landingServerUrl}/users/checkUserInGame`,
-      headers: { authorization: `Bearer ${getCookie("token")}` },
-    });
-  
-    console.log({dekk:userData?.data})
-    if(userData?.data){
-      setUserInAnyGame(userData.data)
-    }
-  }
 
   useEffect(() => {
+    const checkUserInGame = async() => {
+      let userData = await axios({
+        method: "get",
+        url: `${contants.landingServerUrl}/users/checkUserInGame`,
+        headers: { authorization: `Bearer ${getCookie("token")}` },
+      });
+    
+      console.log({dekk:userData?.data})
+      if(userData?.data){
+        setUserInAnyGame(userData.data)
+      }
+    }
     checkRunningGame();
     checkUserInGame();
-  }, []);
+  }, [setUserInAnyGame]);
   
 
   const options = useMemo(
