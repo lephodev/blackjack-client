@@ -31,6 +31,7 @@ const BetPanel = ({
 
   // let amt = 0;
   const handleBet = (amount, isSliderBet = false) => {
+    console.log({amount,lastBet})
     if (lastBet) {
       setLastBet(0);
     }
@@ -48,8 +49,8 @@ const BetPanel = ({
       }
       // handleBetTimeout = setTimeout(() => {
       let totalBetAmt =
-        (totalBetAmount ? totalBetAmount : lastBet ? lastBet : 0) + amount;
-
+      lastBet ? amount :  (totalBetAmount ? totalBetAmount : lastBet ? lastBet : 0) + amount;
+      
       if (totalBetAmt > player?.wallet && maxBetAmount > player?.wallet) {
         toast.error(`betting amount is exceeding wallet balance`, {
           id: "maxBetAmount",
