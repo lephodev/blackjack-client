@@ -623,7 +623,7 @@ input[type="number"] {
   }
 
   .lobby-home-title h3 {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 20px;
     letter-spacing: 2px;
   }
@@ -707,7 +707,7 @@ input[type="number"] {
   padding: 0px 10px;
 }
 
-.errorMssg {
+.errorMessage {
   text-align: left;
   font-weight: 600;
   color: #ff2f2f;
