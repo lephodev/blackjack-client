@@ -454,16 +454,19 @@ const Game = () => {
     });
 
     socket.on("resetGame", (data) => {
+      console.log("data==>>>",data)
       setGameFinish(false);
       setRoomData(data);
       updatePlayers(data);
       playSound("reset");
       setWinUser(false);
       setActionOpen(true);
+      setBetRaised(false);
       let me = data.players.find((el) => el.id === userId);
       let islobby = false
       if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
         setRefillSitInAmount(true);
+        setLastBet(0)
           islobby = true
       }
       setIsLobbyBtnShow(islobby)
@@ -501,8 +504,12 @@ const Game = () => {
       setRoomData(data.room);
       updatePlayers(data.room);
       const crrPlyr = data?.room?.players?.find(el => (el.id === userId));
-      const betAmt = crrPlyr?.betAmount > crrPlyr.wallet ? 0 : crrPlyr?.betAmount
-      setLastBet(betAmt);
+
+      if(crrPlyr?.wallet >= 0 ){
+        console.log("re",{lastBet})
+      }
+        // const betAmt = crrPlyr?.wallet  && lastBet > crrPlyr.wallet ? 0 : lastBet
+        // setLastBet(betAmt);
       if (data.userId === userId) {
         playSound("bet-confirm");
       }
@@ -615,6 +622,7 @@ const Game = () => {
       toast.error("Game already started, please wait", {
         id: "already Started",
       });
+      
     });
 
     socket.on("welcome", () => {
@@ -653,7 +661,7 @@ const Game = () => {
   useEffect(() => {
     setIsGameStarted(roomData?.gamestart);
     setIsPlaying(players.find((el) => el.id === userId)?.isPlaying);
-  }, [roomData, players]);
+  }, [roomData?.gamestart, players]);
 
   useEffect(() => {
     socket.on("gameTimer", (data) => {
@@ -917,6 +925,8 @@ const Game = () => {
   //   setLastBet(players.find((el) => el.id === userId)?.betAmount);
   // }
 
+  // console.log({isPlaying,isGameStarted})
+
   return (
     <div className={`blackjack-game ${ loader ? "loaderactive" : "" }`}>
       {loader && (
@@ -1107,6 +1117,7 @@ const Game = () => {
               )}
             </div>
           </div>
+          {console.log(isGameStarted,isPlaying)}
           {!isGameStarted &&
             !isPlaying && (
               <BetPanel

@@ -119,6 +119,7 @@ const BetPanel = ({
     //   toast.error("You don't have enough balance in your wallet.");
     //   return;
     // }
+    setLastBet(totalBetAmount);
     socket.emit("confirmBet", {
       tableId,
       userId,
@@ -212,18 +213,19 @@ const BetPanel = ({
 
   // };
 
-  useEffect(() => {
-    if (player?.betAmount) {
-      setTotalBetAmount(player?.betAmount || 0);
-      setRangeBetValue(player?.betAmount || 0);
-    }
-  }, [player?.betAmount]);
+  // useEffect(() => {
+  //   if (player?.betAmount) {
+  //     setTotalBetAmount(player?.betAmount || 0);
+  //     setRangeBetValue(player?.betAmount || 0);
+  //   }
+  // }, [player?.betAmount]);
 
   useEffect(() => {
     if (lastBet) {
-      const betAMt = lastBet > player?.wallet ? player?.wallet : lastBet;
-      console.log("betAMt ===>", betAMt);
+      const betAMt = lastBet > player?.wallet ? 0 : lastBet;
+      // console.log("betAMt ===>", betAMt);
       setRangeBetValue(betAMt || 0);
+      setTotalBetAmount(betAMt || 0);
     }
   }, [lastBet, player?.wallet]);
 
@@ -262,6 +264,7 @@ const BetPanel = ({
 
   // console.log("setBetRaised :==>", setBetRaised);
   if (betRaised) {
+    console.log({betRaised})
     return "";
   }
 
@@ -303,6 +306,8 @@ const BetPanel = ({
     });
   };
 
+
+  console.log({lastBet})
   let finalBetAmount =  lastBet > player?.wallet ? 0 : lastBet
 
   return (
@@ -489,7 +494,7 @@ const BetPanel = ({
             Max
           </button>
 
-            {console.log('player',{betAmount:player?.betAmount,lastBet})}
+            {/* {console.log('player',{betAmount:player?.betAmount,lastBet})} */}
 
           {player?.betAmount ? (
             <button
