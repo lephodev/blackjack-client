@@ -119,6 +119,9 @@ const Game = () => {
   const [openChatHistory, setOpenChatHistory] = useState(false);
   const [isLobbyBtnShow,setIsLobbyBtnShow] = useState(false)
 
+
+  const [message, setMessage] = useState('');
+
   const handleOpenChatHistory = () => {
     socket.emit("updateChatIsRead", { tableId, userId });
     setUnReadMessages(0);
@@ -950,6 +953,7 @@ const Game = () => {
           scrollDownRef={scrollDownRef}
           openEmoji={openEmoji}
           setOpenEmoji={setOpenEmoji}
+          message={message}
         />
       </div>
 
@@ -1152,6 +1156,8 @@ const Game = () => {
         tableId={tableId}
         openEmoji={openEmoji}
         setOpenEmoji={setOpenEmoji}
+        message={message}
+        setMessage={setMessage}
       />
       {/* <NewBuyInPopup
         setBuyinPopup={setShowBuyInPopup}
