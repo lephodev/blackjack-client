@@ -38,30 +38,30 @@ const HowToPlay = ({
           <thead>
             <tr>
               {[1, 2, 3, 4, 5, 6, 7].map((player, i) => (
-                <th key={player}>{`P-${i + 1}`}</th>
+                <th key={player}>{`P-${ i + 1 }`}</th>
               ))}
               <th>D</th>
             </tr>
           </thead>
           <tbody>
             {gameCardStats?.map((gameCardStat, i) => (
-              <tr key={`item-${i}`}>
+              <tr key={`item-${ i }`}>
                 {gameCardStat.players.map((pl, j) => (
-                  <td key={`item-${j}`}>
+                  <td key={`item-${ j }`}>
                     <div
-                      className={`card-box${Array.isArray(pl.cards[0]) ? 1 : ""
+                      className={`card-box${ Array.isArray(pl.cards[0]) ? 1 : ""
                         }`}
                     >
                       {pl.cards.map((card, l) =>
                         Array.isArray(card) ? (
-                          <div className="card-box" key={`item-${l}`}>
+                          <div className="card-box" key={`item-${ l }`}>
                             {card.map((el, k) => (
                               <div
                                 className="card"
                                 key={el.value.card + el.suit + k}
                               >
                                 <img
-                                  src={`/cards/${el.value.card + el.suit}.svg`}
+                                  src={`/cards/${ el.value.card + el.suit }.svg`}
                                   alt="card-img"
                                 />
                               </div>
@@ -70,10 +70,10 @@ const HowToPlay = ({
                         ) : (
                           <div
                             className="card"
-                            key={`item-${card.value.card}-${card.suit}-${l}`}
+                            key={`item-${ card.value.card }-${ card.suit }-${ l }`}
                           >
                             <img
-                              src={`/cards/${card.value.card + card.suit}.svg`}
+                              src={`/cards/${ card.value.card + card.suit }.svg`}
                               alt="card-img"
                             />
                           </div>
@@ -87,10 +87,10 @@ const HowToPlay = ({
                     {gameCardStat?.dealerCards?.map((card, l) => (
                       <div
                         className="card"
-                        key={`item-${card.value.card}-${card.suit}-${l}`}
+                        key={`item-${ card?.value?.card }-${ card?.suit }-${ l }`}
                       >
                         <img
-                          src={`/cards/${card.value.card + card.suit}.svg`}
+                          src={`/cards/${ card?.value?.card + card?.suit }.svg`}
                           alt="card-img"
                         />
                       </div>

@@ -51,6 +51,7 @@ import { useMediaQuery } from "react-responsive";
 import { blackjackInstance } from "../../utils/axios.config";
 import EnterAmountPopup from "./enterAmountPopup";
 import ChatHistory from "../chat/chatHistory";
+import { Button, Modal } from "react-bootstrap";
 // import rotateAnime from "../../imgs/animation/rotate.gif"
 
 let userId;
@@ -114,10 +115,11 @@ const Game = () => {
   const [betRaised, setBetRaised] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showInsurancePopUp, setShowInsurancePopUp] = useState(false);
 
 
   const [openChatHistory, setOpenChatHistory] = useState(false);
-  const [isLobbyBtnShow,setIsLobbyBtnShow] = useState(false)
+  const [isLobbyBtnShow, setIsLobbyBtnShow] = useState(false)
 
 
   const [message, setMessage] = useState('');
@@ -351,7 +353,7 @@ const Game = () => {
         // Join user if he is already or new user in game
         if (table) {
           //Let user join in game
-        // setRetryIfUserNotJoin(true);
+          // setRetryIfUserNotJoin(true);
         }
         socket.emit("checkTable", {
           tableId: table,
@@ -427,11 +429,11 @@ const Game = () => {
     });
 
     socket.on("updateRoom", (data) => {
-        if(!data.players.find(el => el.id === userId)){
-          setShowEnterAmountPopup(true);
-        }else{
-          setShowEnterAmountPopup(false);
-        }
+      if (!data.players.find(el => el.id === userId)) {
+        setShowEnterAmountPopup(true);
+      } else {
+        setShowEnterAmountPopup(false);
+      }
 
       setRoomData(data);
       updatePlayers(data);
@@ -441,20 +443,25 @@ const Game = () => {
       setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
       let me = data.players.find((el) => el.id === userId);
       let islobby = false
-      if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
+      if (!(Number(me?.betAmount) >= 10 || Number(me?.wallet) >= 10)) {
         setRefillSitInAmount(true);
-          islobby = true
+        islobby = true
       }
       setIsLobbyBtnShow(islobby)
 
     });
 
     socket.on("preTimer", (data) => {
-      setPreTimer(data.remainingTime);
+      if (data.remainingTime >= 0) {
+        setPreTimer(data.remainingTime);
+      } else {
+        setPreTimer(false);
+      }
+
     });
 
     socket.on("resetGame", (data) => {
-      console.log("data==>>>",data)
+      console.log("data==>>>", data)
       setGameFinish(false);
       setRoomData(data);
       updatePlayers(data);
@@ -464,10 +471,10 @@ const Game = () => {
       setBetRaised(false);
       let me = data.players.find((el) => el.id === userId);
       let islobby = false
-      if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
+      if (!(Number(me?.betAmount) >= 10 || Number(me?.wallet) >= 10)) {
         setRefillSitInAmount(true);
         setLastBet(0)
-          islobby = true
+        islobby = true
       }
       setIsLobbyBtnShow(islobby)
     });
@@ -480,7 +487,9 @@ const Game = () => {
     });
 
     socket.on("play", (data) => {
-      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
+      // console.log("data ==>", data);
+      const crrPlyr = data.players.find((el) => el.turn && el.action === "")
+      setCurrentPlayer(crrPlyr);
       setLeftTime(null);
       setRoomData(data);
       updatePlayers(data);
@@ -491,6 +500,14 @@ const Game = () => {
         setItsYourTurnPlay(true);
         playSound("yourturn");
       }
+
+
+      // if (data?.askInsurance && !crrUser.blackjack && crrUser?.isPlaying) {
+      //   setShowInsurancePopUp(true);
+      //   if (tableId) {
+      //     socket.emit("checkEveryoneHasChecked", { tableId })
+      //   }
+      // }
     });
 
     socket.on("playerReady", (data) => {
@@ -505,14 +522,15 @@ const Game = () => {
       updatePlayers(data.room);
       const crrPlyr = data?.room?.players?.find(el => (el.id === userId));
 
-      if(crrPlyr?.wallet >= 0 ){
-        console.log("re",{lastBet})
+      if (crrPlyr?.wallet >= 0) {
+        console.log("re", { lastBet })
       }
-        // const betAmt = crrPlyr?.wallet  && lastBet > crrPlyr.wallet ? 0 : lastBet
-        // setLastBet(betAmt);
+      // const betAmt = crrPlyr?.wallet  && lastBet > crrPlyr.wallet ? 0 : lastBet
+      // setLastBet(betAmt);
       if (data.userId === userId) {
         playSound("bet-confirm");
       }
+
       setBetRaised(false);
     });
 
@@ -622,7 +640,7 @@ const Game = () => {
       toast.error("Game already started, please wait", {
         id: "already Started",
       });
-      
+
     });
 
     socket.on("welcome", () => {
@@ -653,6 +671,36 @@ const Game = () => {
         playSound("dealnewcard");
       }
       stopSound("timerRunningOut");
+    });
+
+    socket.on("insuranceLoose", (data) => {
+      const { playerIds } = data;
+      if (playerIds.indexOf(userId.toString()) > -1) {
+        toast.error("You loose your insurance", { id: "insurance_success" });
+      }
+    });
+
+    socket.on("insuranceWin", data => {
+      const { playerIds } = data;
+      if (playerIds.indexOf(userId.toString()) > -1) {
+        toast.success("Your insurance is successfull", { id: "insurance_success" });
+      }
+    });
+
+
+    socket.on("askForInsurance", (data) => {
+      const { players } = data;
+      console.log("rooom data after ask for insurance", data);
+      console.log("rooom players", players);
+      const crrPlyr = players?.find(el => (el.id.toString() === userId.toString()))
+      console.log("crrPlyr ====>", crrPlyr)
+      if (crrPlyr?.isPlaying && !crrPlyr?.isSurrender && !crrPlyr?.isBusted && !crrPlyr?.blackjack && !(crrPlyr.sum >= 21)) {
+        setShowInsurancePopUp(true);
+      }
+    });
+
+    socket.on("closeInsurancePopUp", () => {
+      setShowInsurancePopUp(false);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -921,6 +969,16 @@ const Game = () => {
     scrollDownRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const doInsure = () => {
+    socket.emit("doInsure", { userId, tableId });
+    setShowInsurancePopUp(false);
+  }
+
+  const denyInsurance = () => {
+    socket.emit("denyInsurance", { userId, tableId });
+    setShowInsurancePopUp(false);
+  }
+
   // const LastBetAmt = () =>{
   //   setLastBet(players.find((el) => el.id === userId)?.betAmount);
   // }
@@ -1073,7 +1131,7 @@ const Game = () => {
               ) : (
                 ""
               )}
-              <Dealer dealer={roomData?.dealer} players={players} />
+              <Dealer dealer={roomData?.dealer} players={players} currentPlayer={roomData?.players?.find(el => (el.id === userId))} isDealerTurn={roomData?.isDealerTurn} />
               {userId &&
                 (roomData?.media === "video" || roomData.media === "audio") ? (
                 <MeetingProvider
@@ -1117,7 +1175,7 @@ const Game = () => {
               )}
             </div>
           </div>
-          {console.log(isGameStarted,isPlaying)}
+          {console.log(isGameStarted, isPlaying)}
           {!isGameStarted &&
             !isPlaying && (
               <BetPanel
@@ -1152,6 +1210,7 @@ const Game = () => {
                   handleBetIntervel={handleBetIntervel}
                   actionCompleted={actionCompleted}
                   setActionCompleted={setActionCompleted}
+                  dealer={roomData?.dealer}
                 />
               ) : (
                 <></>
@@ -1290,8 +1349,38 @@ const Game = () => {
         accentColor="#5cb7b7"
       /> */}
       {winUser ? <WinPopup /> : ""}
+      <InsurancePopUp showInsurancePopUp={showInsurancePopUp} setShowInsurancePopUp={setShowInsurancePopUp} doInsure={doInsure} denyInsurance={denyInsurance} />
     </div>
   );
 };
+
+const InsurancePopUp = ({ showInsurancePopUp, setShowInsurancePopUp, doInsure, denyInsurance }) => {
+  return (<>
+    <Modal
+      show={showInsurancePopUp}
+      centered
+      className="friends-popup leave-confirm"
+    >
+      <Modal.Body>
+        <div className="block">
+          <p>Are you insuring this bet!</p>
+          <div className="sub-btn text-center">
+            <Button
+              className="exit-btn"
+              onClick={doInsure}
+            >
+              Insure
+            </Button>
+            <Button
+              className="grey-btn"
+              onClick={() => { denyInsurance() }}
+            >
+              Deny
+            </Button>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal></>)
+}
 
 export default Game;
