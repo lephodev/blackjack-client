@@ -26,6 +26,8 @@ import { Spinner } from "react-bootstrap";
 import { landingClient } from "../../config/keys";
 import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
+import { getCookie } from "../../utils/cookieUtil";
+import contants from "../../config/contants";
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -37,6 +39,9 @@ const Home = () => {
     invitedUsers: [],
   };
  const {userInAnyGame,setUserInAnyGame}=useContext(GameContext)
+
+
+
   // States
   const [loader, setLoader] = useState(true);
   const [userData, setUserData] = useState({});
@@ -179,14 +184,32 @@ const Home = () => {
     })();
   }, []);
 
+
+  const checkRunningGame = async()=>{
+    try {
+      const response = await blackjackInstance().get("/getRunningGame");
+      setPokerRooms(response.data.rooms);
+    } catch (error) { }
+  }
+
+
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await blackjackInstance().get("/getRunningGame");
-        setPokerRooms(response.data.rooms);
-      } catch (error) { }
-    })();
-  }, []);
+    const checkUserInGame = async() => {
+      let userData = await axios({
+        method: "get",
+        url: `${contants.landingServerUrl}/users/checkUserInGame`,
+        headers: { authorization: `Bearer ${getCookie("token")}` },
+      });
+    
+      console.log({dekk:userData?.data})
+      if(userData?.data){
+        setUserInAnyGame(userData.data)
+      }
+    }
+    checkRunningGame();
+    checkUserInGame();
+  }, [setUserInAnyGame]);
+  
 
   const options = useMemo(
     () =>
@@ -212,9 +235,10 @@ const Home = () => {
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
+
   return (
     <div className="poker-home">
-      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame}/>}
+      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame} checkRunningGame={checkRunningGame}/>}
       {loader && (
         <div className="poker-loader">
           <img src={loaderImg} alt="loader" />{" "}
