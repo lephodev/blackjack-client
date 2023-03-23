@@ -119,7 +119,11 @@ const Game = () => {
 
 
   const [openChatHistory, setOpenChatHistory] = useState(false);
-  const [isLobbyBtnShow, setIsLobbyBtnShow] = useState(false)
+  const [isLobbyBtnShow, setIsLobbyBtnShow] = useState(false);
+
+  const [isLoading, setLoading] = useState(false);
+
+  const [showActionButtons, setShowActionButtons] = useState(false);
 
 
   const [message, setMessage] = useState('');
@@ -490,6 +494,9 @@ const Game = () => {
       // console.log("data ==>", data);
       const crrPlyr = data.players.find((el) => el.turn && el.action === "")
       setCurrentPlayer(crrPlyr);
+      if (crrPlyr.id.toString() === userId.toString()) {
+        setShowActionButtons(true);
+      }
       setLeftTime(null);
       setRoomData(data);
       updatePlayers(data);
@@ -676,14 +683,19 @@ const Game = () => {
     socket.on("insuranceLoose", (data) => {
       const { playerIds } = data;
       if (playerIds.indexOf(userId.toString()) > -1) {
-        toast.error("You loose your insurance", { id: "insurance_success" });
+        setTimeout(() => {
+          toast.error("You loose your insurance", { id: "insurance_success" });
+        }, 600);
       }
     });
 
     socket.on("insuranceWin", data => {
       const { playerIds } = data;
       if (playerIds.indexOf(userId.toString()) > -1) {
-        toast.success("Your insurance is successfull", { id: "insurance_success" });
+        setTimeout(() => {
+          toast.success("Your insurance is successfull", { id: "insurance_success" });
+        }, 600);
+
       }
     });
 
@@ -902,6 +914,7 @@ const Game = () => {
 
   const handleExitRoom = () => {
     if (players.find((el) => el.id === userId)?.isPlaying) {
+      setLoading(false);
       return toast.error("Can't leave room in running round", { id: "Leave" });
     }
     socket.emit("exitRoom", {
@@ -1200,7 +1213,8 @@ const Game = () => {
             <>
               {players.find((el) => el.id === userId) &&
                 players.find((el) => el.id === userId)?.turn &&
-                players.find((el) => el.id === userId)?.action === "" ? (
+                players.find((el) => el.id === userId)?.action === "" &&
+                showActionButtons ? (
                 <ActionPanel
                   wallet={players.find((el) => el.id === userId)?.wallet}
                   actionopen={actionopen}
@@ -1211,6 +1225,8 @@ const Game = () => {
                   actionCompleted={actionCompleted}
                   setActionCompleted={setActionCompleted}
                   dealer={roomData?.dealer}
+                  showActionButtons={showActionButtons}
+                  setShowActionButtons={setShowActionButtons}
                 />
               ) : (
                 <></>
@@ -1260,6 +1276,8 @@ const Game = () => {
         setConfirmExit={setConfirmExit}
         confirmExit={confirmExit}
         handleExitRoom={handleExitRoom}
+        isLoading={isLoading}
+        setLoading={setLoading}
       />
       {/* audio track  */}
       <div>

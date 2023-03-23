@@ -1,9 +1,8 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { Button, Modal, Spinner } from "react-bootstrap";
 
-const LeaveConfirmPopup = ({ setConfirmExit, confirmExit, handleExitRoom }) => {
-  const [isLoading, setLoading] = useState(false);
+const LeaveConfirmPopup = ({ setConfirmExit, confirmExit, handleExitRoom, isLoading, setLoading }) => {
   return (
     <Modal
       show={confirmExit}
