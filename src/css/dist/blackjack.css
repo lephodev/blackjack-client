@@ -2345,11 +2345,15 @@ button .spinner-border {
   }
 
   .wallet-balance {
-    width: 184px;
-    height: 50px;
+    width: 165px;
+    height: 45px;
     font-size: 10px;
   }
-
+  .wallet-box span {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
   .wallet-box h3 {
     color: #f9ff00;
     font-size: 12px;
@@ -2886,8 +2890,8 @@ button .spinner-border {
     width: 70px;
   }
 
-  .blackjack-players.player3 .user-bet-amount,
-  .blackjack-players.player3 .user-bet-amount,
+  .blackjack-players.player1 .user-bet-amount,
+  .blackjack-players.player2 .user-bet-amount,
   .blackjack-players.player3 .user-bet-amount {
     left: -72px;
   }

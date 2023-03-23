@@ -582,8 +582,15 @@ input[type="number"] {
 
 @media screen and (max-width: 767px) {
   .no-room-available {
-
     padding: 30px;
+  }
+
+  .casino-popup .modal-body {
+    padding: 1rem 1rem; 
+  }
+
+  .casino-popup .modal-footer {
+    padding: 1rem 1rem;
   }
 
   .home-poker-card-grid {
