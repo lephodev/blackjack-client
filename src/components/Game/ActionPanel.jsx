@@ -12,6 +12,7 @@ const ActionPanel = ({
   handleBetIntervel,
   setActionCompleted,
   actionCompleted,
+  setShowActionButtons
 }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleAction = useCallback(
@@ -35,9 +36,10 @@ const ActionPanel = ({
       } else {
         playSound(val);
       }
+      setShowActionButtons(false);
       // }, 100)(val);
     },
-    [actionCompleted, tableId, player.id, setActionCompleted, wallet]
+    [actionCompleted, tableId, player.id, setActionCompleted, wallet, setShowActionButtons]
   );
 
   const playSound = (value) => {
