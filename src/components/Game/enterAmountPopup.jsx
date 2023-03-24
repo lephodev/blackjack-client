@@ -19,7 +19,6 @@ const EnterAmountPopup = ({
       setLoading(true);
       const msg = await handleSitin(amount);
       setLoading(false);
-      // console.log(msg);
       if (msg) {
         setError(msg);
       }
@@ -35,6 +34,7 @@ const EnterAmountPopup = ({
   };
 
   const redirectToLobby = () => {
+    setError("");
     if (submitButtonText.toLowerCase().startsWith("refill")) {
       if (isLobbyBtnShow) {
         handleExitRoom()
@@ -68,7 +68,6 @@ const EnterAmountPopup = ({
             />
             {error && <p className="errorMessage">{error}</p>}
           </Form.Group>
-
           <div className="sub-btn text-center">
             <Button className="grey-btn" onClick={redirectToLobby}>
               {submitButtonText.toLowerCase().startsWith("refill")
