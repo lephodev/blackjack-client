@@ -444,7 +444,11 @@ const Game = () => {
       setLoader(false);
       // setRetryIfUserNotJoin(false);
       setChatMessage(data.chats);
-      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
+      const crrPlayr = data.players.find((el) => el.turn && el.action === "")
+      setCurrentPlayer(crrPlayr);
+      if (crrPlayr.id.toString() === userId.toString()) {
+        setShowActionButtons(true);
+      }
       let me = data.players.find((el) => el.id === userId);
       let islobby = false
       if (!(Number(me?.betAmount) >= 10 || Number(me?.wallet) >= 10)) {
@@ -1188,7 +1192,7 @@ const Game = () => {
               )}
             </div>
           </div>
-          {console.log(isGameStarted, isPlaying)}
+
           {!isGameStarted &&
             !isPlaying && (
               <BetPanel
