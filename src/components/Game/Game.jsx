@@ -446,7 +446,7 @@ const Game = () => {
       setChatMessage(data.chats);
       const crrPlayr = data.players.find((el) => el.turn && el.action === "")
       setCurrentPlayer(crrPlayr);
-      if (crrPlayr.id.toString() === userId.toString()) {
+      if (crrPlayr?.id.toString() === userId.toString()) {
         setShowActionButtons(true);
       }
       let me = data.players.find((el) => el.id === userId);
@@ -495,10 +495,10 @@ const Game = () => {
     });
 
     socket.on("play", (data) => {
-      // console.log("data ==>", data);
+      console.log("data ==>", data);
       const crrPlyr = data.players.find((el) => el.turn && el.action === "")
       setCurrentPlayer(crrPlyr);
-      if (crrPlyr.id.toString() === userId.toString()) {
+      if (crrPlyr?.id.toString() === userId.toString()) {
         setShowActionButtons(true);
       }
       setLeftTime(null);
