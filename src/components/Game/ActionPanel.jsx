@@ -99,7 +99,7 @@ const ActionPanel = ({
               className="user-action"
               id="doubleDown"
               onClick={() => handleAction("double")}
-              disabled={!actionCompleted}
+              disabled={!actionCompleted || player?.betAmount > player?.wallet || player?.isActed}
             >
               <DoubleIcon />
             </Button>
@@ -111,7 +111,7 @@ const ActionPanel = ({
             <button
               className="user-action"
               id="doubleDown"
-              disabled={!actionCompleted}
+              disabled={!actionCompleted || player?.betAmount > player?.wallet || player?.isActed}
               onClick={() => handleAction("double")}
             >
               <DoubleIcon />
