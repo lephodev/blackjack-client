@@ -47,7 +47,7 @@ const FloatingMenu = ({
   useEffect(() => {
     const isVolMuted = localStorage.getItem("muteVolue");
     console.log("isVolMuted ===>", isVolMuted);
-    setVolume(!isVolMuted);
+    setVolume(isVolMuted);
   }, [setVolume]);
 
   const muteVolume = () => {
