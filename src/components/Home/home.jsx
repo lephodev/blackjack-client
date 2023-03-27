@@ -142,7 +142,8 @@ const Home = () => {
     return { valid, err };
   };
 
-  const createTable = async () => {
+  const createTable = async (e) => {
+    e.preventDefault()
     setErrors({});
     setShowSpinner(true);
     const tableValidation = validateCreateTable();
@@ -524,7 +525,7 @@ const CreateTable = ({
         <Button variant="secondary" onClick={handleShow}>
           Close
         </Button>
-        <Button variant="primary" onClick={createTable}>
+        <Button variant="primary" type="submit" onClick={createTable}>
           {showSpinner ? <Spinner animation="border" /> : "Create Table"}
         </Button>
       </Modal.Footer>
