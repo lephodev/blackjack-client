@@ -14,7 +14,8 @@ const EnterAmountPopup = ({
   const [amount, setAmount] = useState("");
   const [error, setError] = useState("");
 
-  const joinGame = async () => {
+  const joinGame = async (e) => {
+    e.preventDefault();
     if (parseInt(amount) >= 100) {
       setLoading(true);
       const msg = await handleSitin(amount);
@@ -76,6 +77,7 @@ const EnterAmountPopup = ({
             </Button>
             <Button
               className="exit-btn"
+              type="submit"
               onClick={joinGame}
               disabled={isLoading}
             >
