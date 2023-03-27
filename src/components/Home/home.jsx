@@ -38,7 +38,7 @@ const Home = () => {
     sitInAmount: "",
     invitedUsers: [],
   };
- const {userInAnyGame,setUserInAnyGame}=useContext(GameContext)
+  const { userInAnyGame, setUserInAnyGame } = useContext(GameContext)
 
 
 
@@ -176,7 +176,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
@@ -186,7 +186,7 @@ const Home = () => {
   }, []);
 
 
-  const checkRunningGame = async()=>{
+  const checkRunningGame = async () => {
     try {
       const response = await blackjackInstance().get("/getRunningGame");
       setPokerRooms(response.data.rooms);
@@ -195,22 +195,22 @@ const Home = () => {
 
 
   useEffect(() => {
-    const checkUserInGame = async() => {
+    const checkUserInGame = async () => {
       let userData = await axios({
         method: "get",
-        url: `${contants.landingServerUrl}/users/checkUserInGame`,
-        headers: { authorization: `Bearer ${getCookie("token")}` },
+        url: `${ contants.landingServerUrl }/users/checkUserInGame`,
+        headers: { authorization: `Bearer ${ getCookie("token") }` },
       });
-    
-      console.log({dekk:userData?.data})
-      if(userData?.data){
+
+      console.log({ dekk: userData?.data })
+      if (userData?.data) {
         setUserInAnyGame(userData.data)
       }
     }
     checkRunningGame();
     checkUserInGame();
   }, [setUserInAnyGame]);
-  
+
 
   const options = useMemo(
     () =>
@@ -239,7 +239,7 @@ const Home = () => {
 
   return (
     <div className="poker-home">
-      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame} checkRunningGame={checkRunningGame}/>}
+      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame} checkRunningGame={checkRunningGame} />}
       {loader && (
         <div className="poker-loader">
           <img src={loaderImg} alt="loader" />{" "}
@@ -268,9 +268,9 @@ const Home = () => {
               </a>
             </div>
             <div className="create-game-box">
-              <a href={`${landingClient}/profile`}>
+              <a href={`${ landingClient }/profile`}>
                 <div className="create-game-box-avtar">
-                  <img src={userData?.profile || "https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
+                  <img src={userData?.profile || users //"https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
                   } alt="" />
                   <h5>{userData?.username}</h5>
                 </div>
