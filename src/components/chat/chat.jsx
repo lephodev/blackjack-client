@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import logo from '../../imgs/blackjack/game1.png';
 import close from '../../imgs/blackjack/close.png';
 import './chat.css';
@@ -6,9 +6,7 @@ import { socket } from '../../config/socket';
 import Picker from 'emoji-picker-react'
 import { FaSmile } from "react-icons/fa"
 
-const Chat = ({ open, handleClick, userId, tableId, openEmoji, setOpenEmoji }) => {
-  const [message, setMessage] = useState('');
-
+const Chat = ({ open, handleClick, userId, tableId, openEmoji, setOpenEmoji, setMessage, message }) => {
   const handleChange = (e) => {
     if (e.target.value.length <= 60) setMessage(e.target.value);
     socket.emit('typingOnChat', { tableId, userId, typing: true });
@@ -56,7 +54,7 @@ const Chat = ({ open, handleClick, userId, tableId, openEmoji, setOpenEmoji }) =
   }
 
   return (
-    <div className={`chat-wrapper ${ open ? `expand` : `` }`}>
+    <div className={`chat-wrapper ${open ? `expand` : ``}`}>
       {openEmoji ? <Picker emojiStyle={{ width: "100%" }} onEmojiClick={handleOnEmojiClick} /> : null}
       <div className='chat-section'>
         {open ? (
@@ -92,7 +90,7 @@ const Chat = ({ open, handleClick, userId, tableId, openEmoji, setOpenEmoji }) =
                 <button type='button' onClick={handleOpenEmoji}>
                   <FaSmile />
                 </button>
-                <button type='submit'>
+                <button type='submit' onClick={(e) => e.preventDefault}>
                   <i className='fa fa-location-arrow' />
                 </button>
               </form>

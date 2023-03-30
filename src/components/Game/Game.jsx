@@ -51,6 +51,7 @@ import { useMediaQuery } from "react-responsive";
 import { blackjackInstance } from "../../utils/axios.config";
 import EnterAmountPopup from "./enterAmountPopup";
 import ChatHistory from "../chat/chatHistory";
+import { Button, Modal } from "react-bootstrap";
 // import rotateAnime from "../../imgs/animation/rotate.gif"
 
 let userId;
@@ -114,10 +115,18 @@ const Game = () => {
   const [betRaised, setBetRaised] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showInsurancePopUp, setShowInsurancePopUp] = useState(false);
 
 
   const [openChatHistory, setOpenChatHistory] = useState(false);
-  const [isLobbyBtnShow,setIsLobbyBtnShow] = useState(false)
+  const [isLobbyBtnShow, setIsLobbyBtnShow] = useState(false);
+
+  const [isLoading, setLoading] = useState(false);
+
+  const [showActionButtons, setShowActionButtons] = useState(false);
+
+
+  const [message, setMessage] = useState('');
 
   const handleOpenChatHistory = () => {
     socket.emit("updateChatIsRead", { tableId, userId });
@@ -348,7 +357,7 @@ const Game = () => {
         // Join user if he is already or new user in game
         if (table) {
           //Let user join in game
-        // setRetryIfUserNotJoin(true);
+          // setRetryIfUserNotJoin(true);
         }
         socket.emit("checkTable", {
           tableId: table,
@@ -424,44 +433,56 @@ const Game = () => {
     });
 
     socket.on("updateRoom", (data) => {
-        if(!data.players.find(el => el.id === userId)){
-          setShowEnterAmountPopup(true);
-        }else{
-          setShowEnterAmountPopup(false);
-        }
+      if (!data.players.find(el => el.id === userId)) {
+        setShowEnterAmountPopup(true);
+      } else {
+        setShowEnterAmountPopup(false);
+      }
 
       setRoomData(data);
       updatePlayers(data);
       setLoader(false);
       // setRetryIfUserNotJoin(false);
       setChatMessage(data.chats);
-      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
+      const crrPlayr = data.players.find((el) => el.turn && el.action === "")
+      setCurrentPlayer(crrPlayr);
+      if (crrPlayr?.id.toString() === userId.toString()) {
+        setShowActionButtons(true);
+      }
       let me = data.players.find((el) => el.id === userId);
       let islobby = false
-      if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
+      if (!(Number(me?.betAmount) >= 10 || Number(me?.wallet) >= 10)) {
         setRefillSitInAmount(true);
-          islobby = true
+        islobby = true
       }
       setIsLobbyBtnShow(islobby)
 
     });
 
     socket.on("preTimer", (data) => {
-      setPreTimer(data.remainingTime);
+      if (data.remainingTime >= 0) {
+        setPreTimer(data.remainingTime);
+      } else {
+        setPreTimer(false);
+      }
+
     });
 
     socket.on("resetGame", (data) => {
+      console.log("data==>>>", data)
       setGameFinish(false);
       setRoomData(data);
       updatePlayers(data);
       playSound("reset");
       setWinUser(false);
       setActionOpen(true);
+      setBetRaised(false);
       let me = data.players.find((el) => el.id === userId);
       let islobby = false
-      if (!(Number(me?.betAmount)>=10 || Number(me?.wallet)>=10 )) {
+      if (!(Number(me?.betAmount) >= 10 || Number(me?.wallet) >= 10)) {
         setRefillSitInAmount(true);
-          islobby = true
+        setLastBet(0)
+        islobby = true
       }
       setIsLobbyBtnShow(islobby)
     });
@@ -474,7 +495,12 @@ const Game = () => {
     });
 
     socket.on("play", (data) => {
-      setCurrentPlayer(data.players.find((el) => el.turn && el.action === ""));
+      console.log("data ==>", data);
+      const crrPlyr = data.players.find((el) => el.turn && el.action === "")
+      setCurrentPlayer(crrPlyr);
+      if (crrPlyr?.id.toString() === userId.toString()) {
+        setShowActionButtons(true);
+      }
       setLeftTime(null);
       setRoomData(data);
       updatePlayers(data);
@@ -485,6 +511,14 @@ const Game = () => {
         setItsYourTurnPlay(true);
         playSound("yourturn");
       }
+
+
+      // if (data?.askInsurance && !crrUser.blackjack && crrUser?.isPlaying) {
+      //   setShowInsurancePopUp(true);
+      //   if (tableId) {
+      //     socket.emit("checkEveryoneHasChecked", { tableId })
+      //   }
+      // }
     });
 
     socket.on("playerReady", (data) => {
@@ -498,12 +532,16 @@ const Game = () => {
       setRoomData(data.room);
       updatePlayers(data.room);
       const crrPlyr = data?.room?.players?.find(el => (el.id === userId));
-      console.log("crrPlyr ==>", crrPlyr);
-      const betAmt = crrPlyr?.betAmount > crrPlyr.wallet ? crrPlyr.wallet : crrPlyr?.betAmount
-      setLastBet(betAmt);
+
+      if (crrPlyr?.wallet >= 0) {
+        console.log("re", { lastBet })
+      }
+      // const betAmt = crrPlyr?.wallet  && lastBet > crrPlyr.wallet ? 0 : lastBet
+      // setLastBet(betAmt);
       if (data.userId === userId) {
         playSound("bet-confirm");
       }
+
       setBetRaised(false);
     });
 
@@ -613,6 +651,7 @@ const Game = () => {
       toast.error("Game already started, please wait", {
         id: "already Started",
       });
+
     });
 
     socket.on("welcome", () => {
@@ -645,13 +684,48 @@ const Game = () => {
       stopSound("timerRunningOut");
     });
 
+    socket.on("insuranceLoose", (data) => {
+      const { playerIds } = data;
+      if (playerIds.indexOf(userId.toString()) > -1) {
+        setTimeout(() => {
+          toast.error("You loose your insurance", { id: "insurance_success" });
+        }, 600);
+      }
+    });
+
+    socket.on("insuranceWin", data => {
+      const { playerIds } = data;
+      if (playerIds.indexOf(userId.toString()) > -1) {
+        setTimeout(() => {
+          toast.success("Your insurance is successfull", { id: "insurance_success" });
+        }, 600);
+
+      }
+    });
+
+
+    socket.on("askForInsurance", (data) => {
+      const { players } = data;
+      console.log("rooom data after ask for insurance", data);
+      console.log("rooom players", players);
+      const crrPlyr = players?.find(el => (el.id.toString() === userId.toString()))
+      console.log("crrPlyr ====>", crrPlyr)
+      if (crrPlyr?.isPlaying && !crrPlyr?.isSurrender && !crrPlyr?.isBusted && !crrPlyr?.blackjack && !(crrPlyr.sum >= 21)) {
+        setShowInsurancePopUp(true);
+      }
+    });
+
+    socket.on("closeInsurancePopUp", () => {
+      setShowInsurancePopUp(false);
+    });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setRoomData, userId]);
 
   useEffect(() => {
     setIsGameStarted(roomData?.gamestart);
     setIsPlaying(players.find((el) => el.id === userId)?.isPlaying);
-  }, [roomData, players]);
+  }, [roomData?.gamestart, players]);
 
   useEffect(() => {
     socket.on("gameTimer", (data) => {
@@ -844,6 +918,7 @@ const Game = () => {
 
   const handleExitRoom = () => {
     if (players.find((el) => el.id === userId)?.isPlaying) {
+      setLoading(false);
       return toast.error("Can't leave room in running round", { id: "Leave" });
     }
     socket.emit("exitRoom", {
@@ -911,9 +986,21 @@ const Game = () => {
     scrollDownRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const doInsure = () => {
+    socket.emit("doInsure", { userId, tableId });
+    setShowInsurancePopUp(false);
+  }
+
+  const denyInsurance = () => {
+    socket.emit("denyInsurance", { userId, tableId });
+    setShowInsurancePopUp(false);
+  }
+
   // const LastBetAmt = () =>{
   //   setLastBet(players.find((el) => el.id === userId)?.betAmount);
   // }
+
+  // console.log({isPlaying,isGameStarted})
 
   return (
     <div className={`blackjack-game ${ loader ? "loaderactive" : "" }`}>
@@ -951,6 +1038,7 @@ const Game = () => {
           scrollDownRef={scrollDownRef}
           openEmoji={openEmoji}
           setOpenEmoji={setOpenEmoji}
+          message={message}
         />
       </div>
 
@@ -1060,7 +1148,7 @@ const Game = () => {
               ) : (
                 ""
               )}
-              <Dealer dealer={roomData?.dealer} players={players} />
+              <Dealer dealer={roomData?.dealer} players={players} currentPlayer={roomData?.players?.find(el => (el.id === userId))} isDealerTurn={roomData?.isDealerTurn} />
               {userId &&
                 (roomData?.media === "video" || roomData.media === "audio") ? (
                 <MeetingProvider
@@ -1104,6 +1192,7 @@ const Game = () => {
               )}
             </div>
           </div>
+
           {!isGameStarted &&
             !isPlaying && (
               <BetPanel
@@ -1128,7 +1217,8 @@ const Game = () => {
             <>
               {players.find((el) => el.id === userId) &&
                 players.find((el) => el.id === userId)?.turn &&
-                players.find((el) => el.id === userId)?.action === "" ? (
+                players.find((el) => el.id === userId)?.action === "" &&
+                showActionButtons ? (
                 <ActionPanel
                   wallet={players.find((el) => el.id === userId)?.wallet}
                   actionopen={actionopen}
@@ -1138,6 +1228,9 @@ const Game = () => {
                   handleBetIntervel={handleBetIntervel}
                   actionCompleted={actionCompleted}
                   setActionCompleted={setActionCompleted}
+                  dealer={roomData?.dealer}
+                  showActionButtons={showActionButtons}
+                  setShowActionButtons={setShowActionButtons}
                 />
               ) : (
                 <></>
@@ -1153,6 +1246,8 @@ const Game = () => {
         tableId={tableId}
         openEmoji={openEmoji}
         setOpenEmoji={setOpenEmoji}
+        message={message}
+        setMessage={setMessage}
       />
       {/* <NewBuyInPopup
         setBuyinPopup={setShowBuyInPopup}
@@ -1185,6 +1280,8 @@ const Game = () => {
         setConfirmExit={setConfirmExit}
         confirmExit={confirmExit}
         handleExitRoom={handleExitRoom}
+        isLoading={isLoading}
+        setLoading={setLoading}
       />
       {/* audio track  */}
       <div>
@@ -1274,8 +1371,38 @@ const Game = () => {
         accentColor="#5cb7b7"
       /> */}
       {winUser ? <WinPopup /> : ""}
+      <InsurancePopUp showInsurancePopUp={showInsurancePopUp} setShowInsurancePopUp={setShowInsurancePopUp} doInsure={doInsure} denyInsurance={denyInsurance} />
     </div>
   );
 };
+
+const InsurancePopUp = ({ showInsurancePopUp, setShowInsurancePopUp, doInsure, denyInsurance }) => {
+  return (<>
+    <Modal
+      show={showInsurancePopUp}
+      centered
+      className="friends-popup leave-confirm"
+    >
+      <Modal.Body>
+        <div className="block">
+          <p>Are you insuring this bet!</p>
+          <div className="sub-btn text-center">
+            <Button
+              className="exit-btn"
+              onClick={doInsure}
+            >
+              Insure
+            </Button>
+            <Button
+              className="grey-btn"
+              onClick={() => { denyInsurance() }}
+            >
+              Deny
+            </Button>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal></>)
+}
 
 export default Game;
