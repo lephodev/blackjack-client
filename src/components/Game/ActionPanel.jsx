@@ -12,6 +12,7 @@ const ActionPanel = ({
   handleBetIntervel,
   setActionCompleted,
   actionCompleted,
+  setShowActionButtons
 }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleAction = useCallback(
@@ -23,11 +24,6 @@ const ActionPanel = ({
         return;
       }
       // console.log(val);
-      if (val === "double") {
-        playSound("doubleDown");
-      } else {
-        playSound(val);
-      }
 
       // console.log({ tableId });
       socket.emit(val, {
@@ -35,9 +31,15 @@ const ActionPanel = ({
         userId: player.id,
         wallet
       });
+      if (val === "double") {
+        playSound("doubleDown");
+      } else {
+        playSound(val);
+      }
+      setShowActionButtons(false);
       // }, 100)(val);
     },
-    [actionCompleted, tableId, player.id, setActionCompleted, wallet]
+    [actionCompleted, tableId, player.id, setActionCompleted, wallet, setShowActionButtons]
   );
 
   const playSound = (value) => {
@@ -97,7 +99,7 @@ const ActionPanel = ({
               className="user-action"
               id="doubleDown"
               onClick={() => handleAction("double")}
-              disabled={!actionCompleted}
+              disabled={!actionCompleted || player?.betAmount > player?.wallet || player?.isActed}
             >
               <DoubleIcon />
             </Button>
@@ -109,7 +111,7 @@ const ActionPanel = ({
             <button
               className="user-action"
               id="doubleDown"
-              disabled={!actionCompleted}
+              disabled={!actionCompleted || player?.betAmount > player?.wallet || player?.isActed}
               onClick={() => handleAction("double")}
             >
               <DoubleIcon />

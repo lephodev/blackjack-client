@@ -7,17 +7,19 @@ const EnterAmountPopup = ({
   showEnterAmountPopup,
   submitButtonText,
   setShow,
+  isLobbyBtnShow,
+  handleExitRoom
 }) => {
   const [isLoading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
   const [error, setError] = useState("");
 
-  const joinGame = async () => {
+  const joinGame = async (e) => {
+    e.preventDefault();
     if (parseInt(amount) >= 100) {
       setLoading(true);
       const msg = await handleSitin(amount);
       setLoading(false);
-      // console.log(msg);
       if (msg) {
         setError(msg);
       }
@@ -33,8 +35,12 @@ const EnterAmountPopup = ({
   };
 
   const redirectToLobby = () => {
+    setError("");
     if (submitButtonText.toLowerCase().startsWith("refill")) {
-      setShow(false);
+      if (isLobbyBtnShow) {
+        handleExitRoom()
+        return
+      } setShow(false);
     } else {
       window.location.href = window.location.origin;
     }
@@ -61,21 +67,21 @@ const EnterAmountPopup = ({
               onChange={handleAmountChange}
               placeholder="minimum amount: 100"
             />
-            {error && <p className="errorMssg">{error}</p>}
+            {error && <p className="errorMessage">{error}</p>}
           </Form.Group>
-
           <div className="sub-btn text-center">
+            <Button className="grey-btn" onClick={redirectToLobby}>
+              {submitButtonText.toLowerCase().startsWith("refill")
+                ? isLobbyBtnShow ? "Lobby" : "Close"
+                : "Lobby"}
+            </Button>
             <Button
               className="exit-btn"
+              type="submit"
               onClick={joinGame}
               disabled={isLoading}
             >
               {isLoading ? <Spinner animation="border" /> : submitButtonText}
-            </Button>
-            <Button className="grey-btn" onClick={redirectToLobby}>
-              {submitButtonText.toLowerCase().startsWith("refill")
-                ? "close"
-                : "Lobby"}
             </Button>
           </div>
         </div>

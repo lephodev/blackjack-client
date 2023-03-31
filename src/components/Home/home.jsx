@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -23,6 +23,11 @@ import Select from "react-select";
 import { useMemo } from "react";
 import numFormatter from "../../config/utils";
 import { Spinner } from "react-bootstrap";
+import { landingClient } from "../../config/keys";
+import GameContext from "../../Context";
+import AlreadyInGame from "../Game/AlreadyInGame";
+import { getCookie } from "../../utils/cookieUtil";
+import contants from "../../config/contants";
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -33,6 +38,9 @@ const Home = () => {
     sitInAmount: "",
     invitedUsers: [],
   };
+  const { userInAnyGame, setUserInAnyGame } = useContext(GameContext)
+
+
 
   // States
   const [loader, setLoader] = useState(true);
@@ -134,7 +142,8 @@ const Home = () => {
     return { valid, err };
   };
 
-  const createTable = async () => {
+  const createTable = async (e) => {
+    e.preventDefault()
     setErrors({});
     setShowSpinner(true);
     const tableValidation = validateCreateTable();
@@ -167,7 +176,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
@@ -176,14 +185,32 @@ const Home = () => {
     })();
   }, []);
 
+
+  const checkRunningGame = async () => {
+    try {
+      const response = await blackjackInstance().get("/getRunningGame");
+      setPokerRooms(response.data.rooms);
+    } catch (error) { }
+  }
+
+
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await blackjackInstance().get("/getRunningGame");
-        setPokerRooms(response.data.rooms);
-      } catch (error) { }
-    })();
-  }, []);
+    const checkUserInGame = async () => {
+      let userData = await axios({
+        method: "get",
+        url: `${ contants.landingServerUrl }/users/checkUserInGame`,
+        headers: { authorization: `Bearer ${ getCookie("token") }` },
+      });
+
+      console.log({ dekk: userData?.data })
+      if (userData?.data) {
+        setUserInAnyGame(userData.data)
+      }
+    }
+    checkRunningGame();
+    checkUserInGame();
+  }, [setUserInAnyGame]);
+
 
   const options = useMemo(
     () =>
@@ -209,8 +236,10 @@ const Home = () => {
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
+
   return (
     <div className="poker-home">
+      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame} checkRunningGame={checkRunningGame} />}
       {loader && (
         <div className="poker-loader">
           <img src={loaderImg} alt="loader" />{" "}
@@ -234,14 +263,14 @@ const Home = () => {
 
           <div className="user-header-grid">
             <div className="casino-logo">
-              <a href="https://scrooge.casino/">
+              <a href={landingClient}>
                 <img src={logo} alt="" />
               </a>
             </div>
             <div className="create-game-box">
-              <a href="https://scrooge.casino/profile">
+              <a href={`${ landingClient }/profile`}>
                 <div className="create-game-box-avtar">
-                  <img src={userData?.profile || "https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
+                  <img src={userData?.profile || users //"https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
                   } alt="" />
                   <h5>{userData?.username}</h5>
                 </div>
@@ -287,7 +316,7 @@ const Home = () => {
         <div className="container">
           <div className="poker-table-header">
             <div className="backtoHome">
-              <a href="https://scrooge.casino/">
+              <a href={landingClient}>
                 <FaHome />
                 Home
               </a>
@@ -301,9 +330,6 @@ const Home = () => {
                   placeholder="Search tables . . . ."
                   onChange={(e) => setSearchText(e.target.value)}
                   autoComplete="off" />
-                {/* <button>
-                  <FaSearch />
-                </button> */}
               </div>
             </div>
           </div>
@@ -368,7 +394,7 @@ const customStyles = {
     color: "#fff",
     display: "flex",
     alignItem: "center",
-    height: "42px",
+    minHeight: "42px",
     margin: "2px 0",
     boxShadow: " 0 2px 10px #000000a5",
     cursor: "pointer",
@@ -417,6 +443,11 @@ const customStyles = {
     ":hover": {
       fill: '#858585c7 !important',
     },
+  }),
+  multiValue: (provided) => ({
+    ...provided,
+    fontWeight: '500',
+    background: '#343a40',
   }),
 };
 
@@ -494,7 +525,7 @@ const CreateTable = ({
         <Button variant="secondary" onClick={handleShow}>
           Close
         </Button>
-        <Button variant="primary" onClick={createTable}>
+        <Button variant="primary" type="submit" onClick={createTable}>
           {showSpinner ? <Spinner animation="border" /> : "Create Table"}
         </Button>
       </Modal.Footer>

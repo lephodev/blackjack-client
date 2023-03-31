@@ -352,7 +352,7 @@
 }
 
 .casino-popup .modal-footer {
-  border-top:1px solid #000;
+  border-top: 1px solid #000;
   align-items: center;
   padding: 1rem 2rem;
 }
@@ -385,7 +385,12 @@
 
 .css-tj5bde-Svg {
   display: inline-block;
-  fill: #858585c7 !important;
+  /* fill: #858585c7 !important; */
+}
+
+.css-9jq23d,
+.css-wsp0cs-MultiValueGeneric {
+  color: #e7e7e7 !important;
 }
 
 .casino-popup .text-danger {
@@ -576,6 +581,18 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 767px) {
+  .no-room-available {
+    padding: 30px;
+  }
+
+  .casino-popup .modal-body {
+    padding: 1rem 1rem; 
+  }
+
+  .casino-popup .modal-footer {
+    padding: 1rem 1rem;
+  }
+
   .home-poker-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -613,7 +630,7 @@ input[type="number"] {
   }
 
   .lobby-home-title h3 {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 20px;
     letter-spacing: 2px;
   }
@@ -697,7 +714,7 @@ input[type="number"] {
   padding: 0px 10px;
 }
 
-.errorMssg {
+.errorMessage {
   text-align: left;
   font-weight: 600;
   color: #ff2f2f;

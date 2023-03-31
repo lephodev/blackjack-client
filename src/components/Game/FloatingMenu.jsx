@@ -33,7 +33,7 @@ const FloatingMenu = ({
     useEffect(() => {
       const handleClickOutside = (event) => {
         if (ref.current && !ref.current.contains(event.target)) {
-          setToggle( screenSize < 767 ? false : true );
+          setToggle(screenSize < 767 ? false : true);
         }
       };
       document.addEventListener("mousedown", handleClickOutside);
@@ -44,9 +44,25 @@ const FloatingMenu = ({
   };
   useOutsideAlerter(wrapperRef);
 
+  useEffect(() => {
+    const isVolMuted = localStorage.getItem("muteVolue");
+    console.log("isVolMuted ===>", isVolMuted, typeof isVolMuted);
+    if (isVolMuted === "true") {
+      setVolume(true);
+    } else {
+      setVolume(false);
+    }
+
+  }, [setVolume]);
+
+  const muteVolume = () => {
+    setVolume(!volume);
+    localStorage.setItem("muteVolue", !volume);
+  }
+
   return (
     <div className="floating-container" ref={wrapperRef}>
-      <div className={`floating-menu ${toggle ? "open" : ""}`}>
+      <div className={`floating-menu ${ toggle ? "open" : "" }`}>
         <div onClick={handleToggleMenu} className="floating-menu-item">
           {screenSize > 767 && toggle ? (
             ""
@@ -83,7 +99,7 @@ const FloatingMenu = ({
               <span className="submenu-tooltip tooltip-chat">Chat</span>
             </div>
             <div
-              onClick={() => setVolume(!volume)}
+              onClick={() => muteVolume()}
               className="floating-menu-item"
             >
               <div className="floating-menu-icon">
