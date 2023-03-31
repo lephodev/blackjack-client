@@ -180,7 +180,9 @@ const Home = () => {
       }
       setLoader(false);
       setUserData({ ...data.data.user });
-      const response = await blackjackInstance().get(`/getAllUsers`);
+      const response = await blackjackInstance().get(`/getAllUsers`, {
+        params: { userId: data?.data?.user?.id }
+      });
       setAllUsers(response.data.allUsers);
     })();
   }, []);
