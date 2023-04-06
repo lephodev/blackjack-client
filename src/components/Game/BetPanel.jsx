@@ -332,11 +332,11 @@ const BetPanel = ({
           <InputRange
             maxValue={
               maxBetAmount > player?.wallet + player?.betAmount
-                ? player?.wallet + player?.betAmount
-                : maxBetAmount
+                ? numFormatter(player?.wallet + player?.betAmount)
+                : numFormatter(maxBetAmount)
             }
             minValue={0}
-            value={rangeBetValue}
+            value={numFormatter(rangeBetValue)}
             onChange={(e) => setRangeBetValue(e)}
             onChangeComplete={(betAmt) => {
               handleBet(betAmt, true);
