@@ -108,8 +108,8 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
-    } else if (!(Number(totalBetAmount) >= 5)) {
-      toast.error(`Bet amount should be equal or more than 5`, {
+    } else if (!(Number(totalBetAmount) >= 1)) {
+      toast.error(`Bet amount should be equal or more than 1`, {
         id: "betexceed",
       });
       setBetRaised(false);
@@ -288,8 +288,8 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
-    } else if (!(Number(betAmt) >= 5)) {
-      toast.error(`Bet amount should be equal or more than 5`, {
+    } else if (!(Number(betAmt) >= 1)) {
+      toast.error(`Bet amount should be equal or more than 1`, {
         id: "betexceed",
       });
       setBetRaised(false);
