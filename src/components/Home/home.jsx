@@ -126,8 +126,8 @@ const Home = () => {
       valid = false;
     }
 
-    if (parseFloat(gameState.sitInAmount) < 100) {
-      err.sitInAmount = "Miimum amount to bet is 100.";
+    if (parseFloat(gameState.sitInAmount) < 5) {
+      err.sitInAmount = "Minimum amount to bet is 5.";
       valid = false;
     }
     if (!gameState.public && !gameState.invitedUsers.length) {
