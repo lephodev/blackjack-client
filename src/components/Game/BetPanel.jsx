@@ -108,8 +108,8 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
-    } else if (!(Number(totalBetAmount) >= 10)) {
-      toast.error(`Bet amount should be equal or more than 10`, {
+    } else if (!(Number(totalBetAmount) >= 1)) {
+      toast.error(`Bet amount should be equal or more than 1`, {
         id: "betexceed",
       });
       setBetRaised(false);
@@ -288,8 +288,8 @@ const BetPanel = ({
       toast.error("Please enter bet amount", { id: "confirm-bet" });
       setBetRaised(false);
       return;
-    } else if (!(Number(betAmt) >= 10)) {
-      toast.error(`Bet amount should be equal or more than 10`, {
+    } else if (!(Number(betAmt) >= 1)) {
+      toast.error(`Bet amount should be equal or more than 1`, {
         id: "betexceed",
       });
       setBetRaised(false);
@@ -332,11 +332,11 @@ const BetPanel = ({
           <InputRange
             maxValue={
               maxBetAmount > player?.wallet + player?.betAmount
-                ? player?.wallet + player?.betAmount
-                : maxBetAmount
+                ? numFormatter(player?.wallet + player?.betAmount)
+                : numFormatter(maxBetAmount)
             }
             minValue={0}
-            value={rangeBetValue}
+            value={numFormatter(rangeBetValue)}
             onChange={(e) => setRangeBetValue(e)}
             onChangeComplete={(betAmt) => {
               handleBet(betAmt, true);
@@ -345,6 +345,26 @@ const BetPanel = ({
         </div>
         <div className="bets-btn-slider">
           <Slider {...settings}>
+          <span className="chip-1" onClick={playSound}>
+              <button
+                className="betButtons update-balance-bet"
+                id="chip1"
+                value="1"
+                onClick={() => handleBet(1)}
+              >
+                1
+              </button>
+            </span>
+            <span className="chip-5" onClick={playSound}>
+              <button
+                className="betButtons update-balance-bet"
+                id="chip5"
+                value="5"
+                onClick={() => handleBet(5)}
+              >
+                5
+              </button>
+            </span>
             <span className="chip-10" onClick={playSound}>
               <button
                 className="betButtons update-balance-bet"

@@ -126,8 +126,8 @@ const Home = () => {
       valid = false;
     }
 
-    if (parseFloat(gameState.sitInAmount) < 100) {
-      err.sitInAmount = "Miimum amount to bet is 100.";
+    if (parseFloat(gameState.sitInAmount) < 5) {
+      err.sitInAmount = "Minimum amount to bet is 5.";
       valid = false;
     }
     if (!gameState.public && !gameState.invitedUsers.length) {
@@ -180,7 +180,9 @@ const Home = () => {
       }
       setLoader(false);
       setUserData({ ...data.data.user });
-      const response = await blackjackInstance().get(`/getAllUsers`);
+      const response = await blackjackInstance().get(`/getAllUsers`, {
+        params: { userId: data?.data?.user?.id }
+      });
       setAllUsers(response.data.allUsers);
     })();
   }, []);

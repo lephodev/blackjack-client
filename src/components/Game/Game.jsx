@@ -451,7 +451,7 @@ const Game = () => {
       }
       let me = data.players.find((el) => el.id === userId);
       let islobby = false
-      if (!(Number(me?.betAmount) >= 10 || Number(me?.wallet) >= 10)) {
+      if (!(Number(me?.betAmount) >= 1 || Number(me?.wallet) >= 1)) {
         setRefillSitInAmount(true);
         islobby = true
       }
@@ -479,7 +479,7 @@ const Game = () => {
       setBetRaised(false);
       let me = data.players.find((el) => el.id === userId);
       let islobby = false
-      if (!(Number(me?.betAmount) >= 10 || Number(me?.wallet) >= 10)) {
+      if (!(Number(me?.betAmount) >= 1 || Number(me?.wallet) >= 1)) {
         setRefillSitInAmount(true);
         setLastBet(0)
         islobby = true

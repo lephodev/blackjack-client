@@ -16,15 +16,15 @@ const EnterAmountPopup = ({
 
   const joinGame = async (e) => {
     e.preventDefault();
-    if (parseInt(amount) >= 100) {
+    if (parseInt(amount) >= 5) {
       setLoading(true);
       const msg = await handleSitin(amount);
       setLoading(false);
       if (msg) {
         setError(msg);
       }
-    } else if (parseInt(amount) < 100) {
-      setError("Minimum amount to enter is 100.");
+    } else if (parseInt(amount) < 5) {
+      setError("Minimum amount to enter is 5.");
     } else {
       setError("Please enter amount.");
     }
@@ -53,7 +53,7 @@ const EnterAmountPopup = ({
       className="friends-popup leave-confirm sitinPopup"
     >
       <Modal.Body>
-        <div className="block">
+        <Form className="block">
           <Form.Group className="sitinPopup-div" controlId="formBasicEmail">
             <Form.Label>
               Enter{" "}
@@ -65,7 +65,7 @@ const EnterAmountPopup = ({
             <Form.Control
               type="number"
               onChange={handleAmountChange}
-              placeholder="minimum amount: 100"
+              placeholder="minimum amount: 5"
             />
             {error && <p className="errorMessage">{error}</p>}
           </Form.Group>
@@ -84,7 +84,7 @@ const EnterAmountPopup = ({
               {isLoading ? <Spinner animation="border" /> : submitButtonText}
             </Button>
           </div>
-        </div>
+        </Form>
       </Modal.Body>
     </Modal>
   );
