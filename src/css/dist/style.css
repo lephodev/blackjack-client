@@ -1693,14 +1693,14 @@ i {
   transition: all 0.3s;
 }
 
-.bets-container #chip50k {
+.bets-container #chip5 {
   background: url("../../imgs/chips/chip8.svg") no-repeat;
   background-size: cover;
   background-position: center;
   transition: all 0.3s;
 }
 
-.bets-container #chip100k {
+.bets-container #chip1 {
   background: url("../../imgs/chips/chip9.svg") no-repeat;
   background-size: cover;
   background-position: center;

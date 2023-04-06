@@ -1671,6 +1671,7 @@ button .spinner-border {
   background: #f9ff00;
   border-color: #f9ff00;
   box-shadow: none;
+  color: #000 !important;
 }
 
 .grey-btn.btn:hover,
