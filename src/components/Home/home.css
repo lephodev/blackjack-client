@@ -249,11 +249,6 @@
   color: rgb(255, 255, 255) !important;
 }
 
-.backtoHome {
-  /* position: absolute;
-  top: -30px; */
-}
-
 .backtoHome span {
   color: #ffffff;
   display: flex;
@@ -461,6 +456,7 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .createGameCheckHand {
@@ -506,7 +502,7 @@ input[type="number"] {
   border: 1px solid rgba(0, 0, 0, .25);
   appearance: none;
   -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 .form-check-inline {
@@ -586,7 +582,7 @@ input[type="number"] {
   }
 
   .casino-popup .modal-body {
-    padding: 1rem 1rem; 
+    padding: 1rem 1rem;
   }
 
   .casino-popup .modal-footer {
@@ -633,12 +629,6 @@ input[type="number"] {
     font-size: 18px;
     line-height: 20px;
     letter-spacing: 2px;
-  }
-
-  .poker-tableSearch-box {
-    /* position: absolute;
-    right: 0px;
-    top: -37px; */
   }
 
   .create-game-box a {
