@@ -335,7 +335,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-
           <div className="poker-table-content">
             {filterRoom.length > 0 ? (
               <>
@@ -344,7 +343,12 @@ const Home = () => {
                 </div>
                 <div className="home-poker-card-grid">
                   {filterRoom.map((el) => (
-                    <GameTable data={el} />
+                    <>
+                    {el.public && <GameTable data={el} />}
+                    {!el.public&& el?.invPlayers?.find((pl)=>pl?.toString()===userData?.id?.toString())&& <GameTable data={el} />}
+                    {(!el.public&& el?.hostId?.toString ===userData?.id?.toString()) && <GameTable data={el} />}
+                    </>
+                    
                   ))}
                 </div>
               </>
