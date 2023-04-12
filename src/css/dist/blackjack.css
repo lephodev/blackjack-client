@@ -82,7 +82,7 @@ button {
   z-index: 999999;
 }
 
-.blackjack-game .blackjack-loader > img {
+.blackjack-game .blackjack-loader>img {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -955,11 +955,11 @@ input[type="number"] {
   background: #1b1f2e;
 }
 
-.stripe-confirmation-popup .table-hover > tbody > tr:hover > * {
+.stripe-confirmation-popup .table-hover>tbody>tr:hover>* {
   --bs-table-accent-bg: #1b1f2e;
 }
 
-.stripe-confirmation-popup .table-striped > tbody > tr:nth-of-type(odd) > * {
+.stripe-confirmation-popup .table-striped>tbody>tr:nth-of-type(odd)>* {
   --bs-table-accent-bg: #1b1f2e;
 }
 
@@ -1029,7 +1029,7 @@ h5.CoinsHeader {
   text-align: center;
 }
 
-#info-rules .table > :not(:first-child) {
+#info-rules .table> :not(:first-child) {
   border-top: none;
 }
 
@@ -1059,7 +1059,7 @@ div#info-rules-overflow::-webkit-scrollbar-thumb {
   background-color: #000000;
 }
 
-#info-rules .table > thead {
+#info-rules .table>thead {
   vertical-align: bottom;
   position: sticky;
   top: 0;
@@ -1524,7 +1524,7 @@ button .spinner-border {
   color: #16181b;
 }
 
-.cam-tool .show > .btn-success.dropdown-toggle {
+.cam-tool .show>.btn-success.dropdown-toggle {
   background: transparent !important;
 }
 
@@ -1591,17 +1591,11 @@ button .spinner-border {
   margin: 0px auto;
 }
 
-.blackjack-player-avatar
-  .battery
-  .CircularProgressbar
-  .CircularProgressbar-trail {
+.blackjack-player-avatar .battery .CircularProgressbar .CircularProgressbar-trail {
   stroke: #00000000;
 }
 
-.blackjack-player-avatar
-  .battery
-  .CircularProgressbar
-  .CircularProgressbar-path {
+.blackjack-player-avatar .battery .CircularProgressbar .CircularProgressbar-path {
   stroke: #eade3acc;
   transition: stroke-dashoffset 2s ease 0s;
 }
@@ -1654,7 +1648,7 @@ button .spinner-border {
 .grey-btn.btn {
   color: #ddd;
   background: #343a40 !important;
-  border-color: #343a40!important;
+  border-color: #343a40 !important;
   transition: all 0.3s;
   width: 144px;
   height: 40px;
@@ -2276,6 +2270,10 @@ button .spinner-border {
     width: 30px;
   }
 
+  .player-sum {
+    top: -265px;
+  }
+
   .yellowBtn {
     position: fixed;
     width: 140px;
@@ -2350,11 +2348,13 @@ button .spinner-border {
     height: 45px;
     font-size: 10px;
   }
+
   .wallet-box span {
     display: flex;
     align-items: center;
     font-size: 13px;
-}
+  }
+
   .wallet-box h3 {
     color: #f9ff00;
     font-size: 12px;
@@ -2424,6 +2424,7 @@ button .spinner-border {
 /* landscape  */
 
 @media only screen and (min-device-width: 280px) and (max-device-width: 991px) and (orientation: landscape) {
+
   .bets-container,
   .bet-btn-box {
     gap: 5px;
