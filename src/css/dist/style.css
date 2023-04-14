@@ -58,19 +58,25 @@ input:-internal-autofill-selected {
   background: #f9ff00 !important;
   color: black !important;
 }
+
 input:-webkit-auto-fill {
-  -webkit-box-shadow: 0px 2px 10px black; /* Change the color to your own background color */
+  -webkit-box-shadow: 0px 2px 10px black;
+  /* Change the color to your own background color */
   -webkit-text-fill-color: #000000;
   background-color: #f9ff00 !important;
   background: #f9ff00 !important;
 }
+
 input:auto-fill {
-  -webkit-box-shadow: 0px 2px 10px black; /* Change the color to your own background color */
+  -webkit-box-shadow: 0px 2px 10px black;
+  /* Change the color to your own background color */
   -webkit-text-fill-color: #000000;
   background-color: #f9ff00 !important;
   background: #f9ff00 !important;
 }
-::-moz-selection { /* Code for Firefox */
+
+::-moz-selection {
+  /* Code for Firefox */
   color: rgb(0, 0, 0) !important;
   background: #f9ff00 !important;
 }
@@ -1248,7 +1254,7 @@ input:auto-fill {
   position: absolute;
   margin: 0 auto;
   padding: 6px 8px;
-  top: -50px;
+  top: -280px;
   color: #010101;
   background: #f9ff00;
   border-radius: 8px;
@@ -2255,6 +2261,10 @@ i {
   #players-container {
     width: 90%;
     margin-left: -45%;
+  }
+
+  .player-sum {
+    top: -268px;
   }
 
   #users-online-box #users-online-button {
