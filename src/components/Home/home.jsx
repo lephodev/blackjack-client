@@ -48,7 +48,7 @@ const Home = () => {
   const [gameState, setGameState] = useState({ ...gameInit });
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState(true);
-console.log("mode",mode);
+  console.log("mode", mode);
   const [errors, setErrors] = useState({});
   const [pokerRooms, setPokerRooms] = useState([]);
   const history = useHistory();
@@ -87,10 +87,10 @@ console.log("mode",mode);
     } else if (name === "sitInAmount") {
       if (parseFloat(value) <= 0) {
         setErrors({ ...errors, sitInAmount: "Minimum amount to bet is 10" });
-      } else if (parseFloat(value) > parseFloat(userData?.gameMode==="token"?userData?.wallet || 0:userData?.goldCoin)) {
+      } else if (parseFloat(value) > parseFloat(userData?.gameMode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
         setErrors({
           ...errors,
-          sitInAmount: `You don't have   enough balance in your  ${userData?.gameMode} wallet.`,
+          sitInAmount: `You don't have   enough balance in your  ${ userData?.gameMode } wallet.`,
         });
       } else {
         setErrors({ ...errors, sitInAmount: "" });
@@ -240,21 +240,21 @@ console.log("mode",mode);
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
-  const handleModeChange = async(e) => {
+  const handleModeChange = async (e) => {
     try {
       const { target: { checked } } = e;
-    setMode(checked);
-    let gameMode = checked ? "token" : "goldCoin"
-    const resp = await blackjackInstance().post("/changeGameMode", {gameMode});
-    console.log("resp",resp);
-   const {code,user}=resp?.data
-  //  console.log("status",code);
-   if(code===200){
-    // console.log("user",user);
-    setUserData(user);
-   }
+      setMode(checked);
+      let gameMode = checked ? "token" : "goldCoin"
+      const resp = await blackjackInstance().post("/changeGameMode", { gameMode });
+      console.log("resp", resp);
+      const { code, user } = resp?.data
+      //  console.log("status",code);
+      if (code === 200) {
+        // console.log("user",user);
+        setUserData(user);
+      }
     } catch (error) {
-      
+
     }
 
   }
@@ -277,8 +277,8 @@ console.log("mode",mode);
         errors={errors}
         options={options}
         handleChnageInviteUsers={handleChnageInviteUsers}
-        userWallet={userData?.gameMode==="token"? userData?.wallet || 0:userData?.goldCoin||0}
-        
+        userWallet={userData?.gameMode === "token" ? userData?.wallet || 0 : userData?.goldCoin || 0}
+
         showSpinner={showSpinner}
       />
 
@@ -314,7 +314,7 @@ console.log("mode",mode);
                     </Button>
                   </OverlayTrigger>
                 </p>
-                
+
                 <p className="user-info-box-ticket">
                   {/* <FaTicketAlt /> */}
                   <img src={ticket} alt="" className="ticket-icon" />
@@ -329,20 +329,20 @@ console.log("mode",mode);
                     </Button>
                   </OverlayTrigger>
                 </p>
-                {console.log("userData",userData)}
+                {console.log("userData", userData)}
                 <p className="user-info-box-ticket">
                   {/* <FaTicketAlt /> */}
                   GC:
                   {/* <img src={ticket} alt="" className="ticket-icon" /> */}
                   <span>{numFormatter(userData?.goldCoin || 0)}</span>
-                  
+
                 </p>
 
               </div>
-              {console.log("userData?.gameMode",userData?.gameMode)}
+              {console.log("userData?.gameMode", userData?.gameMode)}
               <div className='slotLobby-mode'> Mode:
-                <input className="input" id="toggle" type="checkbox"  checked={userData?.gameMode==="token"?true:false} onChange={handleModeChange}
-                 />
+                <input className="input" id="toggle" type="checkbox" checked={userData?.gameMode === "token" ? true : false} onChange={handleModeChange}
+                />
                 <label className="label" htmlFor="toggle">
                   <div className="left">
                     GC
@@ -392,11 +392,11 @@ console.log("mode",mode);
                 <div className="home-poker-card-grid">
                   {filterRoom.map((el) => (
                     <>
-                    {el.public && <GameTable data={el} />}
-                    {!el.public&& el?.invPlayers?.find((pl)=>pl?.toString()===userData?.id?.toString())&& <GameTable data={el} />}
-                    {(!el.public&& el?.hostId?.toString ===userData?.id?.toString()) && <GameTable data={el} />}
+                      {el.public && <GameTable data={el} />}
+                      {!el.public && el?.invPlayers?.find((pl) => pl?.toString() === userData?.id?.toString()) && <GameTable data={el} />}
+                      {(!el.public && el?.hostId?.toString === userData?.id?.toString()) && <GameTable data={el} />}
                     </>
-                    
+
                   ))}
                 </div>
               </>
@@ -518,7 +518,7 @@ const CreateTable = ({
   showSpinner
 }) => {
 
-  console.log("userWallet",userWallet);
+  console.log("userWallet", userWallet);
   return (
     <Modal show={show} onHide={handleShow} centered className="casino-popup">
       <Modal.Header closeButton>
