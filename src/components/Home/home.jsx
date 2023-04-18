@@ -48,8 +48,8 @@ const Home = () => {
   const [userData, setUserData] = useState({});
   const [gameState, setGameState] = useState({ ...gameInit });
   const [show, setShow] = useState(false);
-  const [mode, setMode] = useState(true);
-  console.log("mode", mode);
+  // const [mode, setMode] = useState(true);
+  // console.log("mode", mode);
   const [errors, setErrors] = useState({});
   const [pokerRooms, setPokerRooms] = useState([]);
   const history = useHistory();
@@ -246,22 +246,22 @@ const Home = () => {
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
-  const handleModeChange = async (e) => {
-    try {
-      const { target: { checked } } = e;
-      setMode(checked);
-      let gameMode = checked ? "token" : "goldCoin"
-      const resp = await blackjackInstance().post("/changeGameMode", { gameMode });
-      console.log("resp", resp);
-      const { code, user } = resp?.data
-      //  console.log("status",code);
-      if (code === 200) {
-        // console.log("user",user);
-        setUserData(user);
-      }
-    } catch (error) {
-    }
-  }
+  // const handleModeChange = async (e) => {
+  //   try {
+  //     const { target: { checked } } = e;
+  //     setMode(checked);
+  //     let gameMode = checked ? "token" : "goldCoin"
+  //     const resp = await blackjackInstance().post("/changeGameMode", { gameMode });
+  //     console.log("resp", resp);
+  //     const { code, user } = resp?.data
+  //     //  console.log("status",code);
+  //     if (code === 200) {
+  //       // console.log("user",user);
+  //       setUserData(user);
+  //     }
+  //   } catch (error) {
+  //   }
+  // }
   
   return (
     <div className="poker-home">
@@ -345,7 +345,7 @@ const Home = () => {
                   </OverlayTrigger>
                 </p>
               </div>
-              <div className="slotLobby-mode">
+              {/* <div className="slotLobby-mode">
                 <p>Mode:</p>
                 <div className="mode-labels">
                   <h6>GC</h6>
@@ -354,7 +354,7 @@ const Home = () => {
                   </Form>
                   <h6>Token</h6>
                 </div>
-              </div>
+              </div> */}
               <button type="button" onClick={handleShow}>
                 Create Game
               </button>
