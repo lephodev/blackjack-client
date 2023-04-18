@@ -17,6 +17,7 @@ import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
 import ticket from "../../imgs/blackjack/ticket.png";
 import coin from "../../imgs/blackjack/coin-img.png";
+import gold from "../../imgs/blackjack/gold.png";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Select from "react-select";
@@ -90,7 +91,7 @@ const Home = () => {
       } else if (parseFloat(value) > parseFloat(userData?.gameMode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
         setErrors({
           ...errors,
-          sitInAmount: `You don't have   enough balance in your  ${ userData?.gameMode } wallet.`,
+          sitInAmount: `You don't have   enough balance in your  ${userData?.gameMode} wallet.`,
         });
       } else {
         setErrors({ ...errors, sitInAmount: "" });
@@ -178,7 +179,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${ CONSTANTS.landingClient }`);
+        return (window.location.href = `${CONSTANTS.landingClient}`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
@@ -202,8 +203,8 @@ const Home = () => {
     const checkUserInGame = async () => {
       let userData = await axios({
         method: "get",
-        url: `${ contants.landingServerUrl }/users/checkUserInGame`,
-        headers: { authorization: `Bearer ${ getCookie("token") }` },
+        url: `${contants.landingServerUrl}/users/checkUserInGame`,
+        headers: { authorization: `Bearer ${getCookie("token")}` },
       });
 
       console.log({ dekk: userData?.data })
@@ -234,6 +235,11 @@ const Home = () => {
       This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
+  const renderGold = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      This gold coins is for fun play.
+    </Tooltip>
+  );
 
   const filterRoom = pokerRooms.filter((el) =>
     el.gameName.toLowerCase().includes(searchText.toLowerCase())
@@ -254,12 +260,9 @@ const Home = () => {
         setUserData(user);
       }
     } catch (error) {
-
     }
-
   }
-
-
+  
   return (
     <div className="poker-home">
       {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame} checkRunningGame={checkRunningGame} />}
@@ -292,7 +295,7 @@ const Home = () => {
               </a>
             </div>
             <div className="create-game-box">
-              <a href={`${ landingClient }/profile`}>
+              <a href={`${landingClient}/profile`}>
                 <div className="create-game-box-avtar">
                   <img src={userData?.profile || users //"https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
                   } alt="" />
@@ -316,7 +319,6 @@ const Home = () => {
                 </p>
 
                 <p className="user-info-box-ticket">
-                  {/* <FaTicketAlt /> */}
                   <img src={ticket} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.ticket || 0)}</span>
                   <OverlayTrigger
@@ -329,31 +331,29 @@ const Home = () => {
                     </Button>
                   </OverlayTrigger>
                 </p>
-                {console.log("userData", userData)}
                 <p className="user-info-box-ticket">
-                  {/* <FaTicketAlt /> */}
-                  GC:
-                  {/* <img src={ticket} alt="" className="ticket-icon" /> */}
+                  <img src={gold} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.goldCoin || 0)}</span>
-
+                  <OverlayTrigger
+                    placement="bottom"
+                    delay={{ show: 250, hide: 300 }}
+                    overlay={renderGold}
+                  >
+                    <Button variant="success">
+                      <FaQuestionCircle />
+                    </Button>
+                  </OverlayTrigger>
                 </p>
-
               </div>
-              {console.log("userData?.gameMode", userData?.gameMode)}
-              <div className='slotLobby-mode'> Mode:
-                <input className="input" id="toggle" type="checkbox" checked={userData?.gameMode === "token" ? true : false} onChange={handleModeChange}
-                />
-                <label className="label" htmlFor="toggle">
-                  <div className="left">
-                    GC
-                  </div>
-                  <div className="switch">
-                    <span className="slider round"></span>
-                  </div>
-                  <div className="right">
-                    Token
-                  </div>
-                </label>
+              <div className="slotLobby-mode">
+                <p>Mode:</p>
+                <div className="mode-labels">
+                  <h6>GC</h6>
+                  <Form className='formMode'>
+                    <Form.Check type="switch" id="custom-switch" checked={userData?.gameMode === "token" ? true : false} onChange={handleModeChange} />
+                  </Form>
+                  <h6>Token</h6>
+                </div>
               </div>
               <button type="button" onClick={handleShow}>
                 Create Game
