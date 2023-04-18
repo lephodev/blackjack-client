@@ -2266,6 +2266,9 @@ i {
   .player-sum {
     top: -268px;
   }
+  .count-1 .player-sum{
+    top: -305px;
+  }
 
   #users-online-box #users-online-button {
     position: absolute;
