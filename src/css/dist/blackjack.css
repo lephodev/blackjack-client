@@ -2274,6 +2274,10 @@ button .spinner-border {
     top: -265px;
   }
 
+  .count-1 .player-sum {
+    top: -305px;
+  }
+
   .yellowBtn {
     position: fixed;
     width: 140px;
