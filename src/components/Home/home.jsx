@@ -25,6 +25,8 @@ import { useMemo } from "react";
 import numFormatter from "../../config/utils";
 import { Spinner } from "react-bootstrap";
 import { landingClient } from "../../config/keys";
+import cookie from "js-cookie";
+
 import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
 import { getCookie } from "../../utils/cookieUtil";
@@ -250,9 +252,15 @@ const Home = () => {
     try {
       const { target: { checked } } = e;
       setMode(checked);
+
+
       let gameMode = checked ? "token" : "goldCoin"
+      cookie.set("mode",gameMode, {domain: ".scrooge.casino",
+      path: "/",
+      httpOnly: false, });
+
       const resp = await blackjackInstance().post("/changeGameMode", { gameMode });
-      console.log("resp", resp);
+      console.log("resp-----000", resp);
       const { code, user } = resp?.data
       //  console.log("status",code);
       if (code === 200) {
