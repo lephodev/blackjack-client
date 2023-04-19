@@ -255,7 +255,7 @@ const Home = () => {
 
 
       let gameMode = checked ? "token" : "goldCoin"
-      cookie.set("mode",gameMode,'cookieValue', {domain: ".scrooge.casino",
+      cookie.set("mode",gameMode, {domain: ".scrooge.casino",
       path: "/",
       httpOnly: false, });
 
