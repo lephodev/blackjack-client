@@ -50,7 +50,7 @@ const Home = () => {
   const [userData, setUserData] = useState({});
   const [gameState, setGameState] = useState({ ...gameInit });
   const [show, setShow] = useState(false);
-  const [mode, setMode] = useState();
+  const [mode, setMode] = useState("");
   console.log("mode", mode);
   const [errors, setErrors] = useState({});
   const [pokerRooms, setPokerRooms] = useState([]);
@@ -265,8 +265,20 @@ const Home = () => {
   }
 
   useEffect(() => {
+    
     let getMode=getCookie('mode')
-    setMode(getMode)
+    if(getMode){
+      setMode(getMode)
+    }
+    else {
+      cookie.set("mode","token", {domain: domain,
+        path: "/",
+        httpOnly: false, });
+        setMode(getCookie('mode'))
+
+    }
+
+   
   }, [mode])
   
   
