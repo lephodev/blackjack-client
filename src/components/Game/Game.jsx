@@ -1023,7 +1023,7 @@ const Game = () => {
         <EnterAmountPopup
           handleSitin={handleSitInAmount}
           showEnterAmountPopup={showEnterAmountPopup || refillSitInAmount}
-          submitButtonText={refillSitInAmount ? "Refill Tokens" : "Join"}
+          submitButtonText={refillSitInAmount ? Cookies.get('mode') !== "goldCoin" ? "Refill Tokens" : "Refill Gold Coins" : "Join"}
           setShow={
             refillSitInAmount ? setRefillSitInAmount : setShowEnterAmountPopup
           }
