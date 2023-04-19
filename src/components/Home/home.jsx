@@ -17,14 +17,16 @@ import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
 import ticket from "../../imgs/blackjack/ticket.png";
 import coin from "../../imgs/blackjack/coin-img.png";
-import gold from "../../imgs/blackjack/gold.png";
+// import gold from "../../imgs/blackjack/gold.png";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Select from "react-select";
 import { useMemo } from "react";
 import numFormatter from "../../config/utils";
 import { Spinner } from "react-bootstrap";
-import { landingClient } from "../../config/keys";
+import { domain, landingClient } from "../../config/keys";
+import cookie from "js-cookie";
+
 import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
 import { getCookie } from "../../utils/cookieUtil";
@@ -48,7 +50,7 @@ const Home = () => {
   const [userData, setUserData] = useState({});
   const [gameState, setGameState] = useState({ ...gameInit });
   const [show, setShow] = useState(false);
-  const [mode, setMode] = useState(true);
+  const [mode, setMode] = useState("");
   console.log("mode", mode);
   const [errors, setErrors] = useState({});
   const [pokerRooms, setPokerRooms] = useState([]);
@@ -88,10 +90,10 @@ const Home = () => {
     } else if (name === "sitInAmount") {
       if (parseFloat(value) <= 0) {
         setErrors({ ...errors, sitInAmount: "Minimum amount to bet is 10" });
-      } else if (parseFloat(value) > parseFloat(userData?.gameMode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
+      } else if (parseFloat(value) > parseFloat(mode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
         setErrors({
           ...errors,
-          sitInAmount: `You don't have   enough balance in your  ${userData?.gameMode} wallet.`,
+          sitInAmount: `You don't have   enough balance in your  ${mode} wallet.`,
         });
       } else {
         setErrors({ ...errors, sitInAmount: "" });
@@ -159,6 +161,7 @@ const Home = () => {
       const resp = await blackjackInstance().post("/createTable", {
         ...gameState,
         gameName: gameState.gameName.trim(),
+        gameMode:mode
       });
       setGameState({ ...gameInit });
       history.push({
@@ -214,7 +217,7 @@ const Home = () => {
     }
     checkRunningGame();
     checkUserInGame();
-  }, [setUserInAnyGame]);
+  }, [setUserInAnyGame,mode]);
 
 
   const options = useMemo(
@@ -235,33 +238,49 @@ const Home = () => {
       This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
-  const renderGold = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      This gold coins is for fun play.
-    </Tooltip>
-  );
+  // const renderGold = (props) => (
+  //   <Tooltip id="button-tooltip" {...props}>
+  //     This gold coins is for fun play.
+  //   </Tooltip>
+  // );
 
   const filterRoom = pokerRooms.filter((el) =>
-    el.gameName.toLowerCase().includes(searchText.toLowerCase())
+    el.gameName.toLowerCase().includes(searchText.toLowerCase()) && el?.gameMode===mode
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
-  const handleModeChange = async (e) => {
-    try {
-      const { target: { checked } } = e;
-      setMode(checked);
-      let gameMode = checked ? "token" : "goldCoin"
-      const resp = await blackjackInstance().post("/changeGameMode", { gameMode });
-      console.log("resp", resp);
-      const { code, user } = resp?.data
-      //  console.log("status",code);
-      if (code === 200) {
-        // console.log("user",user);
-        setUserData(user);
-      }
-    } catch (error) {
+  console.log("filterRoom",filterRoom);
+  // const handleModeChange = async (e) => {
+  //   try {
+  //     const { target: { checked } } = e;
+  //     // setMode(checked);
+  //     let gameMode = checked ? "token" : "goldCoin"
+  //     cookie.set("mode",gameMode, {domain: domain,
+  //     path: "/",
+  //     httpOnly: false, });
+  //     setMode(getCookie('mode'))
+  //   } catch (error) {
+  //     console.log("error",error);
+  //   }
+  // }
+
+  useEffect(() => {
+    
+    let getMode=getCookie('mode')
+    if(getMode){
+      setMode(getMode)
     }
-  }
+    else {
+      cookie.set("mode","token", {domain: domain,
+        path: "/",
+        httpOnly: false, });
+        setMode(getCookie('mode'))
+
+    }
+
+   
+  }, [mode])
+  
   
   return (
     <div className="poker-home">
@@ -280,7 +299,7 @@ const Home = () => {
         errors={errors}
         options={options}
         handleChnageInviteUsers={handleChnageInviteUsers}
-        userWallet={userData?.gameMode === "token" ? userData?.wallet || 0 : userData?.goldCoin || 0}
+        userWallet={mode === "token" ? userData?.wallet || 0 : userData?.goldCoin || 0}
 
         showSpinner={showSpinner}
       />
@@ -331,7 +350,7 @@ const Home = () => {
                     </Button>
                   </OverlayTrigger>
                 </p>
-                <p className="user-info-box-ticket">
+                {/* <p className="user-info-box-ticket">
                   <img src={gold} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.goldCoin || 0)}</span>
                   <OverlayTrigger
@@ -343,18 +362,19 @@ const Home = () => {
                       <FaQuestionCircle />
                     </Button>
                   </OverlayTrigger>
-                </p>
+                </p> */}
               </div>
-              <div className="slotLobby-mode">
+              {console.log("modeeee",mode)}
+              {/* <div className="slotLobby-mode">
                 <p>Mode:</p>
                 <div className="mode-labels">
                   <h6>GC</h6>
                   <Form className='formMode'>
-                    <Form.Check type="switch" id="custom-switch" checked={userData?.gameMode === "token" ? true : false} onChange={handleModeChange} />
+                    <Form.Check type="switch" id="custom-switch" checked={mode === "token" ? true : false} onChange={handleModeChange} />
                   </Form>
                   <h6>Token</h6>
                 </div>
-              </div>
+              </div> */}
               <button type="button" onClick={handleShow}>
                 Create Game
               </button>
