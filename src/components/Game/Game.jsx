@@ -52,6 +52,7 @@ import { blackjackInstance } from "../../utils/axios.config";
 import EnterAmountPopup from "./enterAmountPopup";
 import ChatHistory from "../chat/chatHistory";
 import { Button, Modal } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 // import rotateAnime from "../../imgs/animation/rotate.gif"
 
 let userId;
@@ -127,6 +128,8 @@ const Game = () => {
 
 
   const [message, setMessage] = useState('');
+
+  let history = useHistory();
 
   const handleOpenChatHistory = () => {
     socket.emit("updateChatIsRead", { tableId, userId });
@@ -717,6 +720,11 @@ const Game = () => {
 
     socket.on("closeInsurancePopUp", () => {
       setShowInsurancePopUp(false);
+    });
+
+    socket.on("notEnoughtGoldCoin", data => {
+      toast.error(data.message, { id: "notEnoughCoin" });
+      history.push("/");
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
