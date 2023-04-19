@@ -245,10 +245,11 @@ const Home = () => {
   );
 
   const filterRoom = pokerRooms.filter((el) =>
-    el.gameName.toLowerCase().includes(searchText.toLowerCase())
+    el.gameName.toLowerCase().includes(searchText.toLowerCase()) && el?.gameMode===mode
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
+  console.log("filterRoom",filterRoom);
   const handleModeChange = async (e) => {
     try {
       const { target: { checked } } = e;
