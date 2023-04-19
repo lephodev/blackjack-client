@@ -53,6 +53,7 @@ import EnterAmountPopup from "./enterAmountPopup";
 import ChatHistory from "../chat/chatHistory";
 import { Button, Modal } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 // import rotateAnime from "../../imgs/animation/rotate.gif"
 
 let userId;
@@ -249,7 +250,8 @@ const Game = () => {
 
   const handleReffill = async (amount) => {
     try {
-      await blackjackInstance().post("/refillWallet", { tableId, amount });
+      const mode = Cookies.get('mode')
+      await blackjackInstance().post("/refillWallet", { tableId, amount, mode });
       setRefillSitInAmount(false);
       setIsLobbyBtnShow(false)
       return "success";
