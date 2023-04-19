@@ -2,21 +2,27 @@
     "local": {
      "landingServerUrl": "https://dev-api.scrooge.casino/v1",
      "serverUrl": "http://localhost:3003",
-     "landingClient": "http://localhost:3000"
+     "landingClient": "http://localhost:3000",
+     "domain":"localhost"
+     
    },
    "production": {
      "landingServerUrl": "https://api.scrooge.casino/v1",
      "serverUrl":  "https://blackjack-api.scrooge.casino",
-     "landingClient": "https://scrooge.casino"
+     "landingClient": "https://scrooge.casino",
+     "domain":".scrooge.casino"
    },
    "development": {
      "landingServerUrl": "https://dev-api.scrooge.casino/v1",
      "serverUrl": "https://devblackjack-api.scrooge.casino",
-     "landingClient": "https://dev.scrooge.casino"
+     "landingClient": "https://dev.scrooge.casino",
+     "domain":".scrooge.casino"
+
    },
    "staging": {
     "landingServerUrl": "https://beta-api.scrooge.casino/v1",
      "serverUrl": "https://betablackjack-api.scrooge.casino",
-     "landingClient": "https://beta.scrooge.casino"
+     "landingClient": "https://beta.scrooge.casino",
+     "domain":".scrooge.casino"
    }
  }
