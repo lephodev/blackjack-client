@@ -24,7 +24,7 @@ import Select from "react-select";
 import { useMemo } from "react";
 import numFormatter from "../../config/utils";
 import { Spinner } from "react-bootstrap";
-import { landingClient } from "../../config/keys";
+import { domain, landingClient } from "../../config/keys";
 import cookie from "js-cookie";
 
 import GameContext from "../../Context";
@@ -50,7 +50,7 @@ const Home = () => {
   const [userData, setUserData] = useState({});
   const [gameState, setGameState] = useState({ ...gameInit });
   const [show, setShow] = useState(false);
-  const [mode, setMode] = useState(true);
+  const [mode, setMode] = useState();
   console.log("mode", mode);
   const [errors, setErrors] = useState({});
   const [pokerRooms, setPokerRooms] = useState([]);
@@ -90,10 +90,10 @@ const Home = () => {
     } else if (name === "sitInAmount") {
       if (parseFloat(value) <= 0) {
         setErrors({ ...errors, sitInAmount: "Minimum amount to bet is 10" });
-      } else if (parseFloat(value) > parseFloat(userData?.gameMode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
+      } else if (parseFloat(value) > parseFloat(mode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
         setErrors({
           ...errors,
-          sitInAmount: `You don't have   enough balance in your  ${userData?.gameMode} wallet.`,
+          sitInAmount: `You don't have   enough balance in your  ${mode} wallet.`,
         });
       } else {
         setErrors({ ...errors, sitInAmount: "" });
@@ -161,6 +161,7 @@ const Home = () => {
       const resp = await blackjackInstance().post("/createTable", {
         ...gameState,
         gameName: gameState.gameName.trim(),
+        gameMode:mode
       });
       setGameState({ ...gameInit });
       history.push({
@@ -216,7 +217,7 @@ const Home = () => {
     }
     checkRunningGame();
     checkUserInGame();
-  }, [setUserInAnyGame]);
+  }, [setUserInAnyGame,mode]);
 
 
   const options = useMemo(
@@ -251,25 +252,22 @@ const Home = () => {
   const handleModeChange = async (e) => {
     try {
       const { target: { checked } } = e;
-      setMode(checked);
-
-
+      // setMode(checked);
       let gameMode = checked ? "token" : "goldCoin"
-      cookie.set("mode",gameMode, {domain: ".scrooge.casino",
+      cookie.set("mode",gameMode, {domain: domain,
       path: "/",
       httpOnly: false, });
-
-      const resp = await blackjackInstance().post("/changeGameMode", { gameMode });
-      console.log("resp-----000", resp);
-      const { code, user } = resp?.data
-      //  console.log("status",code);
-      if (code === 200) {
-        // console.log("user",user);
-        setUserData(user);
-      }
+      setMode(getCookie('mode'))
     } catch (error) {
+      console.log("error",error);
     }
   }
+
+  useEffect(() => {
+    let getMode=getCookie('mode')
+    setMode(getMode)
+  }, [mode])
+  
   
   return (
     <div className="poker-home">
@@ -288,7 +286,7 @@ const Home = () => {
         errors={errors}
         options={options}
         handleChnageInviteUsers={handleChnageInviteUsers}
-        userWallet={userData?.gameMode === "token" ? userData?.wallet || 0 : userData?.goldCoin || 0}
+        userWallet={mode === "token" ? userData?.wallet || 0 : userData?.goldCoin || 0}
 
         showSpinner={showSpinner}
       />
@@ -353,12 +351,13 @@ const Home = () => {
                   </OverlayTrigger>
                 </p>
               </div>
+              {console.log("modeeee",mode)}
               <div className="slotLobby-mode">
                 <p>Mode:</p>
                 <div className="mode-labels">
                   <h6>GC</h6>
                   <Form className='formMode'>
-                    <Form.Check type="switch" id="custom-switch" checked={userData?.gameMode === "token" ? true : false} onChange={handleModeChange} />
+                    <Form.Check type="switch" id="custom-switch" checked={mode === "token" ? true : false} onChange={handleModeChange} />
                   </Form>
                   <h6>Token</h6>
                 </div>
