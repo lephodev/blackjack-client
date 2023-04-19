@@ -1254,9 +1254,9 @@ input:auto-fill {
   position: absolute;
   margin: 0 auto;
   padding: 6px 8px;
-  top: -280px;
+  top: -290px;
   color: #010101;
-  background: #f9ff00;
+  background: hsl(0deg 0% 0%);
   border-radius: 8px;
   display: inline-block;
   pointer-events: none;
@@ -1266,10 +1266,11 @@ input:auto-fill {
   transition: 100ms ease-in-out;
   text-align: center;
   left: 50%;
-  font-weight: 600;
+  font-weight: 700;
   max-width: 80px;
   /* height: 40px; */
-  font-size: 16px;
+  font-size: 22px;
+  color: #fff;
 }
 
 .player-result {
@@ -2264,10 +2265,10 @@ i {
   }
 
   .player-sum {
-    top: -268px;
+    top: -275px;
   }
   .count-1 .player-sum{
-    top: -305px;
+    top: -315px;
   }
 
   #users-online-box #users-online-button {
