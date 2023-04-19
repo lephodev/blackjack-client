@@ -255,12 +255,12 @@ const Home = () => {
 
 
       let gameMode = checked ? "token" : "goldCoin"
-      cookie.set("mode",gameMode,'cookieValue', {domain: "scrooge.casino",
+      cookie.set("mode",gameMode,'cookieValue', {domain: ".scrooge.casino",
       path: "/",
       httpOnly: false, });
 
       const resp = await blackjackInstance().post("/changeGameMode", { gameMode });
-      console.log("resp", resp);
+      console.log("resp-----000", resp);
       const { code, user } = resp?.data
       //  console.log("status",code);
       if (code === 200) {
