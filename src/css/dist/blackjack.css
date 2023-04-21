@@ -423,7 +423,8 @@ input[type="number"] {
 .dealer-sum span {
   display: block;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 /******************** Players *******************/
@@ -1113,6 +1114,7 @@ div#info-rules .card-box {
   transition: linear 0.3s;
   opacity: 0;
   visibility: hidden;
+  white-space: nowrap;
 }
 
 .floating-menu-item:hover .tooltip-logout,
@@ -1636,7 +1638,7 @@ button .spinner-border {
   background: #f9ff00;
   border-color: #f9ff00;
   transition: all 0.3s;
-  width: 144px;
+  width: 175px;
   height: 40px;
   font-weight: 600;
   font-size: 16px;
@@ -1650,7 +1652,7 @@ button .spinner-border {
   background: #343a40 !important;
   border-color: #343a40 !important;
   transition: all 0.3s;
-  width: 144px;
+  width: 175px;
   height: 40px;
   font-weight: 600;
   font-size: 16px;
@@ -2799,7 +2801,9 @@ button .spinner-border {
     background: url(../../imgs/blackjack/tablePortrait.png) no-repeat center;
     background-size: contain;
   }
-
+  .wait-txt {
+    width: 350px;
+  }
   .chat-wrapper {
     max-width: 350px;
     position: fixed;
@@ -3235,6 +3239,11 @@ button .spinner-border {
   .btn {
     font-weight: 500;
     font-size: 12px;
+  }
+
+  .sub-btn button {
+    margin: 0px 4px;
+    padding: 8px 2px !important;
   }
 
   .triangle-isosceles.left {

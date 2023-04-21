@@ -1714,6 +1714,8 @@ i {
   transition: all 0.3s;
 }
 
+.bets-container #chip1:hover,
+.bets-container #chip5:hover,
 .bets-container #chip10:hover,
 .bets-container #chip50:hover,
 .bets-container #chip100:hover,
@@ -1726,6 +1728,8 @@ i {
   transform: scale(0.95);
 }
 
+.bets-btn-slider span.chip-1,
+.bets-btn-slider span.chip-5,
 .bets-btn-slider span.chip-10,
 .bets-btn-slider span.chip-50,
 .bets-btn-slider span.chip-100,
