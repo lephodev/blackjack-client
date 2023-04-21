@@ -1,4 +1,4 @@
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 
@@ -21,7 +21,7 @@ const FloatingMenu = ({
     );
     return () => {
       window.removeEventListener("resize", (el) =>
-        console.log("hjgdhhhsre>>", el.target.innerWidth)
+        console.log("hjgdsre>>", el.target.innerWidth)
       );
     };
   }, [screenSize]);
@@ -91,9 +91,7 @@ const FloatingMenu = ({
               <div className="floating-menu-icon">
                 <AddCoinIcon />
               </div>
-              <span className="submenu-tooltip tooltip-coins">Fill Tokens</span>
-              {/* <span className="submenu-tooltip tooltip-coins">Fill {`${ Cookies.get('mode') !== "goldCoin" ? "Tokens" : "Gold Coin" }`}</span> */}
-
+              <span className="submenu-tooltip tooltip-coins">Fill {`${ Cookies.get('mode') !== "goldCoin" ? "Tokens" : "Gold Coin" }`}</span>
             </div>
             <div onClick={() => handleClick()} className="floating-menu-item">
               <div className="floating-menu-icon">
