@@ -11,7 +11,7 @@ const WalletBalance = ({ wallet, betAmount, ticket }) => {
 
   useEffect(() => {
     console.log("gameeeee mode ==>", Cookies.get('mode'));
-    setGameMode(Cookies.get('mode'))
+    setGameMode('token')
   }, []);
 
   const renderWallet = (props) => (
