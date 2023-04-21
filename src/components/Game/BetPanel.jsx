@@ -48,8 +48,8 @@ const BetPanel = ({
       }
       // handleBetTimeout = setTimeout(() => {
       let totalBetAmt =
-      lastBet ? amount :  (totalBetAmount ? totalBetAmount : lastBet ? lastBet : 0) + amount;
-      
+        lastBet ? amount : (totalBetAmount ? totalBetAmount : lastBet ? lastBet : 0) + amount;
+
       if (totalBetAmt > player?.wallet && maxBetAmount > player?.wallet) {
         toast.error(`betting amount is exceeding wallet balance`, {
           id: "maxBetAmount",
@@ -62,7 +62,7 @@ const BetPanel = ({
         // });
         setRangeBetValue(player?.wallet);
       } else if (totalBetAmt > maxBetAmount) {
-        toast.error(`Max bet amount is ${maxBetAmount}`, {
+        toast.error(`Max bet amount is ${ maxBetAmount }`, {
           id: "maxBetAmount",
         });
 
@@ -264,7 +264,7 @@ const BetPanel = ({
 
   // console.log("setBetRaised :==>", setBetRaised);
   if (betRaised) {
-    console.log({betRaised})
+    console.log({ betRaised })
     return "";
   }
 
@@ -307,14 +307,13 @@ const BetPanel = ({
   };
 
 
-  console.log({lastBet})
-  let finalBetAmount =  lastBet > player?.wallet ? 0 : lastBet
+  console.log({ lastBet })
+  let finalBetAmount = lastBet > player?.wallet ? 0 : lastBet
 
   return (
     <div
-      className={`bets-wrapper ${
-        !player?.isPlaying ? `` : `hide-panel show-popup`
-      }`}
+      className={`bets-wrapper ${ !player?.isPlaying ? `` : `hide-panel show-popup`
+        }`}
     >
       <div className="bets-container">
         {/* <span className="bet-amt-placeholder">
@@ -345,7 +344,7 @@ const BetPanel = ({
         </div>
         <div className="bets-btn-slider">
           <Slider {...settings}>
-          <span className="chip-1" onClick={playSound}>
+            <span className="chip-1" onClick={playSound}>
               <button
                 className="betButtons update-balance-bet"
                 id="chip1"
@@ -514,7 +513,7 @@ const BetPanel = ({
             Max
           </button>
 
-            {/* {console.log('player',{betAmount:player?.betAmount,lastBet})} */}
+          {/* {console.log('player',{betAmount:player?.betAmount,lastBet})} */}
 
           {player?.betAmount ? (
             <button
