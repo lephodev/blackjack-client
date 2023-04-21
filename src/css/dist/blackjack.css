@@ -423,7 +423,8 @@ input[type="number"] {
 .dealer-sum span {
   display: block;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 /******************** Players *******************/
@@ -2800,7 +2801,9 @@ button .spinner-border {
     background: url(../../imgs/blackjack/tablePortrait.png) no-repeat center;
     background-size: contain;
   }
-
+  .wait-txt {
+    width: 350px;
+  }
   .chat-wrapper {
     max-width: 350px;
     position: fixed;
