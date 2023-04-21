@@ -21,7 +21,7 @@ const FloatingMenu = ({
     );
     return () => {
       window.removeEventListener("resize", (el) =>
-        console.log("hjgdsre>>", el.target.innerWidth)
+        console.log("hjgdhhhsre>>", el.target.innerWidth)
       );
     };
   }, [screenSize]);
