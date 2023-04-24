@@ -51,7 +51,7 @@ const Home = () => {
   const [gameState, setGameState] = useState({ ...gameInit });
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState("");
-  console.log("mode", mode,setMode);
+  console.log("mode", mode, setMode);
   const [errors, setErrors] = useState({});
   const [pokerRooms, setPokerRooms] = useState([]);
   const history = useHistory();
@@ -93,7 +93,7 @@ const Home = () => {
       } else if (parseFloat(value) > parseFloat(mode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
         setErrors({
           ...errors,
-          sitInAmount: `You don't have   enough balance in your  ${mode} wallet.`,
+          sitInAmount: `You don't have   enough balance in your  ${ mode } wallet.`,
         });
       } else {
         setErrors({ ...errors, sitInAmount: "" });
@@ -161,7 +161,7 @@ const Home = () => {
       const resp = await blackjackInstance().post("/createTable", {
         ...gameState,
         gameName: gameState.gameName.trim(),
-        gameMode:mode
+        gameMode: mode
       });
       setGameState({ ...gameInit });
       history.push({
@@ -182,7 +182,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
@@ -206,8 +206,8 @@ const Home = () => {
     const checkUserInGame = async () => {
       let userData = await axios({
         method: "get",
-        url: `${contants.landingServerUrl}/users/checkUserInGame`,
-        headers: { authorization: `Bearer ${getCookie("token")}` },
+        url: `${ contants.landingServerUrl }/users/checkUserInGame`,
+        headers: { authorization: `Bearer ${ getCookie("token") }` },
       });
 
       console.log({ dekk: userData?.data })
@@ -217,7 +217,7 @@ const Home = () => {
     }
     checkRunningGame();
     checkUserInGame();
-  }, [setUserInAnyGame,mode]);
+  }, [setUserInAnyGame, mode]);
 
 
   const options = useMemo(
@@ -245,43 +245,48 @@ const Home = () => {
   );
 
   const filterRoom = pokerRooms.filter((el) =>
-    el.gameName.toLowerCase().includes(searchText.toLowerCase()) && el?.gameMode===mode
+    el.gameName.toLowerCase().includes(searchText.toLowerCase()) && el?.gameMode === mode
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
-  console.log("filterRoom",filterRoom);
+  console.log("filterRoom", filterRoom);
   const handleModeChange = async (e) => {
     try {
       const { target: { checked } } = e;
       // setMode(checked);
       let gameMode = checked ? "token" : "goldCoin"
-      cookie.set("mode",gameMode, {domain: domain,
-      path: "/",
-      httpOnly: false, });
+      cookie.set("mode", gameMode, {
+        domain: domain,
+        path: "/",
+        httpOnly: false,
+      });
       setMode(getCookie('mode'))
     } catch (error) {
-      console.log("error",error);
+      console.log("error", error);
     }
   }
 
   useEffect(() => {
-    
-    let getMode=getCookie('mode')
-    if(getMode){
+
+    let getMode = getCookie('mode');
+    console.log("mode inside header ===>", getMode);
+    if (getMode) {
       setMode(getMode)
     }
     else {
-      cookie.set("mode","token", {domain: domain,
+      cookie.set("mode", "goldCoin", {
+        domain: domain,
         path: "/",
-        httpOnly: false, });
-        setMode(getCookie('mode'))
+        httpOnly: false,
+      });
+      setMode(getCookie('mode'))
 
     }
 
-   
+
   }, [mode])
-  
-  
+
+
   return (
     <div className="poker-home">
       {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame} checkRunningGame={checkRunningGame} />}
@@ -314,7 +319,7 @@ const Home = () => {
               </a>
             </div>
             <div className="create-game-box">
-              <a href={`${landingClient}/profile`}>
+              <a href={`${ landingClient }/profile`}>
                 <div className="create-game-box-avtar">
                   <img src={userData?.profile || users //"https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
                   } alt="" />
@@ -364,7 +369,7 @@ const Home = () => {
                   </OverlayTrigger>
                 </p>
               </div>
-              {console.log("modeeee",mode)}
+              {/* {console.log("modeeee",mode)} */}
               <div className="slotLobby-mode">
                 <p>Mode:</p>
                 <div className="mode-labels">
