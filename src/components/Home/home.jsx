@@ -270,24 +270,19 @@ const Home = () => {
   }
 
   useEffect(() => {
-
-    let getMode = getCookie('mode');
-    console.log("mode inside header ===>", getMode);
+    const getMode = getCookie("mode");
     if (getMode) {
-      setMode(getMode)
-    }
-    else {
+      setMode(getMode);
+    } else {
       cookie.set("mode", "goldCoin", {
         domain: domain,
         path: "/",
         httpOnly: false,
       });
-      setMode(getCookie('mode'))
-
+      setMode(getMode);
     }
+  }, []);
 
-
-  }, [mode])
   const handleTicketTotoken = () => {
     setTicketToToekn(!ticketToToken);
   };
