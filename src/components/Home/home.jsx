@@ -279,7 +279,7 @@ const Home = () => {
         path: "/",
         httpOnly: false,
       });
-      setMode(getMode);
+      setMode("goldCoin");
     }
   }, []);
 
@@ -321,7 +321,7 @@ const Home = () => {
             <div className="headerMode-container">
                 <div className={`slotLobby-mode ${mode}`}>
                   <Form>
-                    <input type="checkbox" id="switch" defaultChecked={mode === "token"} className='form-check-input' onChange={handleModeChange} /><label for="switch">Toggle</label>
+                    <input type="checkbox" id="switch" defaultChecked={mode === "token"} checked={mode === "token"} className='form-check-input' onChange={handleModeChange} /><label for="switch">Toggle</label>
                     <span>{
                         mode === "token"
                           ? `ST: ${numFormatter(userData?.wallet)}`
