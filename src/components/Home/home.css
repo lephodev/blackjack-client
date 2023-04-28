@@ -595,6 +595,7 @@ input[type="number"] {
   margin: 0px 0px 0px 2px;
   width: 52px;
 }
+
 .slotLobby-mode .form-switch .form-check-input {
   width: 50px;
   height: 26px;
@@ -628,6 +629,7 @@ input[type="number"] {
   position: absolute;
   top: 0px;
 }
+
 .form-switch .form-check-input:checked {
   background-position: right center;
   background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23000%27/%3e%3c/svg%3e");
@@ -635,31 +637,44 @@ input[type="number"] {
 
 /******* ticket to otken *************/
 .ticket-token-modal .modal-content {
+  background: #151515;
   border: 1px solid #202020;
+  border-radius: 10px;
+  margin: 0 auto;
   max-width: 400px;
-  margin: 0px auto;
-  background: rgb(42 42 42);
-  padding: 30px 20px;
+  padding: 20px 30px;
   position: relative;
-  border-radius: 5px;
 }
+
 .ticket-token-modal .ticket-to-token-popup h6:first-child {
   font-size: 18px;
   text-align: center;
   color: #f9ff00;
 }
+
+.ticket-to-token-popup h5 {
+  margin-top: 20px;
+  text-align: center;
+  color: #fff;
+}
+
 .ticket-token-modal .modal-dialog {
   display: block;
 }
+
 .ticket-token-modal .inputRange-Box {
-  position: relative;
-  width: 100%;
+  background: #000;
+  border: 1px solid #f9ff00;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   margin-top: 30px;
-  max-width: 100%;
+  padding: 14px 20px;
+  position: relative;
+  width: 100%;
 }
+
 .ticket-token-modal .ticket-to-token-popup h6 {
   font-size: 14px;
   text-align: center;
@@ -667,23 +682,27 @@ input[type="number"] {
 }
 
 .ticket-token-modal .total.tickets {
-  margin: 30px auto;
-  width: fit-content;
   background: #f9ff00;
-  padding: 10px 20px;
   border-radius: 50px;
+  margin: 30px auto;
+  padding: 10px 20px;
+  width: fit-content;
 }
+
 .ticket-token-modal .input-range__track--active {
   background: #f9ff00 !important;
 }
+
 .ticket-token-modal .input-range__slider {
   background: #f9ff00 !important;
   border: 1px solid #f9ff00 !important;
 }
+
 .ticket-token-modal .min-max-value p {
   font-size: 13px;
   color: white;
 }
+
 .ticket-token-modal .confirm-btn button,
 .ticket-token-modal .confirm-btn button:hover,
 .ticket-token-modal .confirm-btn button:focus {
@@ -693,48 +712,67 @@ input[type="number"] {
   font-weight: 600;
   font-size: 14px;
   width: fit-content !important;
-  min-width: 85px !important;
+  min-width: 80% !important;
   width: fit-content;
   height: 35px;
+  border-radius: 30px;
 }
+
 .ticket-token-modal .input-range__label--value {
   display: none;
 }
+
 .ticket-token-modal .confirm-btn {
   display: flex;
   justify-content: center;
   margin-top: 30px;
 }
+
 .ticket-token-modal .modal-body {
   padding: 0 !important;
 }
+
 .ticket-token-modal .min-max-value button,
 .ticket-token-modal .min-max-value button:hover,
 .ticket-token-modal .min-max-value button:focus {
+  height: 30px !important;
+  min-width: 80px !important;
+  padding: 4px 10px !important;
+  border-radius: 30px;
   background: #f9ff00;
   border: 1px solid #f9ff00;
   color: black;
   font-weight: 600;
   font-size: 14px;
-  padding: 5px 10px;
-  width: fit-content !important;
-  max-width: fit-content !important;
 }
+
 .ticket-token-modal .total.tickets h6 {
   margin: 0;
   font-weight: 700;
   font-size: 15px;
   color: #000;
 }
+
 .ticket-token-modal .ticket-to-token-popup h6 {
   font-size: 15px;
   text-align: center;
 }
+
 .ticket-token-modal .input-range {
   height: 1rem;
   position: relative;
   width: 94% !important;
   margin-left: 8px;
+}
+
+.ticket-token-modal .input-range__track {
+  height: 10px !important;
+}
+
+.ticket-token-modal .input-range__slider {
+  height: 20px !important;
+  margin-top: -15px !important;
+  width: 20px !important;
 }
 
 .ticket-token-modal .inputRangeSlider {
@@ -748,14 +786,17 @@ input[type="number"] {
 .ticket-token-modal span.input-range__label.input-range__label--max {
   display: none;
 }
+
 .ticket-token-modal .min-max-value {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .ticket-token-modal .min-max-value p {
   margin: 0;
 }
+
 .tickets-token {
   margin-left: 0px;
 }
@@ -789,6 +830,7 @@ input[type="number"] {
   object-fit: contain;
   margin-right: 5px;
 }
+
 .tickets-token button svg {
   margin: 0px 10px;
 }
@@ -796,6 +838,7 @@ input[type="number"] {
 .tickets-token button span {
   font-weight: 600;
 }
+
 .headerMode-container {
   display: flex;
   flex-direction: row;
@@ -805,6 +848,7 @@ input[type="number"] {
   gap: 10px;
   flex-wrap: wrap;
 }
+
 .slotLobby-mode {
   display: flex;
   flex-direction: row;
@@ -885,6 +929,7 @@ input[type="number"] {
   display: grid;
   place-content: center;
 }
+
 .slotLobby-mode form .purchase-btn svg {
   width: 22px;
   height: 22px;
@@ -997,21 +1042,26 @@ input[type="number"] {
   background-color: #fa0000 !important;
   border-color: #fa0000 !important;
 }
+
 .slotLobby-mode.goldCoin .custom-switch .custom-control-label::before {
   background-color: #f9ff00 !important;
   border: 1px solid #f9ff00;
 }
+
 .slotLobby-mode .form-switch .form-check-input:checked {
   background-position: right center;
   background-image: url("../../imgs/blackjack/sweep.png") !important;
 }
+
 input#custom-switch {
   cursor: pointer;
 }
+
 .slotLobby-mode.goldCoin form .purchase-btn {
   background: #f9ff00;
   border: 1px solid #f9ff00;
 }
+
 .pokerWallet-box {
   display: flex;
 }
@@ -1053,22 +1103,24 @@ input#custom-switch {
   background-size: contain;
 }
 
-.slotLobby-mode input:checked + label {
+.slotLobby-mode input:checked+label {
   background-color: #fa0000 !important;
   border-color: #fa0000;
 }
 
-.slotLobby-mode input:checked + label:after {
+.slotLobby-mode input:checked+label:after {
   left: calc(100% - 2px);
   transform: translateX(-100%);
   background-position: right center;
   background-image: url("../../imgs/blackjack/sweep.png") !important;
 }
+
 .slotLobby-mode span {
   font-size: 16px;
   font-weight: 600;
   text-transform: capitalize;
 }
+
 /* .slotLobby-mode label:active:after {
 	width: 130px;
 } */
@@ -1100,19 +1152,23 @@ input#custom-switch {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+  }
+
   .user-header-grid {
     position: relative;
   }
+
   button.create-game-boxBtn {
     position: absolute;
     top: 20px;
     right: 0;
   }
+
   .tickets-token {
     margin: 0;
     max-width: 200px;
   }
+
   .tickets-token button:focus,
   .tickets-token button:active,
   .tickets-token button:hover,
@@ -1120,20 +1176,24 @@ input#custom-switch {
   .tickets-token .btn:first-child:active {
     height: 35px;
   }
-  .create-game-box button{
+
+  .create-game-box button {
     height: 35px;
     font-size: 12px !important;
   }
+
   button.create-game-boxBtn {
     position: absolute;
     top: 20px;
     right: 0;
   }
+
   .tickets-token button img {
     height: 19px;
     object-fit: contain;
     margin-right: 5px;
   }
+
   .pokerWallet-box span {
     font-size: 12px;
   }
@@ -1155,21 +1215,27 @@ input#custom-switch {
     justify-content: space-between;
     flex-direction: row;
   }
+
   .headerMode-container {
     margin: 10px 0px;
   }
+
   .slotLobby-mode span {
     font-size: 12px;
   }
+
   .slotLobby-mode {
     max-width: 200px;
   }
+
   .tickets-token button span {
     font-size: 12px;
   }
+
   .create-game-box a {
     display: none;
   }
+
   .no-room-available {
     padding: 30px;
   }
