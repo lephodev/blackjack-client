@@ -5,7 +5,8 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { FaQuestionCircle, FaHome } from "react-icons/fa";
+import tickets from "../../imgs/blackjack/ticket.png";
+import { FaQuestionCircle, FaHome, FaArrowsAltH, FaPlusCircle } from "react-icons/fa";
 import "./home.css";
 import { useEffect } from "react";
 import userUtils from "../../utils/user";
@@ -17,20 +18,21 @@ import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
 import ticket from "../../imgs/blackjack/ticket.png";
 import coin from "../../imgs/blackjack/coin-img.png";
-// import gold from "../../imgs/blackjack/gold.png";
+import gold from "../../imgs/blackjack/sweep.png";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Select from "react-select";
 import { useMemo } from "react";
 import numFormatter from "../../config/utils";
 import { Spinner } from "react-bootstrap";
-import { /* domain */ landingClient } from "../../config/keys";
-// import cookie from "js-cookie";
+import { domain, landingClient, marketPlaceUrl } from "../../config/keys";
+import cookie from "js-cookie";
 
 import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
 import { getCookie } from "../../utils/cookieUtil";
 import contants from "../../config/contants";
+import TicketTotoken from "./ticketToToken";
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -50,14 +52,15 @@ const Home = () => {
   const [userData, setUserData] = useState({});
   const [gameState, setGameState] = useState({ ...gameInit });
   const [show, setShow] = useState(false);
-  const [mode, setMode] = useState("token");
-  console.log("mode", mode,setMode);
+  const [mode, setMode] = useState("");
+  console.log("mode", mode, setMode);
   const [errors, setErrors] = useState({});
   const [pokerRooms, setPokerRooms] = useState([]);
   const history = useHistory();
   const [allUsers, setAllUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [showSpinner, setShowSpinner] = useState(false);;
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [ticketToToken, setTicketToToekn] = useState(false);
 
   // console.log({ userData });
 
@@ -93,7 +96,7 @@ const Home = () => {
       } else if (parseFloat(value) > parseFloat(mode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
         setErrors({
           ...errors,
-          sitInAmount: `You don't have   enough balance in your  ${mode} wallet.`,
+          sitInAmount: `You don't have   enough balance in your  ${ mode } wallet.`,
         });
       } else {
         setErrors({ ...errors, sitInAmount: "" });
@@ -161,7 +164,7 @@ const Home = () => {
       const resp = await blackjackInstance().post("/createTable", {
         ...gameState,
         gameName: gameState.gameName.trim(),
-        gameMode:mode
+        gameMode: mode
       });
       setGameState({ ...gameInit });
       history.push({
@@ -182,7 +185,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${ CONSTANTS.landingClient }`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
@@ -206,8 +209,8 @@ const Home = () => {
     const checkUserInGame = async () => {
       let userData = await axios({
         method: "get",
-        url: `${contants.landingServerUrl}/users/checkUserInGame`,
-        headers: { authorization: `Bearer ${getCookie("token")}` },
+        url: `${ contants.landingServerUrl }/users/checkUserInGame`,
+        headers: { authorization: `Bearer ${ getCookie("token") }` },
       });
 
       console.log({ dekk: userData?.data })
@@ -217,7 +220,7 @@ const Home = () => {
     }
     checkRunningGame();
     checkUserInGame();
-  }, [setUserInAnyGame,mode]);
+  }, [setUserInAnyGame, mode]);
 
 
   const options = useMemo(
@@ -238,50 +241,52 @@ const Home = () => {
       This is your ticket balance and can be redeemed for prizes.
     </Tooltip>
   );
-  // const renderGold = (props) => (
-  //   <Tooltip id="button-tooltip" {...props}>
-  //     This gold coins is for fun play.
-  //   </Tooltip>
-  // );
+  const renderGold = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      This gold coins is for fun play.
+    </Tooltip>
+  );
 
   const filterRoom = pokerRooms.filter((el) =>
-    el.gameName.toLowerCase().includes(searchText.toLowerCase()) && el?.gameMode===mode
+    el.gameName.toLowerCase().includes(searchText.toLowerCase()) && el?.gameMode === mode
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
-  console.log("filterRoom",filterRoom);
-  // const handleModeChange = async (e) => {
-  //   try {
-  //     const { target: { checked } } = e;
-  //     // setMode(checked);
-  //     let gameMode = checked ? "token" : "goldCoin"
-  //     cookie.set("mode",gameMode, {domain: domain,
-  //     path: "/",
-  //     httpOnly: false, });
-  //     setMode(getCookie('mode'))
-  //   } catch (error) {
-  //     console.log("error",error);
-  //   }
-  // }
+  console.log("filterRoom", filterRoom);
+  const handleModeChange = async (e) => {
+    try {
+      const { target: { checked } } = e;
+      // setMode(checked);
+      let gameMode = checked ? "token" : "goldCoin"
+      cookie.set("mode", gameMode, {
+        domain: domain,
+        path: "/",
+        httpOnly: false,
+      });
+      setMode(getCookie('mode'))
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
-  // useEffect(() => {
-    
-  //   let getMode=getCookie('mode')
-  //   if(getMode){
-  //     setMode(getMode)
-  //   }
-  //   else {
-  //     cookie.set("mode","token", {domain: domain,
-  //       path: "/",
-  //       httpOnly: false, });
-  //       setMode(getCookie('mode'))
+  useEffect(() => {
+    const getMode = getCookie("mode");
+    if (getMode) {
+      setMode(getMode);
+    } else {
+      cookie.set("mode", "goldCoin", {
+        domain: domain,
+        path: "/",
+        httpOnly: false,
+      });
+      setMode("goldCoin");
+    }
+  }, []);
 
-  //   }
+  const handleTicketTotoken = () => {
+    setTicketToToekn(!ticketToToken);
+  };
 
-   
-  // }, [mode])
-  
-  
   return (
     <div className="poker-home">
       {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame} checkRunningGame={checkRunningGame} />}
@@ -313,8 +318,45 @@ const Home = () => {
                 <img src={logo} alt="" />
               </a>
             </div>
+            <div className="headerMode-container">
+                <div className={`slotLobby-mode ${mode}`}>
+                  <Form>
+                    <input type="checkbox" id="switch" defaultChecked={mode === "token"} checked={mode === "token"} className='form-check-input' onChange={handleModeChange} /><label for="switch">Toggle</label>
+                    <span>{
+                        mode === "token"
+                          ? `ST: ${numFormatter(userData?.wallet)}`
+                          : `GC: ${numFormatter(userData?.goldCoin)}`
+                      }</span>
+                    <Button className="purchase-btn">
+                      <a
+                        href={`${marketPlaceUrl}/crypto-to-gc`}
+                        rel="noreferrer"
+                      >
+                        <FaPlusCircle />
+                      </a>
+                    </Button>
+                  </Form>
+                </div>
+                <div className="tickets-token">
+                  <Button
+                    className="btn btn-primary"
+                    disabled={userData?.ticket < 10}
+                    onClick={handleTicketTotoken}
+                  >
+                    <img src={tickets} alt="" /> <span>Ticket</span>{" "}
+                    <FaArrowsAltH /> <img src={gold} alt="" />{" "}
+                    <span>Token</span>
+                  </Button>
+                  <TicketTotoken
+                    user={userData}
+                    show={ticketToToken}
+                    handleClose={handleTicketTotoken}
+                    setUser={setUserData}
+                  />
+                </div>
+              </div>
             <div className="create-game-box">
-              <a href={`${landingClient}/profile`}>
+              <a href={`${ landingClient }/profile`}>
                 <div className="create-game-box-avtar">
                   <img src={userData?.profile || users //"https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
                   } alt="" />
@@ -323,7 +365,7 @@ const Home = () => {
               </a>
               <div className="user-info-box">
                 <p className="user-info-box-wallet">
-                  <img src={coin} alt="" className="ticket-icon" />
+                  <img src={gold} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.wallet || 0)}</span>
                   <OverlayTrigger
                     placement="bottom"
@@ -350,8 +392,8 @@ const Home = () => {
                     </Button>
                   </OverlayTrigger>
                 </p>
-                {/* <p className="user-info-box-ticket">
-                  <img src={gold} alt="" className="ticket-icon" />
+                <p className="user-info-box-ticket">
+                <img src={coin} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.goldCoin || 0)}</span>
                   <OverlayTrigger
                     placement="bottom"
@@ -362,9 +404,9 @@ const Home = () => {
                       <FaQuestionCircle />
                     </Button>
                   </OverlayTrigger>
-                </p> */}
+                </p>
               </div>
-              {console.log("modeeee",mode)}
+              {/* {console.log("modeeee",mode)} */}
               {/* <div className="slotLobby-mode">
                 <p>Mode:</p>
                 <div className="mode-labels">
@@ -375,7 +417,7 @@ const Home = () => {
                   <h6>Token</h6>
                 </div>
               </div> */}
-              <button type="button" onClick={handleShow}>
+              <button type="button" className="create-game-boxBtn" onClick={handleShow}>
                 Create Game
               </button>
             </div>

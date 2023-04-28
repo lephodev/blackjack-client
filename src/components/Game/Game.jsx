@@ -250,8 +250,7 @@ const Game = () => {
 
   const handleReffill = async (amount) => {
     try {
-      // const mode = Cookies.get('mode')
-      const mode ="token"
+      const mode = Cookies.get('mode')
       await blackjackInstance().post("/refillWallet", { tableId, amount, mode });
       setRefillSitInAmount(false);
       setIsLobbyBtnShow(false)
