@@ -17,7 +17,7 @@ import users from "../../imgs/blackjack/user1.png";
 import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
 import ticket from "../../imgs/blackjack/ticket.png";
-import coin from "../../imgs/blackjack/coin-img.png";
+import coin from "../../imgs/blackjack/goldCoin.png";
 import gold from "../../imgs/blackjack/sweep.png";
 import axios from "axios";
 import toast from "react-hot-toast";
