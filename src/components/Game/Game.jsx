@@ -218,7 +218,7 @@ const Game = () => {
       //   window.location.href = window.location.origin;
       // }, 1000);
       return;
-    }else if(parseFloat(sitInAmount) > userData?.goldCoin && Cookies.get('mode') ==='goldCoin'){
+    } else if(parseFloat(sitInAmount) > userData?.goldCoin && Cookies.get('mode') ==='goldCoin'){
       toast.error("You don't have enough gold coin.", {
         id: "notEnoughSitIn",
       });
@@ -232,7 +232,7 @@ const Game = () => {
       return;
     } else if (/\d/.test(sitInAmount)) {
       socket.emit("checkTable", {
-        tableId: table,
+        tableId: table, 
         userId: userId,
         gameType: type,
         sitInAmount: parseFloat(sitInAmount),
