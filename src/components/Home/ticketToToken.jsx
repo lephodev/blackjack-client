@@ -31,9 +31,7 @@ function TicketTotoken({ show, handleClose, user, setUser }) {
         `coverttickettotoken/${rangeValue}`
       );
       if (res.data.success) {
-        if (localStorage.getItem("token")) {
           await getUserProfile();
-        }
         toast.success("Converted Successfully", { toastId: "converted" });
         setLoader(false);
         setRangeValue(10);

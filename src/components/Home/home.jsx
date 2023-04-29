@@ -319,7 +319,7 @@ const Home = () => {
               </a>
             </div>
             <div className="headerMode-container">
-                <div className={`slotLobby-mode ${mode}`}>
+                <div className={`slotLobby-mode ${"goldCoin"}`}>
                   <Form>
                     <input type="checkbox" id="switch" defaultChecked={mode === "token"} checked={mode === "token"} className='form-check-input' onChange={handleModeChange} /><label for="switch">Toggle</label>
                     <span>{
