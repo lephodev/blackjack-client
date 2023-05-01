@@ -22,3 +22,10 @@ export const blackjackInstance = () =>
     baseURL: `${CONSTANTS.serverUrl}`,
     headers: { Authorization: getAuthorizationHeader() },
   });
+  export const ticketTotokenInstance = () =>
+  axios.create({
+    baseURL: `${CONSTANTS.marketServer}/api`,
+    headers: {
+      Authorization: getCookie('token') ? `Bearer ${getCookie('token')}` : '',
+    },
+  });

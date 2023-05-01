@@ -3,16 +3,18 @@ import { FaQuestionCircle } from "react-icons/fa";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Button from "react-bootstrap/Button";
-// import { useEffect, useState } from "react";
-// import Cookies from "js-cookie";
+ import { useEffect, useState } from "react";
+ import Cookies from "js-cookie";
 
 const WalletBalance = ({ wallet, betAmount, ticket }) => {
-  // const [gameMode, setGameMode] = useState("token");
+   const [gameMode, setGameMode] = useState("token");
 
-  // useEffect(() => {
-  //   console.log("gameeeee mode ==>", Cookies.get('mode'));
-  //   setGameMode(Cookies.get('mode'))
-  // }, []);
+
+  useEffect(() => {
+    console.log("gameeeee mode ==>", Cookies.get('mode'));
+    setGameMode(Cookies.get('mode'))
+  }, []);
+
 
   const renderWallet = (props) => (
     <Tooltip id="button-tooltip" {...props}>
