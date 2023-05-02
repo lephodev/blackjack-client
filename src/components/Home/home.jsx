@@ -53,7 +53,7 @@ const Home = () => {
   const [gameState, setGameState] = useState({ ...gameInit });
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState("");
-  console.log("mode", mode, setMode);
+  console.log("mode", mode);
   const [errors, setErrors] = useState({});
   const [pokerRooms, setPokerRooms] = useState([]);
   const history = useHistory();
@@ -252,7 +252,7 @@ const Home = () => {
   );
   const game_name = filterRoom.map((e) => { return e.gameName })
 
-  console.log("filterRoom", filterRoom);
+  // console.log("filterRoom", filterRoom);
   const handleModeChange = async (e) => {
     try {
       const { target: { checked } } = e;
@@ -305,7 +305,6 @@ const Home = () => {
         options={options}
         handleChnageInviteUsers={handleChnageInviteUsers}
         userWallet={mode === "token" ? userData?.wallet || 0 : userData?.goldCoin || 0}
-
         showSpinner={showSpinner}
       />
 
@@ -319,7 +318,7 @@ const Home = () => {
               </a>
             </div>
             <div className="headerMode-container">
-                <div className={`slotLobby-mode ${"goldCoin"}`}>
+                <div className={`slotLobby-mode ${mode}`}>
                   <Form>
                     <input type="checkbox" id="switch" defaultChecked={mode === "token"} checked={mode === "token"} className='form-check-input' onChange={handleModeChange} /><label for="switch">Toggle</label>
                     <span>{
