@@ -11,7 +11,7 @@ import { useEffect } from "react";
 // import ActionPanel from "./ActionPanel";
 
 let handleBetTimeout;
-const maxBetAmount = 100;
+const maxBetAmount = 500;
 
 const BetPanel = ({
   // handleBetConfirm,
@@ -34,6 +34,7 @@ const BetPanel = ({
     if (lastBet) {
       setLastBet(0);
     }
+    console.log("isSliderBet ===>", isSliderBet, amount);
     if (isSliderBet) {
       // socket.emit("makeSliderBet", {
       //   userId: player.id,
@@ -331,11 +332,11 @@ const BetPanel = ({
           <InputRange
             maxValue={
               maxBetAmount > player?.wallet + player?.betAmount
-                ? numFormatter(player?.wallet + player?.betAmount)
-                : numFormatter(maxBetAmount)
+                ? (player?.wallet + player?.betAmount)
+                : maxBetAmount
             }
             minValue={0}
-            value={numFormatter(rangeBetValue)}
+            value={rangeBetValue}
             onChange={(e) => setRangeBetValue(e)}
             onChangeComplete={(betAmt) => {
               handleBet(betAmt, true);
@@ -507,7 +508,7 @@ const BetPanel = ({
           <button
             className="max-bet-btn"
             onClick={() =>
-              handleBet(player?.wallet >= 100 ? 100 : player?.wallet, true)
+              handleBet(player?.wallet >= maxBetAmount ? maxBetAmount : player?.wallet, true)
             }
           >
             Max
