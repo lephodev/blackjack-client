@@ -11,7 +11,7 @@ import { useEffect } from "react";
 // import ActionPanel from "./ActionPanel";
 
 let handleBetTimeout;
-const maxBetAmount = 1000;
+const maxBetAmount = 500;
 
 const BetPanel = ({
   // handleBetConfirm,
