@@ -210,7 +210,7 @@ const Game = () => {
       return (window.location.href = window.location.origin);
     }
 
-    if (parseFloat(sitInAmount) > userData?.wallet && Cookies.get('mode') ==='token') {
+    if (parseFloat(sitInAmount) > userData?.wallet && Cookies.get('mode') === 'token') {
       toast.error("You don't have enough token.", {
         id: "notEnoughSitIn",
       });
@@ -218,7 +218,7 @@ const Game = () => {
       //   window.location.href = window.location.origin;
       // }, 1000);
       return;
-    } else if(parseFloat(sitInAmount) > userData?.goldCoin && Cookies.get('mode') ==='goldCoin'){
+    } else if (parseFloat(sitInAmount) > userData?.goldCoin && Cookies.get('mode') === 'goldCoin') {
       toast.error("You don't have enough gold coin.", {
         id: "notEnoughSitIn",
       });
@@ -232,11 +232,11 @@ const Game = () => {
       return;
     } else if (/\d/.test(sitInAmount)) {
       socket.emit("checkTable", {
-        tableId: table, 
+        tableId: table,
         userId: userId,
         gameType: type,
         sitInAmount: parseFloat(sitInAmount),
-        gameMode:Cookies.get('mode')
+        gameMode: Cookies.get('mode')
       });
       setShowEnterAmountPopup(false);
       // setRetryIfUserNotJoin(true);
@@ -333,7 +333,7 @@ const Game = () => {
               userId,
               tableId: table,
               gameType: type,
-              gameMode:Cookies.get('mode')
+              gameMode: Cookies.get('mode')
             });
             setLoader(true);
           }
@@ -375,7 +375,7 @@ const Game = () => {
           userId: userId,
           gameType: type,
           sitInAmount: 0,
-          gameMode:Cookies.get('mode')
+          gameMode: Cookies.get('mode')
         });
 
         setLoader(true);
@@ -387,7 +387,7 @@ const Game = () => {
           userId: userId,
           gameType: type,
           sitInAmount: 0,
-          gameMode:Cookies.get('mode')
+          gameMode: Cookies.get('mode')
         });
 
         setLoader(true);
@@ -736,6 +736,14 @@ const Game = () => {
       toast.error(data.message, { id: "notEnoughCoin" });
       history.push("/");
     });
+
+    socket.on("spendingLimitExceeeds", data => {
+      toast.error(data.message, { id: "limitExceeds" });
+      setTimeout(() => {
+        history.push("/");
+      }, 2000);
+
+    })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setRoomData, userId]);
