@@ -318,42 +318,42 @@ const Home = () => {
               </a>
             </div>
             <div className="headerMode-container">
-                <div className={`slotLobby-mode ${mode}`}>
-                  <Form>
-                    <input type="checkbox" id="switch" defaultChecked={mode === "token"} checked={mode === "token"} className='form-check-input' onChange={handleModeChange} /><label for="switch">Toggle</label>
-                    <span>{
-                        mode === "token"
-                          ? `ST: ${numFormatter(userData?.wallet)}`
-                          : `GC: ${numFormatter(userData?.goldCoin)}`
-                      }</span>
-                    <Button className="purchase-btn">
-                      <a
-                        href={`${marketPlaceUrl}/crypto-to-gc`}
-                        rel="noreferrer"
-                      >
-                        <FaPlusCircle />
-                      </a>
-                    </Button>
-                  </Form>
-                </div>
-                <div className="tickets-token">
-                  <Button
-                    className="btn btn-primary"
-                    disabled={userData?.ticket < 10}
-                    onClick={handleTicketTotoken}
-                  >
-                    <img src={tickets} alt="" /> <span>Ticket</span>{" "}
-                    <FaArrowsAltH /> <img src={gold} alt="" />{" "}
-                    <span>Token</span>
+              <div className={`slotLobby-mode ${ mode }`}>
+                <Form>
+                  <input type="checkbox" id="switch" defaultChecked={mode === "token"} checked={mode === "token"} className='form-check-input' onChange={handleModeChange} /><label for="switch">Toggle</label>
+                  <span>{
+                    mode === "token"
+                      ? `ST: ${ numFormatter(userData?.wallet) }`
+                      : `GC: ${ numFormatter(userData?.goldCoin) }`
+                  }</span>
+                  <Button className="purchase-btn">
+                    <a
+                      href={`${ marketPlaceUrl }/crypto-to-gc`}
+                      rel="noreferrer"
+                    >
+                      <FaPlusCircle />
+                    </a>
                   </Button>
-                  <TicketTotoken
-                    user={userData}
-                    show={ticketToToken}
-                    handleClose={handleTicketTotoken}
-                    setUser={setUserData}
-                  />
-                </div>
+                </Form>
               </div>
+              <div className="tickets-token">
+                <Button
+                  className="btn btn-primary"
+                  disabled={userData?.ticket < 10}
+                  onClick={handleTicketTotoken}
+                >
+                  <img src={tickets} alt="" /> <span>Ticket</span>{" "}
+                  <FaArrowsAltH /> <img src={gold} alt="" />{" "}
+                  <span>Token</span>
+                </Button>
+                <TicketTotoken
+                  user={userData}
+                  show={ticketToToken}
+                  handleClose={handleTicketTotoken}
+                  setUser={setUserData}
+                />
+              </div>
+            </div>
             <div className="create-game-box">
               <a href={`${ landingClient }/profile`}>
                 <div className="create-game-box-avtar">
@@ -392,7 +392,7 @@ const Home = () => {
                   </OverlayTrigger>
                 </p>
                 <p className="user-info-box-ticket">
-                <img src={coin} alt="" className="ticket-icon" />
+                  <img src={coin} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.goldCoin || 0)}</span>
                   <OverlayTrigger
                     placement="bottom"
