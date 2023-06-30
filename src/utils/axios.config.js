@@ -31,6 +31,9 @@ export const blackjackInstance = () =>
       Authorization: getAuthorizationHeader(),
       "Permissions-Policy": "geolocation=*",
     },
+    withCredentials:true,
+    credentials:"include",
+
   });
   export const ticketTotokenInstance = () =>
   axios.create({
@@ -39,4 +42,6 @@ export const blackjackInstance = () =>
       Authorization: getCookie('token') ? `Bearer ${getCookie('token')}` : '',
       "Permissions-Policy": "geolocation=*",
     },
+    withCredentials:true,
+    credentials:"include",
   });

@@ -44,7 +44,7 @@ import gameTimeSound from "../../sounds/gametime.mp3";
 import TourPopup from "./tourpopup";
 import WinPopup from "./winPopup";
 import axios from "axios";
-import { getCookie } from "../../utils/cookieUtil";
+// import { getCookie } from "../../utils/cookieUtil";
 import userUtils from "../../utils/userUtils";
 import CONSTANTS from "../../config/contants";
 import { useMediaQuery } from "react-responsive";
@@ -348,9 +348,9 @@ const Game = () => {
       let urlParams = getQueryParams();
       // console.log({ urlParams });
       // let user;
-      if (!localStorage.getItem("token") && !getCookie("token")) {
-        return (window.location.href = `${ CONSTANTS.landingClient }`);
-      }
+      // if (!localStorage.getItem("token") && !getCookie("token")) {
+      //   return (window.location.href = `${ CONSTANTS.landingClient }`);
+      // }
 
       const checkAuth = await userUtils.getAuthUserData();
       if (!checkAuth.success) {
