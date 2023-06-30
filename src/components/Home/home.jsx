@@ -211,6 +211,8 @@ const Home = () => {
         method: "get",
         url: `${ contants.landingServerUrl }/users/checkUserInGame`,
         headers: { authorization: `Bearer ${ getCookie("token") }` },
+        withCredentials:true,
+        credentials:"include"
       });
 
       console.log({ dekk: userData?.data })
