@@ -43,7 +43,7 @@ const WalletBalance = ({ wallet, betAmount, ticket }) => {
           </Button>
         </OverlayTrigger>
       </div>
-      {gameMode === "token" ? (<>
+      {/* {gameMode === "token" ? (<>
         <div className="wallet-box">
           <OverlayTrigger
             placement="bottom"
@@ -58,7 +58,7 @@ const WalletBalance = ({ wallet, betAmount, ticket }) => {
             </Button>
           </OverlayTrigger>
         </div></>)
-        : null}
+        : null} */}
       {/* <div className="wallet-box">
         <span>Total Bet</span>
         <h3>{numFormatter(betAmount)}</h3>
