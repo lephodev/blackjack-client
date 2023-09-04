@@ -5,11 +5,11 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import tickets from "../../imgs/blackjack/ticket.png";
+// import tickets from "../../imgs/blackjack/ticket.png";
 import {
   FaQuestionCircle,
   FaHome,
-  FaArrowsAltH,
+  // FaArrowsAltH,
   FaPlusCircle,
 } from "react-icons/fa";
 import "./home.css";
@@ -21,7 +21,7 @@ import logo from "../../imgs/blackjack/logo.png";
 import users from "../../imgs/blackjack/user1.png";
 import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
-import ticket from "../../imgs/blackjack/ticket.png";
+// import ticket from "../../imgs/blackjack/ticket.png";
 import coin from "../../imgs/blackjack/goldCoin.png";
 import gold from "../../imgs/blackjack/sweep.png";
 import axios from "axios";
@@ -37,7 +37,7 @@ import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
 import { getCookie } from "../../utils/cookieUtil";
 import contants from "../../config/contants";
-import TicketTotoken from "./ticketToToken";
+// import TicketTotoken from "./ticketToToken";
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -63,7 +63,7 @@ const Home = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
-  const [ticketToToken, setTicketToToekn] = useState(false);
+  // const [ticketToToken, setTicketToToekn] = useState(false);
 
   // console.log({ userData });
 
@@ -240,11 +240,11 @@ const Home = () => {
       This is your token balance, and can be used for betting.
     </Tooltip>
   );
-  const renderTicket = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      This is your ticket balance and can be redeemed for prizes.
-    </Tooltip>
-  );
+  // const renderTicket = (props) => (
+  //   <Tooltip id="button-tooltip" {...props}>
+  //     This is your ticket balance and can be redeemed for prizes.
+  //   </Tooltip>
+  // );
   const renderGold = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       This gold coins is for fun play.
@@ -293,9 +293,9 @@ const Home = () => {
     }
   }, []);
 
-  const handleTicketTotoken = () => {
-    setTicketToToekn(!ticketToToken);
-  };
+  // const handleTicketTotoken = () => {
+  //   setTicketToToekn(!ticketToToken);
+  // };
 
   return (
     <div className="poker-home">

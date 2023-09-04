@@ -19,11 +19,11 @@ const WalletBalance = ({ wallet, betAmount, ticket }) => {
       {`This is your ${ gameMode === 'token' ? "token" : "gold coin" } balance, and can be used for betting.`}
     </Tooltip>
   );
-  const renderTicket = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      This is your ticket balance and can be redeemed for prizes.
-    </Tooltip>
-  );
+  // const renderTicket = (props) => (
+  //   <Tooltip id="button-tooltip" {...props}>
+  //     This is your ticket balance and can be redeemed for prizes.
+  //   </Tooltip>
+  // );
 
   return (
     <div className="wallet-balance">
