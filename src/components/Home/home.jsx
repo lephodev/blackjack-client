@@ -5,8 +5,13 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import tickets from "../../imgs/blackjack/ticket.png";
-import { FaQuestionCircle, FaHome, FaArrowsAltH, FaPlusCircle } from "react-icons/fa";
+// import tickets from "../../imgs/blackjack/ticket.png";
+import {
+  FaQuestionCircle,
+  FaHome,
+  // FaArrowsAltH,
+  FaPlusCircle,
+} from "react-icons/fa";
 import "./home.css";
 import { useEffect } from "react";
 import userUtils from "../../utils/user";
@@ -16,7 +21,7 @@ import logo from "../../imgs/blackjack/logo.png";
 import users from "../../imgs/blackjack/user1.png";
 import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
-import ticket from "../../imgs/blackjack/ticket.png";
+// import ticket from "../../imgs/blackjack/ticket.png";
 import coin from "../../imgs/blackjack/goldCoin.png";
 import gold from "../../imgs/blackjack/sweep.png";
 import axios from "axios";
@@ -32,7 +37,7 @@ import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
 import { getCookie } from "../../utils/cookieUtil";
 import contants from "../../config/contants";
-import TicketTotoken from "./ticketToToken";
+// import TicketTotoken from "./ticketToToken";
 // import { getCookie } from "../../utils/cookieUtil";
 
 const Home = () => {
@@ -43,9 +48,7 @@ const Home = () => {
     sitInAmount: "",
     invitedUsers: [],
   };
-  const { userInAnyGame, setUserInAnyGame } = useContext(GameContext)
-
-
+  const { userInAnyGame, setUserInAnyGame } = useContext(GameContext);
 
   // States
   const [loader, setLoader] = useState(true);
@@ -60,20 +63,19 @@ const Home = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
-  const [ticketToToken, setTicketToToekn] = useState(false);
+  // const [ticketToToken, setTicketToToekn] = useState(false);
 
   // console.log({ userData });
 
   // utils function
   const handleShow = () => {
-    setShow(!show)
-    setGameState({ ...gameInit })
-    setShowSpinner(false)
-    setErrors({})
+    setShow(!show);
+    setGameState({ ...gameInit });
+    setShowSpinner(false);
+    setErrors({});
   };
 
   const handleChange = (e) => {
-
     const { name, value } = e.target;
     if (name === "public" || name === "autohand") {
       setGameState({ ...gameState, [name]: e.target.checked });
@@ -93,10 +95,15 @@ const Home = () => {
     } else if (name === "sitInAmount") {
       if (parseFloat(value) <= 0) {
         setErrors({ ...errors, sitInAmount: "Minimum amount to bet is 10" });
-      } else if (parseFloat(value) > parseFloat(mode === "token" ? userData?.wallet || 0 : userData?.goldCoin)) {
+      } else if (
+        parseFloat(value) >
+        parseFloat(
+          mode === "token" ? userData?.wallet || 0 : userData?.goldCoin
+        )
+      ) {
         setErrors({
           ...errors,
-          sitInAmount: `You don't have   enough balance in your  ${ mode } wallet.`,
+          sitInAmount: `You don't have   enough balance in your  ${mode} wallet.`,
         });
       } else {
         setErrors({ ...errors, sitInAmount: "" });
@@ -114,9 +121,7 @@ const Home = () => {
     let checkIfExist =
       game_name?.length > 0 &&
       game_name?.find(
-        (el) => (
-          el.toLowerCase() === gameState?.gameName.trim().toLowerCase()
-        )
+        (el) => el.toLowerCase() === gameState?.gameName.trim().toLowerCase()
       );
 
     let valid = true;
@@ -125,7 +130,7 @@ const Home = () => {
       err.gameName = "Game name is required.";
       valid = false;
     }
-    if (gameState.gameName.trim() === '') {
+    if (gameState.gameName.trim() === "") {
       err.gameName = "Game name is required.";
       valid = false;
     }
@@ -151,7 +156,7 @@ const Home = () => {
   };
 
   const createTable = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setErrors({});
     setShowSpinner(true);
     const tableValidation = validateCreateTable();
@@ -164,7 +169,7 @@ const Home = () => {
       const resp = await blackjackInstance().post("/createTable", {
         ...gameState,
         gameName: gameState.gameName.trim(),
-        gameMode: mode
+        gameMode: mode,
       });
       setGameState({ ...gameInit });
       history.push({
@@ -185,45 +190,42 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${ CONSTANTS.landingClient }`);
+        return (window.location.href = `${CONSTANTS.landingClient}`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
       const response = await blackjackInstance().get(`/getAllUsers`, {
-        params: { userId: data?.data?.user?.id }
+        params: { userId: data?.data?.user?.id },
       });
       setAllUsers(response.data.allUsers);
     })();
   }, []);
 
-
   const checkRunningGame = async () => {
     try {
       const response = await blackjackInstance().get("/getRunningGame");
       setPokerRooms(response.data.rooms);
-    } catch (error) { }
-  }
-
+    } catch (error) {}
+  };
 
   useEffect(() => {
     const checkUserInGame = async () => {
       let userData = await axios({
         method: "get",
-        url: `${ contants.landingServerUrl }/users/checkUserInGame`,
-        headers: { authorization: `Bearer ${ getCookie("token") }` },
-        withCredentials:true,
-        credentials:"include"
+        url: `${contants.landingServerUrl}/users/checkUserInGame`,
+        headers: { authorization: `Bearer ${getCookie("token")}` },
+        withCredentials: true,
+        credentials: "include",
       });
 
-      console.log({ dekk: userData?.data })
+      console.log({ dekk: userData?.data });
       if (userData?.data) {
-        setUserInAnyGame(userData.data)
+        setUserInAnyGame(userData.data);
       }
-    }
+    };
     checkRunningGame();
     checkUserInGame();
   }, [setUserInAnyGame, mode]);
-
 
   const options = useMemo(
     () =>
@@ -238,38 +240,44 @@ const Home = () => {
       This is your token balance, and can be used for betting.
     </Tooltip>
   );
-  const renderTicket = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      This is your ticket balance and can be redeemed for prizes.
-    </Tooltip>
-  );
+  // const renderTicket = (props) => (
+  //   <Tooltip id="button-tooltip" {...props}>
+  //     This is your ticket balance and can be redeemed for prizes.
+  //   </Tooltip>
+  // );
   const renderGold = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       This gold coins is for fun play.
     </Tooltip>
   );
 
-  const filterRoom = pokerRooms.filter((el) =>
-    el.gameName.toLowerCase().includes(searchText.toLowerCase()) && el?.gameMode === mode
+  const filterRoom = pokerRooms.filter(
+    (el) =>
+      el.gameName.toLowerCase().includes(searchText.toLowerCase()) &&
+      el?.gameMode === mode
   );
-  const game_name = filterRoom.map((e) => { return e.gameName })
+  const game_name = filterRoom.map((e) => {
+    return e.gameName;
+  });
 
   // console.log("filterRoom", filterRoom);
   const handleModeChange = async (e) => {
     try {
-      const { target: { checked } } = e;
+      const {
+        target: { checked },
+      } = e;
       // setMode(checked);
-      let gameMode = checked ? "token" : "goldCoin"
+      let gameMode = checked ? "token" : "goldCoin";
       cookie.set("mode", gameMode, {
         domain: domain,
         path: "/",
         httpOnly: false,
       });
-      setMode(getCookie('mode'))
+      setMode(getCookie("mode"));
     } catch (error) {
       console.log("error", error);
     }
-  }
+  };
 
   useEffect(() => {
     const getMode = getCookie("mode");
@@ -285,13 +293,19 @@ const Home = () => {
     }
   }, []);
 
-  const handleTicketTotoken = () => {
-    setTicketToToekn(!ticketToToken);
-  };
+  // const handleTicketTotoken = () => {
+  //   setTicketToToekn(!ticketToToken);
+  // };
 
   return (
     <div className="poker-home">
-      {userInAnyGame?.inGame && <AlreadyInGame userInAnyGame={userInAnyGame} setUserInAnyGame={setUserInAnyGame} checkRunningGame={checkRunningGame} />}
+      {userInAnyGame?.inGame && (
+        <AlreadyInGame
+          userInAnyGame={userInAnyGame}
+          setUserInAnyGame={setUserInAnyGame}
+          checkRunningGame={checkRunningGame}
+        />
+      )}
       {loader && (
         <div className="poker-loader">
           <img src={loaderImg} alt="loader" />{" "}
@@ -306,13 +320,14 @@ const Home = () => {
         errors={errors}
         options={options}
         handleChnageInviteUsers={handleChnageInviteUsers}
-        userWallet={mode === "token" ? userData?.wallet || 0 : userData?.goldCoin || 0}
+        userWallet={
+          mode === "token" ? userData?.wallet || 0 : userData?.goldCoin || 0
+        }
         showSpinner={showSpinner}
       />
 
       <div className="user-header">
         <div className="container">
-
           <div className="user-header-grid">
             <div className="casino-logo">
               <a href={landingClient}>
@@ -320,25 +335,30 @@ const Home = () => {
               </a>
             </div>
             <div className="headerMode-container">
-              <div className={`slotLobby-mode ${ mode }`}>
+              <div className={`slotLobby-mode ${mode}`}>
                 <Form>
-                  <input type="checkbox" id="switch" defaultChecked={mode === "token"} checked={mode === "token"} className='form-check-input' onChange={handleModeChange} /><label for="switch">Toggle</label>
-                  <span>{
-                    mode === "token"
-                      ? `ST: ${ numFormatter(userData?.wallet) }`
-                      : `GC: ${ numFormatter(userData?.goldCoin) }`
-                  }</span>
+                  <input
+                    type="checkbox"
+                    id="switch"
+                    defaultChecked={mode === "token"}
+                    checked={mode === "token"}
+                    className="form-check-input"
+                    onChange={handleModeChange}
+                  />
+                  <label for="switch">Toggle</label>
+                  <span>
+                    {mode === "token"
+                      ? `ST: ${numFormatter(userData?.wallet)}`
+                      : `GC: ${numFormatter(userData?.goldCoin)}`}
+                  </span>
                   <Button className="purchase-btn">
-                    <a
-                      href={`${ marketPlaceUrl }/crypto-to-gc`}
-                      rel="noreferrer"
-                    >
+                    <a href={`${marketPlaceUrl}/crypto-to-gc`} rel="noreferrer">
                       <FaPlusCircle />
                     </a>
                   </Button>
                 </Form>
               </div>
-              <div className="tickets-token">
+              {/* <div className="tickets-token">
                 <Button
                   className="btn btn-primary"
                   disabled={userData?.ticket < 10}
@@ -354,13 +374,17 @@ const Home = () => {
                   handleClose={handleTicketTotoken}
                   setUser={setUserData}
                 />
-              </div>
+              </div> */}
             </div>
             <div className="create-game-box">
-              <a href={`${ landingClient }/profile`}>
+              <a href={`${landingClient}/profile`}>
                 <div className="create-game-box-avtar">
-                  <img src={userData?.profile || users //"https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
-                  } alt="" />
+                  <img
+                    src={
+                      userData?.profile || users //"https://i.pinimg.com/736x/06/d0/00/06d00052a36c6788ba5f9eeacb2c37c3.jpg"
+                    }
+                    alt=""
+                  />
                   <h5>{userData?.username}</h5>
                 </div>
               </a>
@@ -380,7 +404,7 @@ const Home = () => {
                   </OverlayTrigger>
                 </p>
 
-                <p className="user-info-box-ticket">
+                {/* <p className="user-info-box-ticket">
                   <img src={ticket} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.ticket || 0)}</span>
                   <OverlayTrigger
@@ -392,7 +416,7 @@ const Home = () => {
                       <FaQuestionCircle />
                     </Button>
                   </OverlayTrigger>
-                </p>
+                </p> */}
                 <p className="user-info-box-ticket">
                   <img src={coin} alt="" className="ticket-icon" />
                   <span>{numFormatter(userData?.goldCoin || 0)}</span>
@@ -418,7 +442,11 @@ const Home = () => {
                   <h6>Token</h6>
                 </div>
               </div> */}
-              <button type="button" className="create-game-boxBtn" onClick={handleShow}>
+              <button
+                type="button"
+                className="create-game-boxBtn"
+                onClick={handleShow}
+              >
                 Create Game
               </button>
             </div>
@@ -442,7 +470,8 @@ const Home = () => {
                   value={searchText}
                   placeholder="Search tables . . . ."
                   onChange={(e) => setSearchText(e.target.value)}
-                  autoComplete="off" />
+                  autoComplete="off"
+                />
               </div>
             </div>
           </div>
@@ -456,10 +485,15 @@ const Home = () => {
                   {filterRoom.map((el) => (
                     <>
                       {el.public && <GameTable data={el} />}
-                      {!el.public && el?.invPlayers?.find((pl) => pl?.toString() === userData?.id?.toString()) && <GameTable data={el} />}
-                      {(!el.public && el?.hostId?.toString === userData?.id?.toString()) && <GameTable data={el} />}
+                      {!el.public &&
+                        el?.invPlayers?.find(
+                          (pl) => pl?.toString() === userData?.id?.toString()
+                        ) && <GameTable data={el} />}
+                      {!el.public &&
+                        el?.hostId?.toString === userData?.id?.toString() && (
+                          <GameTable data={el} />
+                        )}
                     </>
-
                   ))}
                 </div>
               </>
@@ -537,13 +571,11 @@ const customStyles = {
     fontSize: "14px",
     lineHeight: "19px",
     color: "#858585c7",
-
   }),
   input: (provided) => ({
     ...provided,
     // height: "38px",
     color: "fff",
-
   }),
   valueContainer: (provided) => ({
     ...provided,
@@ -552,19 +584,19 @@ const customStyles = {
   indicatorsContainer: (provided) => ({
     ...provided,
     paddingRight: "20px",
-    color: '#858585c7',
+    color: "#858585c7",
   }),
   svg: (provided) => ({
     ...provided,
-    fill: '#858585c7 !important',
+    fill: "#858585c7 !important",
     ":hover": {
-      fill: '#858585c7 !important',
+      fill: "#858585c7 !important",
     },
   }),
   multiValue: (provided) => ({
     ...provided,
-    fontWeight: '500',
-    background: '#343a40',
+    fontWeight: "500",
+    background: "#343a40",
   }),
 };
 
@@ -578,9 +610,8 @@ const CreateTable = ({
   options,
   handleChnageInviteUsers,
   userWallet,
-  showSpinner
+  showSpinner,
 }) => {
-
   console.log("userWallet", userWallet);
   return (
     <Modal show={show} onHide={handleShow} centered className="casino-popup">
@@ -686,7 +717,9 @@ const AvatarGroup = ({ imgArr }) => {
           imgArr.map((el, i) => (
             <span className="avatar" key={i}>
               <img
-                src={el?.avatar ? el?.avatar : el?.photoURI ? el?.photoURI : users}
+                src={
+                  el?.avatar ? el?.avatar : el?.photoURI ? el?.photoURI : users
+                }
                 width="30"
                 height="30"
                 alt=""
