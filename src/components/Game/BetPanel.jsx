@@ -521,21 +521,21 @@ const BetPanel = ({
               className="confirm-bet-btn"
               onClick={() => handleBetConfirm(true, totalBetAmount)}
             >
-              Bet Now
+              Play
             </button>
           ) : finalBetAmount === 0 ? (
             <button
               className="confirm-bet-btn"
               onClick={() => handleBetConfirm(true, totalBetAmount)}
             >
-              Bet Now
+              Play
             </button>
           ) : (
             <button
               className="confirm-bet-btn"
               onClick={() => handleRebet(finalBetAmount)}
             >
-              ReBet: {numFormatter(finalBetAmount)}
+              RePlay: {numFormatter(finalBetAmount)}
             </button>
           )}
 

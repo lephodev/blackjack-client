@@ -16,7 +16,7 @@ import Chat from "../chat/chat";
 // import NewBuyInPopup from '../stripe/newBuyinPopup';
 // Uncomment it when uncomment buy in popup
 // import BuyInPopup from '../stripe/buyInPopup';
-import betAccepted from "../../sounds/bet-accepted.aac";
+import betAccepted from "../../sounds/lets Play .mp3";
 import betClosed from "../../sounds/bet-closed-female.aac";
 import blackjackVoiceFemale from "../../sounds/blackjack-female.aac";
 import burstSound from "../../sounds/burst-female.aac";
@@ -24,7 +24,7 @@ import dealerHasBlackjack from "../../sounds/dealer-has-blackjack-female.aac";
 import dealOneCardSound from "../../sounds/dealing_card_fix.mp3";
 import doubleDownSound from "../../sounds/double-down-female.aac";
 import hitSound from "../../sounds/hit-female.aac";
-import rebetSound from "../../sounds/rebet-female.aac";
+import rebetSound from "../../sounds/Re play  .mp3";
 import splitSound from "../../sounds/split-female.aac";
 import standSound from "../../sounds/stand-female.aac";
 import timerRunningOut from "../../sounds/timer_running_out.mp3";
