@@ -16,8 +16,8 @@ const TourPopup = ({ isTourOpen, handleClose }) => {
                     </div>
 
                     <div className="tour-info">
-                        <p>Please click on the chips to place your bet and click Bet Now button.</p>
-                        <button className="tour-info-btn" type='button' onClick={() => { localStorage.setItem("DontShowAgain",true); handleClose() }}>Don't show me again</button>
+                        <p>Please click on the chips to place your bet and click Play button.</p>
+                        <button className="tour-info-btn" type='button' onClick={() => { localStorage.setItem("DontShowAgain", true); handleClose() }}>Don't show me again</button>
                     </div>
                 </div>
             </Modal.Body>
