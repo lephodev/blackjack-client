@@ -25,10 +25,10 @@ body {
   opacity: 1;
   font-size: 14px;
   font-weight: 300;
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 button {
@@ -219,23 +219,29 @@ input:auto-fill {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f6f8+0,d8e1e7+50,b5c6d0+51,e0eff9+100;Grey+Gloss+%232 */
   background: #f2f6f8;
   /* Old browsers */
-  background: -moz-linear-gradient(top,
-      #f2f6f8 0%,
-      #d8e1e7 50%,
-      #b5c6d0 51%,
-      #e0eff9 100%);
+  background: -moz-linear-gradient(
+    top,
+    #f2f6f8 0%,
+    #d8e1e7 50%,
+    #b5c6d0 51%,
+    #e0eff9 100%
+  );
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,
-      #f2f6f8 0%,
-      #d8e1e7 50%,
-      #b5c6d0 51%,
-      #e0eff9 100%);
+  background: -webkit-linear-gradient(
+    top,
+    #f2f6f8 0%,
+    #d8e1e7 50%,
+    #b5c6d0 51%,
+    #e0eff9 100%
+  );
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,
-      #f2f6f8 0%,
-      #d8e1e7 50%,
-      #b5c6d0 51%,
-      #e0eff9 100%);
+  background: linear-gradient(
+    to bottom,
+    #f2f6f8 0%,
+    #d8e1e7 50%,
+    #b5c6d0 51%,
+    #e0eff9 100%
+  );
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2f6f8", endColorstr="#e0eff9", GradientType=0);
   /* IE6-9 */
@@ -248,23 +254,29 @@ input:auto-fill {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#aebcbf+0,6e7774+50,0a0e0a+51,0a0809+100;Black+Gloss */
   background: #aebcbf;
   /* Old browsers */
-  background: -moz-linear-gradient(top,
-      #aebcbf 0%,
-      #6e7774 50%,
-      #0a0e0a 51%,
-      #0a0809 100%);
+  background: -moz-linear-gradient(
+    top,
+    #aebcbf 0%,
+    #6e7774 50%,
+    #0a0e0a 51%,
+    #0a0809 100%
+  );
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,
-      #aebcbf 0%,
-      #6e7774 50%,
-      #0a0e0a 51%,
-      #0a0809 100%);
+  background: -webkit-linear-gradient(
+    top,
+    #aebcbf 0%,
+    #6e7774 50%,
+    #0a0e0a 51%,
+    #0a0809 100%
+  );
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,
-      #aebcbf 0%,
-      #6e7774 50%,
-      #0a0e0a 51%,
-      #0a0809 100%);
+  background: linear-gradient(
+    to bottom,
+    #aebcbf 0%,
+    #6e7774 50%,
+    #0a0e0a 51%,
+    #0a0809 100%
+  );
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#aebcbf", endColorstr="#0a0809", GradientType=0);
   /* IE6-9 */
@@ -432,7 +444,7 @@ input:auto-fill {
   background-color: #9e750d;
 }
 
-.table> :not(caption)>*>* {
+.table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom: 1px solid #424242;
@@ -1040,12 +1052,14 @@ input:auto-fill {
   align-items: center;
   background: black;
   background: rgba(0, 0, 0, 0.25);
-  background: linear-gradient(90deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.2) 20%,
-      rgba(0, 0, 0, 0.25) 50%,
-      rgba(0, 0, 0, 0.2) 80%,
-      rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.2) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
   text-shadow: 0 0 10px black;
   z-index: 50;
   pointer-events: none;
@@ -1821,7 +1835,7 @@ i {
   opacity: 0.65 !important;
 }
 
-.user-action-container .user-action:disabled+.user-action-text {
+.user-action-container .user-action:disabled + .user-action-text {
   opacity: 0.65;
 }
 
@@ -2068,7 +2082,7 @@ i {
   z-index: 999999;
 }
 
-.table> :not(:first-child) {
+.table > :not(:first-child) {
   border-top: none !important;
 }
 
@@ -2193,7 +2207,6 @@ i {
   }
 }
 
-
 @media all and (max-width: 992px) {
   .players {
     width: 80px;
@@ -2271,7 +2284,7 @@ i {
   .player-sum {
     top: -275px;
   }
-  .count-1 .player-sum{
+  .count-1 .player-sum {
     top: -315px;
   }
 
@@ -2432,3 +2445,22 @@ i {
   bottom: 329%;
   left: -19%;
 } */
+
+.ip-block-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding: 10px 20px;
+  gap: 20px;
+}
+p.ip-block {
+  text-align: center;
+  font-size: 26px;
+  color: red;
+  font-weight: 500;
+  max-width: 700px;
+  width: 100%;
+  margin: 0px auto;
+}
