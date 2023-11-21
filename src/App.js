@@ -10,7 +10,8 @@ import Home from "./components/Home/home";
 import Error404 from "./components/ErrorPage/Error404";
 import axios from "axios";
 import { authInstance } from "./utils/axios.config";
-import scroogeHat from "./imgs/blackjack/Loader.webp";
+import vpnbanner from "./imgs/blackjack/vpn-banner.webp";
+import notaccess from "./imgs/blackjack/not-access.webp";
 
 // import { getCookie } from "./config/utils";
 // import contants from './config/contants'
@@ -81,21 +82,24 @@ const App = () => {
   return (
     <>
       {stateBlock || isVPNEnable ? (
-        <div className='ip-block-content'>
-          <div className='container'>
-            <div className='ip-block-grid'>
-              <img
-                src={scroogeHat}
-                alt='Scrooge Hat'
-                width={96}
-                height={96}
-                loading='lazy'
-              />
-              <p className='ip-block'>
-                {isVPNEnable
-                  ? "VPN detected please turn off the VPN and access again, Thank you!."
-                  : "We are sorry to inform you, but this application is restricted from access in your location"}
-              </p>
+        <div className="ip-block-content">
+          <div className="container">
+            <div className="ip-block-grid">
+              {isVPNEnable ? (
+                <img
+                  src={vpnbanner}
+                  alt="Scrooge VPN"
+                  loading="lazy"
+                  className="img-fluid maintance-img"
+                />
+              ) : (
+                <img
+                  src={notaccess}
+                  alt="Scrooge Access"
+                  loading="lazy"
+                  className="img-fluid maintance-img"
+                />
+              )}
             </div>
           </div>
         </div>
@@ -108,19 +112,20 @@ const App = () => {
             setUserId,
             userInAnyGame,
             setUserInAnyGame,
-          }}>
+          }}
+        >
           <Router>
             <Switch>
-              <Route exact path='/'>
+              <Route exact path="/">
                 <Home />
               </Route>
-              <Route exact path='/game' component={Game} />
-              <Route exact path='*' component={Error404} />
+              <Route exact path="/game" component={Game} />
+              <Route exact path="*" component={Error404} />
             </Switch>
           </Router>
-          <div className='abc'>
+          <div className="abc">
             <Toaster
-              position='top-center'
+              position="top-center"
               reverseOrder={false}
               toastOptions={{
                 className: "custom-toast",
