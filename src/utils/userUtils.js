@@ -1,16 +1,17 @@
 import axios from "axios";
-import { getCookie } from "../config/utils";
-import contants from '../config/contants'
+import contants from "../config/contants";
+import { validateToken } from "./cookieUtil";
 // This function is alternative of firebase.auth().onAuthStateChanged
 const getAuthUserData = async () => {
   try {
+    const basicAuthToken = validateToken();
+
     let userData = await axios({
       method: "get",
       url: `${contants.landingServerUrl}/auth/check-auth`,
-      headers: { 
-        authorization: `Bearer ${getCookie("token")}`,
-        "Permissions-Policy": "geolocation=*",
-       },
+      headers: {
+        Authorization: basicAuthToken,
+      },
       withCredentials: true,
       credentials: "include",
     });
