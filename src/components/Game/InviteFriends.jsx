@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import Select from 'react-select';
 import { socket } from '../../config/socket';
 import contants from '../../config/contants';
+import { validateToken } from '../../utils/cookieUtil';
 
 const InviteFriend = ({
   userId,
@@ -30,10 +31,18 @@ const InviteFriend = ({
   }, []);
 
   const fetchFriendList = useCallback(async () => {
+    const basicAuthToken = validateToken();
+
     try {
       const res = await axios.get(
-        contants.serverUrl + '/getUserForInvite/' + tableId
+        contants.serverUrl + '/getUserForInvite/' + tableId,
+        {
+          headers: {
+            Authorization: basicAuthToken,
+          }
+        }
       );
+
       // console.log(res.data.data);
       if (res.data.data) {
         setFriendList(res.data.data);
