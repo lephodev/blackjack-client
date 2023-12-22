@@ -1,9 +1,9 @@
 import axios from 'axios';
 import CONSTANTS from '../config/contants';
-import { getCookie } from './cookieUtil';
+import { getCookie, validateToken } from './cookieUtil';
 
 const getAuthorizationHeader = () => {
-  return `Bearer ${getCookie('token')}`;
+  return validateToken();
 }
 export const userInstance = () =>
   axios.create({
