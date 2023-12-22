@@ -35,7 +35,7 @@ import cookie from "js-cookie";
 
 import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
-import { getCookie } from "../../utils/cookieUtil";
+import { getCookie, validateToken } from "../../utils/cookieUtil";
 import contants from "../../config/contants";
 // import TicketTotoken from "./ticketToToken";
 // import { getCookie } from "../../utils/cookieUtil";
@@ -205,15 +205,18 @@ const Home = () => {
     try {
       const response = await blackjackInstance().get("/getRunningGame");
       setPokerRooms(response.data.rooms);
-    } catch (error) { }
+    } catch (error) {
+      console.log("error", error);
+     }
   };
 
   useEffect(() => {
+    const basicAuthToken = validateToken();
     const checkUserInGame = async () => {
       let userData = await axios({
         method: "get",
         url: `${ contants.landingServerUrl }/users/checkUserInGame`,
-        headers: { authorization: `Bearer ${ getCookie("token") }` },
+        headers: { authorization: basicAuthToken },
         withCredentials: true,
         credentials: "include",
       });
