@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie } from "../config/utils";
+// import { getCookie } from "../config/utils";
 import contants from '../config/contants'
 import { validateToken } from "./cookieUtil";
 // This function is alternative of firebase.auth().onAuthStateChanged
