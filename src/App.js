@@ -8,7 +8,6 @@ import "./css/dist/style.css";
 import "./css/dist/blackjack.css";
 import Home from "./components/Home/home";
 import Error404 from "./components/ErrorPage/Error404";
-import axios from "axios";
 import { authInstance } from "./utils/axios.config";
 import vpnbanner from "./imgs/blackjack/vpn-banner.webp";
 import notaccess from "./imgs/blackjack/not-access.webp";
@@ -38,18 +37,43 @@ const App = () => {
   //   checkUserInGame()
   // },[])
 
+  const getGeoLocationDetails = async () => {
+    try {
+      // const apiUrl = `http://api.vpnblocker.net/v2/json/${CurrentIp}`;
+      const serverUrl = `/auth/getgeolocationDetails`;
+      const response = await authInstance().get(serverUrl);
+      console.log("response", response);
+      const ipAddressObject = {
+        [Object.keys(response.data)[1]]:
+          response.data[Object.keys(response.data)[1]],
+      };
+      const ipAddressss = Object.keys(ipAddressObject).find(
+        (key) => key !== "status"
+      );
+      if (ipAddressss) {
+        const { country, region, city } = ipAddressObject[ipAddressss];
+        if (
+          city.toString() === "Quebec" ||
+          city.toString() === "Idaho" ||
+          country.toString() === "Brazil" ||
+          region.toString() === "Quebec" ||
+          region.toString() === "Idaho" ||
+          region.toString() === "Michigan" ||
+          region.toString() === "Washington"
+        ) {
+          setStateBlock(true);
+        }
+      }
+    } catch (error) {
+      console.log("err", error);
+    }
+  };
+
   const checkVPN = async () => {
     try {
-      const res = await fetch("https://geolocation-db.com/json/").then(
-        (response) => response.json()
-      );
-      const CurrentIp = res?.IPv4;
-      // const apiUrl = `http://api.vpnblocker.net/v2/json/${CurrentIp}`;
-      const serverUrl = `/validate_VPN?ip=${CurrentIp}&timezone=${null}`;
+      const serverUrl = `/validate_VPN`;
       const checkVPNRes = await authInstance().get(serverUrl);
       setIsVPNEnable(checkVPNRes?.data?.vpnStatus);
-
-      console.log("checkVPNRes", checkVPNRes);
     } catch (error) {
       console.log("err", error);
     }
@@ -57,47 +81,29 @@ const App = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await axios.get("https://geolocation-db.com/json/");
-      const CurrentIp = res?.data?.IPv4;
-      // eslint-disable-next-line no-console
-      // console.log("CurrentIpAddress", CurrentIp);
-
-      const res1 = await axios.get(`https://ipapi.co/${CurrentIp}/city`);
-      // eslint-disable-next-line no-console
-      // console.log("city", res1?.data);
-      const CurrentCity = res1?.data;
-      // eslint-disable-next-line no-constant-condition
-      if (
-        CurrentCity.toString() === "Washington" ||
-        CurrentCity.toString() === "Quebec" ||
-        CurrentCity.toString() === "Mumbai" ||
-        CurrentCity.toString() === "Idaho"
-      ) {
-        setStateBlock(true);
-        // navigates("/CountryBlockblock");
-      }
+      await getGeoLocationDetails();
       await checkVPN();
     })();
   }, []);
   return (
     <>
       {stateBlock || isVPNEnable ? (
-        <div className="ip-block-content">
-          <div className="container">
-            <div className="ip-block-grid">
+        <div className='ip-block-content'>
+          <div className='container'>
+            <div className='ip-block-grid'>
               {isVPNEnable ? (
                 <img
                   src={vpnbanner}
-                  alt="Scrooge VPN"
-                  loading="lazy"
-                  className="img-fluid maintance-img"
+                  alt='Scrooge VPN'
+                  loading='lazy'
+                  className='img-fluid maintance-img'
                 />
               ) : (
                 <img
                   src={notaccess}
-                  alt="Scrooge Access"
-                  loading="lazy"
-                  className="img-fluid maintance-img"
+                  alt='Scrooge Access'
+                  loading='lazy'
+                  className='img-fluid maintance-img'
                 />
               )}
             </div>
@@ -112,20 +118,19 @@ const App = () => {
             setUserId,
             userInAnyGame,
             setUserInAnyGame,
-          }}
-        >
+          }}>
           <Router>
             <Switch>
-              <Route exact path="/">
+              <Route exact path='/'>
                 <Home />
               </Route>
-              <Route exact path="/game" component={Game} />
-              <Route exact path="*" component={Error404} />
+              <Route exact path='/game' component={Game} />
+              <Route exact path='*' component={Error404} />
             </Switch>
           </Router>
-          <div className="abc">
+          <div className='abc'>
             <Toaster
-              position="top-center"
+              position='top-center'
               reverseOrder={false}
               toastOptions={{
                 className: "custom-toast",
