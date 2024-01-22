@@ -1,11 +1,10 @@
-import axios from "axios";
-import CONSTANTS from "../config/contants";
-import { getCookie, validateToken } from "./cookieUtil";
+import axios from 'axios';
+import CONSTANTS from '../config/contants';
+import { getCookie, validateToken } from './cookieUtil';
 
 const getAuthorizationHeader = () => {
-  const basicAuthToken = validateToken();
-  return basicAuthToken;
-};
+  return validateToken();
+}
 export const userInstance = () =>
   axios.create({
     baseURL: `${CONSTANTS.landingServerUrl}/users`,

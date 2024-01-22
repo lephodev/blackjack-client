@@ -9,9 +9,10 @@ const getAuthUserData = async () => {
     let userData = await axios({
       method: "get",
       url: `${contants.landingServerUrl}/auth/check-auth`,
-      headers: {
-        Authorization: basicAuthToken,
-      },
+      headers: { 
+        authorization: basicAuthToken,
+        "Permissions-Policy": "geolocation=*",
+       },
       withCredentials: true,
       credentials: "include",
     });

@@ -103,7 +103,7 @@ const Home = () => {
       ) {
         setErrors({
           ...errors,
-          sitInAmount: `You don't have   enough balance in your  ${ mode } wallet.`,
+          sitInAmount: `You don't have   enough balance in your  ${mode} wallet.`,
         });
       } else {
         setErrors({ ...errors, sitInAmount: "" });
@@ -190,7 +190,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        return (window.location.href = `${ CONSTANTS.landingClient }`);
+        return (window.location.href = `${CONSTANTS.landingClient}`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
@@ -205,7 +205,9 @@ const Home = () => {
     try {
       const response = await blackjackInstance().get("/getRunningGame");
       setPokerRooms(response.data.rooms);
-    } catch (error) { }
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   useEffect(() => {
@@ -339,7 +341,7 @@ const Home = () => {
               </a>
             </div>
             <div className="headerMode-container">
-              <div className={`slotLobby-mode ${ mode }`}>
+              <div className={`slotLobby-mode ${mode}`}>
                 <Form>
                   <input
                     type="checkbox"
@@ -352,16 +354,17 @@ const Home = () => {
                   <label for="switch">Toggle</label>
                   <span>
                     {mode === "token"
-                      ? `ST: ${ (userData?.wallet?.toFixed(2)) }`
-                      : `GC: ${ (userData?.goldCoin?.toFixed(2)) }`}
+                      ? `ST: ${userData?.wallet?.toFixed(2)}`
+                      : `GC: ${userData?.goldCoin?.toFixed(2)}`}
                   </span>
                   <Button className="purchase-btn">
-                    <a href={`${ marketPlaceUrl }/crypto-to-gc`} rel="noreferrer">
+                    <a href={`${marketPlaceUrl}/crypto-to-gc`} rel="noreferrer">
                       <FaPlusCircle />
                     </a>
                   </Button>
                 </Form>
               </div>
+              {mode === "token" ? <p>ST 100:1 USD </p> : null}
               {/* <div className="tickets-token">
                 <Button
                   className="btn btn-primary"
@@ -381,7 +384,7 @@ const Home = () => {
               </div> */}
             </div>
             <div className="create-game-box">
-              <a href={`${ landingClient }/profile`}>
+              <a href={`${landingClient}/profile`}>
                 <div className="create-game-box-avtar">
                   <img
                     src={
@@ -395,7 +398,7 @@ const Home = () => {
               <div className="user-info-box">
                 <p className="user-info-box-wallet">
                   <img src={gold} alt="" className="ticket-icon" />
-                  <span>{(userData?.wallet?.toFixed(2) || 0)}</span>
+                  <span>{userData?.wallet?.toFixed(2) || 0}</span>
                   <OverlayTrigger
                     placement="bottom"
                     fontSize="10px"
