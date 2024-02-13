@@ -166,7 +166,7 @@ const Home = () => {
       return;
     }
     try {
-      const resp = await blackjackInstance().post("/createTable", {
+      const resp = await (await blackjackInstance()).post("/createTable", {
         ...gameState,
         gameName: gameState.gameName.trim(),
         gameMode: mode,
@@ -194,7 +194,7 @@ const Home = () => {
       }
       setLoader(false);
       setUserData({ ...data.data.user });
-      const response = await blackjackInstance().get(`/getAllUsers`, {
+      const response = await (await blackjackInstance()).get(`/getAllUsers`, {
         params: { userId: data?.data?.user?.id },
       });
       setAllUsers(response.data.allUsers);
@@ -203,7 +203,7 @@ const Home = () => {
 
   const checkRunningGame = async () => {
     try {
-      const response = await blackjackInstance().get("/getRunningGame");
+      const response = await (await blackjackInstance()).get("/getRunningGame");
       setPokerRooms(response.data.rooms);
     } catch (error) {
       console.log("error", error);
@@ -211,8 +211,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const basicAuthToken = validateToken();
     const checkUserInGame = async () => {
+      const basicAuthToken = await validateToken();
       let userData = await axios({
         method: "get",
         url: `${contants.landingServerUrl}/users/checkUserInGame`,

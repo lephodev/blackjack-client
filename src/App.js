@@ -41,7 +41,7 @@ const App = () => {
     try {
       // const apiUrl = `http://api.vpnblocker.net/v2/json/${CurrentIp}`;
       const serverUrl = `/auth/getgeolocationDetails`;
-      const response = await authInstance().get(serverUrl);
+      const response = await (await authInstance()).get(serverUrl);
       console.log("response", response);
       const ipAddressObject = {
         [Object.keys(response.data)[1]]:
@@ -78,8 +78,9 @@ const App = () => {
 
   const checkVPN = async () => {
     try {
+      if (localStorage.getItem("adminType") === "admin") return;
       const serverUrl = `/validate_VPN`;
-      const checkVPNRes = await authInstance().get(serverUrl);
+      const checkVPNRes = await (await authInstance()).get(serverUrl);
       setIsVPNEnable(checkVPNRes?.data?.vpnStatus);
     } catch (error) {
       console.log("err", error);
