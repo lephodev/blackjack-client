@@ -32,9 +32,10 @@ const InviteFriend = ({
 
   const fetchFriendList = useCallback(async () => {
     try {
+      const token = await validateToken()
       const res = await axios.get(
         contants.serverUrl + '/getUserForInvite/' + tableId, {
-          headers: { Authorization: validateToken(), }
+          headers: { Authorization: token, }
         }
       );
       // console.log(res.data.data);
