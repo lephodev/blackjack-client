@@ -3,8 +3,8 @@ import contants from "../config/contants";
 import { validateToken } from "./cookieUtil";
 // This function is alternative of firebase.auth().onAuthStateChanged
 const getAuthUserData = async () => {
+  const basicAuthToken = await validateToken();
   try {
-    const basicAuthToken = validateToken();
 
     let userData = await axios({
       method: "get",

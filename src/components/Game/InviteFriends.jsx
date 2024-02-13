@@ -31,15 +31,13 @@ const InviteFriend = ({
   }, []);
 
   const fetchFriendList = useCallback(async () => {
-    const basicAuthToken = validateToken();
+    // const basicAuthToken = validateToken();
 
     try {
+      const token = await validateToken()
       const res = await axios.get(
-        contants.serverUrl + '/getUserForInvite/' + tableId,
-        {
-          headers: {
-            Authorization: basicAuthToken,
-          }
+        contants.serverUrl + '/getUserForInvite/' + tableId, {
+          headers: { Authorization: token, }
         }
       );
 
