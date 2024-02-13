@@ -2,39 +2,49 @@ import axios from 'axios';
 import CONSTANTS from '../config/contants';
 import { getCookie, validateToken } from './cookieUtil';
 
-const getAuthorizationHeader = () => {
-  return validateToken();
+const getAuthorizationHeader = async() => {
+  const token = await validateToken();
+  return token;
 }
-export const userInstance = () =>
-  axios.create({
+export const userInstance = async () => {
+  const token = await getAuthorizationHeader();
+  return axios.create({
     baseURL: `${CONSTANTS.landingServerUrl}/users`,
     headers: { 
-      Authorization: getAuthorizationHeader(),
+      Authorization: token,
       "Permissions-Policy": "geolocation=*",
     },
 
   });
+}
+  
 
-export const authInstance = () =>
-  axios.create({
+export const authInstance = async () =>{
+  const token = await getAuthorizationHeader();
+  return axios.create({
     baseURL: `${CONSTANTS.landingServerUrl}/auth`,
     headers: { 
-      Authorization: getAuthorizationHeader(),
+      Authorization: token,
       "Permissions-Policy": "geolocation=*",
     },
   });
+}
+  
 
-export const blackjackInstance = () =>
-  axios.create({
+export const blackjackInstance = async () => {
+  const token = await getAuthorizationHeader();
+  return axios.create({
     baseURL: `${CONSTANTS.serverUrl}`,
     headers: { 
-      Authorization: getAuthorizationHeader(),
+      Authorization: token,
       "Permissions-Policy": "geolocation=*",
     },
     withCredentials:true,
     credentials:"include",
 
   });
+}
+  
   export const ticketTotokenInstance = () =>
   axios.create({
     baseURL: `${CONSTANTS.marketServer}/api`,
