@@ -272,6 +272,9 @@
 .casino-logo img {
   width: 130px;
 }
+.casino-logo img.new-logo {
+  max-width: 110px;
+}
 
 .create-game-box {
   display: flex;
@@ -1275,6 +1278,11 @@ input#custom-switch {
     font-size: 18px;
     line-height: 20px;
     letter-spacing: 2px;
+  }
+  .casino-logo img.new-logo {
+    max-width: 70px;
+    width: 100%;
+    height: 70px;
   }
 
   /* .create-game-box a {
