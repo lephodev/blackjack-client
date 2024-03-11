@@ -30,7 +30,7 @@ import toast from "react-hot-toast";
 import Select from "react-select";
 import { useMemo } from "react";
 // import numFormatter from "../../config/utils";
-import { Spinner } from "react-bootstrap";
+// import { Spinner } from "react-bootstrap";
 import { domain, landingClient, marketPlaceUrl } from "../../config/keys";
 import cookie from "js-cookie";
 
