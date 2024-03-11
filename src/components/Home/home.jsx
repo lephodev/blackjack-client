@@ -462,13 +462,13 @@ const Home = () => {
                   <h6>Token</h6>
                 </div>
               </div> */}
-              <button
+              {/* <button
                 type="button"
                 className="create-game-boxBtn"
                 onClick={handleShow}
               >
                 Create Game
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -636,7 +636,7 @@ const CreateTable = ({
   return (
     <Modal show={show} onHide={handleShow} centered className="casino-popup">
       <Modal.Header closeButton>
-        <Modal.Title className="text-dark">Create Table</Modal.Title>
+        {/* <Modal.Title className="text-dark">Create Table</Modal.Title> */}
       </Modal.Header>
       <Modal.Body>
         <Form.Group className="form-group" controlId="formPlaintextPassword">
@@ -696,7 +696,7 @@ const CreateTable = ({
           Close
         </Button>
         <Button variant="primary" type="submit" onClick={createTable}>
-          {showSpinner ? <Spinner animation="border" /> : "Create Table"}
+          {/* {showSpinner ? <Spinner animation="border" /> : "Create Table"} */}
         </Button>
       </Modal.Footer>
     </Modal>
