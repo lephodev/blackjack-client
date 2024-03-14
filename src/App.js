@@ -186,7 +186,7 @@ const App = () => {
 
       const elapsedTime = crrTm - lastActive;
 
-      const thirtyMinutesInMillis = 1 * 60 * 1000;
+      const thirtyMinutesInMillis = 30 * 60 * 1000;
       console.log(lastActive, crrTm, elapsedTime, thirtyMinutesInMillis, user);
       if (elapsedTime > thirtyMinutesInMillis) {
         logout(); // Perform logout if elapsed time exceeds 30 minutes
