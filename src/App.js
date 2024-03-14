@@ -117,7 +117,7 @@ const App = () => {
         );
       }
       setUser();
-      // window.location.href = `${CONSTANTS.landingClient}`;
+      window.location.href = `${CONSTANTS.landingClient}`;
     } catch (error) {
       console.log("error in Handlelogout", error);
     }
