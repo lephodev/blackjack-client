@@ -18,6 +18,7 @@ import userUtils from "../../utils/user";
 import loaderImg from "../../imgs/animation/loader1.webp";
 import casino from "../../imgs/blackjack/blackjackPlaceholder.png";
 import logo from "../../imgs/blackjack/logo.png";
+import newlogo from "../../imgs/blackjack/new-logo.webp";
 import users from "../../imgs/blackjack/user1.png";
 import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
@@ -166,7 +167,9 @@ const Home = () => {
       return;
     }
     try {
-      const resp = await (await blackjackInstance()).post("/createTable", {
+      const resp = await (
+        await blackjackInstance()
+      ).post("/createTable", {
         ...gameState,
         gameName: gameState.gameName.trim(),
         gameMode: mode,
@@ -194,7 +197,9 @@ const Home = () => {
       }
       setLoader(false);
       setUserData({ ...data.data.user });
-      const response = await (await blackjackInstance()).get(`/getAllUsers`, {
+      const response = await (
+        await blackjackInstance()
+      ).get(`/getAllUsers`, {
         params: { userId: data?.data?.user?.id },
       });
       setAllUsers(response.data.allUsers);
@@ -334,7 +339,18 @@ const Home = () => {
           <div className="user-header-grid">
             <div className="casino-logo">
               <a href={landingClient}>
-                <img src={logo} alt="" />
+                {userData ? (
+                  <img
+                    src={newlogo}
+                    alt="logo"
+                    width={110}
+                    height={110}
+                    loading="lazy"
+                    className="new-logo"
+                  />
+                ) : (
+                  <img src={logo} alt="logo" />
+                )}
               </a>
             </div>
             <div className="headerMode-container">
