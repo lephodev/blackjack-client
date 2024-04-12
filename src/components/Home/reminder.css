@@ -1,0 +1,118 @@
+.reminder-time .modal-content {
+    background-color: #202020;
+    border: none;
+    overflow: unset !important;
+    padding: 0;
+    max-width: 500px;
+    margin: 0px auto;
+}
+.reminder-time .modal-header {
+    background-color: #202020 !important;
+    border: none!important;
+    z-index: 999;
+    padding: 14px;
+}
+.reminder-time .modal-header .btn-close {
+    filter: invert(1);
+    opacity: 1;
+}
+.reminder-time .modal-body {
+    padding: 10px;
+    padding-top: 35px;
+}
+
+.reminder-time .modal-footer {
+    border: none;
+    padding: 25px 20px;
+}
+
+
+/* Reminder Setting CSS */ 
+.reminder-setting-title {
+    text-align: center;
+}
+.contest-modal.reminder-setting .modal-body {
+    background-color: #202020 ;
+}
+.contest-modal.reminder-setting .modal-footer {
+   justify-content: center;
+   padding: 25px 0px;
+   border-top: 1px solid #25282e;
+}
+.reminder-btn-grid {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 20px;
+}
+.reminder-setting .modal-footer button {
+    max-width: 120px;
+    width: 100% !important;
+    min-width: unset !important;
+}
+
+.reminder-time h5{
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+    text-shadow: #fc0 1px 0 10px;
+    color: #fff;
+}
+.yellow-Btn,
+.yellow-Btn:hover,
+.yellow-Btn:active,
+.yellow-Btn:focus {
+  padding: 6px 18px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  line-height: 20px !important;
+  text-align: center !important;
+  background-color: #f9ff00 !important;
+  color: black !important;
+  border: 2px solid var(--primary-color) !important;
+  border-radius: 30px !important;
+  min-width: 120px !important;
+  width: fit-content !important;
+  height: 38px !important;
+  display: grid !important;
+  place-content: center !important;
+  font-family: var(--poppins) !important;
+}
+
+.dark-Btn,
+.dark-Btn:hover,
+.dark-Btn:active,
+.dark-Btn:focus {
+  padding: 6px 18px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  text-align: center;
+  color: #fff !important;
+  background-color: #343a40 !important;
+  border-color: #343a40 !important;
+  min-width: 120px;
+  width: fit-content;
+  border-radius: 30px !important;
+  height: 38px !important;
+  display: grid !important;
+  place-content: center !important;
+  font-family: var(--poppins) !important;
+}
+
+@media screen and (max-width: 767px) {
+
+    .reminder-time .modal-header .btn-close {
+        font-size: 16px;
+    }
+
+    .reminder-setting-title h5 {
+        font-size: 18px;
+    }
+    .reminder-setting .modal-footer {
+        padding: 15px 0px;
+    }
+}
