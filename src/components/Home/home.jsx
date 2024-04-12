@@ -38,6 +38,7 @@ import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
 import { getCookie, validateToken } from "../../utils/cookieUtil";
 import contants from "../../config/contants";
+import ReminderModal from "./reminderModal";
 // import TicketTotoken from "./ticketToToken";
 // import { getCookie } from "../../utils/cookieUtil";
 
@@ -65,6 +66,7 @@ const Home = () => {
   const [searchText, setSearchText] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
   // const [ticketToToken, setTicketToToekn] = useState(false);
+  const [reminderShow, setReminderShow] = useState(false);
 
   // console.log({ userData });
 
@@ -242,6 +244,13 @@ const Home = () => {
       }),
     [allUsers]
   );
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setReminderShow(false);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const renderWallet = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -314,6 +323,10 @@ const Home = () => {
           checkRunningGame={checkRunningGame}
         />
       )}
+      <ReminderModal
+        reminderShow={reminderShow}
+        setReminderShow={setReminderShow}
+      />
       {loader && (
         <div className="poker-loader">
           <img src={loaderImg} alt="loader" />{" "}
