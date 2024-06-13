@@ -13,7 +13,7 @@ import { authInstance } from "./utils/axios.config";
 import vpnbanner from "./imgs/blackjack/vpn-banner.webp";
 import notaccess from "./imgs/blackjack/not-access.webp";
 import userUtils from "./utils/userUtils";
-// import CONSTANTS from "../src/config/contants";
+import CONSTANTS from "../src/config/contants";
 
 // import { getCookie } from "./config/utils";
 // import contants from './config/contants'
@@ -116,7 +116,7 @@ const App = () => {
         );
       }
       setUser();
-      // window.location.href = `${CONSTANTS.landingClient}`;
+      window.location.href = `${CONSTANTS.landingClient}`;
     } catch (error) {
       console.log("error in Handlelogout", error);
     }

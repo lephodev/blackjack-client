@@ -21,7 +21,7 @@ import logo from "../../imgs/blackjack/logo.png";
 import newlogo from "../../imgs/blackjack/new-logo.webp";
 import users from "../../imgs/blackjack/user1.png";
 import { blackjackInstance } from "../../utils/axios.config";
-// import CONSTANTS from "../../config/contants";
+import CONSTANTS from "../../config/contants";
 // import ticket from "../../imgs/blackjack/ticket.png";
 import coin from "../../imgs/blackjack/goldCoin.png";
 import gold from "../../imgs/blackjack/sweep.png";
@@ -195,7 +195,7 @@ const Home = () => {
     (async () => {
       const data = await userUtils.getAuthUserData();
       if (!data.success) {
-        // return (window.location.href = `${CONSTANTS.landingClient}`);
+        return (window.location.href = `${CONSTANTS.landingClient}`);
       }
       setLoader(false);
       setUserData({ ...data.data.user });
