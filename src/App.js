@@ -13,7 +13,7 @@ import { authInstance } from "./utils/axios.config";
 import vpnbanner from "./imgs/blackjack/vpn-banner.webp";
 import notaccess from "./imgs/blackjack/not-access.webp";
 import userUtils from "./utils/userUtils";
-import CONSTANTS from '../src/config/contants';
+// import CONSTANTS from "../src/config/contants";
 
 // import { getCookie } from "./config/utils";
 // import contants from './config/contants'
@@ -92,11 +92,10 @@ const App = () => {
     }
   };
 
-  
   useEffect(() => {
     (async () => {
       const userData = await userUtils.getAuthUserData();
-      console.log("userData ===>",userData);
+      console.log("userData ===>", userData);
       setUser(userData?.data?.user);
       await getGeoLocationDetails();
       await checkVPN();
@@ -107,7 +106,7 @@ const App = () => {
     try {
       if (user?.id) {
         const tokenData = localStorage.getItem("refreshToken") || "";
-        console.log("handle logout executed ==>")
+        console.log("handle logout executed ==>");
         await (
           await authInstance()
         ).post(
@@ -117,7 +116,7 @@ const App = () => {
         );
       }
       setUser();
-      window.location.href = `${CONSTANTS.landingClient}`;
+      // window.location.href = `${CONSTANTS.landingClient}`;
     } catch (error) {
       console.log("error in Handlelogout", error);
     }
@@ -182,7 +181,7 @@ const App = () => {
       lastActive = new Date(lastActive).getTime();
       const crrTm = new Date().getTime();
 
-      console.log("lastactive",lastActive, crrTm);
+      console.log("lastactive", lastActive, crrTm);
 
       const elapsedTime = crrTm - lastActive;
 
@@ -194,28 +193,25 @@ const App = () => {
     }
   }, [user]);
 
-
-
-
   return (
     <div id="table-main-wrap">
       {stateBlock || isVPNEnable ? (
-        <div className='ip-block-content'>
-          <div className='container'>
-            <div className='ip-block-grid'>
+        <div className="ip-block-content">
+          <div className="container">
+            <div className="ip-block-grid">
               {isVPNEnable ? (
                 <img
                   src={vpnbanner}
-                  alt='Scrooge VPN'
-                  loading='lazy'
-                  className='img-fluid maintance-img'
+                  alt="Scrooge VPN"
+                  loading="lazy"
+                  className="img-fluid maintance-img"
                 />
               ) : (
                 <img
                   src={notaccess}
-                  alt='Scrooge Access'
-                  loading='lazy'
-                  className='img-fluid maintance-img'
+                  alt="Scrooge Access"
+                  loading="lazy"
+                  className="img-fluid maintance-img"
                 />
               )}
             </div>
@@ -230,19 +226,20 @@ const App = () => {
             setUserId,
             userInAnyGame,
             setUserInAnyGame,
-          }}>
+          }}
+        >
           <Router>
             <Switch>
-              <Route exact path='/'>
+              <Route exact path="/">
                 <Home />
               </Route>
-              <Route exact path='/game' component={Game} />
-              <Route exact path='*' component={Error404} />
+              <Route exact path="/game" component={Game} />
+              <Route exact path="*" component={Error404} />
             </Switch>
           </Router>
-          <div className='abc'>
+          <div className="abc">
             <Toaster
-              position='top-center'
+              position="top-center"
               reverseOrder={false}
               toastOptions={{
                 className: "custom-toast",
