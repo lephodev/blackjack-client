@@ -18,6 +18,7 @@ import userUtils from "../../utils/user";
 import loaderImg from "../../imgs/animation/loader1.webp";
 import casino from "../../imgs/blackjack/blackjackPlaceholder.png";
 import logo from "../../imgs/blackjack/logo.png";
+import newlogo from "../../imgs/blackjack/new-logo.webp";
 import users from "../../imgs/blackjack/user1.png";
 import { blackjackInstance } from "../../utils/axios.config";
 import CONSTANTS from "../../config/contants";
@@ -29,7 +30,7 @@ import toast from "react-hot-toast";
 import Select from "react-select";
 import { useMemo } from "react";
 // import numFormatter from "../../config/utils";
-import { Spinner } from "react-bootstrap";
+// import { Spinner } from "react-bootstrap";
 import { domain, landingClient, marketPlaceUrl } from "../../config/keys";
 import cookie from "js-cookie";
 
@@ -37,6 +38,7 @@ import GameContext from "../../Context";
 import AlreadyInGame from "../Game/AlreadyInGame";
 import { getCookie, validateToken } from "../../utils/cookieUtil";
 import contants from "../../config/contants";
+import ReminderModal from "./reminderModal";
 // import TicketTotoken from "./ticketToToken";
 // import { getCookie } from "../../utils/cookieUtil";
 
@@ -64,6 +66,7 @@ const Home = () => {
   const [searchText, setSearchText] = useState("");
   const [showSpinner, setShowSpinner] = useState(false);
   // const [ticketToToken, setTicketToToekn] = useState(false);
+  const [reminderShow, setReminderShow] = useState(false);
 
   // console.log({ userData });
 
@@ -166,7 +169,9 @@ const Home = () => {
       return;
     }
     try {
-      const resp = await (await blackjackInstance()).post("/createTable", {
+      const resp = await (
+        await blackjackInstance()
+      ).post("/createTable", {
         ...gameState,
         gameName: gameState.gameName.trim(),
         gameMode: mode,
@@ -194,7 +199,9 @@ const Home = () => {
       }
       setLoader(false);
       setUserData({ ...data.data.user });
-      const response = await (await blackjackInstance()).get(`/getAllUsers`, {
+      const response = await (
+        await blackjackInstance()
+      ).get(`/getAllUsers`, {
         params: { userId: data?.data?.user?.id },
       });
       setAllUsers(response.data.allUsers);
@@ -237,6 +244,13 @@ const Home = () => {
       }),
     [allUsers]
   );
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setReminderShow(false);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const renderWallet = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -309,6 +323,10 @@ const Home = () => {
           checkRunningGame={checkRunningGame}
         />
       )}
+      <ReminderModal
+        reminderShow={reminderShow}
+        setReminderShow={setReminderShow}
+      />
       {loader && (
         <div className="poker-loader">
           <img src={loaderImg} alt="loader" />{" "}
@@ -334,7 +352,18 @@ const Home = () => {
           <div className="user-header-grid">
             <div className="casino-logo">
               <a href={landingClient}>
-                <img src={logo} alt="" />
+                {userData ? (
+                  <img
+                    src={newlogo}
+                    alt="logo"
+                    width={110}
+                    height={110}
+                    loading="lazy"
+                    className="new-logo"
+                  />
+                ) : (
+                  <img src={logo} alt="logo" />
+                )}
               </a>
             </div>
             <div className="headerMode-container">
@@ -446,13 +475,13 @@ const Home = () => {
                   <h6>Token</h6>
                 </div>
               </div> */}
-              <button
+              {/* <button
                 type="button"
                 className="create-game-boxBtn"
                 onClick={handleShow}
               >
                 Create Game
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -620,7 +649,7 @@ const CreateTable = ({
   return (
     <Modal show={show} onHide={handleShow} centered className="casino-popup">
       <Modal.Header closeButton>
-        <Modal.Title className="text-dark">Create Table</Modal.Title>
+        {/* <Modal.Title className="text-dark">Create Table</Modal.Title> */}
       </Modal.Header>
       <Modal.Body>
         <Form.Group className="form-group" controlId="formPlaintextPassword">
@@ -680,7 +709,7 @@ const CreateTable = ({
           Close
         </Button>
         <Button variant="primary" type="submit" onClick={createTable}>
-          {showSpinner ? <Spinner animation="border" /> : "Create Table"}
+          {/* {showSpinner ? <Spinner animation="border" /> : "Create Table"} */}
         </Button>
       </Modal.Footer>
     </Modal>
