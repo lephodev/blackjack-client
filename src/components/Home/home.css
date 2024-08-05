@@ -38,13 +38,18 @@
 }
 
 .backtoHome a {
-  color: #f9ff00;
+  color: #ffc700;
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 18px;
   font-weight: 500;
   text-decoration: none;
+  -webkit-text-fill-color: transparent;
+    background: linear-gradient(90deg, #ffc700, #ffeca8 51%, #ffc700);
+    background: var(--Gold-Stroke, linear-gradient(90deg, #ffc700, #ffeca8 51%, #ffc700));
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
 .player-wrapper-content {
@@ -101,8 +106,8 @@
 
 .home-poker-content {
   position: relative;
-  background: #141414;
-  border: 1px solid #252525;
+  background: #1d1e26;
+  border: 1px solid #1d1e26;
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgb(72 72 72 / 20%);
   overflow: hidden;
@@ -128,11 +133,11 @@
 .home-poker-info button {
   width: 100%;
   padding: 6px 12px;
-  background: #f9ff00;
-  border-radius: 30px;
+  background: var(--Gold-Stroke, linear-gradient(90deg, #ffc700 0, #ffeca8 51%, #ffc700 100%));
+  border: 2px solid #ffc700;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 12px;
-  border: 1px solid #f9ff00;
 }
 
 .home-poker-card {
@@ -142,11 +147,11 @@
 }
 
 .poker-table-content {
-  background: #141414;
+  background: #212430;
   padding: 30px;
   border-radius: 12px;
   margin-top: 20px;
-  border: 1px solid #1f1e1e;
+  border: 1px solid #212430;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 
@@ -163,10 +168,14 @@
   line-height: 20px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #f9ff00;
+  color: #ffc700;
   margin: 0;
   display: inline-block;
   position: relative;
+  -webkit-text-fill-color: transparent;
+    background: linear-gradient(90deg, #ffc700, #ffeca8 51%, #ffc700);
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
 .lobby-home-title h3::after {
@@ -174,7 +183,7 @@
   content: "";
   width: 30px;
   height: 1px;
-  background: #f9ff00;
+  background: #ffc700;
   top: 40%;
   right: -40px;
 }
@@ -198,8 +207,8 @@
 .user-header {
   margin-bottom: 50px;
   padding: 5px 0px 5px;
-  background: #141414;
-  border-bottom: 1px solid #1f1e1e;
+  background: #10121a;
+  border-bottom: 1px solid #10121a;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 
@@ -221,7 +230,7 @@
 }
 
 .modal-backdrop.show {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .modal-backdrop {
@@ -231,15 +240,16 @@
   z-index: 1050;
   width: 100vw;
   height: 100vh;
-  background-color: #2d2d2d;
+  background-color: #191414;
 }
 
 .create-game-box button {
   padding: 8px 20px;
-  background: #f9ff00;
-  border-radius: 30px;
+  background: var(--Gold-Stroke, linear-gradient(90deg, #ffc700 0, #ffeca8 51%, #ffc700 100%));
+  border: 2px solid #ffc700;
+  border-radius: 10px;
   font-weight: 600;
-  border: 1px solid #f9ff00;
+  border: 1px solid #ffc700;
   height: 40px;
   color: rgb(0, 0, 0);
   font-size: 14px;
@@ -331,17 +341,17 @@
 }
 
 .user-info-box p i {
-  color: #f9ff00;
+  color: #ffc700;
 }
 
 .casino-popup .modal-content {
-  background: #141414;
-  border-color: #141414;
-  box-shadow: 0px 2px 10px #141414;
+  background: #212126;
+  border-color: #212126;
+  box-shadow: 0px 2px 10px #212126;
 }
 
 .casino-popup .modal-header {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #212126;
   align-items: center;
   padding: 1rem 2rem;
 }
@@ -351,7 +361,7 @@
 }
 
 .casino-popup .modal-footer {
-  border-top: 1px solid #000;
+  border-top: 1px solid #212126;
   align-items: center;
   padding: 1rem 2rem;
 }
@@ -373,10 +383,12 @@
 
 .casino-popup .form-control,
 .casino-popup .form-control:focus {
-  background: #000;
-  border: 1px solid #000;
+  /* background: #000;
+  border: 1px solid #000; */
+  background: #1a1c25;
+  border: 1px solid var(--Gold-Stroke, #ffc700);
   color: #ddd;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 8px 20px;
   box-shadow: 0 2px 10px #000000a5;
   font-size: 16px;
@@ -400,13 +412,13 @@
   margin-bottom: 16px;
 }
 
-.modal-footer .btn,
-.modal-footer .btn:focus,
-.modal-footer .btn:active {
+.modal-footer .btn-primary,
+.modal-footer .btn-primary:focus,
+.modal-footer .btn-primary:active {
   padding: 8px 20px;
-  background: #f9ff00 !important;
-  border-color: #f9ff00 !important;
-  border-radius: 30px;
+  background: var(--Gold-Stroke, linear-gradient(90deg, #ffc700 0, #ffeca8 51%, #ffc700 100%));
+  border: 2px solid #ffc700 ;
+  border-radius: 10px;
   font-weight: 600;
   color: #000 !important;
   box-shadow: none !important;
@@ -425,6 +437,14 @@
   background-color: #343a40 !important;
   border-color: #343a40 !important;
   color: #ddd !important;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: none !important;
+  height: 40px;
+  width: 150px;
+  display: grid;
+  place-content: center;
 }
 
 .blindpopupField {
@@ -475,7 +495,7 @@ input[type="number"] {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #141414;
+  background: #212430;
   border-radius: 12px;
   padding: 50px;
   width: 100%;
@@ -525,8 +545,8 @@ input[type="number"] {
 }
 
 .createGameCheckHand .form-check-input:checked {
-  background-color: #f9ff00;
-  border-color: #f9ff00;
+  background-color: #ffc700;
+  border-color: #ffc700;
 }
 
 .createGameCheckHand .form-check-input:checked[type="checkbox"] {
@@ -615,8 +635,8 @@ input[type="number"] {
 
 .slotLobby-mode .form-check-input:checked {
   color: #2a2a2a;
-  border-color: #f9ff00;
-  background-color: #f9ff00;
+  border-color: #ffc700;
+  background-color: #ffc700;
 }
 
 .slotLobby-mode .custom-control-label::before {
@@ -643,7 +663,7 @@ input[type="number"] {
 .ticket-token-modal .ticket-to-token-popup h6:first-child {
   font-size: 18px;
   text-align: center;
-  color: #f9ff00;
+  color: #ffc700;
 }
 
 .ticket-to-token-popup h5 {
@@ -658,7 +678,7 @@ input[type="number"] {
 
 .ticket-token-modal .inputRange-Box {
   background: #000;
-  border: 1px solid #f9ff00;
+  border: 1px solid #ffc700;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
@@ -676,7 +696,7 @@ input[type="number"] {
 }
 
 .ticket-token-modal .total.tickets {
-  background: #f9ff00;
+  background: #ffc700;
   border-radius: 50px;
   margin: 30px auto;
   padding: 10px 20px;
@@ -684,12 +704,12 @@ input[type="number"] {
 }
 
 .ticket-token-modal .input-range__track--active {
-  background: #f9ff00 !important;
+  background: #ffc700 !important;
 }
 
 .ticket-token-modal .input-range__slider {
-  background: #f9ff00 !important;
-  border: 1px solid #f9ff00 !important;
+  background: #ffc700 !important;
+  border: 1px solid #ffc700 !important;
 }
 
 .ticket-token-modal .min-max-value p {
@@ -700,9 +720,9 @@ input[type="number"] {
 .ticket-token-modal .confirm-btn button,
 .ticket-token-modal .confirm-btn button:hover,
 .ticket-token-modal .confirm-btn button:focus {
-  background: #f9ff00 !important;
+  background: #ffc700 !important;
   color: black;
-  border: 1px solid #f9ff00 !important;
+  border: 1px solid #ffc700 !important;
   font-weight: 600;
   font-size: 14px;
   width: fit-content !important;
@@ -733,8 +753,8 @@ input[type="number"] {
   min-width: 80px !important;
   padding: 4px 10px !important;
   border-radius: 30px;
-  background: #f9ff00;
-  border: 1px solid #f9ff00;
+  background: #ffc700;
+  border: 1px solid #ffc700;
   color: black;
   font-weight: 600;
   font-size: 14px;
@@ -798,8 +818,8 @@ input[type="number"] {
 .tickets-token .btn.disabled,
 .tickets-token .btn:disabled,
 .tickets-token fieldset:disabled .btn {
-  background: #f9ff00;
-  border-color: #f9ff00;
+  background: #ffc700;
+  border-color: #ffc700;
   color: #000;
 }
 
@@ -810,10 +830,10 @@ input[type="number"] {
 .tickets-token .btn:first-child:active {
   display: flex;
   flex-direction: row;
-  background: #f9ff00;
+  background: #ffc700;
   color: #000;
   border-radius: 30px;
-  border-color: #f9ff00;
+  border-color: #ffc700;
   height: 38px;
   align-items: center;
 }
@@ -847,7 +867,7 @@ input[type="number"] {
   font-size: 14px;
   text-transform: capitalize;
   font-weight: 600;
-  color: #f9ff00;
+  color: #ffc700;
 }
 
 .slotLobby-mode {
@@ -881,7 +901,7 @@ input[type="number"] {
 
 .goldCoin-labels .goldCoin,
 .sweepToken-labels .token {
-  color: #f9ff00;
+  color: #ffc700;
 }
 
 /* fjkhksdjhfkdhsfkhksdfhksdhfhsdjkh */
@@ -894,21 +914,21 @@ input[type="number"] {
 }
 
 .slotLobby-mode.goldCoin {
-  border: 1px solid #f9ff00;
+  border: 1px solid #ffc700;
 }
 
 .slotLobby-mode.token {
-  border: 1px solid #fa0000;
+  border: 1px solid #ffc700;
 }
 
 .slotLobby-mode.token form .purchase-btn {
-  background: #fa0000;
-  border: 1px solid #fa0000;
+  background: #ffc700;
+  border: 1px solid #ffc700;
 }
 
 .slotLobby-mode.goldCoin form .purchase-btn {
-  background: #f9ff00;
-  border: 1px solid #f9ff00;
+  background: #ffc700;
+  border: 1px solid #ffc700;
 }
 
 .slotLobby-mode form .purchase-btn {
@@ -938,8 +958,8 @@ input[type="number"] {
 }
 
 .slotLobby-mode form input {
-  background-color: #f9ff00 !important;
-  border: 1px solid #f9ff00;
+  background-color: #ffc700 !important;
+  border: 1px solid #ffc700;
 }
 
 .slotLobby-mode img {
@@ -1035,7 +1055,7 @@ input[type="number"] {
 
 .slotLobby-mode .form-switch .form-check-input:focus {
   background-image: url("../../imgs/blackjack/goldCoin.png") !important;
-  background-color: #f9ff00;
+  background-color: #ffc700;
   box-shadow: 0 0 0 0.25rem rgba(253, 233, 13, 0);
 }
 
@@ -1045,8 +1065,8 @@ input[type="number"] {
 }
 
 .slotLobby-mode.goldCoin .custom-switch .custom-control-label::before {
-  background-color: #f9ff00 !important;
-  border: 1px solid #f9ff00;
+  background-color: #ffc700 !important;
+  border: 1px solid #ffc700;
 }
 
 .slotLobby-mode .form-switch .form-check-input:checked {
@@ -1059,8 +1079,8 @@ input#custom-switch {
 }
 
 .slotLobby-mode.goldCoin form .purchase-btn {
-  background: #f9ff00;
-  border: 1px solid #f9ff00;
+  background: #ffc700;
+  border: 1px solid #ffc700;
 }
 
 .pokerWallet-box {
@@ -1080,8 +1100,8 @@ input#custom-switch {
   text-indent: -9999px;
   width: 60px;
   height: 31px;
-  background-color: #f9ff00 !important;
-  border: 1px solid #f9ff00;
+  background-color: transparent !important;
+  border: 1px solid #ffc700;
   display: block;
   border-radius: 100px;
   position: relative;
@@ -1099,13 +1119,13 @@ input#custom-switch {
   border-radius: 90px;
   transition: 0.3s;
   background-image: url("../../imgs/blackjack/goldCoin.png") !important;
-  background-color: #f9ff00;
+  background-color: #ffc700;
   box-shadow: 0 0 0 0.25rem rgba(253, 233, 13, 0);
   background-size: contain;
 }
 
 .slotLobby-mode input:checked+label {
-  background-color: #fa0000 !important;
+  background-color: transparent !important;
   border-color: #fa0000;
 }
 
@@ -1325,8 +1345,8 @@ input#custom-switch {
   font-weight: 400;
   line-height: 1.5;
   color: #eaeaea !important;
-  background: #000 !important;
-  border: 1px solid #1f1e1e !important;
+  background: #1f2332 !important;
+  border: 1px solid #1f2332 !important;
   background-clip: padding-box;
   /* border: 1px solid #ced4da; */
   border-radius: 30px;
@@ -1339,10 +1359,10 @@ input#custom-switch {
 }
 
 .poker-tableSearch button {
-  background: #f9ff00;
+  background: #ffc700;
   border-radius: 50%;
   font-weight: 500;
-  border: 1px solid #f9ff00;
+  border: 1px solid #ffc700;
   display: flex;
   justify-content: center;
   align-items: center;
