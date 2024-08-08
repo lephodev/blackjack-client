@@ -37,12 +37,12 @@
 }
 
 .buy-coins-box:hover {
-  border: 1px solid #f9ff00;
+  border: 1px solid #ffc700;
   box-shadow: 0px 0px 30px rgb(185 161 30 / 50%);
 }
 
 .buy-coins-list .buy-coins-box:hover button {
-  background: #f9ff00;
+  background: #ffc700;
   border: 1px solid #b9a11e;
   color: #010101;
 }
@@ -70,8 +70,8 @@
 
 .buy-coins-list .buy-coins-box button:hover,
 .buy-coins-list .buy-coins-box button:focus {
-  background: #f9ff00;
-  border: 1px solid #f9ff00;
+  background: #ffc700;
+  border: 1px solid #ffc700;
   box-shadow: none;
 }
 

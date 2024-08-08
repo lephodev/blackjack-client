@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  background: #010101;
+  background: #10121a;
   background-repeat: no-repeat;
   background-attachment: fixed;
   padding: 0;
@@ -54,8 +54,8 @@ button {
 input:-internal-autofill-selected {
   appearance: menulist-button;
   background-image: none !important;
-  background-color: #f9ff00 !important;
-  background: #f9ff00 !important;
+  background-color: #ffc700 !important;
+  background: #ffc700 !important;
   color: black !important;
 }
 
@@ -63,27 +63,27 @@ input:-webkit-auto-fill {
   -webkit-box-shadow: 0px 2px 10px black;
   /* Change the color to your own background color */
   -webkit-text-fill-color: #000000;
-  background-color: #f9ff00 !important;
-  background: #f9ff00 !important;
+  background-color: #ffc700 !important;
+  background: #ffc700 !important;
 }
 
 input:auto-fill {
   -webkit-box-shadow: 0px 2px 10px black;
   /* Change the color to your own background color */
   -webkit-text-fill-color: #000000;
-  background-color: #f9ff00 !important;
-  background: #f9ff00 !important;
+  background-color: #ffc700 !important;
+  background: #ffc700 !important;
 }
 
 ::-moz-selection {
   /* Code for Firefox */
   color: rgb(0, 0, 0) !important;
-  background: #f9ff00 !important;
+  background: #ffc700 !important;
 }
 
 ::selection {
   color: rgb(0, 0, 0) !important;
-  background: #f9ff00 !important;
+  background: #ffc700 !important;
 }
 
 .blackjack-game.loaderactive:before {
@@ -733,7 +733,7 @@ input:auto-fill {
 }
 
 #users-online-box ul .users-list-box .users-list-info span {
-  color: #f9ff00;
+  color: #ffc700;
   font-weight: 500;
 }
 
@@ -1297,7 +1297,7 @@ input:auto-fill {
   justify-content: center;
   font-size: 18px;
   font-weight: 600;
-  background: #f9ff00;
+  background: #ffc700;
   pointer-events: none;
   color: #fff;
   border-radius: 5px;
@@ -1871,7 +1871,7 @@ i {
 .user-action-container button#surrender:hover svg path,
 .user-action-container button#hit:hover svg path,
 .user-action-container button#doubleDown:hover svg path:first-child {
-  fill: #f9ff00;
+  fill: #ffc700;
 }
 
 .user-action-container .user-action:disabled svg path {
@@ -2024,7 +2024,7 @@ i {
 }
 
 .bet-amt-range span.input-range__label-container {
-  background: #f9ff00;
+  background: #ffc700;
   font-weight: 600;
   padding: 2px 4px;
   border-radius: 4px;
@@ -2049,8 +2049,8 @@ i {
 }
 
 .bet-amt-range .input-range__slider {
-  background: #f9ff00;
-  border-color: #f9ff00;
+  background: #ffc700;
+  border-color: #ffc700;
   margin-left: -0.8rem;
   margin-top: -1.2rem;
   height: 1.6rem;
@@ -2091,7 +2091,7 @@ i {
   width: 160px;
   white-space: nowrap;
   height: 40px;
-  background-color: #f9ff00 !important;
+  background-color: #ffc700 !important;
   color: black !important;
   padding: 6px 9px;
   border-radius: 10px;
@@ -2107,7 +2107,7 @@ i {
 .yellowBtn:hover,
 .yellowBtn:active,
 .yellowBtn:focus {
-  background-color: #f9ff00 !important;
+  background-color: #ffc700 !important;
   color: #000;
   height: 40px;
   box-shadow: none !important;

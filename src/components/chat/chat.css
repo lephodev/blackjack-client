@@ -18,7 +18,7 @@
   top: 8px;
   right: -4px;
   font-size: 11px;
-  background-color: #f9ff00;
+  background-color: #ffc700;
   color: black;
   width: 18px;
   height: 18px;
@@ -129,14 +129,14 @@ form.form-inline {
 .chat-search.chat-input .form-inline button,
 .chat-search.chat-input .form-inline button:hover,
 .chat-search.chat-input .form-inline button:focus {
-  background: #f9ff00;
+  background: #ffc700;
   color: #010101;
   font-size: 16px;
   width: 38px;
   height: 38px;
-  border-color: #f9ff00;
+  border-color: #ffc700;
   box-shadow: none;
-  border: 1px solid #f9ff00;
+  border: 1px solid #ffc700;
   border-radius: 0.25rem;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -231,7 +231,7 @@ span.msg-limit {
   /* border-radius: 20px; */
   font-size: 18px;
   font-weight: 700;
-  color: #f9ff00;
+  color: #ffc700;
   display: flex;
   flex-direction: column;
   gap: 4px;

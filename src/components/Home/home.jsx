@@ -552,7 +552,7 @@ const Home = () => {
 const customStyles = {
   option: (provided) => ({
     ...provided,
-    background: "#000",
+    background: "#1a1c25",
     color: "#ddd",
     fontWeight: "400",
     fontSize: "16px",
@@ -562,21 +562,21 @@ const customStyles = {
     borderRadius: "4px",
     borderBottom: "1px solid #141414",
     ":hover": {
-      background: "#141414",
+      background: "#1a1c25",
       borderRadius: "4px",
     },
   }),
   menu: (provided) => ({
     ...provided,
-    background: "#000",
-    borderRadius: "30px",
+    background: "#1a1c25",
+    borderRadius: "10px",
     padding: "10px 20px",
     border: "2px solid transparent",
   }),
   control: () => ({
-    background: "#000",
-    border: "2px solid #000",
-    borderRadius: "30px",
+    background: "#1a1c25",
+    border: "2px solid #ffc700",
+    borderRadius: "10px",
     color: "#fff",
     display: "flex",
     alignItem: "center",
@@ -585,7 +585,7 @@ const customStyles = {
     boxShadow: " 0 2px 10px #000000a5",
     cursor: "pointer",
     ":hover": {
-      background: "#000",
+      background: "#1a1c25",
       // border: "2px solid #306CFE",
     },
   }),
@@ -712,6 +712,7 @@ const CreateTable = ({
         </Button>
         <Button variant="primary" type="submit" onClick={createTable}>
           {/* {showSpinner ? <Spinner animation="border" /> : "Create Table"} */}
+          Create Table
         </Button>
       </Modal.Footer>
     </Modal>
